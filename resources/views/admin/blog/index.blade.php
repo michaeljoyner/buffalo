@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <section class="dd-page-header">
+    <section class="dd-page-header clearfix">
         <h1 class="pull-left">Blog Posts</h1>
         <div class="header-actions pull-right">
             <button type="button" class="btn dd-btn btn-dark" data-toggle="modal" data-target="#create-post-modal">

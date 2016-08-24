@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'hello@dymanticdesign.com', 'name' => 'Dymantic Design'],
 
     /*
     |--------------------------------------------------------------------------

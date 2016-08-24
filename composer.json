@@ -9,9 +9,9 @@
   "type": "project",
   "require": {
     "php": ">=5.5.9",
-    "laravel/framework": "5.2.*",
-    "laravelcollective/html": "^5.2",
-    "spatie/laravel-medialibrary": "^3.17"
+    "laravel/framework": "5.3.*",
+    "laravelcollective/html": "dev-master",
+    "spatie/laravel-medialibrary": "^4.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

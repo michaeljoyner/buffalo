@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-                <img src="{{ asset('images/assets/dymantic_design_logo.png') }}" alt="logo"/>
+                <img src="{{ asset('images/only.png') }}" alt="logo"/>
             </a>
         </div>
 
