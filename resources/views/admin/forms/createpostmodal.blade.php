@@ -20,6 +20,7 @@
                 <button type="button" class="btn dd-btn btn-light dd-modal-cancel-btn" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn dd-btn dd-modal-confirm-btn">Create</button>
             </div>
+            {!! Form::close() !!}
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

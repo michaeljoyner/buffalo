@@ -10,7 +10,11 @@
         .login-heading {
             text-align: center;
             text-transform: uppercase;
-            color: #f48054;
+            color: #46B977;
+        }
+
+        #login-submit {
+            background: #46B977;
         }
     </style>
 @endsection

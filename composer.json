@@ -11,7 +11,9 @@
     "php": ">=5.5.9",
     "laravel/framework": "5.3.*",
     "laravelcollective/html": "dev-master",
-    "spatie/laravel-medialibrary": "^4.0"
+    "spatie/laravel-medialibrary": "^4.0",
+    "cviebrock/eloquent-sluggable": "^4.0",
+    "gloudemans/shoppingcart": "dev-master"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

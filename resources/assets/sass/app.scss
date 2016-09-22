@@ -13,7 +13,25 @@ $font-family-sans-serif: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
 @import "admin/partials/navbar";
 @import "admin/partials/forms";
 @import "admin/partials/buttons";
+@import "admin/partials/spinner";
+@import "admin/partials/toggleswitch";
+@import "admin/partials/pagination";
+@import "admin/partials/pageheader";
 @import "admin/partials/usercard";
 @import "admin/partials/blogposteditior";
 @import "admin/partials/blogindex";
 @import "admin/partials/modals";
+@import "admin/partials/singleupload";
+@import "admin/partials/categories";
+@import "admin/partials/categorymenu";
+@import "admin/partials/productgrid";
+@import "admin/partials/slidesedit";
+@import "admin/partials/slidesindex";
+@import "admin/partials/searchview";
+@import "admin/partials/statcounter";
+@import "admin/partials/productshow";
+
+a, a:visited, a:hover, a:focus {
+  color: inherit;
+  text-decoration: none;
+}

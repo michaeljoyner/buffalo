@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class BlogPostImagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('bindings');
+    }
+
     public function store(Request $request, Post $post)
     {
         $this->validate($request, ['file' => 'required']);

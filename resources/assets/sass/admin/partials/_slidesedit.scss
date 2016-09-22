@@ -1,0 +1,144 @@
+.slides-edit-view {
+
+  .banner-media-uploader {
+    position: relative;
+    font-family: 'Teko', sans-serif;
+
+    #media-input {
+      display: none;
+    }
+
+    label {
+      display: block;
+      position: relative;
+      width: 100%;
+      padding-bottom: 42.85%;
+      overflow-y: hidden;
+      border: 2px dashed $eggshell;
+
+      img, video {
+        width: 100%;
+        position: absolute;
+      }
+
+      img.uploading {
+        filter: grayscale(100%);
+      }
+
+    }
+
+    .progress-outer {
+      position: absolute;
+      pointer-events: none;
+      z-index: 100;
+      height: 8px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+
+      .progress-inner {
+        background: $brand_green;
+        height: 100%;
+      }
+    }
+
+    .banner-slide-text {
+      position: absolute;
+      pointer-events: none;
+      font-size: 4em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $white;
+      top: 10%;
+      left: 20px;
+      width: 50%;
+
+      &.dark {
+        color: $brand_dark;
+      }
+
+      &.brand {
+        color: $brand_green;
+      }
+    }
+
+    .banner-cta {
+      position: absolute;
+      display: inline-block;
+      min-width: 6em;
+      text-align: center;
+      border: 3px solid $white;
+      padding: 8px 15px;
+      color: $white;
+      text-transform: uppercase;
+      font-size: 2em;
+      bottom: 50px;
+      right: 70px;
+
+      &.dark {
+        color: $brand_dark;
+        border-color: $brand_dark;
+      }
+
+      &.brand {
+        color: $brand_green;
+        border-color: $brand_green;
+      }
+    }
+  }
+
+  .publish-switch-box {
+    padding-top: 55px;
+
+    .toggle-switch {
+      display: inline-block;
+    }
+  }
+
+  .save-button {
+    text-align: center;
+
+    button {
+      display: inline-block;
+      width: 10em;
+      border-radius: 0;
+      background: $brand_green;
+      margin-top: 40px;
+      margin-bottom: 50px;
+    }
+  }
+}
+
+.colour-choices {
+  margin-top: 40px;
+
+  input[type=radio] {
+    display: none;
+  }
+
+  .colour-label {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px dotted $text_grey;
+    border-radius: 50%;
+    margin: 0 1em;
+    vertical-align: middle;
+  }
+
+  input[type=radio]:checked + .colour-label {
+    border: 3px solid #000000;
+  }
+
+  .colour-label[for=colour-1] {
+    background: $white;
+  }
+
+  .colour-label[for=colour-2] {
+    background: $brand_green;
+  }
+
+  .colour-label[for=colour-3] {
+    background: $brand_dark;
+  }
+}

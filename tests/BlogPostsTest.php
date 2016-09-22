@@ -1,6 +1,7 @@
 <?php
 use App\Blog\Post;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Created by PhpStorm.
@@ -57,12 +58,12 @@ class BlogPostsTest extends TestCase
     {
         $post = factory(Post::class)->create();
         $this->asLoggedInUser();
-        $this->withoutMiddleware();
-
         $this->assertFalse(!! $post->published);
 
+        Session::start();
         $response = $this->call('POST', '/admin/blog/posts/' . $post->id . '/publish', [
-            'publish' => true
+            'publish' => true,
+            '_token' => csrf_token()
         ]);
 
         $this->assertEquals(200, $response->status());
@@ -80,9 +81,9 @@ class BlogPostsTest extends TestCase
     {
         $post = factory(Post::class)->create();
         $this->asLoggedInUser();
-        $this->withoutMiddleware();
 
-        $response = $this->call('DELETE', '/admin/blog/posts/'.$post->id);
+        Session::start();
+        $response = $this->call('DELETE', '/admin/blog/posts/'.$post->id, ['_token' => csrf_token()]);
         $this->assertEquals(302, $response->status());
 
         $this->notSeeInDatabase('posts', [

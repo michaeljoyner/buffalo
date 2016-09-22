@@ -1,0 +1,59 @@
+.category-submenu {
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .menu-list {
+
+    li {
+      line-height: 25px;
+      color: $brand_dark;
+
+      &:hover {
+        color: $brand_green;
+      }
+    }
+  }
+
+  .trigger-label {
+    margin: 0;
+    vertical-align: middle;
+
+    svg {
+      fill: $brand_green;
+      stroke: $brand_green;
+    }
+  }
+
+  .submenu-trigger {
+    display: none;
+  }
+
+  .submenu-list {
+    transition: .7s;
+    min-height: 0;
+    max-height: 0;
+    height: 0;
+    padding-left: 10px;
+    font-size: 90%;
+    overflow: hidden;
+
+    li {
+      color: $brand_grey;
+
+      &:hover {
+        color: $brand_green;
+      }
+    }
+  }
+
+  .submenu-trigger:checked + .submenu-list {
+    max-height: 800px;
+    height: auto;
+    min-height: 10px;
+  }
+
+
+}

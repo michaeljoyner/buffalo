@@ -19,11 +19,12 @@ class BlogPostImagesTest extends TestCase
     {
         $post = factory(Post::class)->create();
         $this->asLoggedInUser();
-        $this->withoutMiddleware();
+        \Illuminate\Support\Facades\Session::start();
 
-        $response = $this->call('POST', '/admin/blog/posts/'.$post->id.'/images', [], [], [
-            'file' => $this->prepareFileUpload('tests/testpic1.png')
+        $response = $this->call('POST', '/admin/blog/posts/'.$post->id.'/images', ['_token' => csrf_token()], [], [
+            'file' => $this->prepareFileUpload('tests/testpic1.png'),
         ]);
+
 
         $this->assertEquals(200, $response->status());
 

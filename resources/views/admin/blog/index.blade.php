@@ -6,7 +6,7 @@
 
 @section('content')
     <section class="dd-page-header clearfix">
-        <h1 class="pull-left">Blog Posts</h1>
+        <h1 class="pull-left">Buffalo News</h1>
         <div class="header-actions pull-right">
             <button type="button" class="btn dd-btn btn-dark" data-toggle="modal" data-target="#create-post-modal">
                 New
@@ -39,14 +39,11 @@
             </footer>
         </div>
     @endforeach
-    {!! $posts->render() !!}
+    @include('admin.partials.pagination', ['paginator' => $posts])
     @include('admin.partials.deletemodal')
     @include('admin.forms.createpostmodal')
 @endsection
 
 @section('bodyscripts')
     @include('admin.partials.modalscript')
-    <script>
-        new Vue({el: 'body'});
-    </script>
 @endsection

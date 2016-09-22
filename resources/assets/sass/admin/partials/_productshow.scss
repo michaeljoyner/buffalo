@@ -1,0 +1,21 @@
+.availability {
+  text-align: center;
+}
+
+.product-show-section {
+  padding-bottom: 40px;
+}
+
+.product-image-box.single-image-uploader-box {
+
+  .profile-image {
+    border: none;
+  }
+
+  &:hover {
+
+    .profile-image {
+      border: 1px dashed $brand_green;
+    }
+  }
+}

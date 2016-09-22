@@ -16,24 +16,22 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/admin/projects">Projects</a></li>
-                <li><a href="/admin/blog/posts">Blog</a></li>
-                @if(isset($ediblePages) && $ediblePages->count())
-                    <li class="dropdown">
-                        <a href="#"
-                           class="dropdown-toggle"
-                           data-toggle="dropdown"
-                           role="button"
-                           aria-haspopup="true"
-                           aria-expanded="false"
-                        >Site Content <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            @foreach($ediblePages as $page)
-                                <li><a href="{{ $page['url'] }}">{{ ucwords($page['name']) }}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endif
+                <li class="dropdown">
+                    <a href="#"
+                       class="dropdown-toggle"
+                       data-toggle="dropdown"
+                       role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                    >Site Content <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/slides">Banner Slides</a></li>
+                    </ul>
+                </li>
+                <li><a href="/admin/products/search">Products</a></li>
+                <li><a href="/admin/categories">Categories</a></li>
+                <li><a href="/admin/orders">Product Enquiries</a></li>
+                <li><a href="/admin/blog/posts">News</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

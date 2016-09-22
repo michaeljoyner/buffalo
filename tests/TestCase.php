@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
+
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
     /**
@@ -30,5 +32,23 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $this->actingAs($user);
 
         return $user;
+    }
+
+    public function assertOkResponse($response)
+    {
+        return $this->assertEquals(200, $response->status());
+    }
+
+    public function assertRedirectResponse($response)
+    {
+        return $this->assertEquals(302, $response->status());
+    }
+
+    public function assertSoftDeleted(Model $model)
+    {
+        $model = $model->withTrashed()->find($model->id);
+        $this->seeInDatabase($model->getTable(), ['id' => $model->id]);
+        $this->assertTrue($model->trashed(), 'model should be trashed');
+        $this->assertNotNull($model->deleted_at, 'deleted_at should not be null');
     }
 }

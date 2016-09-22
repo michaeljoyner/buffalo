@@ -1,0 +1,24 @@
+.pagination-holder {
+  text-align: center;
+
+  .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+    z-index: 3;
+    color: $white;
+    background-color: $brand_green;
+    border-color: $brand_green;
+    cursor: default;
+  }
+
+  .pagination > li > a, .pagination > li > span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.428571429;
+    text-decoration: none;
+    color: $brand_green;
+    background-color: $white;
+    border: 1px solid transparent;
+    margin-left: -1px;
+    border-radius: 50%;
+  }
+}

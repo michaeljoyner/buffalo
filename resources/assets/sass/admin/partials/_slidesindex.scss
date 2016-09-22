@@ -1,0 +1,131 @@
+.slide-index-card-wrapper {
+  width: 30%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  margin: 10px;
+}
+.slides-index {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .slide-index-card {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 42.85%;
+    overflow-y: hidden;
+
+    &.incomplete {
+      background: $text_grey;
+
+      &:after {
+        content: 'INCOMPLETE';
+        font-family: 'Teko', sans-serif;
+        color: $brand_dark;
+        background: $white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 100;
+        font-size: 2em;
+        padding: 10px;
+      }
+    }
+
+    &.published:before {
+      content: '\2713';
+      position: absolute;
+      bottom: 3px;
+      left: 5px;
+      z-index: 100;
+      font-size: 2em;
+      display: block;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      background: white;
+      border-radius: 50%;
+      color: $brand_green;
+    }
+
+    img, video {
+      width: 100%;
+      position: absolute;
+    }
+
+    .banner-slide-text {
+      position: absolute;
+      pointer-events: none;
+      font-size: 1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $white;
+      top: 10%;
+      left: 20px;
+      width: 50%;
+      font-family: 'Teko', sans-serif;
+
+      &.dark {
+        color: $brand_dark;
+      }
+
+      &.brand {
+        color: $brand_green;
+      }
+    }
+
+    .banner-cta {
+      position: absolute;
+      display: inline-block;
+      font-family: 'Teko', sans-serif;
+      min-width: 6em;
+      text-align: center;
+      border: 3px solid $white;
+      padding: 8px 15px;
+      color: $white;
+      text-transform: uppercase;
+      font-size: .5em;
+      bottom: 10px;
+      right: 10px;
+
+      &.dark {
+        color: $brand_dark;
+        border-color: $brand_dark;
+      }
+
+      &.brand {
+        color: $brand_green;
+        border-color: $brand_green;
+      }
+    }
+
+  }
+
+  .add-slide-card {
+    background: $eggshell;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    svg {
+      position: absolute;
+      padding-top: 9%;
+    }
+  }
+
+}
+
+.product-stats {
+  display: flex;
+  justify-content: space-around;
+
+  & > * {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+  }
+}
