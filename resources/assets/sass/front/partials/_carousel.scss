@@ -4,6 +4,8 @@
   padding-bottom: 42.86%;
   overflow: hidden;
 
+  @include respond-to(phone) { padding-bottom: 78%;}
+
   .slide {
     width: 100%;
     position: absolute;
@@ -35,6 +37,14 @@
     .slide-action {
       border-color: $brand_dark;
     }
+
+    @include respond-to(phone) {
+
+      span.slide-text {
+        background: $brand_dark;
+        color: $brand_green;
+      }
+    }
   }
 
   &.brand {
@@ -42,6 +52,14 @@
 
     .slide-action {
       border-color: $brand_green;
+    }
+
+    @include respond-to(phone) {
+
+      .slide-text {
+        background: $brand_green;
+        color: $brand_dark;
+      }
     }
   }
 
@@ -51,9 +69,13 @@
     top: 10%;
     left: 30px;
     width: 50%;
-    font-size: 4em;
+    font-size: 6em;
     text-transform: uppercase;
     font-weight: 900;
+
+    @include respond-to(phone) { position: static; font-size: 2.5em; width: 100%; text-align: center; display: block; background: $brand_green; }
+
+
   }
 
   .slide-action {

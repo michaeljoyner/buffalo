@@ -1,0 +1,44 @@
+.is-2-col {
+  display: flex;
+  justify-content: space-between;
+
+  @include respond-to(phone) {flex-direction: column;}
+
+  & > * {
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+
+
+    @include respond-to(phone) {flex-basis: 100%; max-width: 100%;}
+  }
+}
+
+.is-4-col {
+  display: flex;
+  justify-content: space-between;
+
+  @include respond-to(phone) {flex-wrap: wrap;}
+
+  & > * {
+    flex-basis: 25%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 3%;
+
+    @include respond-to(phone) {flex-basis: 50%;}
+  }
+}
+
+.is-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.v-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

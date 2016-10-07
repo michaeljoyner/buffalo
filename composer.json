@@ -13,7 +13,9 @@
     "laravelcollective/html": "dev-master",
     "spatie/laravel-medialibrary": "^4.0",
     "cviebrock/eloquent-sluggable": "^4.0",
-    "gloudemans/shoppingcart": "dev-master"
+    "gloudemans/shoppingcart": "dev-master",
+    "sammyk/laravel-facebook-sdk": "^3.0",
+    "thujohn/twitter": "^2.2"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

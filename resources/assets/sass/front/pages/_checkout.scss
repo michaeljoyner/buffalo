@@ -1,0 +1,116 @@
+.checkout-container {
+  display: flex;
+  width: 95%;
+  max-width: 1200px;
+  margin: 40px auto;
+
+  @include respond-to(phone) { flex-direction: column; }
+
+  .checkout-items {
+    flex-basis: 40%;
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    @include respond-to(phone) { flex-basis: 100%; }
+  }
+
+  .checkout-form-box {
+    flex-basis: 60%;
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    @include respond-to(phone) { flex-basis: 100%; }
+  }
+}
+
+.checkout-items-table {
+
+  th {
+    text-align: left;
+  }
+
+  .number-col {
+    width: 40px;
+  }
+
+  .name-col {
+    width: 17em;
+  }
+}
+
+.checkout-form-box {
+
+  form {
+    width: 95%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .form-group {
+    padding-bottom: 15px;
+  }
+
+  label:not(.radio-label) {
+    font-family: $strong_type;
+    font-size: 90%;
+    color: $brand_green;
+    padding-bottom: 6px;
+    display: inline-block;
+  }
+
+  input[type=text], input[type=email] {
+    display: inline-block;
+    padding-left: 10px;
+    height: 32px;
+    width: 100%;
+    border: 1px solid $brand_dark;
+  }
+
+  input[type=text].other-referrer {
+    width: calc(100% - 100px);
+  }
+
+  .radio-label {
+    display: inline-block;
+    padding-left: 20px;
+    padding-bottom: 10px;
+  }
+
+  .radio-label::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $brand_green;
+    vertical-align: middle;
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  input[type=radio]:checked + .radio-label::after {
+    background: $brand_green;
+  }
+
+  .radios {
+    padding: 20px 0;
+  }
+
+  .radios .standard-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+
+    .radio-label {
+      @include respond-to(phone) {padding-right: 30px;}
+    }
+  }
+
+  textarea {
+    width: 100%;
+    border: 1px solid $brand_dark;
+    padding: 10px;
+  }
+}

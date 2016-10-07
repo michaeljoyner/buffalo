@@ -1,0 +1,66 @@
+.featured-images {
+
+  .featured-image-selecter {
+    display: flex;
+
+    &.busy {
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    .current-images {
+      width: 60%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: auto;
+    }
+
+    .single-image-uploader-box {
+      width: 40%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: auto;
+    }
+  }
+
+  .current-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+
+    .post-image-box {
+      max-width: 150px;
+      margin: 20px 0;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto;
+
+      &.featured {
+        border: 2px solid $brand_green;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+  }
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20em;
+    height: 5em;
+
+    .spinner {
+      max-width: 200px;
+    }
+
+    .spinner > div {
+      background: $brand_green;
+    }
+  }
+}

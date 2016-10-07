@@ -14,6 +14,27 @@
 
 Route::get('/', 'PagesController@home');
 
+Route::get('categories', 'ProductsController@categories');
+Route::get('categories/{slug}', 'ProductsController@category');
+Route::get('subcategories/{slug}', 'ProductsController@subcategory');
+Route::get('productgroups/{slug}', 'ProductsController@productGroups');
+Route::get('products/{slug}', 'ProductsController@product');
+
+Route::get('services', 'PagesController@services');
+
+Route::get('about', 'PagesController@about');
+
+Route::get('inquiry', 'PagesController@cart');
+Route::get('enquire', 'CheckoutController@show');
+
+Route::get('news', 'NewsController@index');
+Route::get('news/{slug}', 'NewsController@show');
+
+Route::get('contact', 'PagesController@contact');
+Route::post('contact', 'ContactController@sendSiteMessage');
+
+Route::get('search', 'ProductSearchResultsController@index');
+
 // Authentication Routes...
 Route::get('admin/login', 'Auth\LoginController@showLoginForm');
 Route::post('admin/login', 'Auth\LoginController@login');
@@ -48,6 +69,9 @@ Route::delete('api/cart/items/{product}', 'ShoppingCartController@remove');
 //checkout routes
 Route::post('checkout', 'CheckoutController@doCheckout');
 
+//contact form
+
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::group(['middleware' => 'auth', 'bindings'], function () {
@@ -64,6 +88,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('blog/posts/{post}/edit', 'BlogPostsController@edit');
         Route::post('blog/posts/{post}', 'BlogPostsController@update');
         Route::delete('blog/posts/{post}', 'BlogPostsController@delete');
+
+        Route::get('blog/posts/{post}/images', 'PostsFeaturedImageController@index');
+        Route::get('blog/posts/{post}/images/featured/edit', 'PostsFeaturedImageController@edit');
+        Route::post('blog/posts/{post}/images/featured', 'PostsFeaturedImageController@store');
+        Route::post('blog/posts/{post}/images/featured/upload', 'PostFeaturedImageDirectUploadController@store');
 
         Route::post('blog/posts/{post}/images', 'BlogPostImagesController@store');
         Route::post('blog/posts/{post}/publish', 'BlogPostsController@publish');
@@ -122,6 +151,23 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('slides/{slide}/media', 'SlidesMediaController@store');
 
         Route::post('slides/{slide}/publishing', 'SlidesPublishingController@update');
+
+        //facebook login
+        Route::get('facebook/login', 'FacebookAuthController@login');
+        Route::get('facebook/callback', 'FacebookAuthController@callback');
+
+        Route::get('social', function() {
+            return view('admin.social.index');
+        });
+        Route::get('social/facebook/user', 'FacebookUserController@fetchCurrent');
+        Route::post('social/facebook/user/{facebookUser}/share', 'FacebookUserController@setSharingStatus');
+
+        Route::get('twitter/login', 'TwitterAuthController@login');
+        Route::get('twitter/callback', 'TwitterAuthController@callback');
+
+        Route::get('social/twitter/user', 'TwitterUserController@fetchUser');
+        Route::post('social/twitter/user/{twitterUser}/share', 'TwitterUserController@setSharingStatus');
+
     });
 
 });

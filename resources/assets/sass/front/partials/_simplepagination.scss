@@ -1,0 +1,33 @@
+.simple-pagination {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  li {
+    display: inline-block;
+    padding: 0 16px;
+    line-height: 30px;
+    height: 32px;
+    border: 2px solid $brand_green;
+    border-radius: 16px;
+    color: $brand_green;
+  }
+
+  li.disabled {
+    opacity: .5;
+    color: $text_grey;
+    border-color: $text_grey;
+  }
+
+  li:not(.disabled):hover {
+    background: $brand_green;
+    color: $white;
+  }
+}

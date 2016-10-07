@@ -34,6 +34,12 @@
   background: $white;
 }
 
+.dd-btn.btn-grey {
+  border: 1px solid $text_grey;
+  color: $text_grey;
+  background: $white;
+}
+
 .dd-btn.btn-clear-danger {
   border: 1px solid $danger;
   color: $danger;

@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->text('writeup')->nullable();
             $table->string('original_image')->nullable();
             $table->boolean('available')->default(0);
+            $table->boolean('promote')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

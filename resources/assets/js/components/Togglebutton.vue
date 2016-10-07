@@ -10,7 +10,7 @@
 
 <script>
     module.exports = {
-        props: ['url', 'initial', 'ontext', 'offtext', 'onclass', 'offclass', 'toggleprop'],
+        props: ['url', 'initial', 'ontext', 'offtext', 'onclass', 'offclass', 'toggleprop', 'state'],
 
         template: '#toggle-btn-template',
 

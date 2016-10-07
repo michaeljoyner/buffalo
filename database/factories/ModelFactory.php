@@ -26,7 +26,7 @@ $factory->define(App\Blog\Post::class, function (Faker\Generator $faker) {
         'description'  => $faker->paragraph,
         'body'         => $faker->paragraphs(5, true),
         'published'    => 0,
-        'published_at' => $faker->date()
+        'published_at' => null
     ];
 });
 

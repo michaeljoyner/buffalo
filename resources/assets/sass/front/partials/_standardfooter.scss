@@ -1,0 +1,47 @@
+.standard-footer {
+  width: 100%;
+  background: $brand_dark;
+  font-family: $body_font;
+  color: $white;
+  display: flex;
+  min-height: 400px;
+  margin-top: 70px;
+
+  @include respond-to(phone) {flex-direction: column;}
+
+  .social-footer, .contact-footer {
+    flex-basis: auto;
+    width: calc(50% - 100px);
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    order: 5;
+
+    @include respond-to(phone) {width: 100%; order: 1;}
+  }
+
+  .signoff {
+    width: 200px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    order: 5;
+
+    @include respond-to(phone) {width: 100%; order: 3;}
+
+    img {
+      width: 120px;
+    }
+  }
+
+  .footer-heading {
+    margin-bottom: 0;
+  }
+}

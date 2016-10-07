@@ -1,7 +1,7 @@
 <style></style>
 
 <template>
-    <div class="carousel-slider" :class="{'ready': readyCount > 1}">
+    <div class="carousel-slider" :class="{'ready': isReadyToStart}" @mouseover.stop="stop" @mouseout.stop="play">
         <div v-for="slide in slides | orderBy 'position'"
              v-show="isCurrent(slide)"
              transition="slide"
@@ -28,12 +28,14 @@
 <script type="text/babel">
     module.exports = {
 
+        props: ['auto-play', 'slide-time'],
 
         data() {
             return {
                 slides: [],
-                currentImg: null,
+                currentImg: 0,
                 readyCount: 0,
+                interval: null
             }
         },
 
@@ -41,6 +43,10 @@
 
             readySlides() {
                 return this.slides.filter((slide) => slide.is_ready);
+            },
+
+            isReadyToStart() {
+                return this.readyCount > 1 && this.slides[0].is_ready;
             }
         },
 
@@ -97,16 +103,28 @@
             },
 
             markAsReady(slide) {
-                if(this.currentImg === null) {
-                    this.setCurrentImg(slide);
-                }
                 slide.is_ready = true;
                 this.readyCount++;
-                console.log('marked' + slide.is_video ? ' video' : ' img');
+                if(this.shouldPlay()) {
+                    this.play();
+                }
             },
 
             isReady(slide) {
                 return slide.is_ready;
+            },
+
+            play() {
+                this.interval = setInterval(() => this.nextSlide(), this.slideTime);
+            },
+
+            stop() {
+                clearInterval(this.interval);
+                this.interval = null;
+            },
+
+            shouldPlay() {
+                return this.isReadyToStart && (this.interval === null) && this.autoPlay;
             }
         }
     }

@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'hello@dymanticdesign.com', 'name' => 'Dymantic Design'],
+    'from' => ['address' => 'noreply@buffalo-tools.com', 'name' => 'Bufalo Tools'],
 
     /*
     |--------------------------------------------------------------------------

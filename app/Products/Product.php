@@ -44,6 +44,16 @@ class Product extends Model implements HasMediaConversions
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class, 'subcategory_id');
+    }
+
+    public function productGroup()
+    {
+        return $this->belongsTo(ProductGroup::class, 'product_group_id');
+    }
+
     public function makeAvailable($isAvailable)
     {
         $this->available = $isAvailable;

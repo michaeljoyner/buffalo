@@ -1,0 +1,7 @@
+.publish-button-box {
+  display: inline-block;
+
+  & > button {
+    width: 10em;
+  }
+}

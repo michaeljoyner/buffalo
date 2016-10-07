@@ -1,0 +1,22 @@
+.pagination-container {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  li {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin: 8px;
+    background: $brand_green;
+    color: $white;
+    border-radius: 50%;
+    line-height: 25px;
+    text-align: center;
+  }
+}

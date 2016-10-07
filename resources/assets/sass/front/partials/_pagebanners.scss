@@ -1,0 +1,27 @@
+.page-banner {
+  width: 100%;
+  height: 42.86vw;
+  position: relative;
+
+  .banner-quote {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 5em;
+    font-size: 6em;
+    line-height: 1;
+    font-family: "Teko", sans-serif;
+
+    @include respond-to(phone) {display: none;}
+  }
+
+  .banner-quote.to-left {
+    left: 50px;
+  }
+
+  .banner-quote.to-right {
+    right: 50px;
+  }
+}

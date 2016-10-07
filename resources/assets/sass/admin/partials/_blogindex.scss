@@ -1,32 +1,60 @@
+.blog-post-card-outer {
+  padding: 0 20px;
+  margin: 2em 0;
+}
+
 .blog-post-card {
-  width: 95%;
-  max-width: 800px;
-  margin: 2em 1em;
   border: 1px solid $text_grey;
-  padding: 10px;
+  padding: 0;
 
   .blog-post-card-header {
     border-bottom: 1px solid $text_grey;
+    position: relative;
+    min-height: 150px;
+    background: $primary_dark;
+    padding: 0;
+
     h3 {
-      color: $primary_dark;
+      color: $white;
       text-transform: uppercase;
-      float: left;
-      width: 80%;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      margin: 0;
     }
 
     .post-date {
-      float: right;
-      width: 20%;
-      text-align: right;
-      color: $primary_red;
+      color: $white;
       font-size: 1.5em;
-      margin-top: 20px;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    img.title-img {
+      max-width: 100%;
+      display: block;
+      filter: brightness(60%);
     }
   }
 
   .blog-post-card-body {
-    padding: 20px 0;
+    padding: 20px 10px;
     line-height: 1.6;
     color: $primary_dark;
+  }
+
+  .blog-post-card-footer {
+    padding: 10px;
+  }
+
+  .post-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    & > * {
+      margin: 10px 0;
+    }
   }
 }

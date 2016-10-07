@@ -1,0 +1,80 @@
+.cart-item {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+
+  @include respond-to(phone) {flex-wrap: wrap; border: 1px solid $brand_grey; padding-bottom: 8px; margin-bottom: 20px;}
+
+  .cart-item-thumb-box {
+    width: 80px;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .cart-item-name {
+    width: 17em;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 0 20px;
+  }
+
+  .cart-item-qty-box {
+    width: 120px;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    .small-action-btn .spinner > div {
+      background: $brand_green;
+    }
+
+    .number{
+      display: inline-block;
+      padding: 4px;
+      width: 50px;
+      text-align: center;
+    }
+
+    .cart-edit-btn {
+      color: $brand_teal;
+      border-color: $brand_teal;
+    }
+
+    .cart-save-btn {
+      color: $brand_green;
+      border-color: $brand_green;
+    }
+  }
+
+  .cart-item-code {
+    width: 10em;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 1;
+    text-align: center;
+  }
+
+  .cart-item-trash {
+    width: 90px;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    button {
+      background: transparent;
+      border: 0;
+    }
+
+    svg {
+      fill: $primary_red;
+    }
+  }
+}

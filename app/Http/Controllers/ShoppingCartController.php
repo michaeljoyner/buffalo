@@ -25,7 +25,7 @@ class ShoppingCartController extends Controller
     {
         $items = $this->cart->allItems()->map(function ($item) {
             return $this->convertItemToArray($item);
-        });
+        })->values()->toArray();
 
         return response()->json($items);
     }
@@ -67,11 +67,15 @@ class ShoppingCartController extends Controller
 
     protected function convertItemToArray($item)
     {
+        $product = Product::findOrFail($item->id);
+
         return [
-            'rowId'    => $item->rowId,
-            'quantity' => $item->qty,
-            'id'       => $item->id,
-            'name'     => $item->name
+            'rowId'        => $item->rowId,
+            'quantity'     => $item->qty,
+            'id'           => $item->id,
+            'name'         => $item->name,
+            'thumb'        => $product->imageSrc('thumb'),
+            'product_code' => $product->product_code
         ];
     }
 

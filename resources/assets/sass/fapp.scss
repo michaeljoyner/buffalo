@@ -2,12 +2,54 @@
 @import "variables/typography";
 @import "mixins/media";
 
+@import "vendor/sweetalert";
+
 @import "front/partials/base";
+@import "front/partials/structure";
+@import "front/partials/typerules";
+@import "front/partials/pagesections";
+@import "front/partials/pagebanners";
 @import "front/partials/navbar";
+@import "front/partials/searchbox";
 @import "front/partials/carousel";
+@import "front/partials/buttons";
+@import "admin/partials/spinner";
+@import "front/partials/selects";
+@import "front/partials/svgicons";
 @import "front/partials/carouselslider";
+@import "front/partials/sidemenu";
+@import "front/partials/cartbutton";
+@import "admin/partials/breadcrumbs";
+@import "front/partials/cartalert";
+@import "front/partials/pagination";
+@import "front/partials/standardfooter";
+
+@import "front/pages/home";
+@import "front/pages/categories";
+@import "front/pages/category";
+@import "front/pages/product";
+
+@import "front/pages/cart";
+@import "front/partials/cartitem";
+
+@import "front/pages/checkout";
+
+@import "front/pages/newsindex";
+@import "front/partials/simplepagination";
+
+@import "front/pages/newsarticle";
+
+@import "front/pages/services";
+
+@import "front/pages/about";
+
+@import "front/pages/contact";
 
 a, a:visited, a:focus, a:hover {
   color: inherit;
   text-decoration: none;
+}
+
+body {
+  font-family: $body_font;
 }

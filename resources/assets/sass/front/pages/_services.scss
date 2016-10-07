@@ -1,0 +1,41 @@
+.services-page-banner {
+  background-image: url(../../images/assets/Newspaper_small.jpg);
+  background-size: cover;
+}
+
+.services-container {
+  width: 95%;
+  max-width: 960px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .service-writeup {
+    max-width: 40%;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 40px;
+
+    @include respond-to(phone) {max-width: 100%;}
+
+    p {
+      text-align: center;
+      padding: 0 3%;
+    }
+  }
+}
+
+.map-container {
+  img {
+    width: 95%;
+    max-width: 960px;
+    display: block;
+    margin: 50px auto;
+  }
+}

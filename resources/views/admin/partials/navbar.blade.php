@@ -32,6 +32,7 @@
                 <li><a href="/admin/categories">Categories</a></li>
                 <li><a href="/admin/orders">Product Enquiries</a></li>
                 <li><a href="/admin/blog/posts">News</a></li>
+                <li><a href="/admin/social">Social</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

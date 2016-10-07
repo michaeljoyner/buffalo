@@ -11,12 +11,23 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::unprepared(file_get_contents(base_path('allgoodproducts.sql')));
+        \Illuminate\Support\Facades\DB::unprepared(file_get_contents(base_path('finalthree.sql')));
 
         \App\Products\Product::all()->each(function ($product) {
-            $product->writeup = $product->description;
-            $product->description = '';
+            $product->available = true;
             $product->save();
+        });
+//
+        $ss = new \Cviebrock\EloquentSluggable\Services\SlugService();
+
+        \App\Products\Subcategory::all()->each(function($subcat) use ($ss) {
+            $ss->slug($subcat);
+            $subcat->save();
+        });
+
+        \App\Products\ProductGroup::all()->each(function($pg) use ($ss) {
+            $ss->slug($pg);
+            $pg->save();
         });
     }
 }

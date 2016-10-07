@@ -84,6 +84,7 @@
 
         data() {
             return {
+                max_file_size_mb: 15,
                 saving: false,
                 progress: 0,
                 linkOptions: [
@@ -112,11 +113,21 @@
             this.lastConfirmedIsVideo = this.isVideo;
         },
 
+        computed: {
+            maxFileSizeMessage() {
+                return 'Large file sizes for videos will load very slowly. Please use files lower than ' + this.max_file_size_mb + 'MB';
+            }
+        },
+
         methods: {
             processFile(ev) {
                 let file = ev.target.files[0];
                 if (file.type.indexOf('image') === -1 && file.type.indexOf('video') !== 0) {
                     this.sendAlert('Sorry, Invalid File Type', this.messages.invalid_file)
+                    return;
+                }
+                if (file.size > (1024 * 1000 * this.max_file_size_mb)) {
+                    this.sendAlert('Sorry, That file is just too big.', this.maxFileSizeMessage)
                     return;
                 }
                 this.handleFile(file);

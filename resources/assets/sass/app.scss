@@ -23,6 +23,7 @@ $font-family-sans-serif: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
 @import "admin/partials/modals";
 @import "admin/partials/singleupload";
 @import "admin/partials/categories";
+@import "admin/partials/breadcrumbs";
 @import "admin/partials/categorymenu";
 @import "admin/partials/productgrid";
 @import "admin/partials/slidesedit";
@@ -30,6 +31,10 @@ $font-family-sans-serif: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
 @import "admin/partials/searchview";
 @import "admin/partials/statcounter";
 @import "admin/partials/productshow";
+@import "admin/partials/featuredimage";
+@import "admin/partials/modalvue";
+@import "admin/partials/publishbutton";
+@import "admin/partials/socialuser";
 
 a, a:visited, a:hover, a:focus {
   color: inherit;

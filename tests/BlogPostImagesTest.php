@@ -32,4 +32,49 @@ class BlogPostImagesTest extends TestCase
 
         $post->clearMediaCollection();
     }
+
+    /**
+     *@test
+     */
+    public function a_post_has_a_title_image_which_is_the_featured_image_if_set()
+    {
+        $post = factory(Post::class)->create();
+        $image = $post->addImage($this->prepareFileUpload('tests/testpic1.png'));
+        $post->setFeaturedImage($image);
+
+        $post = Post::find($post->id);
+
+        $titleImg = $post->titleImg('web');
+        $this->assertEquals($image->getUrl('web'), $titleImg);
+
+        $post->clearMediaCollection();
+    }
+
+    /**
+     *@test
+     */
+    public function a_posts_title_image_will_be_the_first_media_image_if_there_is_no_featured_image()
+    {
+        $post = factory(Post::class)->create();
+        $image = $post->addImage($this->prepareFileUpload('tests/testpic1.png'));
+
+        $post = Post::find($post->id);
+
+        $this->assertNull($post->featuredImage());
+        $this->assertEquals($image->getUrl(), $post->titleImg());
+
+        $post->clearMediaCollection();
+
+    }
+
+    /**
+     *@test
+     */
+    public function a_post_with_no_featured_image_and_no_media_images_still_returns_an_image_url()
+    {
+        $post = factory(Post::class)->create();
+
+        $this->assertNotNull($post->titleImg());
+        $this->assertNotEquals("", $post->titleImg());
+    }
 }

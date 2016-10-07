@@ -90,4 +90,34 @@ class BlogPostsTest extends TestCase
             'id' => $post->id
         ]);
     }
+
+    /**
+     *@test
+     */
+    public function a_posts_published_date_is_set_when_publishing_for_first_time()
+    {
+        $post = factory(Post::class)->create();
+        $this->assertNull($post->published_at);
+        $this->assertFalse($post->published);
+
+        $post->setPublishedStatus(true);
+        $post = Post::find($post->id);
+        $this->assertEquals(\Carbon\Carbon::now()->toFormattedDateString(), $post->published_at->toFormattedDateString());
+    }
+
+    /**
+     *@test
+     */
+    public function changing_the_published_status_on_a_post_does_not_change_a_previously_set_published_at_date()
+    {
+        $post = factory(Post::class)->create(['published_at' => '2016-01-01']);
+        $originalDate = $post->published_at;
+
+        $post->setPublishedStatus(false);
+        $post->setPublishedStatus(true);
+
+        $post = Post::find($post->id);
+        $this->assertTrue($post->published);
+        $this->assertEquals($originalDate, $post->published_at);
+    }
 }

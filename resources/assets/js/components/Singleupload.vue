@@ -69,7 +69,7 @@
             uploadFile(file) {
                 this.$http.post(this.url, this.prepareFormData(file), this.getUploadOptions())
                         .then(res => this.onUploadSuccess(res))
-                        .catch(err => this.onUploadFailed());
+                        .catch(err => this.onUploadFailed(err));
             },
 
             prepareFormData: function (file) {
@@ -82,11 +82,13 @@
                 this.uploadMsg = "Uploaded successfully";
                 this.uploadStatus = 'success'
                 this.uploading = false;
+                this.$dispatch('singleuploadcomplete', res.json());
             },
 
-            onUploadFailed() {
+            onUploadFailed(err) {
                 this.uploadMsg = 'The upload failed';
                 this.uploadStatus = 'error';
+                console.log(err);
             },
 
             getUploadOptions() {
@@ -102,6 +104,10 @@
 
             clearMessage() {
                 this.uploadMsg = ''
+            },
+
+            setImage(src) {
+                this.imageSource = src;
             }
         }
 

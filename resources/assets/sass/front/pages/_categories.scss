@@ -1,0 +1,32 @@
+.products-page-banner {
+  background: url(../../images/assets/tools_spanners.jpg);
+  background-size: cover;
+}
+
+.category-index-card-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+
+  .category-index-card {
+    flex-basis: 33.33%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 3%;
+  }
+}
+
+.category-index-card {
+
+  .category-image {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .category-name {
+    text-align: center;
+    color: $brand_green;
+  }
+}

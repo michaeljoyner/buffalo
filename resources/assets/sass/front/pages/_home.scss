@@ -1,0 +1,203 @@
+.page-section.hero-section {
+  padding: 0;
+}
+
+.about-section {
+
+  .about-image {
+    img {
+      width: 100%;
+    }
+
+    @include respond-to(phone) {display: none;}
+  }
+}
+
+.services-section {
+
+  .service-brief {
+
+    p {
+      max-width: 250px;
+      text-align: center;
+    }
+  }
+}
+
+.hot-products-container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .hot-product-card {
+    flex-basis: 25%;
+    max-width: 25%;
+    flex-grow: 0;
+    flex-shrink: 1;
+    padding: 0 4%;
+    margin-bottom: 40px;
+
+    @include respond-to(phone) { flex-basis: 50%; max-width: 50%;}
+
+    img {
+      width: 100%;
+    }
+
+    .product-name {
+      color: $brand_green;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.latest-news-list {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 0;
+
+  .latest-news-headline {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid $text_grey;
+    height: 60px;
+
+    &:not(:last-of-type) {
+      border-bottom: 0;
+    }
+
+    .icon-holder {
+      width: 50px;
+      text-align: center;
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include respond-to(phone) { display: none; }
+
+      svg {
+        fill: $white;
+        stroke: $white;
+      }
+    }
+
+    .article-date {
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 1;
+      padding: 0 30px;
+      font-family: $strong_type;
+      text-transform: uppercase;
+
+      @include respond-to(phone) {flex-basis: 120px; }
+    }
+
+    .article-title-line {
+      flex-basis: auto;
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+  }
+}
+
+.contact-section {
+  background: linear-gradient(
+                  rgba(0, 0, 0, 0.7),
+                  rgba(0, 0, 0, 0.7)
+  ), url(../../images/assets/tooltable.jpeg);
+  background-size: cover;
+}
+
+.contact-section {
+
+  .contact-form-container {
+
+    form {
+      max-width: 500px;
+      width: 95%;
+      margin: 0 auto;
+    }
+
+  }
+
+  .form-group {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border: 3px solid $white;
+    display: flex;
+
+    label {
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      color: $white;
+      font-family: $body_font;
+      padding-right: 15px;
+      align-self: center;
+
+      &.top-label {
+        align-self: flex-start;
+      }
+    }
+
+    input {
+      flex-basis: auto;
+      flex-grow: 1;
+      flex-shrink: 1;
+      height: 32px;
+      font-size: 1em;
+      color: $white;
+      background: transparent;
+      border: 0;
+      padding-left: 10px;
+    }
+
+    textarea {
+      flex-basis: auto;
+      flex-grow: 1;
+      flex-shrink: 1;
+      font-size: 1em;
+      color: $white;
+      background: transparent;
+      border: 0;
+      padding: 10px;
+    }
+  }
+}
+
+.referrers-radiobox {
+  color: $white;
+  font-family: $body_font;
+  text-align: center;
+
+  label {
+    padding: 8px 15px;
+    white-space: nowrap;
+    display: inline-block;
+  }
+}
+
+.home-footer {
+  width: 100%;
+  padding: 40px 0 0;
+
+  img {
+    display: block;
+    width: 120px;
+    margin: 0 auto;
+  }
+
+  p {
+    color: $text_grey;
+    text-align: center;
+    font-family: $body_font;
+  }
+}

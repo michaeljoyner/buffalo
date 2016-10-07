@@ -46,14 +46,16 @@
       top: 10%;
       left: 30px;
       width: 50%;
-      font-size: 4em;
+      font-size: 6em;
       text-transform: uppercase;
       font-weight: 900;
+
+      @include respond-to(phone) { position: static; font-size: 2.5em; width: 100%; text-align: center; display: block; background: $brand_green; }
     }
 
     .slide-action {
       position: absolute;
-      top: 75%;
+      top: 33vw;
       left: 50%;
       transform: translateX(-50%);
       font-family: $big_head;
@@ -67,7 +69,7 @@
     }
 
     &.slide-transition {
-      transition: .4s;
+      transition: .7s ease;
       transform: translate3d(0,0,0);
     }
 
@@ -84,8 +86,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 999999;
-    color: red;
+    z-index: 99;
+    color: $brand_grey;
     font-size: 3em;
   }
 

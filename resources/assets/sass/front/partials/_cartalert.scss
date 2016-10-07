@@ -1,0 +1,45 @@
+.cart-alert {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 350px;
+  height: 120px;
+  background: $brand_dark;
+  transition: .4s;
+  transform: translate3d(100%,0,0);
+
+  @include respond-to(phone) {top: 0; right: -110%;}
+
+  p.alert-text {
+    color: $white;
+    font-size: 16px;
+    text-transform: none;
+    font-family: $body_font;
+    text-align: center;
+    line-height: 16px;
+  }
+
+  a.alert-link {
+    line-height: 16px;
+    font-size: 14px;
+    display: inline-block;
+    width: 80px;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    color: $brand_green;
+    font-family: $body_font;
+    border: 2px solid $brand_green;
+    padding: 4px 8px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &.show {
+    transform: translate3d(0,0,0);
+  }
+}
+
+.cart-nav-item:hover .cart-alert {
+  transform: translate3d(0,0,0);
+}

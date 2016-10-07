@@ -15,6 +15,9 @@ class OrderService
 {
     public static function createOrder($customerDetails, $cartContents)
     {
+        if($customerDetails['referrer'] == "other" && $customerDetails['other_referrer'] != "") {
+            $customerDetails['referrer'] = $customerDetails['other_referrer'];
+        }
         $order = Order::create($customerDetails);
 
         $cartContents->each(function($item) use ($order) {

@@ -1,0 +1,12 @@
+.page-section {
+  padding: 50px 10px;
+
+  .section-title {
+    text-align: center;
+    margin-top: 0;
+  }
+
+  &.dark-section {
+    background: $brand_dark;
+  }
+}

@@ -44,51 +44,5 @@
     color: $primary_red;
   }
 
-  .category-breadcrumbs {
-    .crumb {
-      display: inline-block;
-      position: relative;
-      height: 30px;
-      line-height: 27px;
-      padding: 0 30px;
-      font-size: 1.2em;
-      margin-left: -5px;
-    }
 
-    .crumb::after {
-      content: '';
-      width: 21.1px;
-      height: 21.1px;
-      background: inherit;
-      position: absolute;
-      right: -8px;
-      top: 4px;
-      transform: rotate(45deg);
-      z-index: 100;
-      box-shadow: inset -2px 2px 3px 0 rgba(0,0,0,.6);
-    }
-
-    span.crumb::after {
-      box-shadow: none;
-      top: 5px;
-      right: -11px;
-    }
-
-
-
-    a {
-      background: $brand_green;
-      color: $white;
-
-      &:hover {
-        background: $brand_teal;
-      }
-    }
-
-    span {
-      background: $text_grey;
-      color: $white;
-
-    }
-  }
 }

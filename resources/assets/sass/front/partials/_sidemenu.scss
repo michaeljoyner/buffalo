@@ -1,0 +1,49 @@
+.side-menu {
+
+
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    @include respond-to(phone) {display: none;}
+  }
+
+  li {
+    font-family: $body_font;
+    line-height: 1.5;
+    padding: 4px 0;
+  }
+
+  .menu-trigger {
+    display: none;
+  }
+
+  .menu-trigger-label {
+    padding-left: 30px;
+  }
+
+  .second-level {
+    height: 0;
+    overflow: hidden;
+    transition: .5s;
+    max-height: 0;
+    min-height: 0;
+    padding-left: 30px;
+  }
+
+  .menu-trigger:checked + .second-level {
+    min-height: 16px;
+    max-height: 400px;
+    height: auto;
+  }
+}
+
+.mobile-category-menu {
+  display: none;
+
+
+
+  @include respond-to(phone) {
+    display: block;
+  }
+}

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'name' => 'Buffalo Tools',
 
     /*
     |--------------------------------------------------------------------------
@@ -152,6 +153,8 @@ return [
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -160,6 +163,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ViewComposerServiceProvider::class
 
     ],
 
@@ -207,7 +211,8 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
-        'Form'         => \Collective\Html\FormFacade::class
+        'Form'         => Collective\Html\FormFacade::class,
+        'Twitter'      => Thujohn\Twitter\Facades\Twitter::class
 
     ],
 
