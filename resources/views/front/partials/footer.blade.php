@@ -1,7 +1,26 @@
 <footer class="standard-footer">
     <div class="social-footer">
         <p class="h3 footer-heading">Let's get Social</p>
-        <a href="#" class="social-footer-link"></a>
+        <div class="social-icon-row">
+            <a href="#" class="social-footer-link">
+                @include('svgicons.social.instagram_black_square')
+            </a>
+            <a href="#" class="social-footer-link">
+                @include('svgicons.social.email_sq')
+            </a>
+            <a href="#" class="social-footer-link">
+                @include('svgicons.social.facebook_black_square')
+            </a>
+            <a href="#" class="social-footer-link">
+                @include('svgicons.social.twitter_black_square')
+            </a>
+            <a href="#" class="social-footer-link">
+                @include('svgicons.social.youtube_black_square')
+            </a>
+            <a href="#" class="social-footer-link">
+                @include('svgicons.social.linkedin_black_square')
+            </a>
+        </div>
     </div>
     <div class="signoff">
         <img src="/images/Logo_white.png" alt="Buffalo Tools Logo">

@@ -7564,6 +7564,10 @@ body.stop-scrolling {
     border: 2px solid #3b5998; }
     .social-user-card.facebook .loading-card {
       background: #3b5998; }
+  .social-user-card.googleplus {
+    border: 2px solid #dd4b39; }
+    .social-user-card.googleplus .loading-card {
+      background: #dd4b39; }
   .social-user-card.twitter {
     border: 2px solid #1DA1F3; }
     .social-user-card.twitter .loading-card {

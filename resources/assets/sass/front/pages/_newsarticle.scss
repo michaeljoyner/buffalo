@@ -3,19 +3,34 @@
   max-width: 800px;
   margin: 0 auto;
 
+  .buffalo-icon {
+    display: block;
+    width: 50px;
+    margin: 50px auto 0;
+  }
+
+  .article-title {
+    font-family: $strong_type;
+    color: $brand_dark;
+    margin: 10px 0;
+  }
+
+  .publish-date {
+    text-align: center;
+  }
+
   .article-body {
-    border-top: 2px solid $brand_dark;
-    border-bottom: 2px solid $brand_dark;
     padding-top: 40px;
     padding-bottom: 40px;
     font-size: 120%;
     line-height: 1.6;
 
     p:first-child::first-letter {
-      color: $brand_green;
-      font-size: 200%;
+      color: $brand_dark;
+      font-size: 150%;
       line-height: 0;
       font-family: $strong_type;
+      font-weight: 900;
     }
 
     img {
@@ -29,11 +44,8 @@
 .social-wrapper {
   text-align: center;
   padding-top: 40px;
+}
 
-  .social-icon {
-    width: 50px;
-    height: 50px;
-    margin: 10px;
-    display: inline-block;
-  }
+.back-to-news-btn {
+  margin-top: 100px;
 }

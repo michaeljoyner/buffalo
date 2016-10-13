@@ -14,11 +14,14 @@
         <div class="news-article-listing">
         @foreach($articles as $article)
             <div class="article-summary">
-                <img src="{{ $article->titleImg('web') }}" alt="{{ $article->title }}">
-                <h3 class="h3 article-title">{{ $article->title }}</h3>
+                <div class="article-summary-featured-img-box">
+                    <a href="/news/{{ $article->slug }}">
+                        <img  src="{{ $article->titleImg('web') }}" alt="{{ $article->title }}">
+                    </a>
+                </div>
+                <a href="/news/{{ $article->slug }}"><h3 class="h3 article-title">{{ $article->title }}</h3></a>
                 <p class="article-date text-green">{{ $article->published_at->toFormattedDateString() }}</p>
                 <p class="body-text">{{ $article->description }}</p>
-                <a href="/news/{{ $article->slug }}" class="article-link-btn btn">Read Article</a>
             </div>
         @endforeach
         </div>

@@ -18,16 +18,29 @@
     flex-grow: 0;
     flex-shrink: 1;
     margin-bottom: 50px;
+    padding: 20px;
+    background: $card_back;
+
+    &:hover {
+      border: 1px solid $brand_green;
+    }
 
     @include respond-to(phone) {width: 100%;}
 
     display: flex;
     flex-direction: column;
 
-    img {
-      display: block;
-      max-width: 100%;
-      margin: 0 auto;
+    .article-summary-featured-img-box {
+      position: relative;
+      padding-bottom: 62.5%;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+      }
     }
 
     .article-title {

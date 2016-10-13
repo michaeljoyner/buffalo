@@ -146,7 +146,7 @@
                 let uploaded = new Image;
                 fileReader.onload = (ev) => {
                     uploaded.src = ev.target.result;
-                    this.generatePreview(uploaded);
+                    uploaded.onload = (ev) => this.generatePreview(ev.target);
                 }
                 fileReader.readAsDataURL(file);
                 this.uploadFile(file);
@@ -193,7 +193,11 @@
                 canvas.width = 1400;
                 canvas.height = 600;
                 ctx.drawImage(image, sDimensions.sX, sDimensions.sY, sDimensions.sWidth, sDimensions.sHeight, 0, 0, 1400, 600);
-                this.media = canvas.toDataURL();
+                let newSrc = canvas.toDataURL();
+                while(newSrc.slice(23).length % 12) {
+                    newSrc += '=';
+                }
+                this.media = newSrc;
             },
 
             uploadFile(file) {

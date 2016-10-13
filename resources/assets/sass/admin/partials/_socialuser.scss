@@ -26,6 +26,14 @@
     }
   }
 
+  &.googleplus {
+    border: 2px solid $google_red;
+
+    .loading-card {
+      background: $google_red;
+    }
+  }
+
   &.twitter {
     border: 2px solid $twitter_blue;
 

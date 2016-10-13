@@ -168,6 +168,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('social/twitter/user', 'TwitterUserController@fetchUser');
         Route::post('social/twitter/user/{twitterUser}/share', 'TwitterUserController@setSharingStatus');
 
+        Route::get('googleplus/login', 'GooglePlusAuthController@login');
+        Route::get('googleplus/callback', 'GooglePlusAuthController@callback');
+
+        Route::get('social/googleplus/user', 'GooglePlusUserController@fetchUser');
+        Route::post('social/googleplus/user/{googlePlusUser}/share', 'GooglePlusUserController@setSharingStatus');
+
     });
 
 });

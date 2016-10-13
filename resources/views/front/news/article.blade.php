@@ -7,27 +7,25 @@
 @section('content')
     <section class="news-article-container">
         <article class="news-article">
-            <h1 class="h1 text-centered">{{ $article->title }}</h1>
-            <p class="publish-date text-green">{{ $article->published_at->toFormattedDateString() }}</p>
+            @include('svgicons.buffalo_icon')
+            <h1 class=" article-title h1 text-centered">{{ $article->title }}</h1>
+            <p class="publish-date text-green">{{ $article->published_at->format('jS F Y') }}</p>
             <div class="article-body">
                 {!! $article->body !!}
             </div>
         </article>
-        <div class="social-wrapper blog">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}"
-               class="sharing-social-link">
-                <img src="/images/social/facebook_b.png" class="social-icon blog" alt="share-to-facebook">
+        <div class="social-icon-row black">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}">
+                @include('svgicons.social.facebook_black_square')
             </a>
-            <a href="mailto:?&subject=Read&body={{ Request::url() }}"
-               class="sharing-social-link">
-                <img src="/images/social/email_b.png" class="social-icon blog" alt="share via email">
+            <a href="mailto:?&subject=Read&body={{ Request::url() }}">
+                @include('svgicons.social.email_sq')
             </a>
-            <a href="https://twitter.com/home?status={{ urlencode($article->title . ' ' . Request::url()) }}"
-               class="sharing-social-link">
-                <img src="/images/social/twitter_b.png" class="social-icon blog" alt="share on twitter">
+            <a href="https://twitter.com/home?status={{ urlencode($article->title . ' ' . Request::url()) }}">
+                @include('svgicons.social.twitter_black_square')
             </a>
         </div>
-        <a href="/news" class="btn page-section-cta">Other News</a>
+        <a href="/news" class="btn page-section-cta back-to-news-btn">Back to News</a>
     </section>
     @include('front.partials.footer')
 @endsection
