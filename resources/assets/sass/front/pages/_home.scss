@@ -16,6 +16,9 @@
 .services-section {
 
   .service-brief {
+    svg {
+      height: 50px;
+    }
 
     p {
       max-width: 250px;
@@ -83,8 +86,8 @@
       @include respond-to(phone) { display: none; }
 
       svg {
-        fill: $white;
-        stroke: $white;
+        width: 40%;
+        min-width: 20px;
       }
     }
 
@@ -96,7 +99,7 @@
       font-family: $strong_type;
       text-transform: uppercase;
 
-      @include respond-to(phone) {flex-basis: 120px; }
+      @include respond-to(phone) {flex-basis: 100px; padding: 0 20px; flex-shrink: 0;}
     }
 
     .article-title-line {

@@ -3,7 +3,7 @@
   font-family: $strong_type;
 }
 
-.page-section-cta {
+.btn.page-section-cta {
   max-width: 90%;
   width: 400px;
   margin: 20px auto;
@@ -16,7 +16,7 @@
   background: transparent;
 }
 
-.add-cart-btn {
+.btn.add-cart-btn {
   max-width: 90%;
   width: 200px;
   display: block;
@@ -29,7 +29,7 @@
   margin-top: 15px;
 }
 
-.small-action-btn {
+.btn.small-action-btn {
   width: 46px;
   display: inline-block;
   padding: 4px 8px;
@@ -38,7 +38,7 @@
   border-style: solid;
 }
 
-.article-link-btn {
+.btn.article-link-btn {
   width: 100%;
   height: 40px;
   line-height: 40px;

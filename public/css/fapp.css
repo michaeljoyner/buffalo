@@ -1373,7 +1373,7 @@ html {
   text-transform: uppercase;
   font-family: "Roboto Slab", sans-serif; }
 
-.page-section-cta {
+.btn.page-section-cta {
   max-width: 90%;
   width: 400px;
   margin: 20px auto;
@@ -1385,7 +1385,7 @@ html {
   padding: 10px 0;
   background: transparent; }
 
-.add-cart-btn {
+.btn.add-cart-btn {
   max-width: 90%;
   width: 200px;
   display: block;
@@ -1397,7 +1397,7 @@ html {
   background: transparent;
   margin-top: 15px; }
 
-.small-action-btn {
+.btn.small-action-btn {
   width: 46px;
   display: inline-block;
   padding: 4px 8px;
@@ -1405,7 +1405,7 @@ html {
   border-width: 1px;
   border-style: solid; }
 
-.article-link-btn {
+.btn.article-link-btn {
   width: 100%;
   height: 40px;
   line-height: 40px;
@@ -1856,6 +1856,9 @@ html {
   .about-section .about-image {
     display: none; } }
 
+.services-section .service-brief svg {
+  height: 50px; }
+
 .services-section .service-brief p {
   max-width: 250px;
   text-align: center; }
@@ -1919,8 +1922,8 @@ html {
         .latest-news-list .latest-news-headline .icon-holder {
           display: none; } }
       .latest-news-list .latest-news-headline .icon-holder svg {
-        fill: #ffffff;
-        stroke: #ffffff; }
+        width: 40%;
+        min-width: 20px; }
     .latest-news-list .latest-news-headline .article-date {
       flex-basis: auto;
       -webkit-box-flex: 0;
@@ -1931,7 +1934,9 @@ html {
       text-transform: uppercase; }
       @media only screen and (max-width: 425px) {
         .latest-news-list .latest-news-headline .article-date {
-          flex-basis: 120px; } }
+          flex-basis: 100px;
+          padding: 0 20px;
+          flex-shrink: 0; } }
     .latest-news-list .latest-news-headline .article-title-line {
       flex-basis: auto;
       -webkit-box-flex: 1;
