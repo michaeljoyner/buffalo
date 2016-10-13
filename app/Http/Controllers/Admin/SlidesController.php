@@ -33,7 +33,7 @@ class SlidesController extends Controller
     public function update(Request $request, Slide $slide)
     {
         $this->validate($request, [
-            'slide_text' => 'required|max:255',
+            'slide_text' => 'max:255',
             'action_text' => 'max:255',
             'action_link' => 'max:255',
             'text_colour' => 'in:dark,white,brand'

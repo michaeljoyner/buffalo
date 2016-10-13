@@ -1,12 +1,19 @@
-.carousel-slider {
+.carousel {
   width: 100%;
-  opacity: 0;
-  z-index: 5555;
-  transition: .3s;
-  transition-delay: 1s;
+  position: relative;
+  padding-bottom: 42.86%;
+  overflow: hidden;
 
-  &.ready {
-    opacity: 1;
+  @include respond-to(phone) { padding-bottom: 78%;}
+
+  .slide {
+    width: 100%;
+    position: absolute;
+    top: 0;
+
+    img {
+      width: 100%;
+    }
   }
 
   .carousel-slide {
@@ -20,6 +27,20 @@
       transform: translate3d(0,0,0);
     }
 
+    .media-aspect-box {
+      position: relative;
+      width: 100%;
+      padding-bottom: 42.86%;
+      overflow: hidden;
+
+      img, video {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+
     img, video {
       width: 100%;
     }
@@ -30,6 +51,10 @@
       .slide-action {
         border-color: $brand_dark;
       }
+
+      .slide-text {
+        @include respond-to(phone) {background: $brand_green;}
+      }
     }
 
     &.brand {
@@ -37,6 +62,10 @@
 
       .slide-action {
         border-color: $brand_green;
+      }
+
+      .slide-text {
+        @include respond-to(phone) {background: $brand_dark;}
       }
     }
 
@@ -50,7 +79,7 @@
       text-transform: uppercase;
       font-weight: 900;
 
-      @include respond-to(phone) { position: static; font-size: 2.5em; width: 100%; text-align: center; display: block; background: $brand_green; }
+      @include respond-to(phone) { position: static; font-size: 2.5em; width: 100%; text-align: center; display: block; background: $brand_dark; margin-top: -3px; min-height: 150px; display: flex; align-items: center; justify-content: center;}
     }
 
     .slide-action {
@@ -66,6 +95,8 @@
       border: 3px solid $white;
       padding: 8px 15px;
       text-transform: uppercase;
+
+      @include respond-to(phone) {display: none;}
     }
 
     &.slide-transition {
@@ -81,6 +112,20 @@
       transform: translate3d(-100%,0,0);
     }
   }
+}
+
+.carousel-slider {
+  width: 100%;
+  opacity: 0;
+  z-index: 5555;
+  transition: .3s;
+  transition-delay: 1s;
+
+  &.ready {
+    opacity: 1;
+  }
+
+
 
   .carousel-nav-arrow {
     position: absolute;
@@ -104,6 +149,8 @@
     position: absolute;
     bottom: 10px;
     width: 100%;
+
+    @include respond-to(phone) {display: none;}
 
     .carousel-dot {
       display: inline-block;

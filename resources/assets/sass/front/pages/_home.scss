@@ -69,6 +69,9 @@
     border: 1px solid $text_grey;
     height: 60px;
 
+    @include respond-to(phone) {height: auto; min-height: 60px; padding: 12px 0;
+      text-transform: capitalize;}
+
     &:not(:last-of-type) {
       border-bottom: 0;
     }

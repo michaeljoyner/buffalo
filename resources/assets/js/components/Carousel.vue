@@ -8,8 +8,10 @@
              class="carousel-slide"
              :class="[slide.text_colour]"
         >
-            <img @load="markAsReady(slide, $event)" :src="slide.image_src" :alt="slide.slide_text" v-if="!slide.is_video">
-            <video @canplaythrough="markAsReady(slide, $event)" :src="'/videos/' + slide.video" autoplay muted loop v-if="slide.is_video"></video>
+            <div class="media-aspect-box">
+                <img @load="markAsReady(slide, $event)" :src="slide.image_src" :alt="slide.slide_text" v-if="!slide.is_video">
+                <video @canplaythrough="markAsReady(slide, $event)" :src="'/videos/' + slide.video" autoplay muted loop v-if="slide.is_video"></video>
+            </div>
             <span class="slide-text">{{ slide.slide_text }}</span>
             <a v-if="slide.action_link && slide.action_text" href="{{ slide.action_link }}" class="slide-action">{{
                 slide.action_text }}</a>
