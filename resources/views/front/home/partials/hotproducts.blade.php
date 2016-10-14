@@ -1,4 +1,4 @@
-<h1 class="h1 section-title">Hot Products</h1>
+<h1 class="h1 section-title">Featured Products</h1>
 <div class="hot-products-container">
     @foreach($products as $product)
         <div class="hot-product-card">

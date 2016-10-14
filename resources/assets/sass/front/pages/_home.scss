@@ -14,10 +14,32 @@
 }
 
 .services-section {
-
+  .service-box {
+    max-width: 800px;
+    margin: 0 auto;
+  }
   .service-brief {
+    padding-bottom: 40px;
+
+    .service-name {
+      font-family: $strong_type;
+      text-align: center;
+      color: $brand_green;
+      text-transform: uppercase;
+      margin-top: 0;
+    }
+
     svg {
-      height: 50px;
+      height: 40px;
+      margin-bottom: 20px;
+    }
+
+    .truck {
+      padding: 1px;
+    }
+
+    .wheelbarrow {
+      padding: 4px;
     }
 
     p {
@@ -49,7 +71,7 @@
     }
 
     .product-name {
-      color: $brand_green;
+      color: $brand_dark;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -109,6 +131,7 @@
       flex-basis: auto;
       flex-grow: 1;
       flex-shrink: 1;
+      text-transform: capitalize;
     }
   }
 }
@@ -137,7 +160,7 @@
     width: 100%;
     margin: 10px 0;
     padding: 8px;
-    border: 3px solid $white;
+    border: 2px solid $white;
     display: flex;
 
     label {
@@ -164,6 +187,10 @@
       background: transparent;
       border: 0;
       padding-left: 10px;
+
+      &:focus {
+        outline-color: $brand_green;
+      }
     }
 
     textarea {

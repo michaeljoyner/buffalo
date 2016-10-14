@@ -50,7 +50,7 @@
                     <input name="referrer" id="other" value="other" type="radio" v-model="referrer">
                 </label>
             </div>
-            <button type="submit" class="btn page-section-cta">
+            <button type="submit" class="btn page-section-cta on-dark">
                 <span v-show="!sending">Send Message</span>
                 <div class="spinner" v-show="sending">
                     <div class="bounce1"></div>

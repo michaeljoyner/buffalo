@@ -13,4 +13,4 @@
         </a>
     @endforeach
 </div>
-<a href="/news" class="btn page-section-cta">See All News</a>
+<a href="/news" class="btn page-section-cta on-dark">See All News</a>

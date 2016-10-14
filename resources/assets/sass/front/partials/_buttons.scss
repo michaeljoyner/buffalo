@@ -14,6 +14,17 @@
   font-size: 1.5em;
   padding: 10px 0;
   background: transparent;
+  font-weight: 700;
+  transition: .2s;
+
+  &:hover {
+    background: $brand_green;
+    color: $white;
+  }
+
+  &.on-dark:hover {
+    color: $brand_dark;
+  }
 }
 
 .btn.add-cart-btn {

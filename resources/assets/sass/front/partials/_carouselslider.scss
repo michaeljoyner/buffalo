@@ -138,7 +138,7 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 99;
-    color: $brand_grey;
+    color: $eggshell;
     font-size: 3em;
   }
 
@@ -163,7 +163,8 @@
       margin: 5px;
       width: 8px;
       height: 8px;
-      background: $text_grey;
+      background: $eggshell;
+      opacity: .9;
     }
   }
 }
