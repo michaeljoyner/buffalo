@@ -1102,7 +1102,7 @@ html {
   height: 70px;
   background: #2B2F2B;
   color: #ffffff;
-  border-bottom: 1px solid #888;
+  border-bottom: 1px solid #515353;
   font-family: "Teko", sans-serif;
   z-index: 500; }
   @media only screen and (max-width: 425px) {
@@ -1119,9 +1119,14 @@ html {
     display: flex;
     -webkit-box-align: center;
     align-items: center; }
+    .main-navbar .branding a {
+      padding-left: 30px;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center; }
     .main-navbar .branding img {
-      width: 80px;
-      padding-left: 10px; }
+      width: 80px; }
   .main-navbar .nav-list {
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -1172,7 +1177,7 @@ html {
     padding: 0 1em;
     height: 100%;
     line-height: 70px;
-    border-left: 1px solid #888; }
+    border-left: 1px solid #515353; }
     @media only screen and (max-width: 425px) {
       .main-navbar .nav-item {
         height: auto;
@@ -1186,7 +1191,7 @@ html {
       .main-navbar .nav-item svg path {
         fill: #ffffff; }
     .main-navbar .nav-item:hover {
-      background: #888; }
+      background: #777777; }
   .main-navbar .cart-nav-item svg {
     height: 30px; }
   .main-navbar .nav-item.product-trigger:hover .product-nav {
@@ -1443,7 +1448,7 @@ html {
 .carousel {
   width: 100%;
   position: relative;
-  padding-bottom: 42.86%;
+  padding-bottom: 50%;
   overflow: hidden; }
   @media only screen and (max-width: 425px) {
     .carousel {
@@ -1466,7 +1471,7 @@ html {
     .carousel .carousel-slide .media-aspect-box {
       position: relative;
       width: 100%;
-      padding-bottom: 42.86%;
+      padding-bottom: 50%;
       overflow: hidden; }
       .carousel .carousel-slide .media-aspect-box img, .carousel .carousel-slide .media-aspect-box video {
         position: absolute;
@@ -1493,11 +1498,12 @@ html {
       font-family: "Teko", sans-serif;
       position: absolute;
       top: 10%;
-      left: 30px;
+      left: 80px;
       width: 50%;
-      font-size: 6em;
+      font-size: 5em;
       text-transform: uppercase;
-      font-weight: 900; }
+      font-weight: 900;
+      line-height: 1.2; }
       @media only screen and (max-width: 425px) {
         .carousel .carousel-slide .slide-text {
           position: static;
@@ -1516,18 +1522,21 @@ html {
           justify-content: center; } }
     .carousel .carousel-slide .slide-action {
       position: absolute;
-      top: 33vw;
+      top: 40vw;
       left: 50%;
       -webkit-transform: translateX(-50%);
       transform: translateX(-50%);
       font-family: "Teko", sans-serif;
       font-weight: 900;
-      font-size: 2em;
+      font-size: 3em;
       min-width: 6em;
       text-align: center;
       border: 3px solid #ffffff;
-      padding: 8px 15px;
-      text-transform: uppercase; }
+      padding: 12px 12px 2px;
+      text-transform: uppercase;
+      line-height: 1; }
+      .carousel .carousel-slide .slide-action:hover {
+        opacity: .9; }
       @media only screen and (max-width: 425px) {
         .carousel .carousel-slide .slide-action {
           display: none; } }
@@ -2421,12 +2430,6 @@ html {
     padding-bottom: 40px;
     font-size: 120%;
     line-height: 1.6; }
-    .news-article .article-body p:first-child::first-letter {
-      color: #2B2F2B;
-      font-size: 150%;
-      line-height: 0;
-      font-family: "Roboto Slab", sans-serif;
-      font-weight: 900; }
     .news-article .article-body img {
       max-width: 100%;
       display: block;
@@ -2473,6 +2476,13 @@ html {
     .services-container .service-writeup p {
       text-align: center;
       padding: 0 3%; }
+    .services-container .service-writeup svg {
+      height: 40px;
+      margin-bottom: 50px; }
+    .services-container .service-writeup .wheelbarrow {
+      padding: 5px; }
+    .services-container .service-writeup .truck {
+      padding: 1px; }
 
 .map-container img {
   width: 95%;

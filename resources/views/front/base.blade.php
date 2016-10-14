@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ elixir('css/fapp.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700|Teko:400,900|Ubuntu" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700|Teko:700|Ubuntu" rel="stylesheet">
     @yield('head')
 </head>
 <body>

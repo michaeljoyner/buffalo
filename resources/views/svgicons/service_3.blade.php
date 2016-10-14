@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.23 29.44">
+<svg class="truck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.23 29.44">
     <rect fill="none" stroke="#46b977" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.26" x="1.13"
           y="1.13" width="20.38" height="20.38"/>
     <polyline fill="none" stroke="#46b977" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.26"

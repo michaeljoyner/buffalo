@@ -3,6 +3,11 @@
 <template>
     <section class="slides-edit-view">
         <div class="banner-media-uploader">
+            <div class="instruction-box">
+                <p>Click here to upload an image or video.</p>
+                <p>For best results, use an image of at least 1400 x 700px and with that aspect ratio of 2:1</p>
+                <p>Video should ideally be cropped at 1400 x 700 and have a small as possible file size.</p>
+            </div>
             <label for="media-input">
                 <img v-bind:class="{'uploading': progress > 0}" v-bind:src="media" alt="" v-show="!isVideo">
                 <video v-bind:src="videoSrc" v-show="isVideo" autoplay muted loop></video>
@@ -19,7 +24,7 @@
         <div class="dd-form form-horizontal">
             <div class="form-group">
                 <label for="">Slide text:</label>
-                <input type="text" v-model="slideText" class="form-control">
+                <input type="text" v-model="slideText" class="form-control" placeholder="Text to be shown on slide">
             </div>
             <div class="row">
                 <div class="col-md-5">
@@ -172,7 +177,7 @@
             },
 
             generatePreview(image) {
-                this.drawPreview(image, this.getSourceDimensions(image.width, image.height, 2.3333));
+                this.drawPreview(image, this.getSourceDimensions(image.width, image.height, 2));
                 this.isVideo = false;
             },
 
@@ -191,12 +196,12 @@
                 let canvas = document.createElement('canvas');
                 let ctx = canvas.getContext('2d');
                 canvas.width = 1400;
-                canvas.height = 600;
-                ctx.drawImage(image, sDimensions.sX, sDimensions.sY, sDimensions.sWidth, sDimensions.sHeight, 0, 0, 1400, 600);
+                canvas.height = 700;
+                ctx.drawImage(image, sDimensions.sX, sDimensions.sY, sDimensions.sWidth, sDimensions.sHeight, 0, 0, 1400, 700);
                 let newSrc = canvas.toDataURL();
-                while(newSrc.slice(23).length % 12) {
-                    newSrc += '=';
-                }
+//                while(newSrc.slice(23).length % 12) {
+//                    newSrc += '=';
+//                }
                 this.media = newSrc;
             },
 

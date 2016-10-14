@@ -117,6 +117,9 @@
             },
 
             play() {
+                if(! this.autoPlay) {
+                    return;
+                }
                 this.interval = setInterval(() => this.nextSlide(), this.slideTime);
             },
 

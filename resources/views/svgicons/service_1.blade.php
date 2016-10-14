@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.38 24.61">
+<svg class="wheelbarrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.38 24.61">
     <path fill="none" stroke="#46b977" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.43"
           d="M12.8,20.14a6.15,6.15,0,1,1-2.51-8.33"/>
     <line fill="none" stroke="#46b977" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.43" x1="7.38"

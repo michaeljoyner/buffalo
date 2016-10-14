@@ -13,7 +13,7 @@ class Slide extends Model implements HasMediaConversions
 {
     use HasMediaTrait, HasModelImage;
 
-    const DEFAULT_SLIDE_TEXT = 'Quality tools for quality people';
+    const DEFAULT_SLIDE_TEXT = '';
 
     protected $table = 'slides';
 
@@ -47,7 +47,7 @@ class Slide extends Model implements HasMediaConversions
             ->setManipulations(['w' => 500, 'h' => 300, 'fit' => 'crop'])
             ->performOnCollections('default');
         $this->addMediaConversion('large')
-            ->setManipulations(['w' => 1400, 'h' => 600, 'fit' => 'crop'])
+            ->setManipulations(['w' => 1400, 'h' => 700, 'fit' => 'crop'])
             ->performOnCollections('default');
     }
 

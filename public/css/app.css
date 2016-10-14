@@ -7136,11 +7136,19 @@ body.stop-scrolling {
   font-family: 'Teko', sans-serif; }
   .slides-edit-view .banner-media-uploader #media-input {
     display: none; }
+  .slides-edit-view .banner-media-uploader .instruction-box {
+    position: absolute;
+    z-index: -1;
+    padding-top: 100px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
+    color: #888;
+    width: 100%; }
   .slides-edit-view .banner-media-uploader label {
     display: block;
     position: relative;
     width: 100%;
-    padding-bottom: 42.85%;
+    padding-bottom: 50%;
     overflow-y: hidden;
     border: 2px dashed #e5e5e5; }
     .slides-edit-view .banner-media-uploader label img, .slides-edit-view .banner-media-uploader label video {

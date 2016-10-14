@@ -25,14 +25,6 @@
     font-size: 120%;
     line-height: 1.6;
 
-    p:first-child::first-letter {
-      color: $brand_dark;
-      font-size: 150%;
-      line-height: 0;
-      font-family: $strong_type;
-      font-weight: 900;
-    }
-
     img {
       max-width: 100%;
       display: block;
