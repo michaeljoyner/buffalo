@@ -1265,8 +1265,8 @@ html {
 .search-box {
   position: fixed;
   top: 70px;
-  left: 0;
-  width: 100vw;
+  right: 0;
+  width: 100%;
   min-height: 300px;
   background: #2B2F2B;
   z-index: 1000;
@@ -1290,16 +1290,20 @@ html {
     border: 0;
     outline: 0;
     border-bottom: 2px solid #46B977;
-    font-size: 6em;
+    font-size: 5em;
     background: transparent;
-    color: #46B977; }
+    color: #46B977;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    font-family: "Teko", sans-serif; }
     @media only screen and (max-width: 425px) {
       .search-box .search-input {
         font-size: 2em; } }
   .search-box input:-webkit-autofill {
     -webkit-text-fill-color: #46B977 !important; }
   .search-box ::-webkit-input-placeholder {
-    color: #46B977;
+    color: #888;
     text-transform: uppercase;
     font-family: "Teko", sans-serif; }
 
@@ -1850,10 +1854,21 @@ html {
 
 .services-section .service-box {
   max-width: 800px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap; }
 
 .services-section .service-brief {
-  padding-bottom: 40px; }
+  padding-bottom: 40px;
+  width: 50%;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto; }
+  @media only screen and (max-width: 425px) {
+    .services-section .service-brief {
+      width: 100%; } }
   .services-section .service-brief .service-name {
     font-family: "Roboto Slab", sans-serif;
     text-align: center;
@@ -2010,14 +2025,37 @@ html {
     border: 0;
     padding: 10px; }
 
+.contact-section .btn.contact-submit {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%; }
+
 .referrers-radiobox {
   color: #ffffff;
-  font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
-  text-align: center; }
+  font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif; }
+  .referrers-radiobox .prompt {
+    margin-bottom: 0; }
   .referrers-radiobox label {
     padding: 8px 15px;
     white-space: nowrap;
     display: inline-block; }
+  .referrers-radiobox .radio-label {
+    display: inline-block;
+    padding-left: 20px;
+    padding-bottom: 10px; }
+  .referrers-radiobox .radio-label::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #46B977;
+    vertical-align: middle;
+    margin-left: 10px; }
+  .referrers-radiobox input[type=radio] {
+    display: none; }
+  .referrers-radiobox input[type=radio]:checked + .radio-label::after {
+    background: #46B977; }
 
 .home-footer {
   width: 100%;
@@ -2061,7 +2099,8 @@ html {
   display: -webkit-box;
   display: flex;
   max-width: 1200px;
-  margin: 40px auto; }
+  margin: 40px auto;
+  width: 100%; }
   @media only screen and (max-width: 425px) {
     .category-listing-outer {
       -webkit-box-orient: vertical;
@@ -2070,6 +2109,7 @@ html {
   .category-listing-outer .side-panel {
     padding-left: 15px;
     flex-basis: 300px;
+    width: 300px;
     -webkit-box-flex: 0;
     flex-grow: 0;
     flex-shrink: 0; }
@@ -2080,7 +2120,8 @@ html {
     flex-basis: auto;
     -webkit-box-flex: 1;
     flex-grow: 1;
-    flex-shrink: 1; }
+    flex-shrink: 1;
+    width: calc(100% - 300px); }
     @media only screen and (max-width: 425px) {
       .category-listing-outer .main-panel {
         flex-basis: 100%; } }
@@ -2090,11 +2131,12 @@ html {
   display: flex;
   flex-wrap: wrap; }
   .category-index .product-index-card {
-    flex-basis: 33%;
+    width: 30%;
+    flex-basis: auto;
     -webkit-box-flex: 1;
     flex-grow: 1;
     flex-shrink: 1;
-    padding: 3%; }
+    padding: 20px; }
     @media only screen and (max-width: 425px) {
       .category-index .product-index-card {
         flex-basis: 50%;
@@ -2102,7 +2144,8 @@ html {
     .category-index .product-index-card .product-image {
       max-width: 200px;
       display: block;
-      margin: 0 auto; }
+      margin: 0 auto;
+      width: 100%; }
     .category-index .product-index-card .product-name {
       text-align: center; }
 

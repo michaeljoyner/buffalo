@@ -10,8 +10,8 @@
 .search-box {
   position: fixed;
   top: 70px;
-  left: 0;
-  width: 100vw;
+  right: 0;
+  width: 100%;
   min-height: 300px;
   //background: rgba($text_grey, .7);
   background: $brand_dark;
@@ -30,9 +30,13 @@
     border: 0;
     outline: 0;
     border-bottom: 2px solid $brand_green;
-    font-size: 6em;
+    font-size: 5em;
     background: transparent;
     color: $brand_green;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    font-family: $big_head;
 
     @include respond-to(phone) {font-size: 2em;}
   }
@@ -42,7 +46,7 @@
   }
 
   ::-webkit-input-placeholder {
-    color: $brand_green;
+    color: $text_grey;
     text-transform: uppercase;
     font-family: $big_head;
   }

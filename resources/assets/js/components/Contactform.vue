@@ -28,29 +28,29 @@
                 <textarea name="enquiry" id="enquiry" v-model="enquiry"></textarea>
             </div>
             <div class="referrers-radiobox">
-                <p class="body-text">How did you find us?</p>
-                <label for="google">
+                <p class="body-text prompt">How did you find us?</p>
+                <input name="referrer" value="google" id="google" type="radio" v-model="referrer">
+                <label class="radio-label" for="google">
                     Google
-                    <input name="referrer" value="google" id="google" type="radio" v-model="referrer">
                 </label>
-                <label for="exhibition">
+                <input name="referrer" value="exhibition" id="exhibition" type="radio" v-model="referrer">
+                <label class="radio-label" for="exhibition">
                     Exhibition
-                    <input name="referrer" value="exhibition" id="exhibition" type="radio" v-model="referrer">
                 </label>
-                <label for="trade">
+                <input name="referrer" id="trade" value="trade" type="radio" v-model="referrer">
+                <label class="radio-label" for="trade">
                     Taiwan Trade
-                    <input name="referrer" id="trade" value="trade" type="radio" v-model="referrer">
                 </label>
-                <label for="social">
+                <input name="referrer" id="social" value="social" type="radio" v-model="referrer">
+                <label class="radio-label" for="social">
                     Social Media
-                    <input name="referrer" id="social" value="social" type="radio" v-model="referrer">
                 </label>
-                <label for="other">
+                <input name="referrer" id="other" value="other" type="radio" v-model="referrer">
+                <label class="radio-label" for="other">
                     Other
-                    <input name="referrer" id="other" value="other" type="radio" v-model="referrer">
                 </label>
             </div>
-            <button type="submit" class="btn page-section-cta on-dark">
+            <button type="submit" class="btn page-section-cta on-dark contact-submit">
                 <span v-show="!sending">Send Message</span>
                 <div class="spinner" v-show="sending">
                     <div class="bounce1"></div>

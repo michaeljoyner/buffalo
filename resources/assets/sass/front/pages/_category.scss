@@ -2,12 +2,14 @@
   display: flex;
   max-width: 1200px;
   margin: 40px auto;
+  width: 100%;
 
   @include respond-to(phone) {flex-direction: column;}
 
   .side-panel {
     padding-left: 15px;
     flex-basis: 300px;
+    width: 300px;
     flex-grow: 0;
     flex-shrink: 0;
 
@@ -18,6 +20,7 @@
     flex-basis: auto;
     flex-grow: 1;
     flex-shrink: 1;
+    width: calc(100% - 300px);
 
     @include respond-to(phone) {flex-basis: 100%;}
   }
@@ -28,10 +31,11 @@
   flex-wrap: wrap;
 
   .product-index-card {
-    flex-basis: 33%;
+    width: 30%;
+    flex-basis: auto;
     flex-grow: 1;
     flex-shrink: 1;
-    padding: 3%;
+    padding: 20px;
 
     @include respond-to(phone) {flex-basis: 50%; width: 50%;}
 
@@ -39,6 +43,7 @@
       max-width: 200px;
       display: block;
       margin: 0 auto;
+      width: 100%;
     }
 
     .product-name {

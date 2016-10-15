@@ -9,7 +9,7 @@
                    :product-code="item.product_code"
                    :product-qty="item.quantity"
         ></cart-item>
-        <a class="page-section-cta checkout-button" href="/enquire" v-show="items.length">Proceed</a>
+        <a class="btn page-section-cta checkout-button" href="/enquire" v-show="items.length">Proceed</a>
         <p class="sub-heading text-centered" v-else>You don't have any products in your cart.</p>
     </div>
 </template>

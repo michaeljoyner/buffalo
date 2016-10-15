@@ -9,14 +9,14 @@
         <div class="cart-item-qty-box">
             <div v-show="!editing" class="edit-show">
                 <span class="cart-item-quantity number">{{ quantity }}</span>
-                <button class="cart-edit-btn small-action-btn" v-on:click="editing = ! editing">
+                <button class="cart-edit-btn small-action-btn btn" v-on:click="editing = ! editing">
                     Edit
                 </button>
             </div>
             <div v-show="editing" class="edit-edit">
                 <form v-on:submit.stop.prevent="editQuantity">
                     <input class="number qty-input" type="number" min="1" v-model="quantity">
-                    <button class="cart-save-btn small-action-btn">
+                    <button class="cart-save-btn small-action-btn btn">
                         <span v-show="!saving">Save</span>
                         <div class="spinner" v-show="saving">
                             <div class="bounce1"></div>
