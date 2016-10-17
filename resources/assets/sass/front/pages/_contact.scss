@@ -2,3 +2,129 @@
   background-image: url(../../images/assets/contact.jpg);
   background-size: cover;
 }
+
+.contact-section.full-contact-page-section {
+  background: none;
+  color: $brand_dark;
+}
+
+.contact-section {
+  background: linear-gradient(
+                  rgba(0, 0, 0, 0.7),
+                  rgba(0, 0, 0, 0.7)
+  ), url(../../images/assets/tooltable.jpeg);
+  background-size: cover;
+}
+
+.contact-section {
+  color: $white;
+  .contact-form-container {
+
+    form {
+      max-width: 500px;
+      width: 95%;
+      margin: 0 auto;
+    }
+
+  }
+
+  .form-group {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border: 2px solid;
+    display: flex;
+
+    label {
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      font-family: $body_font;
+      padding-right: 15px;
+      align-self: center;
+
+      &.top-label {
+        align-self: flex-start;
+      }
+    }
+
+    input {
+      flex-basis: auto;
+      flex-grow: 1;
+      flex-shrink: 1;
+      height: 32px;
+      font-size: 1em;
+      background: transparent;
+      border: 0;
+      padding-left: 10px;
+
+      &:focus {
+        outline-color: $brand_green;
+      }
+    }
+
+    textarea {
+      flex-basis: auto;
+      flex-grow: 1;
+      flex-shrink: 1;
+      font-size: 1em;
+      background: transparent;
+      border: 0;
+      padding: 10px;
+    }
+  }
+
+  .btn.contact-submit {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+
+  .contact-heading {
+    margin-bottom: 0;
+  }
+
+  .contact-info {
+    margin-top: 5px;
+    text-align: center;
+  }
+}
+
+.referrers-radiobox {
+  font-family: $body_font;
+
+  .prompt {
+    margin-bottom: 0;
+  }
+
+  label {
+    padding: 8px 15px;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .radio-label {
+    display: inline-block;
+    padding-left: 20px;
+    padding-bottom: 10px;
+  }
+
+  .radio-label::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $brand_green;
+    vertical-align: middle;
+    margin-left: 10px;
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  input[type=radio]:checked + .radio-label::after {
+    background: $brand_green;
+  }
+}

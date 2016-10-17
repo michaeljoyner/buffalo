@@ -21,7 +21,7 @@
     @include('front.home.partials.news')
 </section>
 <section class="page-section contact-section">
-    @include('front.home.partials.contact')
+    @include('front.home.partials.contact', ['withFooter' => true])
     @include('front.home.partials.footer')
 </section>
 @endsection

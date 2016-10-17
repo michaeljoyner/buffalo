@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
 
-  @include respond-to(phone) {flex-direction: column;}
+  @include respond-to(phone) {flex-wrap: wrap;}
 
   & > * {
     flex-basis: 50%;

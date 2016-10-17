@@ -9,13 +9,13 @@
 
 img.bit-piece {
   display: block;
-  margin: 0 auto 0 -10px;
+  margin: 40px auto 40px -10px;
   transform: scale(-1);
   max-width: calc(100% - 10px);
 }
 
 img.socket-piece {
   display: block;
-  margin: 0 -10px 0 auto;
+  margin: 40px -10px 40px auto;
   max-width: calc(100% - 10px);
 }

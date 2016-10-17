@@ -14,6 +14,7 @@ Vue.component('cart-button', require('./components/Cartbutton.vue'));
 Vue.component('cart-item', require('./components/Cartitem.vue'));
 Vue.component('cart-app', require('./components/Cart.vue'));
 Vue.component('cart-alert', require('./components/Cartalert.vue'));
+Vue.component('stat-counter', require('./components/Statcounter.vue'));
 
 window.Vue = Vue;
 

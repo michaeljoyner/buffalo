@@ -10,8 +10,10 @@
   &.dark-section {
     background: $brand_dark url(../../images/BG_logo_white.png);
     background-repeat: no-repeat;
-    background-size: 73%;
+    background-size: auto 50%;
     background-position-y: 50%;
-    background-position-x: -77%;
+    background-position-x: -100px;
+
+    @include respond-to(phone) {background-size: 180% auto; background-position-x: -415px; background-position-y: 20%;}
   }
 }

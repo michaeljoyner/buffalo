@@ -15,7 +15,7 @@
             @if($product->productGroup)
                 <a class="breadcrumb" href="/productgroups/{{ $product->productGroup->slug }}">{{ $product->productGroup->name }}</a>
             @endif
-            <span class="breadcrumb">{{ $product->name }}</span>
+            {{--<span class="breadcrumb">{{ $product->name }}</span>--}}
         </div>
         <section class="category-breadcrumbs">
 

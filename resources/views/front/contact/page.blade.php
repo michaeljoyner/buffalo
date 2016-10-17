@@ -11,11 +11,11 @@
     <section class="page-section">
         <h1 class="h1 section-title">Contact Us</h1>
         <p class="strong-lead">
-            I am some intro to the contact section. I introduce the contact section, what it is exactly, entice to look.
+            Please don't hesitate to contact us with any query or question you may have. We would love to get in touch and se how we can work with you.
         </p>
     </section>
-    <section class="page-section contact-section">
-        @include('front.home.partials.contact')
+    <section class="page-section contact-section full-contact-page-section">
+        @include('front.home.partials.contact', ['withFooter' => false])
     </section>
     @include('front.partials.footer')
 @endsection
