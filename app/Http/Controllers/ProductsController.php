@@ -31,17 +31,19 @@ class ProductsController extends Controller
     public function subcategory($slug)
     {
         $subcategory = Subcategory::with('productGroups')->where('slug', $slug)->firstOrFail();
+        $category = $subcategory->category()->with('subcategories.productGroups')->first();
         $products = $subcategory->products()->paginate(18);
 
-        return view('front.category.subcategory')->with(compact('subcategory', 'products'));
+        return view('front.category.subcategory')->with(compact('subcategory', 'products', 'category'));
     }
 
     public function productGroups($slug)
     {
         $productGroup = ProductGroup::where('slug', $slug)->firstOrFail();
         $products = $productGroup->products()->paginate(18);
+        $category = $productGroup->subcategory->category()->with('subcategories.productGroups')->first();
 
-        return view('front.category.productgroup')->with(compact('productGroup', 'products'));
+        return view('front.category.productgroup')->with(compact('productGroup', 'products', 'category'));
     }
 
     public function product($slug, ProductsRepository $productsRepository)

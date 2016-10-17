@@ -5,16 +5,19 @@
 @endsection
 
 @section('content')
-    <section class="page-banner products-page-banner">
-        <h1 class="h1 text-white banner-quote">Precision is an art</h1>
-    </section>
+    <div class="product-breadcrumbs">
+        <a href="/categories" class="breadcrumb">Categories</a>
+        <a href="/categories/{{ $category->slug }}" class="breadcrumb">{{ $category->name }}</a>
+        <a href="/categories/{{ $productGroup->subcategory->slug }}" class="breadcrumb">{{ $productGroup->subcategory->name }}</a>
+        <span class="breadcrumb">{{ $productGroup->name }}</span>
+    </div>
     <section class="page-section">
         <h1 class="h1 section-title">{{ $productGroup->name }}</h1>
         <p class="page-position">Page <span>{{ $products->currentPage() }}</span> of <span>{{ $products->lastPage() }}</span></p>
     </section>
     <section class="category-listing-outer">
         <div class="category-menu side-menu side-panel">
-
+            @include('front.category.sidemenu')
         </div>
         <div class="category-index main-panel">
             @foreach($products as $product)

@@ -6,10 +6,10 @@
 
 @section('content')
     <section class="page-banner products-page-banner">
-        <h1 class="h1 text-white banner-quote to-right">Precision is an art</h1>
+        <h1 class="h1 text-white banner-quote to-right">Precision<br> is an art.</h1>
     </section>
     <section class="page-section">
-        <h1 class="h1 section-title">Product Categories</h1>
+        <h1 class="h1 section-title">Categories</h1>
         <div class="category-index-card-container">
             @foreach($categories as $category)
             <div class="category-index-card">

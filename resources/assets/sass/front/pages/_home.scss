@@ -14,6 +14,7 @@
 }
 
 .services-section {
+
   .service-box {
     max-width: 800px;
     margin: 0 auto;
@@ -220,6 +221,15 @@
     margin-right: 0;
     max-width: 100%;
   }
+
+  .contact-heading {
+    margin-bottom: 0;
+  }
+
+  .contact-info {
+    margin-top: 5px;
+    text-align: center;
+  }
 }
 
 .referrers-radiobox {
@@ -266,6 +276,8 @@
 .home-footer {
   width: 100%;
   padding: 40px 0 0;
+
+
 
   img {
     display: block;

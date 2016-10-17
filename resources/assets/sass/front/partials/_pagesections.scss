@@ -8,6 +8,10 @@
   }
 
   &.dark-section {
-    background: $brand_dark;
+    background: $brand_dark url(../../images/BG_logo_white.png);
+    background-repeat: no-repeat;
+    background-size: 73%;
+    background-position-y: 50%;
+    background-position-x: -77%;
   }
 }

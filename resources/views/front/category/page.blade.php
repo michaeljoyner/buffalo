@@ -5,9 +5,10 @@
 @endsection
 
 @section('content')
-    <section class="page-banner products-page-banner">
-        <h1 class="h1 text-white banner-quote">Precision is an art</h1>
-    </section>
+    <div class="product-breadcrumbs">
+        <a href="/categories" class="breadcrumb">Categories</a>
+        <span class="breadcrumb">{{ $category->name }}</span>
+    </div>
     <section class="page-section">
         <h1 class="h1 section-title">{{ $category->name }}</h1>
         <p class="page-position">Page <span>{{ $products->currentPage() }}</span> of <span>{{ $products->lastPage() }}</span></p>

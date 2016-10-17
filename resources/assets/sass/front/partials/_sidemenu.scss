@@ -1,6 +1,12 @@
 .side-menu {
 
+  li.current-sub {
+    color: $brand_green_dark;
 
+    svg polygon {
+      fill: $brand_green_dark;
+    }
+  }
 
   ul {
     list-style-type: none;
@@ -10,6 +16,7 @@
 
   li {
     font-family: $body_font;
+    color: $brand_green;
     line-height: 1.5;
     padding: 4px 0;
   }
@@ -19,7 +26,11 @@
   }
 
   .menu-trigger-label {
-    padding-left: 30px;
+    padding-left: 10px;
+
+    svg {
+      width: 15px;
+    }
   }
 
   .second-level {
@@ -29,11 +40,21 @@
     max-height: 0;
     min-height: 0;
     padding-left: 30px;
+
+    li {
+      color: $text_grey;
+
+      &:hover {
+        color: $brand_dark;
+      }
+    }
   }
 
-  .menu-trigger:checked + .second-level {
+
+
+  .current-sub .second-level, .menu-trigger:checked + .second-level {
     min-height: 16px;
-    max-height: 400px;
+    max-height: 600px;
     height: auto;
   }
 }

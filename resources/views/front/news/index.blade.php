@@ -25,9 +25,11 @@
             </div>
         @endforeach
         </div>
+        @if($articles->hasPages())
         <div class="simple-pagination">
             {!! $articles->links() !!}
         </div>
+        @endif
     </section>
     @include('front.partials.footer')
 @endsection

@@ -1,5 +1,21 @@
 .about-page-banner {
-  background-image: url(../../images/assets/Newspaper_small.jpg);
+  background-image: url(../../images/assets/limes.jpg);
   background-size: cover;
+}
 
+.strong-lead.padded-bottom {
+  padding-bottom: 60px;
+}
+
+img.bit-piece {
+  display: block;
+  margin: 0 auto 0 -10px;
+  transform: scale(-1);
+  max-width: calc(100% - 10px);
+}
+
+img.socket-piece {
+  display: block;
+  margin: 0 -10px 0 auto;
+  max-width: calc(100% - 10px);
 }

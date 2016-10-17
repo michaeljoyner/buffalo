@@ -24,6 +24,10 @@
   justify-content: center;
   align-items: center;
 
+  form {
+    width: 90%;
+  }
+
   @include respond-to(phone) {min-height: 200px;}
 
   .search-input {
@@ -37,6 +41,7 @@
     display: block;
     margin: 0 auto;
     font-family: $big_head;
+    text-transform: uppercase;
 
     @include respond-to(phone) {font-size: 2em;}
   }

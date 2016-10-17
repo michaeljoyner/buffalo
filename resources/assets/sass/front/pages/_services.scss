@@ -1,6 +1,7 @@
 .services-page-banner {
-  background-image: url(../../images/assets/Newspaper_small.jpg);
+  background-image: url(../../images/assets/phone.jpeg);
   background-size: cover;
+  background-position: center;
 }
 
 .services-container {
@@ -10,6 +11,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding-top: 50px;
 
   .service-writeup {
     max-width: 40%;
@@ -20,7 +22,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
 
     @include respond-to(phone) {max-width: 100%;}
 
@@ -31,7 +33,7 @@
 
     svg {
       height: 40px;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
 
     .wheelbarrow {
@@ -45,10 +47,30 @@
 }
 
 .map-container {
-  img {
+  svg {
     width: 95%;
     max-width: 960px;
     display: block;
     margin: 50px auto;
   }
+
+  svg .map-point {
+    //animation-name: pulse;
+    //animation-duration: 2s;
+    //animation-iteration-count: infinite;
+  }
+}
+
+.customer-logos {
+  text-align: center;
+
+  img {
+    display: inline-block;
+    width: 175px;
+    margin: 20px 50px;
+  }
+}
+
+@keyframes pulse {
+  50% {fill: green;}
 }

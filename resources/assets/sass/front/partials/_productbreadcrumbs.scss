@@ -1,0 +1,18 @@
+.product-breadcrumbs {
+  padding: 15px;
+
+  .breadcrumb {
+    color: $text_grey;
+    font-family: $strong_type;
+    text-transform: uppercase;
+
+    &:not(:last-child)::after {
+      content: '>';
+      padding: 0 10px;
+    }
+  }
+
+  a.breadcrumb:hover {
+    color: $brand_dark;
+  }
+}

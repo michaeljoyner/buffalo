@@ -6,16 +6,19 @@
 
 @section('content')
     <div class="product-page-container">
-        <section class="category-breadcrumbs">
-            <a class="crumb" href="/categories">Categories</a>
-            <a class="crumb" href="/categories/{{ $product->category->slug }}">{{ $product->category->name }}</a>
+        <div class="product-breadcrumbs">
+            <a class="breadcrumb" href="/categories">Categories</a>
+            <a class="breadcrumb" href="/categories/{{ $product->category->slug }}">{{ $product->category->name }}</a>
             @if($product->subcategory)
-            <a class="crumb" href="/subcategories/{{ $product->subcategory->slug }}">{{ $product->subcategory->name }}</a>
+                <a class="breadcrumb" href="/subcategories/{{ $product->subcategory->slug }}">{{ $product->subcategory->name }}</a>
             @endif
             @if($product->productGroup)
-                <a class="crumb" href="/productgroups/{{ $product->productGroup->slug }}">{{ $product->productGroup->name }}</a>
+                <a class="breadcrumb" href="/productgroups/{{ $product->productGroup->slug }}">{{ $product->productGroup->name }}</a>
             @endif
-            {{--<span class="crumb">{{ $product->name }}</span>--}}
+            <span class="breadcrumb">{{ $product->name }}</span>
+        </div>
+        <section class="category-breadcrumbs">
+
         </section>
         <section class="product-title">
             <h2 class="h2 product-title-name">{{ $product->name }}</h2>
