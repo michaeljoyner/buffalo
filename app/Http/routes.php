@@ -152,6 +152,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::post('slides/{slide}/publishing', 'SlidesPublishingController@update');
 
+        Route::get('/sitelinks', 'SiteLinkController@index');
+
         //facebook login
         Route::get('facebook/login', 'FacebookAuthController@login');
         Route::get('facebook/callback', 'FacebookAuthController@callback');

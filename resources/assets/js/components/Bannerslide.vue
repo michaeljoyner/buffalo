@@ -92,13 +92,7 @@
                 max_file_size_mb: 15,
                 saving: false,
                 progress: 0,
-                linkOptions: [
-                    {name: 'Home - services', link: '/#services'},
-                    {name: 'Home - products', link: '/#products'},
-                    {name: 'Products page', link: '/products'},
-                    {name: 'Contact Page', link: '/contact'},
-                    {name: 'About page', link: '/about'}
-                ],
+                linkOptions: [],
                 colours: {white: 'white', brand: 'brand', black: 'dark'},
                 lastConfirmedSrc: null,
                 lastConfirmedIsVideo: null,
@@ -116,6 +110,7 @@
         ready() {
             this.lastConfirmedSrc = this.isVideo ? this.videoSrc : this.media;
             this.lastConfirmedIsVideo = this.isVideo;
+            this.fetchLinks();
         },
 
         computed: {
@@ -125,6 +120,17 @@
         },
 
         methods: {
+
+            fetchLinks() {
+                this.$http.get('/admin/sitelinks')
+                        .then((res) => this.setLinkOptions(res.json()))
+                        .catch(() => this.sendAlert('Unable to get links', 'There was a problem, sorry. Please refresh and try again.'))
+            },
+
+            setLinkOptions(links) {
+                Object.keys(links).forEach((key) => this.linkOptions.push({name: key, link: links[key]}));
+            },
+
             processFile(ev) {
                 let file = ev.target.files[0];
                 if (file.type.indexOf('image') === -1 && file.type.indexOf('video') !== 0) {
