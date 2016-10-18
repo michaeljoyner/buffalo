@@ -121,12 +121,12 @@
     }
 
     &.slide-enter {
-      animation: slideEnter .7s;
+      animation: slideEnter 30s;
       z-index: 999;
     }
 
     &.slide-leave {
-      animation: slideExit .7s;
+      animation: slideExit 30s;
     }
   }
 }
