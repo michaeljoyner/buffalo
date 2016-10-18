@@ -110,6 +110,9 @@
                 if(this.shouldPlay()) {
                     this.play();
                 }
+                if(this.isReadyToStart) {
+                    this.removeOriginal();
+                }
             },
 
             isReady(slide) {
@@ -132,8 +135,8 @@
                 return this.isReadyToStart && (this.interval === null) && this.autoPlay;
             },
 
-            vidLoaded(slide) {
-                console.log(slide);
+            removeOriginal() {
+                setTimeout(() => document.querySelector('.original-slide').style.display = "none", 1500);
             }
 
 
