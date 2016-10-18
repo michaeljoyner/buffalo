@@ -1694,12 +1694,12 @@ html {
       -webkit-animation-timing-function: ease-out;
       animation-timing-function: ease-out; }
     .carousel .carousel-slide.slide-enter {
-      -webkit-animation: slideEnter 10s;
-      animation: slideEnter 10s;
-      z-index: 999; }
+      -webkit-animation: slideEnter .7s;
+      animation: slideEnter .7s;
+      z-index: 9; }
     .carousel .carousel-slide.slide-leave {
-      -webkit-animation: slideExit 10s;
-      animation: slideExit 10s; }
+      -webkit-animation: slideExit .7s;
+      animation: slideExit .7s; }
 
 .carousel-slider {
   width: 100%;
