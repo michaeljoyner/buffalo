@@ -80,7 +80,7 @@
       font-weight: 900;
       line-height: 1.2;
 
-      @include respond-to(phone) { position: static; font-size: 2em; width: 100%; text-align: center; display: block; background: $brand_dark; margin-top: -3px; min-height: 150px; display: flex; align-items: center; justify-content: center;}
+      @include respond-to(phone) { position: static; font-size: 2em; padding: 0 10px; width: 100%; text-align: center; display: block; background: $brand_dark; margin-top: -3px; min-height: 150px; display: flex; align-items: center; justify-content: center;}
 
       @include respond-to(largetablet) {font-size: 3em;}
 

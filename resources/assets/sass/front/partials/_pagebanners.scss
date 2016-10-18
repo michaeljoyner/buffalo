@@ -15,6 +15,7 @@
     font-family: "Teko", sans-serif;
 
     @include respond-to(phone) {display: none;}
+    @include respond-to(largetablet) {font-size: 3em;}
   }
 
   .banner-quote.to-left {
