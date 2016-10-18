@@ -1694,12 +1694,12 @@ html {
       -webkit-animation-timing-function: ease-out;
       animation-timing-function: ease-out; }
     .carousel .carousel-slide.slide-enter {
-      -webkit-animation: slideEnter 30s;
-      animation: slideEnter 30s;
+      -webkit-animation: slideEnter 10s;
+      animation: slideEnter 10s;
       z-index: 999; }
     .carousel .carousel-slide.slide-leave {
-      -webkit-animation: slideExit 30s;
-      animation: slideExit 30s; }
+      -webkit-animation: slideExit 10s;
+      animation: slideExit 10s; }
 
 .carousel-slider {
   width: 100%;
@@ -1742,18 +1742,22 @@ html {
 @-webkit-keyframes slideEnter {
   from {
     -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0); }
+    transform: translate3d(-100%, 0, 0);
+    z-index: 10; }
   to {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0); } }
+    transform: translate3d(0, 0, 0);
+    z-index: 100; } }
 
 @keyframes slideEnter {
   from {
     -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0); }
+    transform: translate3d(-100%, 0, 0);
+    z-index: 10; }
   to {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0); } }
+    transform: translate3d(0, 0, 0);
+    z-index: 100; } }
 
 @-webkit-keyframes slideExit {
   from {
