@@ -17,7 +17,7 @@
         <div class="category-menu side-menu side-panel">
             @include('front.category.mobilemenu', ['mobileCategoryItems' => $category->subcategories, 'slugBase' => '/subcategories/'])
             @include('front.category.sidemenu')
-            <stat-counter :step="1" stat-title="Products" :upper-val="{{ $products->total() }}"></stat-counter>
+            {{--<stat-counter :step="1" stat-title="Products" :upper-val="{{ $products->total() }}"></stat-counter>--}}
         </div>
         <div class="category-index main-panel">
             @foreach($products as $product)
