@@ -122,6 +122,7 @@
 
     &.slide-enter {
       animation: slideEnter .7s;
+      z-index: 999;
     }
 
     &.slide-leave {
