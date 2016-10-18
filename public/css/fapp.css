@@ -1691,17 +1691,14 @@ html {
         .carousel .carousel-slide .slide-action {
           font-size: 1.5em; } }
     .carousel .carousel-slide.slide-transition {
-      -webkit-transition: 1s ease-in;
-      transition: 1s ease-in;
-      opacity: 1; }
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out; }
     .carousel .carousel-slide.slide-enter {
-      -webkit-transition-duration: .7s;
-      transition-duration: .7s;
-      opacity: 1; }
+      -webkit-animation: slideEnter .7s;
+      animation: slideEnter .7s; }
     .carousel .carousel-slide.slide-leave {
-      -webkit-transition-duration: .7s;
-      transition-duration: .7s;
-      opacity: 0; }
+      -webkit-animation: slideExit .7s;
+      animation: slideExit .7s; }
 
 .carousel-slider {
   width: 100%;
@@ -1740,6 +1737,38 @@ html {
       height: 8px;
       background: #e2e2e2;
       opacity: .9; }
+
+@-webkit-keyframes slideEnter {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+
+@keyframes slideEnter {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+
+@-webkit-keyframes slideExit {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  to {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); } }
+
+@keyframes slideExit {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  to {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); } }
 
 .side-menu li.current-sub {
   color: #277448; }

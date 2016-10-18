@@ -205,9 +205,6 @@
                 canvas.height = 700;
                 ctx.drawImage(image, sDimensions.sX, sDimensions.sY, sDimensions.sWidth, sDimensions.sHeight, 0, 0, 1400, 700);
                 let newSrc = canvas.toDataURL();
-//                while(newSrc.slice(23).length % 12) {
-//                    newSrc += '=';
-//                }
                 this.media = newSrc;
             },
 

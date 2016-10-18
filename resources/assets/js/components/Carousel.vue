@@ -86,11 +86,11 @@
             },
 
             nextInLine(current) {
-                return current == this.slides.length - 1 ? 0 : current += 1;
+                return current == this.slides.length - 1 ? 0 : current + 1;
             },
 
             prevInLine(current) {
-              return current === 0 ? this.slides.length - 1 : current -+ 1;
+              return current == 0 ? this.slides.length - 1 : current - 1;
             },
             
             prevSlide() {
@@ -101,7 +101,6 @@
                 }
 
                 return this.currentImg = nextIndex;
-                return this.currentImg--;
             },
 
             markAsReady(slide) {
