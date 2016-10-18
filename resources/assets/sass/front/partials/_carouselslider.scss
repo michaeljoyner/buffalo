@@ -117,16 +117,22 @@
     }
 
     &.slide-transition {
-      transition: .7s ease;
-      transform: translate3d(0,0,0);
+      transition: 1s ease-in;
+      //transform: translate3d(0,0,0);
+      opacity: 1;
     }
 
     &.slide-enter {
-      transform: translate3d(100%,0,0);
+      //transition-duration: .7s;
+      //transform: translate3d(100%,0,0);
+      transition-duration: .7s;
+      opacity: 1;
     }
 
     &.slide-leave {
-      transform: translate3d(-100%,0,0);
+      //transform: translate3d(-100%,0,0);
+      transition-duration: .7s;
+      opacity: 0;
     }
   }
 }
