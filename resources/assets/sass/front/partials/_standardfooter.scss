@@ -8,6 +8,7 @@
   margin-top: 70px;
 
   @include respond-to(phone) {flex-direction: column;}
+  @include respond-to(largetablet) {flex-direction: column;}
 
   .social-footer, .contact-footer {
     flex-basis: auto;
@@ -22,6 +23,7 @@
     order: 5;
 
     @include respond-to(phone) {width: 100%; order: 1;}
+    @include respond-to(largetablet) {width: 100%; order: 1;}
   }
 
   .signoff {
@@ -35,6 +37,7 @@
     order: 5;
 
     @include respond-to(phone) {width: 100%; order: 3;}
+    @include respond-to(largetablet) {width: 100%; order: 3;}
 
     img {
       width: 120px;

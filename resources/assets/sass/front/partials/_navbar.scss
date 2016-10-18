@@ -14,6 +14,7 @@
   z-index: 500;
 
   @include respond-to(phone) {justify-content: space-between;}
+  @include respond-to(largetablet) {justify-content: space-between;}
 
   .branding {
     flex-grow: 0;
@@ -63,6 +64,21 @@
       transform: translate3d(-110vw,0,0);
     }
 
+    @include respond-to(largetablet) {
+      position: absolute;
+      display: block;
+      top: 70px;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      padding-top: 20px;
+      //background: rgba(0,0,0,.7);
+      background: $brand_green;
+      transition-duration: .3s;
+      transition-timing-function: ease;
+      transform: translate3d(-110vw,0,0);
+    }
+
 
 
     &.exposed {
@@ -74,6 +90,10 @@
 
   #nav-radio-trigger:checked + .nav-list {
     @include respond-to(phone) {
+      transform: translate3d(0,0,0);
+    }
+
+    @include respond-to(largetablet) {
       transform: translate3d(0,0,0);
     }
   }
@@ -93,6 +113,7 @@
     border-left: 1px solid $brand_grey;
 
     @include respond-to(phone) {height: auto; line-height: 2; text-align: center; font-size: 2em;}
+    @include respond-to(largetablet) {height: auto; line-height: 2; text-align: center; font-size: 2em;}
 
     svg {
       vertical-align: middle;
@@ -143,6 +164,10 @@
       display: none;
     }
 
+    @include respond-to(largetablet) {
+      display: none;
+    }
+
     li {
       font-family: $body_font;
       font-size: .75em;
@@ -168,6 +193,7 @@
     }
 
     @include respond-to(phone) {display: block;}
+    @include respond-to(largetablet) {display: block;}
   }
 
   #nav-radio-trigger {

@@ -16,6 +16,7 @@
   margin-bottom: 40px;
 
   @include respond-to(phone) {padding: 10px;}
+  @include respond-to(largetablet) {padding: 10px;}
 
 
   .product-title-name {
