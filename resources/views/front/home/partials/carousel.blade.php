@@ -1,6 +1,6 @@
 <div class="carousel">
     @if($slide)
-    <div class="slide carousel-slide {{ $slide->text_colour }}">
+    <div class="slide carousel-slide original-slide {{ $slide->text_colour }}">
         <div class="media-aspect-box">
             @if($slide->is_video)
                 <video src="/videos/{{ $slide->video }}" autoplay muted loop></video>

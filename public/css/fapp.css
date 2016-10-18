@@ -1600,6 +1600,8 @@ html {
     top: 0; }
     .carousel .slide img {
       width: 100%; }
+  .carousel .original-slide {
+    z-index: -1; }
   .carousel .carousel-slide {
     position: absolute;
     width: 100%;

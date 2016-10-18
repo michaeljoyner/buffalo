@@ -16,6 +16,10 @@
     }
   }
 
+  .original-slide {
+    z-index: -1;
+  }
+
   .carousel-slide {
     position: absolute;
     width: 100%;
