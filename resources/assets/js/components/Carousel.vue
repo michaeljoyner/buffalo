@@ -95,7 +95,7 @@
 
             changeSlide(nextIndex) {
                 if(this.slides[this.currentImg].is_video) {
-                    console.log('pausing');
+                    document.querySelector('#video' + this.currentImg).pause();
                 }
 
                 let next = nextIndex(this.currentImg, this.slides.length);
@@ -107,7 +107,7 @@
                 this.currentImg = next;
 
                 if(this.slides[this.currentImg].is_video) {
-                    console.log('playing');
+                    document.querySelector('#video' + this.currentImg).play();
                 }
             },
             
