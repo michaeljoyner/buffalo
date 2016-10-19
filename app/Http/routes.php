@@ -41,7 +41,7 @@ Route::post('admin/login', 'Auth\LoginController@login');
 Route::get('admin/logout', 'Auth\LoginController@logout');
 
 // Registration Routes...
-Route::post('admin/users/register', 'Auth\RegisterController@register');
+Route::post('admin/users/register', 'Auth\RegisterController@register')->middleware('superauth');
 
 // Password Reset Routes...
 Route::get('admin/password/reset/{token?}', 'Auth\PasswordController@showResetForm');
@@ -77,10 +77,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::group(['middleware' => 'auth', 'bindings'], function () {
         Route::get('/', 'PagesController@dashboard');
 
-        Route::get('users', 'UsersController@index');
-        Route::get('users/{user}/edit', 'UsersController@edit');
-        Route::post('users/{user}', 'UsersController@update');
-        Route::delete('users/{user}', 'UsersController@delete');
+        Route::get('users', 'UsersController@index')->middleware('superauth');
+        Route::get('users/{user}/edit', 'UsersController@edit')->middleware('superauth');
+        Route::post('users/{user}', 'UsersController@update')->middleware('superauth');
+        Route::delete('users/{user}', 'UsersController@delete')->middleware('superauth');
 
         Route::get('blog/posts', 'BlogPostsController@index');
         Route::get('blog/posts/create', 'BlogPostsController@create');
@@ -89,13 +89,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('blog/posts/{post}', 'BlogPostsController@update');
         Route::delete('blog/posts/{post}', 'BlogPostsController@delete');
 
-        Route::get('blog/posts/{post}/images', 'PostsFeaturedImageController@index');
-        Route::get('blog/posts/{post}/images/featured/edit', 'PostsFeaturedImageController@edit');
-        Route::post('blog/posts/{post}/images/featured', 'PostsFeaturedImageController@store');
-        Route::post('blog/posts/{post}/images/featured/upload', 'PostFeaturedImageDirectUploadController@store');
+        Route::get('blog/posts/{post}/images', 'PostsFeaturedImageController@index')->middleware('superauth');
+        Route::get('blog/posts/{post}/images/featured/edit', 'PostsFeaturedImageController@edit')->middleware('superauth');
+        Route::post('blog/posts/{post}/images/featured', 'PostsFeaturedImageController@store')->middleware('superauth');
+        Route::post('blog/posts/{post}/images/featured/upload', 'PostFeaturedImageDirectUploadController@store')->middleware('superauth');
 
-        Route::post('blog/posts/{post}/images', 'BlogPostImagesController@store');
-        Route::post('blog/posts/{post}/publish', 'BlogPostsController@publish');
+        Route::post('blog/posts/{post}/images', 'BlogPostImagesController@store')->middleware('superauth');
+        Route::post('blog/posts/{post}/publish', 'BlogPostsController@publish')->middleware('superauth');
 
         Route::post('categories/{category}/products', 'CategoryProductsController@store');
         Route::post('subcategories/{subcategory}/products', 'SubcategoryProductsController@store');
@@ -154,27 +154,22 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('/sitelinks', 'SiteLinkController@index');
 
-        //facebook login
-        Route::get('facebook/login', 'FacebookAuthController@login');
-        Route::get('facebook/callback', 'FacebookAuthController@callback');
+        Route::get('social', 'SocialController@index')->middleware('superauth');
 
-        Route::get('social', function() {
-            return view('admin.social.index');
-        });
-        Route::get('social/facebook/user', 'FacebookUserController@fetchCurrent');
-        Route::post('social/facebook/user/{facebookUser}/share', 'FacebookUserController@setSharingStatus');
+        Route::get('facebook/login', 'FacebookAuthController@login')->middleware('superauth');
+        Route::get('facebook/callback', 'FacebookAuthController@callback')->middleware('superauth');
+        Route::get('social/facebook/user', 'FacebookUserController@fetchCurrent')->middleware('superauth');
+        Route::post('social/facebook/user/{facebookUser}/share', 'FacebookUserController@setSharingStatus')->middleware('superauth');
 
-        Route::get('twitter/login', 'TwitterAuthController@login');
-        Route::get('twitter/callback', 'TwitterAuthController@callback');
+        Route::get('twitter/login', 'TwitterAuthController@login')->middleware('superauth');
+        Route::get('twitter/callback', 'TwitterAuthController@callback')->middleware('superauth');
+        Route::get('social/twitter/user', 'TwitterUserController@fetchUser')->middleware('superauth');
+        Route::post('social/twitter/user/{twitterUser}/share', 'TwitterUserController@setSharingStatus')->middleware('superauth');
 
-        Route::get('social/twitter/user', 'TwitterUserController@fetchUser');
-        Route::post('social/twitter/user/{twitterUser}/share', 'TwitterUserController@setSharingStatus');
-
-        Route::get('googleplus/login', 'GooglePlusAuthController@login');
-        Route::get('googleplus/callback', 'GooglePlusAuthController@callback');
-
-        Route::get('social/googleplus/user', 'GooglePlusUserController@fetchUser');
-        Route::post('social/googleplus/user/{googlePlusUser}/share', 'GooglePlusUserController@setSharingStatus');
+        Route::get('googleplus/login', 'GooglePlusAuthController@login')->middleware('superauth');
+        Route::get('googleplus/callback', 'GooglePlusAuthController@callback')->middleware('superauth');
+        Route::get('social/googleplus/user', 'GooglePlusUserController@fetchUser')->middleware('superauth');
+        Route::post('social/googleplus/user/{googlePlusUser}/share', 'GooglePlusUserController@setSharingStatus')->middleware('superauth');
 
     });
 

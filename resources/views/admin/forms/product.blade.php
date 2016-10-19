@@ -8,7 +8,7 @@
     {!! Form::text('product_code', null, ['class' => "form-control"]) !!}
 </div>
 <div class="form-group">
-    <label for="description">Description: </label>
+    <label for="description">SEO Description: </label>
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">

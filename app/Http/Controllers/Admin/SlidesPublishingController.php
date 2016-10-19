@@ -10,6 +10,12 @@ use App\Http\Controllers\Controller;
 
 class SlidesPublishingController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('superauth');
+    }
+
     public function update(Request $request, Slide $slide)
     {
         $this->validate($request, ['publish' => 'required|boolean']);

@@ -47,4 +47,24 @@ class User extends Authenticatable
     {
         return $this->posts()->create($attributes);
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function assignRole(Role $role)
+    {
+        $this->role_id = $role->id;
+        return $this->save();
+    }
+
+    public function isA($role)
+    {
+        if(! $this->role) {
+            return false;
+        }
+
+        return $this->role->name === $role;
+    }
 }

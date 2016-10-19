@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\FlashMessaging\Flasher;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Validator;
@@ -74,6 +75,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'privileges' => 'required|in:all,limited'
         ]);
     }
 
@@ -85,10 +87,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
         ]);
+
+        if($data['privileges'] === 'all') {
+            $user->assignRole(Role::superadmin());
+        }
+
+        if($data['privileges'] === 'limited') {
+            $user->assignRole(Role::limited());
+        }
+
+        return $user;
     }
 }

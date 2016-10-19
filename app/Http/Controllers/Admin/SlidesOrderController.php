@@ -10,6 +10,12 @@ use App\Http\Controllers\Controller;
 
 class SlidesOrderController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('superauth');
+    }
+
     public function edit()
     {
         $slides = Slide::inOrder();

@@ -10,6 +10,7 @@
                 <div class="user-profile-card">
                     <header class="user-profile-card-header">
                         <h4>{{ $user->name }}</h4>
+                        <span>{{ $user->isA('super_admin') ? 'Super user' : 'Limited User' }}</span>
                     </header>
                     <div class="user-profile-card-body">
                         <p>{{ $user->email }}</p>

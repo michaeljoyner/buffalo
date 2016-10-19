@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 
 class SlidesMediaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('superauth');
+    }
+
     public function store(SlideMediaUploadRequest $request, Slide $slide)
     {
         if($request->isVideo()) {

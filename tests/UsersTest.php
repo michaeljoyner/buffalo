@@ -33,41 +33,64 @@ class UsersTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
+     */
+    public function a_user_can_be_registered_as_a_super_user()
+    {
+        $this->asLoggedInUser();
+
+        $this->visit('/admin/users')
+            ->submitForm('Register User', [
+                'name'                  => 'New User',
+                'email'                 => 'new@user.com',
+                'password'              => 'password',
+                'password_confirmation' => 'password',
+                'privileges'            => 'all'
+            ])->seeInDatabase('users', [
+                'name'  => 'New User',
+                'email' => 'new@user.com'
+            ]);
+
+        $newUser = User::where('email', 'new@user.com')->first();
+        $this->assertTrue($newUser->isA('super_admin'));
+    }
+
+    /**
+     * @test
      */
     public function a_users_name_and_email_can_be_edited()
     {
         $user = $this->asLoggedInUser();
 
-        $this->visit('/admin/users/'.$user->id.'/edit')
+        $this->visit('/admin/users/' . $user->id . '/edit')
             ->submitForm('Save Changes', [
-                'name' => 'Edited user',
+                'name'  => 'Edited user',
                 'email' => 'totally@new.add'
             ]);
 
         $this->seeInDatabase('users', [
-            'id' => $user->id,
-            'name' => 'Edited user',
+            'id'    => $user->id,
+            'name'  => 'Edited user',
             'email' => 'totally@new.add'
         ]);
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_user_can_be_deleted()
     {
         factory(User::class)->create();
         $user = $this->asLoggedInUser();
 
-        $response = $this->call('DELETE', '/admin/users/'.$user->id);
+        $response = $this->call('DELETE', '/admin/users/' . $user->id);
         $this->assertEquals(302, $response->status());
 
         $this->notSeeInDatabase('users', ['id' => $user->id]);
     }
 
     /**
-     *@test
+     * @test
      */
     public function the_last_remaining_user_cannot_be_deleted()
     {
@@ -88,8 +111,8 @@ class UsersTest extends TestCase
 
         $this->visit('/admin/users/password/reset')
             ->submitForm('Reset Password', [
-                'current_password' => 'password',
-                'password' => 'newpassword',
+                'current_password'      => 'password',
+                'password'              => 'newpassword',
                 'password_confirmation' => 'newpassword'
             ]);
 
@@ -97,7 +120,7 @@ class UsersTest extends TestCase
 
         $this->visit('/admin/login')
             ->submitForm('Login', [
-                'email' => 'joe@example.com',
+                'email'    => 'joe@example.com',
                 'password' => 'newpassword'
             ]);
 

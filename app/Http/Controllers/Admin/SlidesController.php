@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 
 class SlidesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('superauth');
+    }
 
     public function index()
     {

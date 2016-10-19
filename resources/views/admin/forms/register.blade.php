@@ -30,6 +30,20 @@
     </div>
 
     <div class="form-group">
+        <label class="col-md-3 control-label" for="">What privileges should the user have?</label>
+        <div class="col-md-9">
+            <label for="limited">
+                Limited privileges
+                <input id="limited" type="radio" name="privileges" value="limited" checked>
+            </label><br>
+            <label for="all">
+                All privileges (super admin)
+                <input id="all" type="radio" name="privileges" value="all">
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
         <div class="col-md-9 col-md-offset-3">
             <button type="submit" class="btn dd-btn form-control">
                 Register User

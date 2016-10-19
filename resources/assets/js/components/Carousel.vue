@@ -104,7 +104,6 @@
             },
 
             markAsReady(slide) {
-                console.log(slide.is_video);
                 slide.is_ready = true;
                 this.readyCount++;
                 if(this.shouldPlay()) {
@@ -138,8 +137,6 @@
             removeOriginal() {
                 setTimeout(() => document.querySelector('.original-slide').style.display = "none", 1500);
             }
-
-
         }
     }
 </script>

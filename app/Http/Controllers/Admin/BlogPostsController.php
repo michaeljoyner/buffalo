@@ -20,6 +20,7 @@ class BlogPostsController extends Controller
     public function __construct(Flasher $flasher)
     {
         $this->flasher = $flasher;
+        $this->middleware('superauth');
     }
 
     public function index()
