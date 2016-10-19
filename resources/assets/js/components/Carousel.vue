@@ -17,6 +17,7 @@
                        v-if="slide.is_video"
                        @error="logError($event)"
                        @progress="logError($event)"
+                       @loadstart="reload($event)"
                 ></video>
             </div>
             <span class="slide-text">{{ slide.slide_text }}</span>
@@ -122,7 +123,9 @@
                 console.log(ev);
             },
             
-
+            reload(ev) {
+                ev.target.load();
+            },
 
             markAsReady(slide) {
                 console.log(slide.is_video);
