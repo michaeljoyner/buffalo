@@ -13,7 +13,7 @@
                 <video @canplaythrough="markAsReady(slide)"
                        id="{{ 'video' + $index }}"
                        :src="'/videos/' + slide.video"
-                       muted playsinline loop
+                       muted playsinline preload
                        v-if="slide.is_video"
                        @error="logError($event)"
                        @progress="logError($event)"
