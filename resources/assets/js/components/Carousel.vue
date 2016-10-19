@@ -45,7 +45,8 @@
                 slides: [],
                 currentImg: 0,
                 readyCount: 0,
-                interval: null
+                interval: null,
+                reloaded: false
             }
         },
 
@@ -124,6 +125,10 @@
             },
             
             reload(ev) {
+                if(this.reloaded) {
+                    return;
+                }
+                this.reloaded = true;
                 ev.target.load();
             },
 
