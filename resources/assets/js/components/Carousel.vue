@@ -16,7 +16,7 @@
                        muted playsinline loop
                        v-if="slide.is_video"
                        @error="logError($event)"
-                       @loadstart="console.log('start')"
+                       @progress="logError($event)"
                 ></video>
             </div>
             <span class="slide-text">{{ slide.slide_text }}</span>
