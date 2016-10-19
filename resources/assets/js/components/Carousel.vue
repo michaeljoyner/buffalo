@@ -10,7 +10,7 @@
         >
             <div class="media-aspect-box">
                 <img @load="markAsReady(slide, $event)" :src="slide.image_src" :alt="slide.slide_text" v-if="!slide.is_video">
-                <video @canplaythrough="markAsReady(slide)" id="{{ 'video' + $index }}" :src="'/videos/' + slide.video" muted playsinline loop v-if="slide.is_video"></video>
+                <video @canplaythrough="markAsReady(slide)" id="{{ 'video' + $index }}" :src="'/videos/' + slide.video" muted playsinline loop v-if="slide.is_video" @error="logError($event)"></video>
             </div>
             <span class="slide-text">{{ slide.slide_text }}</span>
             <a v-if="slide.action_link && slide.action_text" href="{{ slide.action_link }}" class="slide-action">{{
@@ -110,10 +110,15 @@
                     document.querySelector('#video' + this.currentImg).play();
                 }
             },
+
+            logError(ev) {
+                console.log(ev);
+            },
             
 
 
             markAsReady(slide) {
+                console.log(slide.is_video);
                 slide.is_ready = true;
                 this.readyCount++;
                 if(this.shouldPlay()) {
