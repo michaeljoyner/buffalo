@@ -10,7 +10,7 @@
         >
             <div class="media-aspect-box">
                 <img @load="markAsReady(slide, $event)" :src="slide.image_src" :alt="slide.slide_text" v-if="!slide.is_video">
-                <video @canplaythrough="markAsReady(slide)" :src="'/videos/' + slide.video" autoplay muted playsinline loop v-if="slide.is_video"></video>
+                <video @canplaythrough="markAsReady(slide)" id="{{ 'video' + $index }}" :src="'/videos/' + slide.video" muted playsinline loop v-if="slide.is_video"></video>
             </div>
             <span class="slide-text">{{ slide.slide_text }}</span>
             <a v-if="slide.action_link && slide.action_text" href="{{ slide.action_link }}" class="slide-action">{{
@@ -76,32 +76,40 @@
             },
             
             nextSlide() {
-                let nextIndex = this.nextInLine(this.currentImg);
+                this.changeSlide(this.nextInLine);
+            },
 
-                while(! this.slides[nextIndex].is_ready) {
-                    nextIndex = this.nextInLine(nextIndex);
+            prevSlide() {
+                this.changeSlide(this.prevInLine);
+            },
+
+            nextInLine(current, listLength) {
+                return current == listLength - 1 ? 0 : current + 1;
+            },
+
+            prevInLine(current, listLength) {
+              return current == 0 ? listLength - 1 : current - 1;
+            },
+
+            changeSlide(nextIndex) {
+                if(this.slides[this.currentImg].is_video) {
+                    document.querySelector('#video' + this.currentImg).pause();
                 }
 
-                return this.currentImg = nextIndex;
-            },
+                let next = nextIndex(this.currentImg, this.slides.length);
 
-            nextInLine(current) {
-                return current == this.slides.length - 1 ? 0 : current + 1;
-            },
+                while(! this.slides[next].is_ready) {
+                    next = nextIndex(this.currentImg, this.slides.length);
+                }
 
-            prevInLine(current) {
-              return current == 0 ? this.slides.length - 1 : current - 1;
+                this.currentImg = next;
+
+                if(this.slides[this.currentImg].is_video) {
+                    document.querySelector('#video' + this.currentImg).play();
+                }
             },
             
-            prevSlide() {
-                let nextIndex = this.prevInLine(this.currentImg);
 
-                while(! this.slides[nextIndex].is_ready) {
-                    nextIndex = this.prevInLine(nextIndex);
-                }
-
-                return this.currentImg = nextIndex;
-            },
 
             markAsReady(slide) {
                 slide.is_ready = true;
