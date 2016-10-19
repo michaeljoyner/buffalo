@@ -85,27 +85,29 @@
 
             nextInLine(current, listLength) {
                 return current == listLength - 1 ? 0 : current + 1;
+                console.log('forward');
             },
 
             prevInLine(current, listLength) {
               return current == 0 ? listLength - 1 : current - 1;
+                console.log('backward');
             },
 
             changeSlide(nextIndex) {
                 if(this.slides[this.currentImg].is_video) {
-                    document.querySelector('#video' + this.currentImg).pause();
+                    console.log('pausing');
                 }
 
                 let next = nextIndex(this.currentImg, this.slides.length);
 
                 while(! this.slides[next].is_ready) {
-                    next = nextIndex(this.currentImg, this.slides.length);
+                    next = nextIndex(next, this.slides.length);
                 }
 
                 this.currentImg = next;
 
                 if(this.slides[this.currentImg].is_video) {
-                    document.querySelector('#video' + this.currentImg).play();
+                    console.log('playing');
                 }
             },
             
