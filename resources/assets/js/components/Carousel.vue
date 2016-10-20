@@ -2,28 +2,17 @@
 
 <template>
     <div class="carousel-slider" :class="{'ready': isReadyToStart}" @mouseover.stop="stop" @mouseout.stop="play">
-        <div v-for="slide in slides | orderBy 'position'"
-             v-show="isCurrent(slide)"
-             transition="slide"
-             class="carousel-slide"
-             :class="[slide.text_colour]"
-        >
-            <div class="media-aspect-box">
-                <img @load="markAsReady(slide, $event)" :src="slide.image_src" :alt="slide.slide_text" v-if="!slide.is_video">
-                <video @canplaythrough="markAsReady(slide)"
-                       id="{{ 'video' + $index }}"
-                       :src="'/videos/' + slide.video"
-                       muted playsinline preload
-                       v-if="slide.is_video"
-                       @error="logError($event)"
-                       @progress="logError($event)"
-                       @loadstart="reload($event)"
-                ></video>
-            </div>
-            <span class="slide-text">{{ slide.slide_text }}</span>
-            <a v-if="slide.action_link && slide.action_text" href="{{ slide.action_link }}" class="slide-action">{{
-                slide.action_text }}</a>
-        </div>
+        <banner-slide v-for="slide in slides | orderBy 'position'"
+                      :text-colour="slide.text_colour"
+                      :slide-text="slide.slide_text"
+                      :action-text="slide.action_text"
+                      :action-link="slide.action_link"
+                      :is-video="slide.is_video"
+                      :image-src="slide.image_src"
+                      :video="slide.video"
+                      :slide-index="$index"
+                      v-show="$index == currentImg"
+        ></banner-slide>
         <span v-show="readyCount > 1" class="carousel-prev-arrow carousel-nav-arrow" @click="prevSlide">&lt;</span>
         <span v-show="readyCount > 1" class="carousel-next-arrow carousel-nav-arrow" @click="nextSlide">&gt;</span>
         <div class="carousel-dot-nav" v-show="readyCount > 1">
@@ -51,7 +40,6 @@
         },
 
         computed: {
-
             readySlides() {
                 return this.slides.filter((slide) => slide.is_ready);
             },
@@ -103,10 +91,7 @@
             },
 
             changeSlide(nextIndex) {
-                if(this.slides[this.currentImg].is_video) {
-                    document.querySelector('#video' + this.currentImg).pause();
-                }
-
+                this.$broadcast('now-leaving', this.currentImg);
                 let next = nextIndex(this.currentImg, this.slides.length);
 
                 while(! this.slides[next].is_ready) {
@@ -114,31 +99,16 @@
                 }
 
                 this.currentImg = next;
-
-                if(this.slides[this.currentImg].is_video) {
-                    document.querySelector('#video' + this.currentImg).play();
-                }
+                this.$broadcast('now-showing', this.currentImg);
             },
 
-            logError(ev) {
-                console.log(ev);
-            },
-            
-            reload(ev) {
-                if(this.reloaded) {
-                    return;
-                }
-                this.reloaded = true;
-                ev.target.load();
-            },
-
-            markAsReady(slide) {
-                console.log(slide.is_video);
+            markAsReady(slideIndex) {
+                let slide = this.slides[slideIndex];
                 slide.is_ready = true;
                 this.readyCount++;
-                if(this.shouldPlay()) {
-                    this.play();
-                }
+//                if(this.shouldPlay()) {
+//                    this.play();
+//                }
                 if(this.isReadyToStart) {
                     this.removeOriginal();
                 }

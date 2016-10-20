@@ -9,6 +9,8 @@ if(document.querySelector('#x-token')) {
 }
 
 Vue.component('carousel-slider', require('./components/Carousel.vue'));
+Vue.component('video-slide', require('./components/Videoslide.vue'));
+Vue.component('banner-slide', require('./components/Slide.vue'));
 Vue.component('contact-form', require('./components/Contactform.vue'));
 Vue.component('cart-button', require('./components/Cartbutton.vue'));
 Vue.component('cart-item', require('./components/Cartitem.vue'));
