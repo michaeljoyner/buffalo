@@ -135,6 +135,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::post('products/{product}/image', 'ProductImagesController@store');
 
+        Route::get('products/{product}/gallery', 'ProductGalleriesController@show');
+
+        Route::get('products/{product}/gallery/images', 'ProductGalleryImagesController@index');
+        Route::post('products/{product}/gallery/images', 'ProductGalleryImagesController@store');
+        Route::delete('products/{product}/gallery/images/{media}', 'ProductGalleryImagesController@delete');
+
         Route::get('orders', 'OrdersController@index');
         Route::get('orders/archived', 'OrdersController@archived');
         Route::get('orders/{order}', 'OrdersController@show');

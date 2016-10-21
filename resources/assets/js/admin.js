@@ -19,6 +19,8 @@ Vue.component('search-view', require('./components/Searchview.vue'));
 Vue.component('stat-counter', require('./components/Statcounter.vue'));
 Vue.component('featured-images', require('./components/Featuredimage.vue'));
 Vue.component('social-user', require('./components/Socialuser.vue'));
+Vue.component('dropzone', require('./components/Dropzone.vue'));
+Vue.component('gallery-show', require('./components/Galleryshow.vue'));
 
 window.Vue = Vue;
 
@@ -33,6 +35,10 @@ new Vue({
                 text: message.text,
                 showConfirmButton: message.confirm
             });
+        },
+
+        'image-added': function(image) {
+            this.$broadcast('add-image', image);
         }
     }
 });

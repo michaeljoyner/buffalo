@@ -4,9 +4,6 @@
     <video :src="videoSrc"
            @canplaythrough="canPlay"
            muted playsinline preload loop
-           @error="logEvent('error')"
-           @progress="logEvent('progress')"
-           @loadstart="logEvent('loadstart')"
     ></video>
 </template>
 

@@ -18,9 +18,7 @@
         props: ['slide-text', 'action-link', 'action-text', 'text-colour', 'is-video', 'video', 'image-src', 'slide-index'],
 
         data() {
-            return {
-                readyToShow: false
-            };
+            return {};
         },
 
         events: {
@@ -39,8 +37,6 @@
 
         methods: {
             canShow() {
-                console.log('slide ' + this.slideIndex + ' is ready to show');
-                this.readyToShow = true;
                 this.$parent.markAsReady(this.slideIndex);
             },
 

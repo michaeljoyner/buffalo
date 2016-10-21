@@ -26,7 +26,21 @@
         </section>
         <section class="product-detail-outer">
             <div class="product-image-box">
-                <img src="{{ $product->imageSrc() }}" alt="{{ $product->name }}">
+                {{--<img src="{{ $product->imageSrc() }}" alt="{{ $product->name }}">--}}
+                <div class="product-gallery">
+                    @foreach($product->allImageUrls('web') as $index => $largeImage)
+                        <img src="{{ $largeImage }}" alt="{{ $product->name }}" id="product-image-{{ $index }}" @if($loop->first) class="show" @endif>
+                    @endforeach
+                </div>
+                @if(count($product->allImageUrls()) > 1)
+                <div class="product-gallery-nav">
+                    @foreach($product->allImageUrls('thumb') as $index => $thumb)
+                        <a href="#product-image-{{ $index }}" data-image="product-image-{{ $index }}">
+                            <img src="{{ $thumb }}" alt="{{ $product->name }}">
+                        </a>
+                    @endforeach
+                </div>
+                @endif
             </div>
             <div class="product-details">
                 <div class="product-writeup">
@@ -53,4 +67,47 @@
         </section>
     </div>
     @include('front.partials.footer')
+@endsection
+
+@section('bodyscripts')
+    <script>
+        var productGallery = {
+
+            els: {
+                imgs: null,
+                links: null
+            },
+
+            init: function() {
+                productGallery.els.links = Array.prototype.slice.call(document.querySelectorAll('.product-gallery-nav a'));
+                productGallery.els.imgs = Array.prototype.slice.call(document.querySelectorAll('.product-gallery img'));
+
+                productGallery.setListeners();
+            },
+
+            setListeners: function() {
+                productGallery.els.links.forEach(function(link) {
+                    link.addEventListener('click', productGallery.setImage, false);
+                });
+            },
+
+            setImage: function(ev) {
+                ev.preventDefault();
+                ev.stopPropagation();
+                var targetImage = ev.target.getAttribute('data-image');
+                if(ev.target.tagName === 'IMG') {
+                    targetImage = ev.target.parentNode.getAttribute('data-image');
+                }
+
+                productGallery.els.imgs.forEach(function(img) {
+                    if(img.id === targetImage) {
+                        img.classList.add('show');
+                    } else {
+                        img.classList.remove('show');
+                    }
+                });
+            }
+        }
+        productGallery.init();
+    </script>
 @endsection

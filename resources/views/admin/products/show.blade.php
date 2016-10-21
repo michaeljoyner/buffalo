@@ -43,6 +43,12 @@
                                size="large"
                 ></single-upload>
             </div>
+            <h2><a href="/admin/products/{{ $product->id }}/gallery">Product Gallery</a></h2>
+            <div class="product-gallery-preview">
+                @foreach($product->galleryImages() as $image)
+                    <img src="{{ $image->getUrl('thumb') }}" alt="" class="product-gallery-preview-thumb">
+                @endforeach
+            </div>
         </div>
     </section>
 

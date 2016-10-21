@@ -5,19 +5,22 @@
   .category-breadcrumbs {
     padding-top: 40px;
 
-    @include respond-to(phone) {display: none;}
+    @include respond-to(phone) {
+      display: none;
+    }
   }
 }
-
-
 
 .product-title {
   border-bottom: 2px solid $brand_dark;
   margin-bottom: 40px;
 
-  @include respond-to(phone) {padding: 10px;}
-  @include respond-to(largetablet) {padding: 10px;}
-
+  @include respond-to(phone) {
+    padding: 10px;
+  }
+  @include respond-to(largetablet) {
+    padding: 10px;
+  }
 
   .product-title-name {
     margin-bottom: 10px;
@@ -31,20 +34,24 @@
 .product-detail-outer {
   display: flex;
 
-  @include respond-to(phone) {flex-direction: column;}
+  @include respond-to(phone) {
+    flex-direction: column;
+  }
 
   .product-image-box {
-    max-width: 40%;
+    width: 40%;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: auto;
     padding: 20px;
 
-    @include respond-to(phone) {max-width: 100%;}
-
-    img {
+    @include respond-to(phone) {
       width: 100%;
     }
+
+    //img {
+    //  width: 100%;
+    //}
   }
 
   .product-details {
@@ -66,8 +73,9 @@
   display: flex;
   justify-content: space-between;
 
-  @include respond-to(phone) {flex-wrap: wrap;}
-
+  @include respond-to(phone) {
+    flex-wrap: wrap;
+  }
 
   .related-product-index-card {
     max-width: 200px;
@@ -75,9 +83,10 @@
     flex-grow: 0;
     flex-shrink: 1;
 
-    @include respond-to(phone) {width: 50%; padding: 20px;}
-
-
+    @include respond-to(phone) {
+      width: 50%;
+      padding: 20px;
+    }
 
     .product-image {
       display: block;
@@ -89,5 +98,38 @@
     .product-name {
       text-align: center;
     }
+  }
+}
+
+.product-gallery {
+  width: 95%;
+  position: relative;
+  padding-bottom: 80%;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    opacity: 0;
+    transition: opacity .4s;
+    max-height: 100%;
+
+    &.show {
+      opacity: 1;
+    }
+
+    &:target {
+      opacity: 1;
+    }
+  }
+}
+
+.product-gallery-nav {
+
+  img {
+    width: 50px;
+    display: inline-block;
+    margin: 10px;
   }
 }

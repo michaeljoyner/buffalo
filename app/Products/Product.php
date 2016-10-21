@@ -13,6 +13,8 @@ class Product extends Model implements HasMediaConversions
 {
     use SoftDeletes, Sluggable, GetsSlugFromName, UrgesForDescription, HasMediaTrait, HasModelImage;
 
+    const DEFAULT_PRIMARY_IMAGE = '/images/buffalo_logo_small.png';
+
     protected $table = 'products';
 
     protected $fillable = [
@@ -74,7 +76,7 @@ class Product extends Model implements HasMediaConversions
             return $this->getOriginalImage();
         }
 
-        return '/images/buffalo_logo_small.png';
+        return static::DEFAULT_PRIMARY_IMAGE;
     }
 
     public function getOriginalImage()
@@ -82,5 +84,33 @@ class Product extends Model implements HasMediaConversions
         $parts = explode('/', $this->original_image);
         $filename = array_pop($parts);
         return '/images/products/' . $this->category->slug . '/' . $filename;
+    }
+
+    public function gallery()
+    {
+        return $this->hasOne(ProductGallery::class);
+    }
+
+    public function getGallery()
+    {
+        return $this->gallery()->firstOrCreate([]);
+    }
+
+    public function galleryImages()
+    {
+        return $this->getGallery()->getMedia();
+    }
+
+    public function addGalleryImage($image)
+    {
+        return $this->getGallery()->addMedia($image)->preservingOriginal()->toMediaLibrary();
+    }
+
+    public function allImageUrls($conversion = '')
+    {
+        return collect([])->push($this->imageSrc($conversion))
+            ->merge($this->galleryImages()->map(function($image) use ($conversion) {
+            return $image->getUrl($conversion);
+        })->toArray());
     }
 }

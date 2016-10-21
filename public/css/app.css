@@ -7439,6 +7439,11 @@ body.stop-scrolling {
 .product-image-box.single-image-uploader-box:hover .profile-image {
   border: 1px dashed #46B977; }
 
+.product-gallery-preview .product-gallery-preview-thumb {
+  display: inline-block;
+  width: 80px;
+  margin: 10px; }
+
 .featured-images .featured-image-selecter {
   display: -webkit-box;
   display: flex; }
@@ -7648,6 +7653,63 @@ body.stop-scrolling {
     opacity: 1; }
   .social-user-card .fade-leave {
     opacity: 0; }
+
+.drop-area {
+  border: 3px solid #e2e2e2;
+  width: 100%;
+  min-height: 100px; }
+  .drop-area ul {
+    list-style-type: none;
+    padding-left: 0; }
+  .drop-area label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 100px; }
+  .drop-area .image-upload-info {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+    background: #e2e2e2;
+    color: #ffffff;
+    padding-left: 10px; }
+    .drop-area .image-upload-info.failed {
+      background: #EF6060; }
+    .drop-area .image-upload-info .upload-progress-bar {
+      background: #81CDBC;
+      position: absolute;
+      left: 0;
+      top: 90%;
+      bottom: 0; }
+
+.drop-area.hovering {
+  border-style: dashed; }
+
+.gallery-container {
+  position: relative;
+  display: block; }
+  .gallery-container .gallery-item {
+    margin: 10px;
+    float: left;
+    width: 150px;
+    height: 150px;
+    position: relative; }
+    .gallery-container .gallery-item .gallery-item-delete-btn {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      line-height: 20px;
+      border-radius: 50%;
+      color: #ffffff;
+      text-align: center;
+      background: #EF6060;
+      cursor: pointer; }
+    .gallery-container .gallery-item img {
+      max-width: 100%; }
 
 a, a:visited, a:hover, a:focus {
   color: inherit;
