@@ -133,6 +133,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('products/{product}', 'ProductsController@update');
         Route::delete('products/{product}', 'ProductsController@delete');
 
+        Route::post('products/{product}/promote', 'ProductPromotionsController@update');
+
         Route::post('products/{product}/image', 'ProductImagesController@store');
 
         Route::get('products/{product}/gallery', 'ProductGalleriesController@show');

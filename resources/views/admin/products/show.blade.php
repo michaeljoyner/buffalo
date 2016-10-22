@@ -24,9 +24,8 @@
             <div class="writeup">
                 {!! $product->writeup !!}
             </div>
-        </div>
-        <div class="col-md-5">
             <div class="availability">
+                <h3>Product Options</h3>
                 <p class="lead">Is this product available?</p>
                 <toggle-switch identifier="1"
                                true-label="yes"
@@ -35,7 +34,17 @@
                                toggle-url="/admin/products/{{ $product->id }}/availability"
                                toggle-attribute="available"
                 ></toggle-switch>
+                <p class="lead">Promote this product?</p>
+                <toggle-switch identifier="2"
+                               true-label="yes"
+                               false-label="no"
+                               :initial-state="{{ $product->is_promoted ? 'true' : 'false' }}"
+                               toggle-url="/admin/products/{{ $product->id }}/promote"
+                               toggle-attribute="promote"
+                ></toggle-switch>
             </div>
+        </div>
+        <div class="col-md-5">
             <div class="product-image-box single-image-uploader-box">
                 <single-upload default="{{ $product->imageSrc('thumb') }}"
                                url="/admin/products/{{ $product->id }}/image"
@@ -43,7 +52,8 @@
                                size="large"
                 ></single-upload>
             </div>
-            <h2><a href="/admin/products/{{ $product->id }}/gallery">Product Gallery</a></h2>
+            <h3>Product Gallery</h3>
+            <a href="/admin/products/{{ $product->id }}/gallery" class="btn dd-btn btn-light">Edit</a>
             <div class="product-gallery-preview">
                 @foreach($product->galleryImages() as $image)
                     <img src="{{ $image->getUrl('thumb') }}" alt="" class="product-gallery-preview-thumb">

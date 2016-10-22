@@ -27,17 +27,17 @@ class Product extends Model implements HasMediaConversions
         'product_group_id'
     ];
 
-    protected $casts = ['available' => 'boolean'];
+    protected $casts = ['available' => 'boolean', 'is_promoted' => 'boolean'];
 
     protected $dates = ['deleted_at'];
 
     public function registerMediaConversions()
     {
         $this->addMediaConversion('thumb')
-            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'crop'])
+            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'crop', 'fm' => 'src'])
             ->performOnCollections('default');
         $this->addMediaConversion('web')
-            ->setManipulations(['w' => 500, 'h' => 300, 'fit' => 'crop'])
+            ->setManipulations(['w' => 500, 'h' => 300, 'fit' => 'crop', 'fm' => 'src'])
             ->performOnCollections('default');
     }
 
@@ -112,5 +112,23 @@ class Product extends Model implements HasMediaConversions
             ->merge($this->galleryImages()->map(function($image) use ($conversion) {
             return $image->getUrl($conversion);
         })->toArray());
+    }
+
+    public function promote()
+    {
+        return $this->setPromotedStatus(true);
+    }
+
+    public function demote()
+    {
+        return $this->setPromotedStatus(false);
+    }
+
+    protected function setPromotedStatus($shouldPromote)
+    {
+        $this->is_promoted = $shouldPromote;
+        $this->save();
+
+        return $this->is_promoted;
     }
 }

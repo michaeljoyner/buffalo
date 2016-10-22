@@ -25,10 +25,10 @@ class Category extends Model implements HasMediaConversions
     public function registerMediaConversions()
     {
         $this->addMediaConversion('thumb')
-            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'crop'])
+            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'crop', 'fm' => 'src'])
             ->performOnCollections('default');
         $this->addMediaConversion('web')
-            ->setManipulations(['w' => 500, 'h' => 300, 'fit' => 'crop'])
+            ->setManipulations(['w' => 500, 'h' => 300, 'fit' => 'crop', 'fm' => 'src'])
             ->performOnCollections('default');
     }
 

@@ -159,4 +159,18 @@ class ProductsRepositoryTest extends TestCase
             $this->assertNotEquals($product->id, $relatedProduct->id);
         });
     }
+
+    /**
+     *@test
+     */
+    public function a_collection_of_eight_products_will_be_returned_for_featured_products_with_as_many_as_possible_being_promoted()
+    {
+        factory(Product::class, 3)->create(['is_promoted' => true]);
+        factory(Product::class, 10)->create();
+
+        $promoted = $this->repo->featuredProducts();
+
+        $this->assertCount(8, $promoted);
+        $this->assertCount(3, $promoted->filter(function($product) { return $product->is_promoted; }));
+    }
 }

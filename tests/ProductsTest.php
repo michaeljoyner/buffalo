@@ -36,4 +36,36 @@ class ProductsTest extends TestCase
         $product->makeAvailable(true);
         $this->assertTrue($product->available);
     }
+
+    /**
+     *@test
+     */
+    public function a_product_is_not_promoted_by_default()
+    {
+        $product = factory(Product::class)->create();
+
+        $this->assertFalse($product->is_promoted);
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_can_be_promoted()
+    {
+        $product = factory(Product::class)->create();
+        $product->promote();
+
+        $this->assertTrue($product->is_promoted);
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_can_be_demoted()
+    {
+        $product = factory(Product::class)->create(['is_promoted' => true]);
+        $product->demote();
+
+        $this->assertFalse($product->is_promoted);
+    }
 }

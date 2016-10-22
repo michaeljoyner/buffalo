@@ -45,7 +45,9 @@ $factory->define(App\Products\Product::class, function (Faker\Generator $faker) 
         'name'             => $faker->words(4, true),
         'description'      => $faker->paragraph,
         'writeup'          => $faker->paragraph,
-        'available'        => 1
+        'available'        => 1,
+        'is_promoted'      => 0
+
     ];
 });
 

@@ -43,7 +43,6 @@
             },
 
             addImage(image) {
-                console.log(image)
                 this.images.push(image);
             },
 

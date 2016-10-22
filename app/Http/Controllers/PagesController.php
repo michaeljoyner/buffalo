@@ -20,7 +20,7 @@ class PagesController extends Controller
         $slide = Slide::inOrder()->first(function($slide) {
             return $slide->is_published;
         });
-        $products = $productsRepository->getRandom(8, false);
+        $products = $productsRepository->featuredProducts();
         $articles = Post::where('published', 1)->latest()->take(4)->get();
         return view('front.home.page')->with(compact('slide', 'products', 'articles'));
     }
