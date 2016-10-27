@@ -21,6 +21,7 @@ Vue.component('featured-images', require('./components/Featuredimage.vue'));
 Vue.component('social-user', require('./components/Socialuser.vue'));
 Vue.component('dropzone', require('./components/Dropzone.vue'));
 Vue.component('gallery-show', require('./components/Galleryshow.vue'));
+Vue.component('sharing-summary', require('./components/Sharingsummary.vue'));
 
 window.Vue = Vue;
 

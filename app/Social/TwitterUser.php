@@ -13,10 +13,9 @@ class TwitterUser extends Model
     protected $fillable = [
         'name',
         'cover_src',
-        'token',
-        'token_secret',
+        'token_serialized',
         'share'
     ];
 
-    protected $hidden = ['token', 'token_secret'];
+    protected $hidden = ['token_serialized'];
 }

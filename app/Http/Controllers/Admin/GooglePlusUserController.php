@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\GooglePlusUser;
 use App\Social\GooglePlus;
+use App\Social\GooglePlusUser;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;

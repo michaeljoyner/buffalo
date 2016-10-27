@@ -30,7 +30,7 @@
         </div>
         <div class="google-plus-auth-status">
             <h2>Share on Google Plus</h2>
-            <p class="lead">Authorise with Google Plus to automatically share your new news posts</p>
+            <p class="lead">Authorise with Google Plus to automatically share your new news posts. Posts will only be shared for Google Apps users.</p>
             <social-user icon-src="/images/assets/google_plus_white.png"
                          platform="googleplus"
                          fetch-url="/admin/social/googleplus/user"

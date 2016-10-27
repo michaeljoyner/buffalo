@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Social;
 
 use App\Social\SharesPosts;
 use Illuminate\Database\Eloquent\Model;
@@ -14,10 +14,8 @@ class GooglePlusUser extends Model
     protected $fillable = [
         'name',
         'cover_src',
-        'token',
-        'token_expires',
-        'refresh_token'
+        'token_serialized',
     ];
 
-    protected $hidden = ['token'];
+    protected $hidden = ['token_serialized'];
 }

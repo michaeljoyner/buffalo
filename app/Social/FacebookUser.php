@@ -12,7 +12,7 @@ class FacebookUser extends Model
     protected $table = 'facebook_users';
 
     protected $fillable = [
-        'token_string',
+        'token_serialized',
         'name',
         'cover_src'
     ];

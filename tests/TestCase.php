@@ -28,6 +28,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     public function asLoggedInUser($attributes = [])
     {
         $user = factory(App\User::class)->create($attributes);
+        $user->assignRole(\App\Role::superadmin());
 
         $this->actingAs($user);
 

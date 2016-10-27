@@ -2,6 +2,7 @@
 
 @section('head')
     <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 @endsection
 
 @section('content')

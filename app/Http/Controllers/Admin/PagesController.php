@@ -11,6 +11,6 @@ class PagesController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        return redirect('admin/products/search');
     }
 }

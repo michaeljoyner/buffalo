@@ -13,6 +13,7 @@
             </button>
         </div>
     </section>
+    <sharing-summary></sharing-summary>
     <section class="row">
         @foreach($posts as $post)
             <div class="col-md-6 blog-post-card-outer">

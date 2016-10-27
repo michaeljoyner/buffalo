@@ -1,7 +1,16 @@
 @extends('front.base')
 
+@section('title')
+    {{ $subcategory->name }} - Buffalo Tools'
+@endsection
+
 @section('head')
     <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
+    @include('front.partials.ogmeta', [
+        'ogTitle' => $subcategory->name .' - Buffalo Tools',
+        'ogImage' => url($category->imageSrc()),
+        'ogDescription' => $subcategory->description
+    ])
 @endsection
 
 @section('content')

@@ -23,7 +23,7 @@ class ProductGallery extends Model implements HasMediaConversions
             ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'crop', 'fm' => 'src'])
             ->performOnCollections('default');
         $this->addMediaConversion('web')
-            ->setManipulations(['w' => 500, 'h' => 300, 'fit' => 'crop', 'fm' => 'src'])
+            ->setManipulations(['w' => 800, 'h' => 600, 'fit' => 'crop', 'fm' => 'src'])
             ->performOnCollections('default');
     }
 }

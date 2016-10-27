@@ -1,6 +1,7 @@
 @extends('admin.base')
 
 @section('head')
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <style>
         .login-logo-img {
             display: block;

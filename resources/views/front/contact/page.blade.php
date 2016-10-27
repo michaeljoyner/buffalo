@@ -1,7 +1,16 @@
 @extends('front.base')
 
+@section('title')
+    Contact Us - How you can get in touch with Buffalo Tools
+@endsection
+
 @section('head')
     <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
+    @include('front.partials.ogmeta', [
+        'ogTitle' => 'Contact Us - How you can get in touch with Buffalo Tools',
+        'ogImage' => '',
+        'ogDescription' => 'Here you can find information on how you can get in touch with us, whether by email, message or phone.'
+    ])
 @endsection
 
 @section('content')

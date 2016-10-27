@@ -39,9 +39,9 @@
   }
 
   .product-image-box {
-    width: 40%;
+    width: 50%;
     flex-grow: 1;
-    flex-shrink: 1;
+    flex-shrink: 0;
     flex-basis: auto;
     padding: 20px;
 
@@ -122,6 +122,15 @@
     &:target {
       opacity: 1;
     }
+  }
+
+  canvas {
+    width: 100%;
+    z-index: 999;
+    border: 1px solid $eggshell;
+    position: absolute;
+    background: $white;
+    display: none;
   }
 }
 

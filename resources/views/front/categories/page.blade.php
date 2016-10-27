@@ -1,7 +1,16 @@
 @extends('front.base')
 
+@section('title')
+Product Categories - Buffalo Tools
+@endsection
+
 @section('head')
     <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
+    @include('front.partials.ogmeta', [
+        'ogTitle' => 'Product Categories - Buffalo Tools',
+        'ogImage' => url('images/assets/facebook_image.jpg'),
+        'ogDescription' => 'See all our product categories, including Hand Tools, Garden Tools, Auto Tools and many more.'
+    ])
 @endsection
 
 @section('content')

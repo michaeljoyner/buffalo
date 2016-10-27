@@ -5,12 +5,55 @@ namespace App\Social;
 
 
 use App\Blog\Post;
-use App\GooglePlusUser;
+use Google_Client;
 use Google_Service_Plus;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Mockery\CountValidator\Exception;
 
 class GooglePlus
 {
+
+    /**
+     * @var Google_Client
+     */
+    private $google;
+
+    public function __construct(Google_Client $google)
+    {
+        $this->google = $google;
+    }
+
+    public function login()
+    {
+        return $this->google->createAuthUrl();
+    }
+
+    public function createAuthenticatedUser($requestToken)
+    {
+        $this->google->authenticate($requestToken);
+        $token = $this->google->getAccessToken();
+        $this->google->setAccessToken($token);
+
+        return $this->createUser($token);
+    }
+
+    protected function createUser($token)
+    {
+        $user = $this->fetchUserDetails();
+
+        if(! $user) {
+            return false;
+        }
+
+
+        return GooglePlusUser::create([
+            'name' => $user->displayName,
+            'token_serialized' => serialize($token),
+            'cover_src' => $user->getCover() ? $user->getCover()->getCoverPhoto()->getUrl() : ''
+        ]);
+    }
+
     public function getCurrentUser()
     {
         $user = GooglePlusUser::latest()->first();
@@ -19,22 +62,13 @@ class GooglePlus
             return new GooglePlusUser(['name' => '', 'cover_src' => '', 'authorised' => false]);
         }
 
-        $client = new \Google_Client();
-        $client->setAuthConfig(config('googleplus'));
-        $client->setRedirectUri('http://buffalo.app:8000/admin/googleplus/callback');
-        $client->setAccessToken([
-            'access_token' => $user->token,
-            'expires_in' => $user->token_expires,
-            'refresh_token' => $user->refresh_token,
-        ]);
 
-        $plus = new Google_Service_Plus($client);
-        $user_details = $plus->people->get('me');
+        $this->google->setAccessToken(unserialize($user->token_serialized));
+
+        $user_details = $this->fetchUserDetails();
+
         if($user_details) {
-            $user->update([
-                'name' => $user_details->displayName,
-                'cover_pic' => ''
-            ]);
+            $this->updateUserDetails($user, $user_details);
             $user->authorised = true;
             return $user;
         }
@@ -42,70 +76,59 @@ class GooglePlus
         return new GooglePlusUser(['name' => '', 'cover_src' => '', 'authorised' => false]);
     }
 
+    protected function updateUserDetails($user, $newDetails) {
+        $user->update([
+            'name' => $newDetails->displayName,
+            'cover_pic' => $newDetails->getCover() ? $newDetails->getCover()->getCoverPhoto()->getUrl() : ''
+        ]);
+    }
+
+    protected function fetchUserDetails()
+    {
+        $plus = new Google_Service_Plus($this->google);
+        try {
+            $user_details = $plus->people->get('me');
+        } catch(\Exception $e) {
+            $user_details = false;
+        }
+
+        return $user_details;
+    }
+
     public function sharePost(Post $post)
     {
-        $user = GooglePlusUser::latest()->first();
+        $user = $this->getLatestStoredUser();
 
         if(!$user || ! $user->share) {
             return;
         }
 
-        $client = new \Google_Client();
-        $client->setAuthConfig(config('googleplus'));
-        $client->setRedirectUri('http://buffalo.app:8000/admin/googleplus/callback');
-        $client->addScope([
-            Google_Service_Plus::PLUS_ME,
-            'https://www.googleapis.com/auth/plus.stream.write',
-            'https://www.googleapis.com/auth/plus.stream.read',
-            'https://www.googleapis.com/auth/plus.circles.read',
-            'https://www.googleapis.com/auth/plus.circles.write'
-        ]);
-        $client->setAccessToken([
-            'access_token' => $user->token,
-            'expires_in' => $user->token_expires,
-            'refresh_token' => $user->refresh_token,
-        ]);
+        $this->google->setAccessToken(unserialize($user->token_serialized));
 
-        $http = $client->authorize();
+        $plus = new \Google_Service_PlusDomains($this->google);
 
-        $userId = "me";
-
-        $url = sprintf('https://www.googleapis.com/plusDomains/v1/people/%s/activities', $userId);
-
-        $headers = ['content-type' => 'application/json'];
-        $body = [
-            "object" => [
-                "originalContent" => $post->description
-            ],
-            "access" => [
-                "items" => [
-                    ["type" => "public"]
+        try {
+            $plus->activities->insert("me", new \Google_Service_PlusDomains_Activity([
+                'object' => [
+                    'originalContent' => $post->description,
+                    'attachments' => [
+                        'url' => url('/news/' . $post->slug),
+                        'objectType' => 'article'
+                    ]
                 ],
-                "domainRestricted" => true
-            ]
-        ];
-        $request = new \GuzzleHttp\Psr7\Request('POST', $url, $headers, json_encode($body));
+                'access' => [
+                    'items' => ['type' => 'public'],
+                    'domainRestricted' => true
+                ]
+            ]));
 
-// make the HTTP request
-        $response = $http->send($request);
+        } catch(\Exception $e) {
 
-        Log::info($response->getBody()->getContents());
+        }
+    }
 
-//        $plus = new \Google_Service_PlusDomains($client);
-//
-//        $plus->activities->insert("me", new \Google_Service_PlusDomains_Activity([
-//            'object' => [
-//                'originalContent' => $post->description,
-//                'attachments' => [
-//                    'url' => url('news/'.$post->slug)
-//                ]
-//            ],
-//            'access' => [
-//                'items' => ['type' => 'public'],
-//                'domainRestricted' => true
-//            ]
-//        ]));
-
-
+    protected function getLatestStoredUser()
+    {
+        return GooglePlusUser::latest()->first();
     }
 }

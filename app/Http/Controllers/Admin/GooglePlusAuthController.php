@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\GooglePlusUser;
-use Google_Service_Plus;
+use App\Http\FlashMessaging\Flasher;
+use App\Social\GooglePlus;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,43 +11,33 @@ use App\Http\Controllers\Controller;
 
 class GooglePlusAuthController extends Controller
 {
-    public function login()
+    /**
+     * @var Flasher
+     */
+    private $flasher;
+
+    public function __construct(Flasher $flasher)
     {
-        $client = new \Google_Client();
-        $client->setAuthConfig(config('googleplus'));
-        $client->addScope([
-            Google_Service_Plus::PLUS_ME,
-            'https://www.googleapis.com/auth/plus.stream.write'
-        ]);
-        $client->setAccessType('offline');
-        $client->setApprovalPrompt('force');
-        $client->setRedirectUri('http://buffalo.app:8000/admin/googleplus/callback');
-
-        return redirect($client->createAuthUrl());
-
+        $this->flasher = $flasher;
     }
 
-    public function callback(Request $request)
+    public function login(GooglePlus $googlePlus)
     {
-        $client = new \Google_Client();
-        $client->setAuthConfig(config('googleplus'));
-        $client->setRedirectUri('http://buffalo.app:8000/admin/googleplus/callback');
+        return redirect($googlePlus->login());
+    }
 
-        $client->authenticate($request->get('code'));
-        $token = $client->getAccessToken();
-        $client->setAccessToken($token);
+    public function callback(Request $request, GooglePlus $googlePlus)
+    {
+        if(! $request->get('code')) {
+            $this->flasher->error('Failed', 'Unable to authorize with Google Plus at the moment.');
+            return redirect('admin/social');
+        }
 
-        $plus = new Google_Service_Plus($client);
-        $user = $plus->people->get('me');
+        $user = $googlePlus->createAuthenticatedUser($request->get('code'));
 
-
-        GooglePlusUser::create([
-            'name' => $user->displayName,
-            'token' => $token['access_token'],
-            'token_expires' => $token['expires_in'],
-            'refresh_token' => $token['refresh_token'],
-            'cover_src' => ''
-        ]);
+        if(! $user) {
+            $this->flasher->error('Failed', 'Unable to authorize with Google Plus at the moment.');
+        }
 
         return redirect('admin/social');
     }

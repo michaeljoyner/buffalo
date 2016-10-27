@@ -46,4 +46,9 @@ class PagesController extends Controller
     {
         return view('front.cart.page');
     }
+
+    public function thanks()
+    {
+        return view('front.thanks.page');
+    }
 }

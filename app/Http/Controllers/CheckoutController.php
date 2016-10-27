@@ -39,6 +39,6 @@ class CheckoutController extends Controller
 
         event(new EnquiryWasMade($order));
 
-        return redirect('/');
+        return redirect('/thanks');
     }
 }

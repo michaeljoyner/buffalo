@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     @section('title')
-        <title>Dymantic Design | Admin</title>
+        <title>Buffalo Tools | Admin</title>
     @show
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}"/>
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     @yield('head')
 </head>
 <body>

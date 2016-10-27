@@ -26,6 +26,7 @@ Route::get('about', 'PagesController@about');
 
 Route::get('inquiry', 'PagesController@cart');
 Route::get('enquire', 'CheckoutController@show');
+Route::get('thanks', 'PagesController@thanks');
 
 Route::get('news', 'NewsController@index');
 Route::get('news/{slug}', 'NewsController@show');

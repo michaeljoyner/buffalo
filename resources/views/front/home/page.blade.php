@@ -1,7 +1,16 @@
 @extends('front.base')
 
+@section('title')
+    Buffalo Tools - The home of Buffalo Tools
+@endsection
+
 @section('head')
     <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
+    @include('front.partials.ogmeta', [
+        'ogTitle' => 'Buffalo Tools - The home of Buffalo Tools',
+        'ogImage' => url('images/assets/facebook_image.jpg'),
+        'ogDescription' => 'Huang Buffalo Co., Ltd. has specialized in exporting professional hardware, DIY hand tools and OEM products to Europe, America and Asia area for more than 20 years. We are proud of our wide products range, competitive prices and high quality products.'
+    ])
 @endsection
 
 @section('content')

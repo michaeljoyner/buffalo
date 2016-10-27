@@ -1,7 +1,16 @@
 @extends('front.base')
 
+@section('title')
+    Our Latest News - Read what is happening at Buffalo Tools
+@endsection
+
 @section('head')
     <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
+    @include('front.partials.ogmeta', [
+        'ogTitle' => 'Our Latest News - Read what is happening at Buffalo Tools',
+        'ogImage' => url('images/assets/facebook_image.jpg'),
+        'ogDescription' => 'Read articles on Buffalo Tools to keep informed of what we are up to, what we have achieved and what we are looking to in the future'
+    ])
 @endsection
 
 @section('content')

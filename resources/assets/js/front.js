@@ -41,7 +41,7 @@ new Vue({
 
 if(document.querySelector('#search-trigger')) {
     const trigger = document.querySelector('#search-trigger');
-    const searchInput = document.querySelector('.search-input')
+    const searchInput = document.querySelector('.search-input');
     trigger.addEventListener('change', (ev) => {if(trigger.checked) searchInput.focus() }, false);
 }
 
@@ -49,3 +49,16 @@ if(document.querySelector('.menu-select')) {
     const select = document.querySelector('.menu-select');
     select.addEventListener('change', (ev) => window.location = ev.target.value, false);
 }
+
+document.body.addEventListener('keypress', (ev) => {
+    if(ev.keyCode !== 47) {
+        return;
+    }
+    const trigger = document.querySelector('#search-trigger');
+    const searchInput = document.querySelector('.search-input');
+    trigger.checked = !trigger.checked;
+    if(trigger.checked) {
+        searchInput.focus();
+    }
+    ev.preventDefault();
+}, false);

@@ -1,5 +1,9 @@
 @extends('front.base')
 
+@section('head')
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+@endsection
+
 @section('content')
     <section class="page-section">
         <h1 class="h1 section-title">Submit your Inquiry</h1>

@@ -1422,7 +1422,8 @@ html {
     display: block;
     margin: 0 auto;
     font-family: "Teko", sans-serif;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    padding-left: 15px; }
     @media only screen and (max-width: 719px) {
       .search-box .search-input {
         font-size: 2em; } }
@@ -2357,10 +2358,10 @@ html {
       -webkit-box-direction: normal;
       flex-direction: column; } }
   .product-detail-outer .product-image-box {
-    width: 40%;
+    width: 50%;
     -webkit-box-flex: 1;
     flex-grow: 1;
-    flex-shrink: 1;
+    flex-shrink: 0;
     flex-basis: auto;
     padding: 20px; }
     @media only screen and (max-width: 719px) {
@@ -2421,6 +2422,13 @@ html {
       opacity: 1; }
     .product-gallery img:target {
       opacity: 1; }
+  .product-gallery canvas {
+    width: 100%;
+    z-index: 999;
+    border: 1px solid #e2e2e2;
+    position: absolute;
+    background: #ffffff;
+    display: none; }
 
 .product-gallery-nav img {
   width: 50px;

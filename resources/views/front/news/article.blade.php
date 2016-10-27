@@ -1,7 +1,16 @@
 @extends('front.base')
 
+@section('title')
+    {{ $article->title }} - Buffalo Tools News
+@endsection
+
 @section('head')
     <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
+    @include('front.partials.ogmeta', [
+        'ogTitle' => $article->title .' - Buffalo Tools News',
+        'ogImage' => url($article->titleImg()),
+        'ogDescription' => $article->description
+    ])
 @endsection
 
 @section('content')

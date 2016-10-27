@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    @section('title')
-    <title>Buffalo Tools</title>
-    @show
+    <title>@yield('title', 'Buffalo Tools')</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
     <link rel="stylesheet" href="{{ elixir('css/fapp.css') }}">

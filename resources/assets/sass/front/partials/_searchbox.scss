@@ -42,6 +42,7 @@
     margin: 0 auto;
     font-family: $big_head;
     text-transform: uppercase;
+    padding-left: 15px;
 
     @include respond-to(phone) {font-size: 2em;}
   }

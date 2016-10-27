@@ -1,7 +1,16 @@
 @extends('front.base')
 
+@section('title')
+    Services - What Buffalo Tools can do for you!
+@endsection
+
 @section('head')
     <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
+    @include('front.partials.ogmeta', [
+        'ogTitle' => 'Services - What Buffalo Tools can do for you!',
+        'ogImage' => url('images/assets/facebook_image.jpg'),
+        'ogDescription' => 'We pride ourselves on our ability to consistently deliver with quality when it comes to our core services of product sourcing, product customisation and logistics.'
+    ])
 @endsection
 
 @section('content')

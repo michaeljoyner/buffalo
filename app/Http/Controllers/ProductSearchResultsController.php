@@ -13,6 +13,10 @@ class ProductSearchResultsController extends Controller
     public function index(Request $request, ProductsRepository $productsRepository)
     {
         $query = $request->get('query', false);
+
+        if(!$query) {
+            return redirect('/categories');
+        }
         $products = $this->makePaginator($request, $productsRepository->searchAvailable($query));
 
         return view('front.search.index')->with(compact('query', 'products'));

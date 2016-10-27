@@ -1,7 +1,16 @@
 @extends('front.base')
 
+@section('title')
+    About Buffalo Tools - Our story
+@endsection
+
 @section('head')
     <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
+    @include('front.partials.ogmeta', [
+        'ogTitle' => 'About Buffalo Tools - Our story',
+        'ogImage' => url('images/assets/facebook_image.jpg'),
+        'ogDescription' => 'Established in 1990, Huang Buffalo Co., Ltd. has developed vast experience in the importing of quality tools throughout the world. This is how we have grown and who we are today.'
+    ])
 @endsection
 
 @section('content')
