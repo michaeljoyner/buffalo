@@ -131,4 +131,37 @@ class Product extends Model implements HasMediaConversions
 
         return $this->is_promoted;
     }
+
+    public function moveToCategory($categoryId)
+    {
+        $newCategory = Category::findOrFail($categoryId);
+
+        $this->subcategory_id = null;
+        $this->product_group_id = null;
+        $this->category_id = $newCategory->id;
+
+        return $this->save();
+    }
+
+    public function moveToSubcategory($subcategoryId)
+    {
+        $newSubcategory = Subcategory::findOrFail($subcategoryId);
+
+        $this->category_id = $newSubcategory->category_id;
+        $this->subcategory_id = $newSubcategory->id;
+        $this->product_group_id = null;
+
+        return $this->save();
+    }
+
+    public function moveToProductGroup($productGroupId)
+    {
+        $newProductGroup = ProductGroup::findOrFail($productGroupId);
+
+        $this->category_id = $newProductGroup->subcategory->category->id;
+        $this->subcategory_id = $newProductGroup->subcategory->id;
+        $this->product_group_id = $newProductGroup->id;
+
+        return $this->save();
+    }
 }

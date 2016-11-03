@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\CreateDefaultProductDescriptions::class,
-        Commands\CreateDefaultCategoryDescriptions::class
+        Commands\CreateDefaultCategoryDescriptions::class,
+        Commands\ConvertExistingProductImages::class
     ];
 
     /**

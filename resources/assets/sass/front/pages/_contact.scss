@@ -6,6 +6,10 @@
 .contact-section.full-contact-page-section {
   background: none;
   color: $brand_dark;
+
+  .contact-form-container input, .contact-form-container textarea {
+    color: $brand_dark;
+  }
 }
 
 .contact-section {
@@ -57,6 +61,7 @@
       background: transparent;
       border: 0;
       padding-left: 10px;
+      color: $white;
 
       &:focus {
         outline-color: $brand_green;
@@ -71,6 +76,7 @@
       background: transparent;
       border: 0;
       padding: 10px;
+      color: $white;
     }
   }
 
@@ -93,6 +99,15 @@
 
 .referrers-radiobox {
   font-family: $body_font;
+
+  .other-referrer {
+    display: block;
+    width: 95%;
+    margin: 10px auto;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 8px;
+  }
 
   .prompt {
     margin-bottom: 0;

@@ -1,6 +1,6 @@
 <footer class="standard-footer">
     <div class="social-footer">
-        <p class="h3 footer-heading">Let's get Social</p>
+        <p class="h3 footer-heading">Discover More</p>
         <div class="social-icon-row">
             <a href="#" class="social-footer-link">
                 @include('svgicons.social.instagram_black_square')
@@ -28,9 +28,9 @@
     </div>
     <div class="contact-footer">
         <p class="h3 footer-heading">Call</p>
-        <p class="footer-detail">886-4-22372753</p>
+        <p class="footer-detail">+886-4-22372753</p>
         <p class="h3 footer-heading">email</p>
-        <p class="footer-detail">hbufalo@ms7.hinet.net</p>
+        <p class="footer-detail">sales@buffalo-tools.com</p>
         <p class="h3 footer-heading">Address</p>
         <p>22F-2, No. 698, Sec 4,<br> Wenxin Road, Taichung,<br> Taiwan, 406</p>
     </div>

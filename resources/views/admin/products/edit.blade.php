@@ -12,6 +12,10 @@
             <a href="/admin/products/{{ $product->id }}" class="btn dd-btn btn-light">
                 Back to Product
             </a>
+            <category-mover csrf_token="{{ csrf_token() }}"
+                            product-id="{{ $product->id }}"
+                            product-name="{{ $product->name }}"
+            ></category-mover>
         </div>
     </section>
     @include('admin.forms.product')

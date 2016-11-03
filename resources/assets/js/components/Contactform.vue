@@ -49,6 +49,11 @@
                 <label class="radio-label" for="other">
                     Other
                 </label>
+                <input class="other-referrer"
+                       type="text"
+                       v-model="other_ref"
+                       placeholder="Please let us know how you found us."
+                       v-show="referrer === 'other'">
             </div>
             <button type="submit" class="btn page-section-cta on-dark contact-submit">
                 <span v-show="!sending">Send Message</span>
@@ -73,6 +78,7 @@
                 company_website: '',
                 company: '',
                 referrer: '',
+                other_ref: '',
                 enquiry: '',
                 sending: false,
                 spent: false
@@ -115,7 +121,11 @@
             },
 
             allData() {
-                return JSON.parse(JSON.stringify(this.$data));
+                let data = JSON.parse(JSON.stringify(this.$data));
+                if(data.referrer === 'other' && data.other_ref !== '') {
+                    data.referrer = data.other_ref;
+                }
+                return data;
             },
 
             resetForm() {

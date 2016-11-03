@@ -32,4 +32,9 @@ trait HasModelImage
             $media->delete();
         });
     }
+
+    public function hasModelImageSet()
+    {
+        return !! $this->getFirstMediaUrl();
+    }
 }

@@ -2809,6 +2809,8 @@ img.socket-piece {
 .contact-section.full-contact-page-section {
   background: none;
   color: #2B2F2B; }
+  .contact-section.full-contact-page-section .contact-form-container input, .contact-section.full-contact-page-section .contact-form-container textarea {
+    color: #2B2F2B; }
 
 .contact-section {
   background: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../images/assets/tooltable.jpeg);
@@ -2847,7 +2849,8 @@ img.socket-piece {
       font-size: 1em;
       background: transparent;
       border: 0;
-      padding-left: 10px; }
+      padding-left: 10px;
+      color: #ffffff; }
       .contact-section .form-group input:focus {
         outline-color: #46B977; }
     .contact-section .form-group textarea {
@@ -2858,7 +2861,8 @@ img.socket-piece {
       font-size: 1em;
       background: transparent;
       border: 0;
-      padding: 10px; }
+      padding: 10px;
+      color: #ffffff; }
   .contact-section .btn.contact-submit {
     width: 100%;
     margin-left: 0;
@@ -2872,6 +2876,13 @@ img.socket-piece {
 
 .referrers-radiobox {
   font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif; }
+  .referrers-radiobox .other-referrer {
+    display: block;
+    width: 95%;
+    margin: 10px auto;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 8px; }
   .referrers-radiobox .prompt {
     margin-bottom: 0; }
   .referrers-radiobox label {

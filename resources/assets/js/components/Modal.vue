@@ -5,7 +5,7 @@
 <template>
     <div class="modal-mask" v-show="show" transition="modal">
         <div class="modal-wrapper">
-            <div class="modal-container">
+            <div class="modal-container" :class="{'wide': wider}">
 
                 <div class="modal-header">
                     <slot name="header">
@@ -39,6 +39,12 @@
                 type: Boolean,
                 required: true,
                 twoWay: true
+            },
+
+            wider: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         }
     }

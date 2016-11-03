@@ -41,4 +41,19 @@ class ProductImagesTest extends TestCase
         $this->assertFileExists(public_path($src));
         $this->assertContains('.jpg', $src);
     }
+
+    /**
+     *@test
+     */
+    public function a_product_knows_if_it_has_a_model_image_set()
+    {
+        $product = factory(Product::class)->create();
+        $this->assertFalse($product->hasModelImageSet(), 'New product has no image');
+
+        $product->setImage($this->prepareFileUpload('tests/testpic1.png'));
+        $product = Product::find($product->id);
+        $this->assertTrue($product->hasModelImageSet(), 'Product should have image');
+
+        $product->clearMediaCollection();
+    }
 }
