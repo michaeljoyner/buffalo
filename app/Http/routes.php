@@ -144,10 +144,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('products/{product}/gallery/images', 'ProductGalleryImagesController@store');
         Route::delete('products/{product}/gallery/images/{media}', 'ProductGalleryImagesController@delete');
 
-        Route::get('/productcategories/categories', 'ProductCategoriesController@listCategories');
-        Route::post('/products/{product}/category/{category}', 'ProductCategoriesController@moveToCategory');
-        Route::post('/products/{product}/subcategory/{subcategory}', 'ProductCategoriesController@moveToSubcategory');
-        Route::post('/products/{product}/productgroup/{productGroup}', 'ProductCategoriesController@moveToProductGroup');
+        Route::get('productcategories/categories', 'ProductCategoriesController@listCategories');
+        Route::post('products/{product}/category/{category}', 'ProductCategoriesController@moveToCategory');
+        Route::post('products/{product}/subcategory/{subcategory}', 'ProductCategoriesController@moveToSubcategory');
+        Route::post('products/{product}/productgroup/{productGroup}', 'ProductCategoriesController@moveToProductGroup');
+
+        Route::post('products/{product}/markednew', 'ProductMarkedNewController@update');
 
         Route::get('orders', 'OrdersController@index');
         Route::get('orders/archived', 'OrdersController@archived');

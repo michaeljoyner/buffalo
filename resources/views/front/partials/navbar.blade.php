@@ -1,7 +1,7 @@
 <nav class="main-navbar">
     <div class="branding">
         <a href="/">
-            <img src="/images/Logo_white.png" alt="Buffalo Tools smalll logo">
+            <img src="/images/logo_horizontal.svg" alt="Buffalo Tools logo">
         </a>
     </div>
     <div class="nav-item mobile-nav-trigger">

@@ -14,7 +14,7 @@ class AddSerialTokenColumn extends Migration
     public function up()
     {
         Schema::table('google_plus_users', function (Blueprint $table) {
-            $table->text('token_serialized');
+            $table->text('token_serialized')->default('');
             $table->dropColumn(['token', 'refresh_token', 'token_expires']);
         });
     }
@@ -27,10 +27,10 @@ class AddSerialTokenColumn extends Migration
     public function down()
     {
         Schema::table('google_plus_users', function (Blueprint $table) {
-            $table->dropColumn('token_serialized');
-            $table->string('token');
-            $table->string('refresh_token');
-            $table->bigInteger('token_expires');
+//            $table->dropColumn('token_serialized');
+//            $table->string('token');
+//            $table->string('refresh_token');
+//            $table->bigInteger('token_expires');
         });
     }
 }

@@ -14,7 +14,7 @@ class AddTokenSerailizedColumnToTwitterUsers extends Migration
     public function up()
     {
         Schema::table('twitter_users', function (Blueprint $table) {
-            $table->text('token_serialized');
+            $table->text('token_serialized')->default('');
             $table->dropColumn(['token', 'token_secret']);
         });
     }
@@ -27,9 +27,9 @@ class AddTokenSerailizedColumnToTwitterUsers extends Migration
     public function down()
     {
         Schema::table('twitter_users', function (Blueprint $table) {
-            $table->string('token');
-            $table->string('token_secret');
-            $table->dropColumn('token_serialized');
+//            $table->string('token');
+//            $table->string('token_secret');
+//            $table->dropColumn('token_serialized');
         });
     }
 }

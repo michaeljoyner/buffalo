@@ -30,12 +30,7 @@
         </div>
         <div class="category-index main-panel">
             @foreach($products as $product)
-                <div class="product-index-card">
-                    <a href="/products/{{ $product->slug }}">
-                        <img class="product-image" src="{{ $product->imageSrc('thumb') }}" alt="{{ $product->name }}">
-                        <p class="h5 product-name">{{ $product->name }}</p>
-                    </a>
-                </div>
+                @include('front.category.productcard')
             @endforeach
         </div>
     </section>

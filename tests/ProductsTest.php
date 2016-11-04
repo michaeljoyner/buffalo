@@ -119,4 +119,51 @@ class ProductsTest extends TestCase
         $this->assertEquals($newProductGroup->subcategory->id, $product->subcategory->id);
         $this->assertEquals($newProductGroup->id, $product->productGroup->id);
     }
+    
+    /**
+     *@test
+     */
+    public function a_product_created_in_the_last_month_is_considered_new()
+    {
+        $newProduct = factory(Product::class)->create();
+        $oldProduct = factory(Product::class)->create(['created_at' => \Carbon\Carbon::create(2010,2,2)]);
+
+        $this->assertTrue($newProduct->isNew());
+        $this->assertFalse($oldProduct->isNew());
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_with_a_true_value_for_mark_new_is_new()
+    {
+        $oldProduct = factory(Product::class)->create(['created_at' => \Carbon\Carbon::create(2010,2,2)]);
+        $oldProduct->marked_new = true;
+
+        $this->assertTrue($oldProduct->isNew());
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_has_marked_new_set_to_false_as_default()
+    {
+        $product = factory(Product::class)->create();
+        $this->assertFalse($product->marked_new);
+    }
+
+    /**
+     *@test
+     */
+    public function a_products_marked_new_value_can_be_toggled()
+    {
+        $product = factory(Product::class)->create();
+        $product->markAsNew(true);
+
+        $this->assertTrue($product->marked_new);
+
+        $product->markAsNew(false);
+
+        $this->assertFalse($product->marked_new);
+    }
 }

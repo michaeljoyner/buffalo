@@ -42,6 +42,14 @@
                                toggle-url="/admin/products/{{ $product->id }}/promote"
                                toggle-attribute="promote"
                 ></toggle-switch>
+                <p class="lead">Is this product new?</p>
+                <toggle-switch identifier="3"
+                               true-label="yes"
+                               false-label="no"
+                               :initial-state="{{ $product->isNew() ? 'true' : 'false' }}"
+                               toggle-url="/admin/products/{{ $product->id }}/markednew"
+                               toggle-attribute="new"
+                ></toggle-switch>
             </div>
         </div>
         <div class="col-md-5">

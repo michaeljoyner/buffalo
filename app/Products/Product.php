@@ -3,6 +3,7 @@
 namespace App\Products;
 
 use App\GetsSlugFromName;
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,7 @@ class Product extends Model implements HasMediaConversions
     use SoftDeletes, Sluggable, GetsSlugFromName, UrgesForDescription, HasMediaTrait, HasModelImage;
 
     const DEFAULT_PRIMARY_IMAGE = '/images/buffalo_logo_small.png';
+    const DAYS_TO_BE_NEW = 10;
 
     protected $table = 'products';
 
@@ -27,7 +29,7 @@ class Product extends Model implements HasMediaConversions
         'product_group_id'
     ];
 
-    protected $casts = ['available' => 'boolean', 'is_promoted' => 'boolean'];
+    protected $casts = ['available' => 'boolean', 'is_promoted' => 'boolean', 'marked_new' => 'boolean'];
 
     protected $dates = ['deleted_at'];
 
@@ -163,5 +165,18 @@ class Product extends Model implements HasMediaConversions
         $this->product_group_id = $newProductGroup->id;
 
         return $this->save();
+    }
+
+    public function isNew()
+    {
+        return $this->marked_new || ($this->created_at->diffInDays(Carbon::now()) < static::DAYS_TO_BE_NEW);
+    }
+
+    public function markAsNew($is_new)
+    {
+        $this->marked_new = $is_new;
+        $this->save();
+
+        return $this->marked_new;
     }
 }

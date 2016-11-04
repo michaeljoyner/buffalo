@@ -14,7 +14,7 @@ class AddTokenSerializedToFacebookUsersTable extends Migration
     public function up()
     {
         Schema::table('facebook_users', function (Blueprint $table) {
-            $table->text('token_serialized');
+            $table->text('token_serialized')->default('');
             $table->dropColumn('token_string');
         });
     }
@@ -27,8 +27,8 @@ class AddTokenSerializedToFacebookUsersTable extends Migration
     public function down()
     {
         Schema::table('facebook_users', function (Blueprint $table) {
-            $table->dropColumn('token_serialized');
-            $table->string('token_string');
+//            $table->dropColumn('token_serialized');
+//            $table->string('token_string');
         });
     }
 }
