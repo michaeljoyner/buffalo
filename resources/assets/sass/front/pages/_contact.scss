@@ -10,6 +10,10 @@
   .contact-form-container input, .contact-form-container textarea {
     color: $brand_dark;
   }
+
+  .contact-submit.page-section-.cta:hover {
+    color: $white;
+  }
 }
 
 .contact-section {

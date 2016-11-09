@@ -37,6 +37,7 @@
             },
 
             play() {
+                console.log('yebo');
                 this.$el.play();
             }
 

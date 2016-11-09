@@ -29,9 +29,6 @@ class NotifyOfEnquiry
      */
     public function handle(EnquiryWasMade $event)
     {
-        User::all()->each(function($user) use ($event) {
-            Mail::to($user)->send(new EnquiryMade($event));
-        });
-
+        Mail::to('sales@buffalo-tools.com')->send(new EnquiryMade($event));
     }
 }

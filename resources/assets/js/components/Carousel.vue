@@ -1,7 +1,7 @@
 <style></style>
 
 <template>
-    <div class="carousel-slider" :class="{'ready': isReadyToStart}" @mouseover.stop="stop" @mouseout.stop="play">
+    <div class="carousel-slider" :class="{'ready': isReadyToStart}" @mouseenter.stop="stop" @mouseleave.stop="play">
         <banner-slide v-for="slide in slides | orderBy 'position'"
                       :text-colour="slide.text_colour"
                       :slide-text="slide.slide_text"
@@ -106,11 +106,13 @@
                 let slide = this.slides[slideIndex];
                 slide.is_ready = true;
                 this.readyCount++;
-//                if(this.shouldPlay()) {
-//                    this.play();
-//                }
+
                 if(this.isReadyToStart) {
                     this.removeOriginal();
+                }
+
+                if(this.shouldPlay()) {
+                    this.play();
                 }
             },
 
@@ -119,7 +121,7 @@
             },
 
             play() {
-                if(! this.autoPlay) {
+                if(! this.autoPlay || this.interval) {
                     return;
                 }
                 this.interval = setInterval(() => this.nextSlide(), this.slideTime);

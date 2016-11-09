@@ -28,9 +28,12 @@
                         <img  src="{{ $article->titleImg('web') }}" alt="{{ $article->title }}">
                     </a>
                 </div>
-                <a href="/news/{{ $article->slug }}"><h3 class="h3 article-title">{{ $article->title }}</h3></a>
+                <a href="/news/{{ $article->slug }}">
+                    <h3 class="h3 article-title">{{ $article->title }}</h3>
+                </a>
                 <p class="article-date text-green">{{ $article->published_at->toFormattedDateString() }}</p>
                 <p class="body-text">{{ $article->description }}</p>
+                <a href="/news/{{ $article->slug }}" class="btn page-section-cta read-article-btn">Read More</a>
             </div>
         @endforeach
         </div>

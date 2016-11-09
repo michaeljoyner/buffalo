@@ -7,7 +7,7 @@
     </div>
     @if($withFooter)
     <div class="contact-details is-col">
-        <h3 class="h3 text-white">Let's get Social</h3>
+        <h3 class="h3 text-white">Discover more</h3>
         <div class="social-icon-row">
             <a href="#" class="social-footer-link">
                 @include('svgicons.social.instagram_black_square')
@@ -29,9 +29,9 @@
             </a>
         </div>
         <h3 class="h3 contact-heading text-white">Call</h3>
-        <p class="body-text contact-info text-white">886-4-22372753</p>
+        <p class="body-text contact-info text-white">+886-4-22372753</p>
         <h3 class="h3 contact-heading text-white">Email</h3>
-        <p class="body-text contact-info text-white">hbufalo@ms7.hinet.net</p>
+        <p class="body-text contact-info text-white">sales@buffalo-tools.com</p>
         <h3 class="h3 contact-heading text-white">Address</h3>
         <p class="body-text contact-info text-white">22F-2, No. 698, Sec 4, Wenxin Road,<br> Taichung, Taiwan, 406</p>
     </div>

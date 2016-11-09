@@ -174,11 +174,13 @@
   }
 
   .product-nav {
+    border-top: 1px solid $text_grey;
+    border-bottom: 1px solid $text_grey;
     position: absolute;
     width: 100%;
     left: 0;
     top: 70px;
-    background: $brand_green;
+    background: rgba($brand_dark, .8);
     color: $white;
     opacity: 0;
     transform: rotateX(90deg);
@@ -209,7 +211,7 @@
       text-align: center;
 
       &:hover {
-        color: $deep_green;
+        color: $brand_green;
       }
     }
   }

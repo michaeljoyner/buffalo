@@ -42,5 +42,25 @@
             Duis condimentum sodales lobortis. Nunc finibus, arcu in scelerisque iaculis, neque tellus sodales diam, nec
             suscipit libero leo et tortor. Phasellus non consectetur orci, quis semper diam.</p>
     </section>
+    <section class="customers">
+        <h2 class="h1 text-centered section-title">Our Customers</h2>
+        <p class="strong-lead">We have exported our products to over 26 countries since 1990.</p>
+        <div class="map-container">
+            @include('svg.buffalo_map_1')
+        </div>
+        <p class="strong-lead">Some of our customers include:</p>
+        <div class="customer-logos">
+            <div>
+                <img src="/images/customers/client_eaton.png" alt="Eaton logo">
+                <img src="/images/customers/client_wurth.png" alt="Wurth logo">
+                <img src="/images/customers/client_berner.png" alt="Berner logo">
+            </div>
+            <div>
+                <img src="/images/customers/client_d2.png" alt="D2 logo">
+                <img src="/images/customers/client_apex.png" alt="Apex logo">
+                <img src="/images/customers/client_ustape.png" alt="US Tape logo">
+            </div>
+        </div>
+    </section>
     @include('front.partials.footer')
 @endsection

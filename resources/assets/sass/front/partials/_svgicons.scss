@@ -3,3 +3,15 @@
   height: 30px;
   fill: $brand_green;
 }
+
+.svgicon {
+  width: 20px;
+  height: 20px;
+  fill: $text_grey;
+  display: inline-block;
+  vertical-align:  bottom;
+
+  &:hover {
+    fill: $brand_dark;
+  }
+}

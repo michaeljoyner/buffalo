@@ -40,26 +40,7 @@
                 <p class="body-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores fuga hic ipsum maxime necessitatibus obcaecati pariatur perferendis quaerat reiciendis, repellat repellendus saepe sed ullam velit? Facere fugit mollitia quos? Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
         </div>
-        <section class="customers">
-            <h2 class="h1 text-centered section-title">Our Customers</h2>
-            <p class="strong-lead">We have exported our products to over 26 countries since 1990.</p>
-            <div class="map-container">
-                @include('svg.buffalo_map_1')
-            </div>
-            <p class="strong-lead">Some of our customers include:</p>
-            <div class="customer-logos">
-                <div>
-                    <img src="/images/customers/client_eaton.png" alt="Eaton logo">
-                    <img src="/images/customers/client_wurth.png" alt="Wurth logo">
-                    <img src="/images/customers/client_berner.png" alt="Berner logo">
-                </div>
-                <div>
-                    <img src="/images/customers/client_d2.png" alt="D2 logo">
-                    <img src="/images/customers/client_apex.png" alt="Apex logo">
-                    <img src="/images/customers/client_ustape.png" alt="US Tape logo">
-                </div>
-            </div>
-        </section>
+
     </section>
     @include('front.partials.footer')
 @endsection
