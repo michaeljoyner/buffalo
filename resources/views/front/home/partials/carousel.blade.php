@@ -14,5 +14,5 @@
         @endif
     </div>
     @endif
-    <carousel-slider :auto-play="false" slide-time="5000"></carousel-slider>
+    <carousel-slider :auto-play="true" slide-time="5000"></carousel-slider>
 </div>
