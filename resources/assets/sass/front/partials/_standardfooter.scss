@@ -1,51 +1,89 @@
 .standard-footer {
   width: 100%;
+  min-height: 450px;
   background: $brand_dark;
   font-family: $body_font;
   color: $white;
   display: flex;
-  min-height: 400px;
   margin-top: 70px;
+  position: relative;
 
   @include respond-to(phone) {flex-direction: column;}
   @include respond-to(largetablet) {flex-direction: column;}
 
-  .social-footer, .contact-footer {
+  .social-footer, .contact-footer, .quick-links-footer {
     flex-basis: auto;
-    width: calc(50% - 100px);
+    width: 33.33%;
     flex-grow: 1;
     flex-shrink: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 40px 0;
+    padding: 40px 0 0;
     order: 5;
+
+    //@include respond-to(phone) {width: 100%; order: 1;}
+    //@include respond-to(largetablet) {width: 100%; order: 1;}
+  }
+
+  div.social-footer {
+    justify-content: space-between;
 
     @include respond-to(phone) {width: 100%; order: 1;}
     @include respond-to(largetablet) {width: 100%; order: 1;}
   }
 
+  .quick-links-footer {
+    .footer-heading {
+      padding-bottom: 10px;
+    }
+
+    a {
+      text-transform: uppercase;
+      line-height: 1.8;
+
+      &:hover {
+        color: $brand_green;
+      }
+    }
+
+    @include respond-to(phone) {width: 100%; order: 3;}
+    @include respond-to(largetablet) {width: 100%; order: 3;}
+  }
+
   .signoff {
-    width: 200px;
-    flex-grow: 0;
-    flex-shrink: 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    order: 5;
+    //order: 5;
 
-    @include respond-to(phone) {width: 100%; order: 3;}
-    @include respond-to(largetablet) {width: 100%; order: 3;}
+    @include respond-to(phone) {width: 100%; order: 4; position: relative; padding-top: 60px;}
+    @include respond-to(largetablet) {width: 100%; order: 4; position: relative; padding-top: 60px;}
 
     img {
       width: 120px;
+
+      @include respond-to(phone) {width: 80px;}
     }
+  }
+
+  .contact-footer {
+    @include respond-to(phone) {width: 100%; order: 2;}
+    @include respond-to(largetablet) {width: 100%; order: 2;}
   }
 
   .footer-heading {
     margin-bottom: 0;
+  }
+
+  .footer-detail {
+    margin-top: 10px;
   }
 }
 
@@ -53,3 +91,4 @@
 .social-footer .social-icon-row {
   padding-top: 20px;
 }
+

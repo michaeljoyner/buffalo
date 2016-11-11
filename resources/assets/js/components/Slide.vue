@@ -1,7 +1,7 @@
 <style></style>
 
 <template>
-    <div class="carousel-slide" :class="textColour" transition="slide">
+    <div class="carousel-slide" :class="textColour" :transition="direction">
         <div class="media-aspect-box">
             <img @load="canShow" :src="imageSrc" :alt="slideText" v-if="!isVideo">
             <video-slide v-ref:vid v-if="isVideo" :video-src="'/videos/' + video"></video-slide>
@@ -21,15 +21,21 @@
             return {};
         },
 
+        computed: {
+            direction() {
+                return this.$parent.direction;
+            }
+        },
+
         events: {
-            'now-leaving': function(index) {
-                if(index === this.slideIndex) {
+            'now-leaving': function (index) {
+                if (index === this.slideIndex) {
                     this.onLeaving();
                 }
             },
 
-            'now-showing': function(index) {
-                if(index === this.slideIndex) {
+            'now-showing': function (index) {
+                if (index === this.slideIndex) {
                     this.onShow();
                 }
             }
@@ -41,13 +47,13 @@
             },
 
             onLeaving() {
-                if(this.isVideo) {
+                if (this.isVideo) {
                     this.$refs.vid.pause();
                 }
             },
 
             onShow() {
-                if(this.isVideo) {
+                if (this.isVideo) {
                     this.$refs.vid.play();
                 }
             }

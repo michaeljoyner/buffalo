@@ -20,7 +20,7 @@
             <a href="/services">Services</a>
         </li>
         <li class="nav-item">
-            <a href="/news">News</a>
+            <a href="/news">Insights</a>
         </li>
         <li class="nav-item product-trigger">
             <a href="/categories">Products</a>
