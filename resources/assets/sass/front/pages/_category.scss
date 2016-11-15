@@ -66,6 +66,7 @@
     &.new::before {
       content: 'new';
       text-transform: uppercase;
+      font-family: $strong_type;
       font-size: 100%;
       color: $white;
       background: $brand_green;
@@ -74,7 +75,6 @@
       left: 10px;
       position: absolute;
       transform: rotate(-10deg);
-      box-shadow: 2px 2px 2px rgba(0,0,0,.7);
     }
   }
 }

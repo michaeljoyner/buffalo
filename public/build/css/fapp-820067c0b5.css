@@ -2431,6 +2431,7 @@ html {
     .category-index .product-index-card.new::before {
       content: 'new';
       text-transform: uppercase;
+      font-family: "Roboto Slab", sans-serif;
       font-size: 100%;
       color: #ffffff;
       background: #46B977;
@@ -2439,8 +2440,7 @@ html {
       left: 10px;
       position: absolute;
       -webkit-transform: rotate(-10deg);
-      transform: rotate(-10deg);
-      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7); }
+      transform: rotate(-10deg); }
 
 .page-position {
   text-align: center;
