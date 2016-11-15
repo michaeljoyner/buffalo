@@ -114,7 +114,7 @@
         opacity: .9;
       }
 
-      @include respond-to(phone) {display: block; font-size: 1.5em; top: 45vw; padding: 8px 10px 4px;}
+      @include respond-to(phone) {display: block; font-size: 1.5em; top: 40vw; padding: 8px 10px 4px;}
 
       @include respond-to(largetablet) {font-size: 1.5em;}
     }
