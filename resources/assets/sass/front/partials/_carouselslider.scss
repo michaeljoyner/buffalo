@@ -1,7 +1,7 @@
 .carousel {
   width: 100%;
   position: relative;
-  padding-bottom: 35%;
+  padding-bottom: 33.33%;
   overflow: hidden;
 
   @include respond-to(phone) { padding-bottom: 60%;}
@@ -34,7 +34,7 @@
     .media-aspect-box {
       position: relative;
       width: 100%;
-      padding-bottom: 35%;
+      padding-bottom: 33.33%;
       overflow: hidden;
 
       @include respond-to(phone) {padding-bottom: 60%;}

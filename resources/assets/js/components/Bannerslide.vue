@@ -5,7 +5,7 @@
         <div class="banner-media-uploader">
             <div class="instruction-box">
                 <p>Click here to upload an image or video.</p>
-                <p>For best results, use an image of at least 1400 x 490px and with that aspect ratio of 10:3.5</p>
+                <p>For best results, use an image of at least 1400 x 467px and with that aspect ratio of 3:1</p>
                 <p>Video should ideally be cropped at 1400 x 840 and have a small as possible file size.</p>
             </div>
             <label for="media-input">
@@ -183,7 +183,7 @@
             },
 
             generatePreview(image) {
-                this.drawPreview(image, this.getSourceDimensions(image.width, image.height, 2));
+                this.drawPreview(image, this.getSourceDimensions(image.width, image.height, 3));
                 this.isVideo = false;
             },
 
@@ -202,8 +202,8 @@
                 let canvas = document.createElement('canvas');
                 let ctx = canvas.getContext('2d');
                 canvas.width = 1400;
-                canvas.height = 700;
-                ctx.drawImage(image, sDimensions.sX, sDimensions.sY, sDimensions.sWidth, sDimensions.sHeight, 0, 0, 1400, 700);
+                canvas.height = 467;
+                ctx.drawImage(image, sDimensions.sX, sDimensions.sY, sDimensions.sWidth, sDimensions.sHeight, 0, 0, 1400, 467);
                 let newSrc = canvas.toDataURL();
                 this.media = newSrc;
             },

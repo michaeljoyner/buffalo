@@ -50,7 +50,7 @@ class Slide extends Model implements HasMediaConversions
             ->setManipulations(['w' => 720, 'h' => 432, 'fit' => 'crop'])
             ->performOnCollections('default');
         $this->addMediaConversion('large')
-            ->setManipulations(['w' => 1400, 'h' => 490, 'fit' => 'crop'])
+            ->setManipulations(['w' => 1400, 'h' => 467, 'fit' => 'crop'])
             ->performOnCollections('default');
     }
 
