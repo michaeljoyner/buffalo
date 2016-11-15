@@ -7148,7 +7148,7 @@ body.stop-scrolling {
     display: block;
     position: relative;
     width: 100%;
-    padding-bottom: 50%;
+    padding-bottom: 35%;
     overflow-y: hidden;
     border: 2px dashed #e2e2e2; }
     .slides-edit-view .banner-media-uploader label img, .slides-edit-view .banner-media-uploader label video {
@@ -7171,7 +7171,7 @@ body.stop-scrolling {
   .slides-edit-view .banner-media-uploader .banner-slide-text {
     position: absolute;
     pointer-events: none;
-    font-size: 4em;
+    font-size: 3.5em;
     font-weight: 700;
     text-transform: uppercase;
     color: #ffffff;
@@ -7188,12 +7188,14 @@ body.stop-scrolling {
     min-width: 6em;
     text-align: center;
     border: 3px solid #ffffff;
-    padding: 8px 15px;
+    padding: 4px 8px;
     color: #ffffff;
     text-transform: uppercase;
-    font-size: 2em;
-    bottom: 50px;
-    right: 70px; }
+    font-size: 1.75em;
+    bottom: 25px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
     .slides-edit-view .banner-media-uploader .banner-cta.dark {
       color: #2B2F2B;
       border-color: #2B2F2B; }
@@ -7254,7 +7256,7 @@ body.stop-scrolling {
     display: block;
     position: relative;
     width: 100%;
-    padding-bottom: 42.85%;
+    padding-bottom: 35%;
     overflow-y: hidden; }
     .slides-index .slide-index-card.incomplete {
       background: #888; }
@@ -7311,12 +7313,14 @@ body.stop-scrolling {
       min-width: 6em;
       text-align: center;
       border: 3px solid #ffffff;
-      padding: 8px 15px;
+      padding: 4px 8px;
       color: #ffffff;
       text-transform: uppercase;
       font-size: .5em;
       bottom: 10px;
-      right: 10px; }
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%); }
       .slides-index .slide-index-card .banner-cta.dark {
         color: #2B2F2B;
         border-color: #2B2F2B; }
@@ -7331,8 +7335,7 @@ body.stop-scrolling {
     -webkit-box-pack: center;
     justify-content: center; }
     .slides-index .add-slide-card svg {
-      position: absolute;
-      padding-top: 9%; }
+      position: absolute; }
 
 .product-stats {
   display: -webkit-box;

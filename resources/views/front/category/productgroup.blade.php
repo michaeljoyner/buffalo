@@ -15,6 +15,9 @@
 
 @section('content')
     <div class="product-breadcrumbs">
+        <a href="/" class="breadcrumb">
+            @include('svgicons.home')
+        </a>
         <a href="/categories" class="breadcrumb">Categories</a>
         <a href="/categories/{{ $category->slug }}" class="breadcrumb">{{ $category->name }}</a>
         <a href="/categories/{{ $productGroup->subcategory->slug }}" class="breadcrumb">{{ $productGroup->subcategory->name }}</a>

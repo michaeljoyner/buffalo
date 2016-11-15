@@ -30,16 +30,24 @@
                     <thead>
                     <tr>
                         <th>#</th>
+                        <th>Item #</th>
                         <th>Item name</th>
                         <th>Quantity</th>
+                        <th>Photo</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($order->items as $index => $item)
                         <tr>
                             <td>{{ $index + 1 }}</td>
+                            <td>@if($item->product){{ $item->product->product_code }}@else product no longer on record @endif</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->quantity }}</td>
+                            <td>
+                                @if($item->product)
+                                <img src="{{ $item->product->imageSrc('thumb') }}" width="80px" alt="">
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

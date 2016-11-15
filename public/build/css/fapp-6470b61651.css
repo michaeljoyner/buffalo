@@ -1600,7 +1600,7 @@ html {
 .carousel {
   width: 100%;
   position: relative;
-  padding-bottom: 50%;
+  padding-bottom: 35%;
   overflow: hidden; }
   @media only screen and (max-width: 719px) {
     .carousel {
@@ -1625,7 +1625,7 @@ html {
     .carousel .carousel-slide .media-aspect-box {
       position: relative;
       width: 100%;
-      padding-bottom: 50%;
+      padding-bottom: 35%;
       overflow: hidden; }
       .carousel .carousel-slide .media-aspect-box img, .carousel .carousel-slide .media-aspect-box video {
         position: absolute;
@@ -1654,7 +1654,7 @@ html {
       top: 10%;
       left: 80px;
       width: 50%;
-      font-size: 5em;
+      font-size: 4.5em;
       text-transform: uppercase;
       font-weight: 900;
       line-height: 1.2; }
@@ -1680,7 +1680,7 @@ html {
           font-size: 3em; } }
     .carousel .carousel-slide .slide-action {
       position: absolute;
-      top: 40vw;
+      top: 25vw;
       left: 50%;
       -webkit-transform: translateX(-50%);
       transform: translateX(-50%);
