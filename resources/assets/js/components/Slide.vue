@@ -3,7 +3,12 @@
 <template>
     <div class="carousel-slide" :class="textColour" :transition="direction">
         <div class="media-aspect-box">
-            <img @load="canShow" :src="imageSrc" :alt="slideText" v-if="!isVideo">
+            <picture v-if="!isVideo">
+                <source :srcset="imageSrc" media="(min-width: 720px)">
+                <source :srcset="smallImgSrc" media="(max-width: 719px)">
+                <img @load="canShow" :src="imageSrc" :alt="slideText">
+            </picture>
+            <!--<img @load="canShow" :src="imageSrc" :alt="slideText" v-if="!isVideo">-->
             <video-slide v-ref:vid v-if="isVideo" :video-src="'/videos/' + video"></video-slide>
         </div>
         <span class="slide-text">{{ slideText }}</span>
@@ -15,10 +20,12 @@
 <script type="text/babel">
     module.exports = {
 
-        props: ['slide-text', 'action-link', 'action-text', 'text-colour', 'is-video', 'video', 'image-src', 'slide-index'],
+        props: ['slide-text', 'action-link', 'action-text', 'text-colour', 'is-video', 'video', 'image-src', 'small-img-src', 'slide-index'],
 
         data() {
-            return {};
+            return {
+                virgin: false
+            };
         },
 
         computed: {
@@ -43,7 +50,11 @@
 
         methods: {
             canShow() {
-                this.$parent.markAsReady(this.slideIndex);
+                console.log('loaded');
+                if(! this.virgin) {
+                    this.virgin = true;
+                    this.$parent.markAsReady(this.slideIndex);
+                }
             },
 
             onLeaving() {

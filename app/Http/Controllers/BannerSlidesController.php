@@ -17,6 +17,7 @@ class BannerSlidesController extends Controller
             return [
                 'id'          => $slide->id,
                 'image_src'   => $slide->modelImage('large'),
+                'small_image' => $slide->modelImage('phone'),
                 'is_video'    => $slide->is_video,
                 'video'       => $slide->video,
                 'slide_text'  => $slide->slide_text,

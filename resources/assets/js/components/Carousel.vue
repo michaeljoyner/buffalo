@@ -9,6 +9,7 @@
                       :action-link="slide.action_link"
                       :is-video="slide.is_video"
                       :image-src="slide.image_src"
+                      :small-img-src="slide.small_image"
                       :video="slide.video"
                       :slide-index="$index"
                       v-show="$index == currentImg"

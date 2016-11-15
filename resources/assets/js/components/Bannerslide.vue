@@ -5,8 +5,8 @@
         <div class="banner-media-uploader">
             <div class="instruction-box">
                 <p>Click here to upload an image or video.</p>
-                <p>For best results, use an image of at least 1400 x 700px and with that aspect ratio of 2:1</p>
-                <p>Video should ideally be cropped at 1400 x 700 and have a small as possible file size.</p>
+                <p>For best results, use an image of at least 1400 x 490px and with that aspect ratio of 10:3.5</p>
+                <p>Video should ideally be cropped at 1400 x 840 and have a small as possible file size.</p>
             </div>
             <label for="media-input">
                 <img v-bind:class="{'uploading': progress > 0}" v-bind:src="media" alt="" v-show="!isVideo">
