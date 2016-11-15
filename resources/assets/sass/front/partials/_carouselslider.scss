@@ -4,7 +4,7 @@
   padding-bottom: 35%;
   overflow: hidden;
 
-  @include respond-to(phone) { padding-bottom: 100%;}
+  @include respond-to(phone) { padding-bottom: 60%;}
 
   .slide {
     width: 100%;
@@ -36,6 +36,8 @@
       width: 100%;
       padding-bottom: 35%;
       overflow: hidden;
+
+      @include respond-to(phone) {padding-bottom: 60%;}
 
       img, video {
         position: absolute;
@@ -84,7 +86,8 @@
       font-weight: 900;
       line-height: 1.2;
 
-      @include respond-to(phone) { position: static; font-size: 2em; padding: 0 10px; width: 100%; text-align: center; display: block; background: $brand_dark; margin-top: -3px; min-height: 150px; display: flex; align-items: center; justify-content: center;}
+      //@include respond-to(phone) { position: static; font-size: 2em; padding: 0 10px; width: 100%; text-align: center; display: block; background: $brand_dark; margin-top: -3px; min-height: 150px; display: flex; align-items: center; justify-content: center;}
+      @include respond-to(phone) {display: none;}
 
       @include respond-to(largetablet) {font-size: 3em;}
 
@@ -111,7 +114,7 @@
         opacity: .9;
       }
 
-      @include respond-to(phone) {display: none;}
+      @include respond-to(phone) {display: block; font-size: 1.5em; top: 55%; padding: 8px 10px 4px;}
 
       @include respond-to(largetablet) {font-size: 1.5em;}
     }
@@ -172,17 +175,19 @@
     cursor: default;
     height: 60px;
 
-    @include respond-to(phone) {opacity: .7;}
+    @include respond-to(phone) {opacity: .7; height: 40px; transform: translateY(-100%);}
 
     &:hover {
       opacity: 1;
     }
   }
 
-  .carousel-prev-arrow {
+  .carousel-nav-arrow.carousel-prev-arrow {
     left: 30px;
     transform: scale(-1, -1);
     transform-origin: 50% 25%;
+
+    @include respond-to(phone) {opacity: .7; height: 40px; transform: scale(-1, -1) translateY(50%);}
   }
 
   .carousel-next-arrow {
