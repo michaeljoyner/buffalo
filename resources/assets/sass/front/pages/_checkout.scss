@@ -18,8 +18,38 @@
     flex-basis: 60%;
     flex-grow: 1;
     flex-shrink: 1;
+    transition: .7s;
+    min-height: 900px;
+    max-height: 1200px;
+
+    &.shortened {
+      min-height: 550px;
+      max-height: 700px;
+    }
 
     @include respond-to(phone) { flex-basis: 100%; }
+
+    .customer-types {
+      text-align: center;
+      padding-bottom: 30px;
+
+      label {
+        text-transform: uppercase;
+      }
+    }
+
+    #new_customer_fields {
+      display: block;
+      overflow: hidden;
+      transition: .7s;
+      min-height: 400px;
+      max-height: 700px;
+
+      &.hide {
+        min-height: 0;
+        max-height: 0;
+      }
+    }
   }
 }
 

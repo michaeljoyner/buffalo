@@ -28,7 +28,7 @@ class OrderFormRequest extends FormRequest
             'contact_person' => 'required|max:255',
             'phone'          => 'max:255',
             'fax'            => 'max:255',
-            'email'          => 'required|email|max:255',
+            'email'          => 'required_if:customer_type,new_customer|email|max:255',
             'website'        => 'max:255',
             'referrer'       => 'max:255',
             'requirements'   => ''

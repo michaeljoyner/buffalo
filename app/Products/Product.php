@@ -15,7 +15,7 @@ class Product extends Model implements HasMediaConversions
     use SoftDeletes, Sluggable, GetsSlugFromName, UrgesForDescription, HasMediaTrait, HasModelImage;
 
     const DEFAULT_PRIMARY_IMAGE = '/images/buffalo_logo_small.png';
-    const DAYS_TO_BE_NEW = 10;
+    const DAYS_TO_BE_NEW = 90;
 
     protected $table = 'products';
 
@@ -31,7 +31,7 @@ class Product extends Model implements HasMediaConversions
 
     protected $casts = ['available' => 'boolean', 'is_promoted' => 'boolean', 'marked_new' => 'boolean'];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'new_until', 'promoted_until'];
 
     public function registerMediaConversions()
     {
@@ -116,14 +116,24 @@ class Product extends Model implements HasMediaConversions
         })->toArray());
     }
 
-    public function promote()
+    public function isPromoted()
     {
-        return $this->setPromotedStatus(true);
+        return !is_null($this->promoted_until) && $this->promoted_until->gte(Carbon::now());
+    }
+
+    public function promote($promote_until)
+    {
+        $this->promoted_until = $promote_until;
+        $this->save();
+        return $this->isPromoted();
     }
 
     public function demote()
     {
-        return $this->setPromotedStatus(false);
+        $this->promoted_until = null;
+        $this->save();
+
+        return $this->isPromoted();
     }
 
     protected function setPromotedStatus($shouldPromote)
@@ -169,14 +179,25 @@ class Product extends Model implements HasMediaConversions
 
     public function isNew()
     {
-        return $this->marked_new || ($this->created_at->diffInDays(Carbon::now()) < static::DAYS_TO_BE_NEW);
+        return $this->marked_new;
     }
 
     public function markAsNew($is_new)
     {
+        $is_new ? $this->touchNewUntilDate() : $this->clearNewUntilDate();
         $this->marked_new = $is_new;
         $this->save();
 
         return $this->marked_new;
+    }
+
+    protected function touchNewUntilDate()
+    {
+        $this->new_until = Carbon::now()->addDays(static::DAYS_TO_BE_NEW);
+    }
+
+    protected function clearNewUntilDate()
+    {
+        $this->new_until = null;
     }
 }

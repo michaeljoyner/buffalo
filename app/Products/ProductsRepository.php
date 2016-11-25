@@ -4,6 +4,7 @@
 namespace App\Products;
 
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 class ProductsRepository
@@ -44,8 +45,9 @@ class ProductsRepository
 
     public function featuredProducts($quantity = 8)
     {
-        return Cache::remember('products.featured', 60 * 24, function () use ($quantity) {
-            $promoted = Product::where('is_promoted', 1)->where('available', 1)->get();
+        $today = Carbon::now()->format('Y-m-d');
+        return Cache::remember('products.featured', 60, function () use ($quantity, $today) {
+            $promoted = Product::whereNotNull('promoted_until')->where('promoted_until', '>=', $today)->where('available', 1)->get();
             if ($promoted->count() < $quantity) {
                 $filler = Product::where('is_promoted', 0)->where('available', 1)
                     ->get()->shuffle()->take($quantity - $promoted->count());

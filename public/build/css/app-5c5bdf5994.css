@@ -6718,6 +6718,25 @@ body.stop-scrolling {
     max-width: 400px;
     margin: 0 auto; }
 
+.dd-checkbox-label:after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #46B977;
+  margin-left: 10px;
+  margin-right: 10px;
+  vertical-align: bottom;
+  -webkit-transition: .5s;
+  transition: .5s;
+  background: #ffffff; }
+
+.dd-labelled-checkbox {
+  display: none; }
+
+.dd-labelled-checkbox:checked + .dd-checkbox-label:after {
+  background: #46B977; }
+
 .btn.dd-btn {
   display: inline-block;
   border-radius: 0;

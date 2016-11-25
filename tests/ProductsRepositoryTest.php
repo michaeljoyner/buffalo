@@ -165,7 +165,7 @@ class ProductsRepositoryTest extends TestCase
      */
     public function a_collection_of_eight_products_will_be_returned_for_featured_products_with_as_many_as_possible_being_promoted()
     {
-        factory(Product::class, 3)->create(['is_promoted' => true]);
+        factory(Product::class, 3)->create(['is_promoted' => true, 'promoted_until' => \Carbon\Carbon::now()->addDays(30)]);
         factory(Product::class, 10)->create();
 
         $promoted = $this->repo->featuredProducts();

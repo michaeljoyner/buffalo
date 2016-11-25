@@ -53,12 +53,13 @@ class ProductsTest extends TestCase
     /**
      *@test
      */
-    public function a_product_can_be_promoted()
+    public function a_product_can_be_promoted_by_giving_a_date_to_promote_until()
     {
         $product = factory(Product::class)->create();
-        $product->promote();
+        $product->promote(\Carbon\Carbon::now()->addDays(30));
 
-        $this->assertTrue($product->is_promoted);
+        $this->assertTrue($product->isPromoted());
+        $this->assertEquals(30, \Carbon\Carbon::now()->diffInDays($product->promoted_until));
     }
 
     /**
@@ -66,10 +67,11 @@ class ProductsTest extends TestCase
      */
     public function a_product_can_be_demoted()
     {
-        $product = factory(Product::class)->create(['is_promoted' => true]);
-        $product->demote();
+        $product = factory(Product::class)->create();
+        $product->promote(\Carbon\Carbon::now()->addDays(30));
 
-        $this->assertFalse($product->is_promoted);
+        $product->demote();
+        $this->assertFalse($product->isPromoted());
     }
 
     /**
@@ -123,24 +125,37 @@ class ProductsTest extends TestCase
     /**
      *@test
      */
-    public function a_product_created_in_the_last_month_is_considered_new()
+    public function a_product_that_is_newly_created_is_not_automatically_new()
     {
         $newProduct = factory(Product::class)->create();
         $oldProduct = factory(Product::class)->create(['created_at' => \Carbon\Carbon::create(2010,2,2)]);
 
-        $this->assertTrue($newProduct->isNew());
+        $this->assertFalse($newProduct->isNew());
         $this->assertFalse($oldProduct->isNew());
     }
 
     /**
      *@test
      */
-    public function a_product_with_a_true_value_for_mark_new_is_new()
+    public function a_product_with_a_true_value_for_marked_new_is_new()
     {
         $oldProduct = factory(Product::class)->create(['created_at' => \Carbon\Carbon::create(2010,2,2)]);
         $oldProduct->marked_new = true;
 
         $this->assertTrue($oldProduct->isNew());
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_that_is_marked_new_has_a_new_until_date_set()
+    {
+        $product = factory(Product::class)->create(['marked_new' => false]);
+
+        $product->markAsNew(true);
+
+        $this->assertNotNull($product->new_until);
+        $this->assertEquals(Product::DAYS_TO_BE_NEW, \Carbon\Carbon::now()->diffInDays($product->new_until));
     }
 
     /**
@@ -158,12 +173,24 @@ class ProductsTest extends TestCase
     public function a_products_marked_new_value_can_be_toggled()
     {
         $product = factory(Product::class)->create();
-        $product->markAsNew(true);
 
+        $product->markAsNew(true);
         $this->assertTrue($product->marked_new);
 
         $product->markAsNew(false);
-
         $this->assertFalse($product->marked_new);
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_that_has_its_new_status_manually_removed_is_has_its_new_until_date_set_back_to_null()
+    {
+        $product = factory(Product::class)->create();
+        $product->markAsNew(true);
+        $this->assertNotNull($product->new_until);
+
+        $product->markAsNew(false);
+        $this->assertNull($product->new_until);
     }
 }

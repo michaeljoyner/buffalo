@@ -16,12 +16,12 @@ class ProductPromotionControllerTest extends TestCase
         $this->asLoggedInUser();
         $product = factory(Product::class)->create();
 
-        $this->post('/admin/products/' . $product->id . '/promote', ['promote' => true])
+        $this->post('/admin/products/' . $product->id . '/promote', ['promote' => true, 'promote_until' => '2017-01-01'])
             ->assertResponseOk()
             ->seeJson(['new_state' => true]);
 
-        $product = Product::find($product->id);
-        $this->assertTrue($product->is_promoted);
+        $product = $product->fresh();
+        $this->assertTrue($product->isPromoted());
     }
 
     /**
@@ -30,13 +30,13 @@ class ProductPromotionControllerTest extends TestCase
     public function a_promoted_product_can_be_demoted_by_posting_to_endpoint()
     {
         $this->asLoggedInUser();
-        $product = factory(Product::class)->create(['is_promoted' => true]);
+        $product = factory(Product::class)->create(['promoted_until' => \Carbon\Carbon::now()->addDays(30)]);
 
         $this->post('/admin/products/' . $product->id . '/promote', ['promote' => false])
             ->assertResponseOk()
             ->seeJson(['new_state' => false]);
 
-        $product = Product::find($product->id);
-        $this->assertFalse($product->is_promoted);
+        $product = $product->fresh();
+        $this->assertFalse($product->isPromoted());
     }
 }

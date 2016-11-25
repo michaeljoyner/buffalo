@@ -34,14 +34,10 @@
                                toggle-url="/admin/products/{{ $product->id }}/availability"
                                toggle-attribute="available"
                 ></toggle-switch>
-                <p class="lead">Promote this product?</p>
-                <toggle-switch identifier="2"
-                               true-label="yes"
-                               false-label="no"
-                               :initial-state="{{ $product->is_promoted ? 'true' : 'false' }}"
-                               toggle-url="/admin/products/{{ $product->id }}/promote"
-                               toggle-attribute="promote"
-                ></toggle-switch>
+                <product-promoter :initial-state="{{ $product->isPromoted() ? 'true' : 'false' }}"
+                                  product-id="{{ $product->id }}"
+                                  initial-date="{{ $product->promoted_until ? $product->promoted_until->format('Y-m-d') : null}}"
+                ></product-promoter>
                 <p class="lead">Is this product new?</p>
                 <toggle-switch identifier="3"
                                true-label="yes"
