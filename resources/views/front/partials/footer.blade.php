@@ -7,6 +7,7 @@
         <a href="/news">insights</a>
         <a href="/categories">products</a>
         <a href="/home">home</a>
+        <a href="/faqs">faqs</a>
     </div>
     <div class="social-footer">
         <div>

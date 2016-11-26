@@ -70,11 +70,11 @@ class Product extends Model implements HasMediaConversions
     {
         $modelImg = $this->modelImage($conversion);
 
-        if($modelImg) {
+        if ($modelImg) {
             return $modelImg;
         }
 
-        if(file_exists(public_path($this->getOriginalImage())) && $this->original_image) {
+        if (file_exists(public_path($this->getOriginalImage())) && $this->original_image) {
             return $this->getOriginalImage();
         }
 
@@ -85,6 +85,7 @@ class Product extends Model implements HasMediaConversions
     {
         $parts = explode('/', $this->original_image);
         $filename = array_pop($parts);
+
         return '/images/products/' . $this->category->slug . '/' . $filename;
     }
 
@@ -111,9 +112,9 @@ class Product extends Model implements HasMediaConversions
     public function allImageUrls($conversion = '')
     {
         return collect([])->push($this->imageSrc($conversion))
-            ->merge($this->galleryImages()->map(function($image) use ($conversion) {
-            return $image->getUrl($conversion);
-        })->toArray());
+            ->merge($this->galleryImages()->map(function ($image) use ($conversion) {
+                return $image->getUrl($conversion);
+            })->toArray());
     }
 
     public function isPromoted()
@@ -125,6 +126,7 @@ class Product extends Model implements HasMediaConversions
     {
         $this->promoted_until = $promote_until;
         $this->save();
+
         return $this->isPromoted();
     }
 
@@ -199,5 +201,39 @@ class Product extends Model implements HasMediaConversions
     protected function clearNewUntilDate()
     {
         $this->new_until = null;
+    }
+
+    public function note()
+    {
+        return $this->hasOne(ProductNote::class);
+    }
+
+    public function setNote($content, $user)
+    {
+        if ($this->note && ($this->note->content !== $content)) {
+            $this->note->update([
+                'user_id' => $user->id,
+                'content' => $content
+            ]);
+
+            return $this->note;
+        }
+
+        return $this->note ?? $this->note()->create([
+            'user_id' => $user->id,
+            'content' => $content
+        ]);
+    }
+
+    public function clearNote()
+    {
+        if ($this->note) {
+            $this->note->delete();
+        }
+    }
+
+    public function getNote()
+    {
+        return $this->note ? $this->note->content : '';
     }
 }

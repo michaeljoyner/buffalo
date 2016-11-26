@@ -51,6 +51,18 @@ $factory->define(App\Products\Product::class, function (Faker\Generator $faker) 
     ];
 });
 
+$factory->define(App\Products\ProductNote::class, function (Faker\Generator $faker) {
+    return [
+        'product_id'      => function () {
+            return factory(\App\Products\Product::class)->create()->id;
+        },
+        'user_id'   => function () {
+            return factory(\App\User::class)->create()->id;
+        },
+        'content'      => $faker->paragraph
+    ];
+});
+
 $factory->define(App\Products\Category::class, function (Faker\Generator $faker) {
     return [
         'name'        => $faker->words(4, true),

@@ -65,6 +65,15 @@
             </div>
         </div>
     </section>
+    <section class="product-notes">
+        <h3>Product Notes</h3>
+        @if(!$product->note)
+            <p class="lead">This product has no notes yet.</p>
+        @else
+            <small>Last updated by {{ $product->note->author->name }} {{ $product->note->updated_at->diffForHumans() }}</small>
+            <p class="lead">{!! nl2br($product->note->content) !!}</p>
+        @endif
+    </section>
 
     @include('admin.partials.deletemodal')
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\FlashMessaging\Flasher;
+use App\Http\Requests\ProductUpdateForm;
 use App\Products\Product;
 use Illuminate\Http\Request;
 
@@ -32,16 +33,11 @@ class ProductsController extends Controller
         return view('admin.products.edit')->with(compact('product'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(ProductUpdateForm $request, Product $product)
     {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'product_code' => 'required|unique:products,product_code,'.$product->id,
-            'description' => '',
-            'writeup' => ''
-        ]);
-
         $product->update($request->only(['name', 'description', 'product_code', 'writeup']));
+
+        $request->hasNote() ? $product->setNote($request->product_note, $request->user()) : $product->clearNote();
 
         $this->flasher->success('Updated.', 'Your changes have been saved.');
 

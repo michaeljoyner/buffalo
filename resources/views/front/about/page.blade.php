@@ -20,31 +20,33 @@
     <section class="page-section">
         <h1 class="h1 section-title">About</h1>
         <p class="strong-lead padded-bottom">
-            Buffalo has over 25 years of experience creating a variety of quality and professional tools. Our timely and
-            efficient services have helped build stable, long-lasting relationships with our customers all over the
-            world. We are dedicated to providing our clients with competitive prices for exceptional products.
+            Huang Buffalo sources, creates and delivers products to brands and retailers worldwide for over 26 years.
         </p>
-        <p class="body-text is-contained">Huang Buffalo Co, LTD. was established in 1990. Our company is specialized in
-            exporting professional hardware, DIY hand tools and OEM products to Europe, America and Asia area for more
-            than 20 years. We are proud of our various products range, competitive prices and high quality products.
-            Huang Buffalo Co., Ltd has confidence and professional experiences in the field. We have excellent
-            reputation for high quality products and good services to built trust with all our customers.</p>
+        <p class="body-text is-contained">Founded in 1990, Huang Buffalo Co., Ltd is a service-oriented
+            manufacturing associate company specialized in providing professional hardware, auto tools, garden tools and
+            OEM products to customers. The company has been built on creating a variety of quality and professional
+            tools. This makes us become more competitive by satisfying customers.
+        </p>
+        <p class="body-text is-contained">With over 26 years’ experience, Huang Buffalo serves customers with an
+            extensive range of products as well as timely and efficient services. Huang Buffalo builds a strong and
+            stable long-term relationship with customers around the world. The company will always be dedicated to
+            providing its
+            clients flawless and profitable transactions as well as competitive products.</p>
         <img class="socket-piece" src="/images/assets/socket_piece_web.png" alt="Buffalo tools socket piece">
-        <p class="body-text is-contained">
-            With our unique character of service to bring full satisfaction to our clients. TO guarantee that we can
-            render superior quality and competitive goods to customers by strictly demand quality control, after service
-            and punctual delivery for every shipment. Huang Buffalo Co., Ltd. aims at your profitable choice to
-            strengthen your market share.</p>
+        <h2 class="h1 text-centered section-title">Why Choose Huang Buffalo</h2>
+        <p class="strong-text is-contained no-margin-bottom">Our Experience</p>
+        <p class="body-text is-contained no-margin-top">With over 26 years experience in the hand tool industry, Huang Buffalo has a talented
+            team of skilled professionals for all kinds of hardware. We consistently deliver a wide range of products
+            to our customers, as well as work with them to best meet their needs.</p>
+        <p class="strong-text is-contained no-margin-bottom">Excellent Quality Control</p>
+        <p class="body-text is-contained no-margin-top">We conduct audits to confirm that the quality remains stable as well as make
+            sure the product is identical to the sample you approved. We will also provide a pre-shipment inspection
+            report if required. Huang Buffalo takes full responsibility for every product we sell.</p>
         <img class="bit-piece" src="/images/assets/bit_piece_web.png" alt="Buffalo tools bit piece">
-        <p class="body-text is-contained">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur
-            tempus orci, vitae semper sapien hendrerit pellentesque. Donec ut dignissim lacus. Ut at ligula consequat,
-            faucibus tortor eget, luctus mauris. Duis nulla purus, pharetra ac consequat sit amet, scelerisque eu nunc.
-            Duis condimentum sodales lobortis. Nunc finibus, arcu in scelerisque iaculis, neque tellus sodales diam, nec
-            suscipit libero leo et tortor. Phasellus non consectetur orci, quis semper diam.</p>
     </section>
     <section class="customers">
         <h2 class="h1 text-centered section-title">Our Customers</h2>
-        <p class="strong-lead">We have exported our products to over 26 countries since 1990.</p>
+        <p class="body-text is-contained">Huang Buffalo has been exporting products to over 26 countries since 1990, putting our products in six continents across the globe. We place an emphasis on building long-term relationships with our customers. We are proud to have worked with many of our clients for over 10 years.</p>
         <div class="map-container">
             @include('svg.buffalo_map_1')
         </div>

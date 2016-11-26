@@ -1,0 +1,33 @@
+.faqs-page-banner {
+  background-image: url(../../images/assets/about_banner.jpeg);
+  background-size: cover;
+}
+
+.faq-question {
+  margin: 30px auto;
+  .question {
+    font-family: $strong_type;
+    font-size: 1.25em;
+    margin-bottom: 0;
+  }
+
+  .answer {
+    font-family: $body_font;
+    margin-top: 5px;
+  }
+
+  ul {
+    padding: 0;
+    margin-top: 5px;
+    list-style-type: none;
+  }
+
+  .process-diagram {
+    max-width: 100%;
+    display: block;
+    margin: 1em auto;
+    border: 1px solid $brand_dark;
+
+    @include respond-to(phone) { max-width: 95%; }
+  }
+}

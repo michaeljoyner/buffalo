@@ -16,7 +16,7 @@
 @section('content')
     <section class="page-banner news-page-banner">
         {{--<h1 class="h1 text-white banner-quote to-left">Explore insights about Huang Buffalo and the tools industry.</h1>--}}
-        <h1 class="h1 text-white banner-quote to-left">Industry Insights.</h1>
+        <h1 class="h1 text-black banner-quote to-left">Industry Insights.</h1>
     </section>
     <section class="page-section">
         <h1 class="h1 section-title">Insights</h1>

@@ -51,4 +51,9 @@ class PagesController extends Controller
     {
         return view('front.thanks.page');
     }
+
+    public function faqs()
+    {
+        return view('front.faqs.page');
+    }
 }

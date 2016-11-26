@@ -37,6 +37,11 @@
   //text-transform: uppercase;
 }
 
+.strong-text {
+  font-family: $strong_type;
+  font-size: 1.25em;
+}
+
 .body-text {
   font-family: $body_font;
   line-height: 1.5;
@@ -68,5 +73,14 @@
 
 .is-contained {
   max-width: 800px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+
+.no-margin-top {
+  margin-top: 0;
 }

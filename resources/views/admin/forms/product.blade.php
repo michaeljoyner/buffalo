@@ -16,6 +16,10 @@
     {!! Form::textarea('writeup', null, ['class' => 'form-control', 'id' => 'writeup']) !!}
 </div>
 <div class="form-group">
+    <label for="product_note">Notes (private): </label>
+    <textarea name="product_note" class="form-control taller">{{ old('product_note') ?? $product->getNote() }}</textarea>
+</div>
+<div class="form-group">
     <button type="submit" class="btn dd-btn">Save Changes</button>
 </div>
 {!! Form::close() !!}

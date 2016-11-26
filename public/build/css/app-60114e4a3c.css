@@ -6713,6 +6713,8 @@ body.stop-scrolling {
   .dd-form textarea {
     resize: none;
     max-height: 120px; }
+  .dd-form textarea.taller {
+    min-height: 300px; }
   .dd-form.form-narrow {
     display: block;
     max-width: 400px;
