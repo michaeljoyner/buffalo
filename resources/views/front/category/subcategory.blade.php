@@ -14,6 +14,7 @@
 @endsection
 
 @section('content')
+    <div class="category-page-banner-container"></div>
     <div class="product-breadcrumbs">
         <a href="/" class="breadcrumb">
             @include('svgicons.home')
@@ -24,19 +25,23 @@
     </div>
     <section class="page-section">
         <h1 class="h1 section-title">{{ $subcategory->name }}</h1>
-        <p class="page-position">Page <span>{{ $products->currentPage() }}</span> of <span>{{ $products->lastPage() }}</span></p>
     </section>
     <section class="category-listing-outer">
         <div class="category-menu side-menu side-panel">
+            <p class="body-text no-margin-top">Browse by Category</p>
             @include('front.category.mobilemenu', ['mobileCategoryItems' => $subcategory->productGroups, 'slugBase' => '/productgroups/'])
             @include('front.category.sidemenu')
         </div>
-        <div class="category-index main-panel">
-            @foreach($products as $product)
-                @include('front.category.productcard')
-            @endforeach
+        <div class="main-panel">
+            <p class="no-margin-top body-text">Browse all {{ $subcategory->name }} Products</p>
+            <div class="category-index">
+                @foreach($products as $product)
+                    @include('front.category.productcard')
+                @endforeach
+            </div>
         </div>
     </section>
+    <p class="page-position text-center">Page <span>{{ $products->currentPage() }}</span> of <span>{{ $products->lastPage() }}</span></p>
     @include('front.partials.paginator', ['paginator' => $products])
     @include('front.partials.footer')
 @endsection

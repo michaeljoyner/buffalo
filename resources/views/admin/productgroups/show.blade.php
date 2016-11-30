@@ -20,11 +20,15 @@
     </section>
     <section class="category-show row">
         <div class="col-md-12">
-            <nav class="category-breadcrumbs">
-                <a class="crumb" href="/admin/categories/{{ $productGroup->subcategory->category->id }}">{{ $productGroup->subcategory->category->name }}</a>
-                <a class="crumb" href="/admin/subcategories/{{ $productGroup->subcategory->id }}">{{ $productGroup->subcategory->name }}</a>
-                <span class="crumb">{{ $productGroup->name }}</span>
-            </nav>
+            <div class="product-breadcrumbs">
+                <a href="/admin/products/search" class="breadcrumb">
+                    @include('svgicons.home')
+                </a>
+                <a href="/admin/categories" class="breadcrumb">Categories</a>
+                <a href="/admin/categories/{{ $productGroup->subcategory->category->id }}" class="breadcrumb">{{ $productGroup->subcategory->category->name }}</a>
+                <a href="/admin/subcategories/{{ $productGroup->subcategory->id }}" class="breadcrumb">{{ $productGroup->subcategory->name }}</a>
+                <span class="breadcrumb">{{ $productGroup->name }}</span>
+            </div>
             <p class="lead"><span class="shout-out">{{ $productGroup->products->count() }}</span> products in this product group.</p>
             <p class="lead">{{ $productGroup->description }}</p>
 

@@ -24,6 +24,7 @@ Vue.component('gallery-show', require('./components/Galleryshow.vue'));
 Vue.component('sharing-summary', require('./components/Sharingsummary.vue'));
 Vue.component('category-mover', require('./components/Categorymover.vue'));
 Vue.component('product-promoter', require('./components/Productpromoter.vue'));
+Vue.component('new-until-switch', require('./components/Newuntilswitch.vue'));
 
 window.Vue = Vue;
 

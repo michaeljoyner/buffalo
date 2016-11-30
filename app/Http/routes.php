@@ -113,6 +113,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::post('categories/{category}/image', 'CategoryImageController@store');
 
+        Route::get('categories/{category}/banner/image/edit', 'CategoryBannerImageController@edit');
+        Route::post('categories/{category}/banner/image', 'CategoryBannerImageController@store');
+
         Route::post('categories/{category}/subcategories', 'SubcategoriesController@store');
 
         Route::get('subcategories/{subcategory}', 'SubcategoriesController@show');

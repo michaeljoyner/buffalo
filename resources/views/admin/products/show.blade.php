@@ -16,36 +16,57 @@
         </div>
     </section>
     <section class="product-show-section">
-        <p class="lead">{{ $product->description }}</p>
+        {{--<div class="product-breadcrumbs">--}}
+            {{--<a href="/admin/categories" class="breadcrumb">--}}
+                {{--@include('svgicons.home')--}}
+            {{--</a>--}}
+            {{--<a href="/admin/categories/{{ $product->category->id }}" class="breadcrumb">{{ $product->category->name }}</a>--}}
+            {{--@if($product->subcategory)--}}
+            {{--<a href="/admin/subcategories/{{ $product->subcategory->id }}" class="breadcrumb">{{ $product->subcategory->name }}</a>--}}
+            {{--@endif--}}
+            {{--@if($product->productGroup)--}}
+                {{--<a href="/admin/productgroups/{{ $product->productGroup->id }}" class="breadcrumb">{{ $product->productGroup->name }}</a>--}}
+            {{--@endif--}}
+            {{--<span class="breadcrumb">{{ $product->name }}</span>--}}
+        {{--</div>--}}
+        <p class="lead"><strong>Category: </strong>{{ $product->category->name }}</p>
+        @if($product->subcategory_id)
+        <p class="lead"><strong>Subcategory: </strong>{{ $product->subcategory->name }}</p>
+        @endif
+        @if($product->product_group_id)
+            <p class="lead"><strong>Product Group: </strong>{{ $product->productGroup->name }}</p>
+        @endif
+        <p class="lead"><strong>Description: </strong>{{ $product->description }}</p>
+    </section>
+    <section class="row product-options">
+        <div class="col-md-4 product-option-box">
+            <p class="lead">Is this product available?</p>
+            <toggle-switch identifier="1"
+                           true-label="yes"
+                           false-label="no"
+                           :initial-state="{{ $product->available ? 'true' : 'false' }}"
+                           toggle-url="/admin/products/{{ $product->id }}/availability"
+                           toggle-attribute="available"
+            ></toggle-switch>
+        </div>
+        <div class="col-md-4 product-option-box">
+            <product-promoter :initial-state="{{ $product->isPromoted() ? 'true' : 'false' }}"
+                              product-id="{{ $product->id }}"
+                              initial-date="{{ $product->promoted_until ? $product->promoted_until->format('Y-m-d') : null}}"
+            ></product-promoter>
+        </div>
+        <div class="col-md-4 product-option-box">
+            <new-until-switch :initially-new="{{ $product->isNew() ? 'true' : 'false' }}"
+                              :initial-days="{{ $product->daysStillNew() }}"
+                              product-id="{{ $product->id }}"
+            ></new-until-switch>
+        </div>
     </section>
     <section class="product-show row">
         <div class="col-md-7">
             <h3>Product Writeup:</h3>
             <div class="writeup">
                 {!! $product->writeup !!}
-            </div>
-            <div class="availability">
-                <h3>Product Options</h3>
-                <p class="lead">Is this product available?</p>
-                <toggle-switch identifier="1"
-                               true-label="yes"
-                               false-label="no"
-                               :initial-state="{{ $product->available ? 'true' : 'false' }}"
-                               toggle-url="/admin/products/{{ $product->id }}/availability"
-                               toggle-attribute="available"
-                ></toggle-switch>
-                <product-promoter :initial-state="{{ $product->isPromoted() ? 'true' : 'false' }}"
-                                  product-id="{{ $product->id }}"
-                                  initial-date="{{ $product->promoted_until ? $product->promoted_until->format('Y-m-d') : null}}"
-                ></product-promoter>
-                <p class="lead">Is this product new?</p>
-                <toggle-switch identifier="3"
-                               true-label="yes"
-                               false-label="no"
-                               :initial-state="{{ $product->isNew() ? 'true' : 'false' }}"
-                               toggle-url="/admin/products/{{ $product->id }}/markednew"
-                               toggle-attribute="new"
-                ></toggle-switch>
             </div>
         </div>
         <div class="col-md-5">

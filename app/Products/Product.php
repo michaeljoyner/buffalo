@@ -184,23 +184,36 @@ class Product extends Model implements HasMediaConversions
         return $this->marked_new;
     }
 
-    public function markAsNew($is_new)
+    public function markAsNew($is_new, $days_to_be_new = null)
     {
-        $is_new ? $this->touchNewUntilDate() : $this->clearNewUntilDate();
+        if(is_null($days_to_be_new)) {
+            $days_to_be_new = static::DAYS_TO_BE_NEW;
+        }
+
+        $is_new ? $this->touchNewUntilDate($days_to_be_new) : $this->clearNewUntilDate();
         $this->marked_new = $is_new;
         $this->save();
 
         return $this->marked_new;
     }
 
-    protected function touchNewUntilDate()
+    protected function touchNewUntilDate($days_to_be_new)
     {
-        $this->new_until = Carbon::now()->addDays(static::DAYS_TO_BE_NEW);
+        $this->new_until = Carbon::now()->addDays($days_to_be_new);
     }
 
     protected function clearNewUntilDate()
     {
         $this->new_until = null;
+    }
+
+    public function daysStillNew()
+    {
+        if($this->new_until) {
+            return $this->new_until->diffInDays(Carbon::now());
+        }
+
+        return null;
     }
 
     public function note()

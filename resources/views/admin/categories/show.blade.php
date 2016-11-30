@@ -9,6 +9,7 @@
         <h1 class="pull-left">{{ $category->name }}</h1>
         <div class="header-actions pull-right">
             <a href="/admin/categories/{{ $category->id }}/edit" class="btn dd-btn btn-light">Edit</a>
+            <a href="/admin/categories/{{ $category->id }}/banner/image/edit" class="btn dd-btn btn-light">Set Banner</a>
             <button type="button" class="btn dd-btn btn-dark" data-toggle="modal" data-target="#create-product-modal">
                 Add Product
             </button>

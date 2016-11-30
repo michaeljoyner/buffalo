@@ -32,7 +32,7 @@ class CategoriesController extends Controller
     public function show(Category $category)
     {
         $category->load(['subcategories.productGroups']);
-        $products = $category->products()->paginate(18);
+        $products = $category->products()->orderBy('new_until', 'desc')->paginate(18);
         return view('admin.categories.show')->with(compact('category', 'products'));
     }
 

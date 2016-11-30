@@ -39,6 +39,8 @@ $font-family-sans-serif: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
 @import "admin/partials/gallery";
 @import "admin/partials/sharingsummary";
 @import "admin/partials/categorymover";
+@import "front/partials/productbreadcrumbs";
+@import "front/partials/svgicons";
 
 a, a:visited, a:hover, a:focus {
   color: inherit;

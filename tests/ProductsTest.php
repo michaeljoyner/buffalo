@@ -193,4 +193,42 @@ class ProductsTest extends TestCase
         $product->markAsNew(false);
         $this->assertNull($product->new_until);
     }
+
+    /**
+     *@test
+     */
+    public function a_product_can_be_marked_as_new_for_a_given_number_of_days_from_now()
+    {
+        $product = factory(Product::class)->create();
+        $product->markAsNew(true, $days = 33);
+
+        $this->assertTrue($product->isNew());
+        $this->assertEquals(33, $product->new_until->diffInDays(\Carbon\Carbon::now()));
+    }
+
+    /**
+     *@test
+     */
+    public function a_new_product_with_a_new_until_date_set_can_also_have_its_new_until_date_reset_to_a_new_value()
+    {
+        $product = factory(Product::class)->create();
+        $product->markAsNew(true, $days = 33);
+        $product = $product->fresh();
+
+        $product->markAsNew(true, $days = 11);
+
+        $this->assertTrue($product->isNew());
+        $this->assertEquals(11, $product->new_until->diffInDays(\Carbon\Carbon::now()));
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_can_tell_how_many_days_it_is_new_for()
+    {
+        $product = factory(Product::class)->create();
+        $product->markAsNew(true, $days = 33);
+
+        $this->assertEquals(33, $product->daysStillNew());
+    }
 }

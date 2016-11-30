@@ -1,6 +1,7 @@
 <?php
 use App\Products\Category;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Spatie\MediaLibrary\Media;
 
 /**
  * Created by PhpStorm.
@@ -10,7 +11,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class CategoriesTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, TestsImageUploads;
 
     /**
      * @test
@@ -103,5 +104,49 @@ class CategoriesTest extends TestCase
         $this->assertSoftDeleted($prod1);
         $this->assertSoftDeleted($prod2);
         $this->assertSoftDeleted($prod3);
+    }
+
+    /**
+     *@test
+     */
+    public function a_banner_image_can_be_set_for_a_category_image()
+    {
+        $category = factory(Category::class)->create();
+
+        $category->setBannerImage($this->prepareFileUpload('tests/testpic1.png'));
+
+        $category = $category->fresh();
+
+        $this->assertCount(1, $category->bannerImage->getMedia());
+
+        $category->bannerImage->clearMediaCollection();
+    }
+
+    /**
+     *@test
+     */
+    public function a_banner_image_can_be_reset()
+    {
+        $category = factory(Category::class)->create();
+        $category->setBannerImage($this->prepareFileUpload('tests/testpic1.png'));
+        $category = $category->fresh();
+        $orinigalBannerId = $category->bannerImage->getMedia()->first()->id;
+
+        $category->setBannerImage($this->prepareFileUpload('tests/testpic2.png'));
+        $category = $category->fresh();
+        $this->assertCount(1, $category->bannerImage->getMedia());
+        $this->assertNotEquals($orinigalBannerId, $category->bannerImage->getMedia()->first()->id);
+
+        $category->bannerImage->clearMediaCollection();
+    }
+
+    /**
+     *@test
+     */
+    public function a_category_has_a_default_banner_src()
+    {
+        $category = factory(Category::class)->create();
+
+        $this->assertEquals(Category::DEFAULT_BANNER_SRC, $category->bannerSrc());
     }
 }

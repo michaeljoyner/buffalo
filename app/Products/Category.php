@@ -13,6 +13,8 @@ class Category extends Model implements HasMediaConversions
 {
     use SoftDeletes, Sluggable, GetsSlugFromName, HasMediaTrait, UrgesForDescription, HasModelImage;
 
+    const DEFAULT_BANNER_SRC = '/images/assets/leaves.jpg';
+
     protected $table = 'categories';
 
     protected $fillable = [
@@ -74,5 +76,27 @@ class Category extends Model implements HasMediaConversions
         return $this->subcategories()->create($attributes);
     }
 
+    public function bannerImage()
+    {
+        return $this->hasOne(CategoryBanner::class);
+    }
 
+    public function setBannerImage($file)
+    {
+        $banner = $this->getBanner();
+
+        return $banner->setImage($file);
+    }
+
+    public function bannerSrc($conversion = '')
+    {
+        $modelImg =  $this->getBanner()->modelImage($conversion);
+
+        return $modelImg ? $modelImg : static::DEFAULT_BANNER_SRC;
+    }
+
+    protected function getBanner()
+    {
+        return $this->bannerImage()->firstOrCreate([]);
+    }
 }

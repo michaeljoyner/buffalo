@@ -22,4 +22,4 @@
         <p class="body-text text-white">Huang Buffalo, an ISO 9001-2008 certified company, carries out systematic inspections to ensure consistent quality. We take full responsibility for every product we sell.</p>
     </div>
 </div>
-<a href="/services" class="btn page-section-cta on-dark">more info</a>
+<a href="/services" class="btn page-section-cta on-dark">Our Services</a>

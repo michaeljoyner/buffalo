@@ -56,11 +56,12 @@
                 <label for="contact_person">Contact Person: </label>
                 {!! Form::text('contact_person', null, ['class' => "form-control", 'required' => true]) !!}
             </div>
+            <div class="form-group">
+                <label for="email">Email: </label>
+                {!! Form::email('email', null, ['class' => "form-control"]) !!}
+            </div>
             <div id="new_customer_fields">
-                <div class="form-group">
-                    <label for="email">Email: </label>
-                    {!! Form::email('email', null, ['class' => "form-control"]) !!}
-                </div>
+
                 <div class="form-group">
                     <label for="phone">Phone: </label>
                     {!! Form::text('phone', null, ['class' => "form-control"]) !!}

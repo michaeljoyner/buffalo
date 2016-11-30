@@ -26,7 +26,7 @@ class ProductGroupsController extends Controller
     public function show(ProductGroup $productGroup)
     {
         $productGroup->load(['subcategory', 'products']);
-        $products = $productGroup->products()->paginate(18);
+        $products = $productGroup->products()->orderBy('new_until', 'desc')->paginate(18);
 
         return view('admin.productgroups.show')->with(compact('productGroup', 'products'));
     }

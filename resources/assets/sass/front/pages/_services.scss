@@ -5,16 +5,61 @@
 }
 
 .services-container {
-  width: 95%;
-  max-width: 960px;
-  margin: 50px auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding-top: 50px;
+  width: 100%;
+  margin-bottom: -70px;
+
+
+  .service-row {
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 400px;
+
+    .service-image-container {
+      width: 40%;
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 1;
+      background: indianred;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      @include respond-to(phone) {
+        display: none;}
+    }
+
+    .service-text-block {
+      width: 60%;
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      @include respond-to(phone) {width: 95%;}
+    }
+
+    &.sourcing {
+
+    }
+
+    &.customisation {
+
+    }
+
+    &.logistics {
+
+      .service-image-container {
+        background: url(../../images/assets/logistics.jpg);
+        background-position-x: 25%;
+      }
+    }
+
+    &.quality-assurance {
+
+    }
+  }
 
   .service-writeup {
     max-width: 100%;
+    width: 500px;
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: 100%;
@@ -22,7 +67,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 80px;
+    padding: 50px 0;
+    margin: 0 auto;
+
 
     @include respond-to(phone) {max-width: 100%; flex-basis: 100%;}
 

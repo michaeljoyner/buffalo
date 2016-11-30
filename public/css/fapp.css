@@ -2402,10 +2402,12 @@ html {
   .category-listing-outer .side-panel {
     padding-left: 15px;
     flex-basis: 300px;
-    width: 300px;
+    width: 260px;
+    margin-right: 40px;
     -webkit-box-flex: 0;
     flex-grow: 0;
-    flex-shrink: 0; }
+    flex-shrink: 0;
+    border-right: 2px solid #a9b0a9; }
     @media only screen and (max-width: 719px) {
       .category-listing-outer .side-panel {
         flex-basis: 100%;
@@ -2479,6 +2481,14 @@ html {
   color: #46B977; }
   .page-position span {
     color: #2B2F2B; }
+
+.category-page-banner-container {
+  width: 100%;
+  height: 16.667vw;
+  background: url(../../images/assets/tree_leaves.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 33%; }
 
 .product-page-container {
   max-width: 960px;
@@ -2923,16 +2933,40 @@ html {
   background-position: center; }
 
 .services-container {
-  width: 95%;
-  max-width: 960px;
-  margin: 50px auto;
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding-top: 50px; }
+  width: 100%;
+  margin-bottom: -70px; }
+  .services-container .service-row {
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 400px; }
+    .services-container .service-row .service-image-container {
+      width: 40%;
+      flex-basis: auto;
+      -webkit-box-flex: 0;
+      flex-grow: 0;
+      flex-shrink: 1;
+      background: indianred;
+      background-size: cover;
+      background-repeat: no-repeat; }
+      @media only screen and (max-width: 719px) {
+        .services-container .service-row .service-image-container {
+          display: none; } }
+    .services-container .service-row .service-text-block {
+      width: 60%;
+      flex-basis: auto;
+      -webkit-box-flex: 0;
+      flex-grow: 0;
+      flex-shrink: 0; }
+      @media only screen and (max-width: 719px) {
+        .services-container .service-row .service-text-block {
+          width: 95%; } }
+    .services-container .service-row.logistics .service-image-container {
+      background: url(../../images/assets/logistics.jpg);
+      background-position-x: 25%; }
   .services-container .service-writeup {
     max-width: 100%;
+    width: 500px;
     -webkit-box-flex: 0;
     flex-grow: 0;
     flex-shrink: 1;
@@ -2946,7 +2980,8 @@ html {
     justify-content: flex-start;
     -webkit-box-align: center;
     align-items: center;
-    margin-bottom: 80px; }
+    padding: 50px 0;
+    margin: 0 auto; }
     @media only screen and (max-width: 719px) {
       .services-container .service-writeup {
         max-width: 100%;
@@ -3024,8 +3059,8 @@ img.socket-piece {
     color: #ffffff; }
 
 .contact-section {
-  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../images/assets/footer_pl.png);
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../images/assets/footer_pl.png);
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../../images/assets/footer_banner.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../../images/assets/footer_banner.jpg);
   background-size: cover; }
 
 .contact-section {
