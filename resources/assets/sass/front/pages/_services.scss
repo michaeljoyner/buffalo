@@ -32,16 +32,27 @@
       flex-basis: auto;
       flex-grow: 0;
       flex-shrink: 0;
+      padding: 60px 0;
 
       @include respond-to(phone) {width: 95%;}
     }
 
     &.sourcing {
-
+      .service-image-container {
+        background: url(../../images/assets/services_sourcing.jpg);
+        background-position-x: 62%;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
     }
 
-    &.customisation {
-
+    &.customization {
+      .service-image-container {
+        background: url(../../images/assets/services_custom.jpg);
+        background-position-x: 25%;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
     }
 
     &.logistics {
@@ -49,11 +60,18 @@
       .service-image-container {
         background: url(../../images/assets/logistics.jpg);
         background-position-x: 25%;
+        background-size: cover;
+        background-repeat: no-repeat;
       }
     }
 
     &.quality-assurance {
-
+      .service-image-container {
+        background: url(../../images/assets/services_qa.jpg);
+        background-position-x: 75%;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
     }
   }
 

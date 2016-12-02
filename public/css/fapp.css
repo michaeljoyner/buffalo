@@ -1044,7 +1044,7 @@ html {
   line-height: 1.5; }
 
 .narrow-text {
-  max-width: 450px; }
+  max-width: 370px; }
 
 .text-white {
   color: #ffffff; }
@@ -1453,7 +1453,7 @@ html {
 .btn.page-section-cta {
   max-width: 90%;
   width: 270px;
-  margin: 20px auto;
+  margin: 40px auto 20px;
   display: block;
   text-align: center;
   color: #46B977;
@@ -2204,10 +2204,7 @@ html {
   margin: 0 auto; }
   .about-section .about-image img {
     width: 80%;
-    margin: 0 auto;
-    display: block;
-    -webkit-transform: scale(-1, 1);
-    transform: scale(-1, 1); }
+    display: block; }
   @media only screen and (max-width: 719px) {
     .about-section .about-image {
       display: none; } }
@@ -2957,13 +2954,31 @@ html {
       flex-basis: auto;
       -webkit-box-flex: 0;
       flex-grow: 0;
-      flex-shrink: 0; }
+      flex-shrink: 0;
+      padding: 60px 0; }
       @media only screen and (max-width: 719px) {
         .services-container .service-row .service-text-block {
           width: 95%; } }
+    .services-container .service-row.sourcing .service-image-container {
+      background: url(../../images/assets/services_sourcing.jpg);
+      background-position-x: 62%;
+      background-size: cover;
+      background-repeat: no-repeat; }
+    .services-container .service-row.customization .service-image-container {
+      background: url(../../images/assets/services_custom.jpg);
+      background-position-x: 25%;
+      background-size: cover;
+      background-repeat: no-repeat; }
     .services-container .service-row.logistics .service-image-container {
       background: url(../../images/assets/logistics.jpg);
-      background-position-x: 25%; }
+      background-position-x: 25%;
+      background-size: cover;
+      background-repeat: no-repeat; }
+    .services-container .service-row.quality-assurance .service-image-container {
+      background: url(../../images/assets/services_qa.jpg);
+      background-position-x: 75%;
+      background-size: cover;
+      background-repeat: no-repeat; }
   .services-container .service-writeup {
     max-width: 100%;
     width: 500px;
@@ -3047,7 +3062,7 @@ img.socket-piece {
   max-width: calc(100% - 10px); }
 
 .contact-page-banner {
-  background-image: url(../../images/assets/iStock_connect-banner_web_2.jpg);
+  background-image: url(../../images/assets/connector4.png);
   background-size: cover; }
 
 .contact-section.full-contact-page-section {

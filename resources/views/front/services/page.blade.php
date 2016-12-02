@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <div class="service-row">
+        <div class="service-row quality-assurance">
 
             <div class="service-text-block">
                 <div class="service-writeup">
@@ -109,7 +109,7 @@
                         complete until we receive your final approval.</p>
                 </div>
             </div>
-            <div class="service-image-container quality-assurance">
+            <div class="service-image-container">
 
             </div>
         </div>

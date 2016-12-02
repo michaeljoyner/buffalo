@@ -16,26 +16,20 @@
         </div>
     </section>
     <section class="product-show-section">
-        {{--<div class="product-breadcrumbs">--}}
-            {{--<a href="/admin/categories" class="breadcrumb">--}}
-                {{--@include('svgicons.home')--}}
-            {{--</a>--}}
-            {{--<a href="/admin/categories/{{ $product->category->id }}" class="breadcrumb">{{ $product->category->name }}</a>--}}
-            {{--@if($product->subcategory)--}}
-            {{--<a href="/admin/subcategories/{{ $product->subcategory->id }}" class="breadcrumb">{{ $product->subcategory->name }}</a>--}}
-            {{--@endif--}}
-            {{--@if($product->productGroup)--}}
-                {{--<a href="/admin/productgroups/{{ $product->productGroup->id }}" class="breadcrumb">{{ $product->productGroup->name }}</a>--}}
-            {{--@endif--}}
-            {{--<span class="breadcrumb">{{ $product->name }}</span>--}}
-        {{--</div>--}}
-        <p class="lead"><strong>Category: </strong>{{ $product->category->name }}</p>
-        @if($product->subcategory_id)
-        <p class="lead"><strong>Subcategory: </strong>{{ $product->subcategory->name }}</p>
-        @endif
-        @if($product->product_group_id)
-            <p class="lead"><strong>Product Group: </strong>{{ $product->productGroup->name }}</p>
-        @endif
+        <div class="product-breadcrumbs">
+            <a href="/admin/categories" class="breadcrumb">
+                @include('svgicons.home')
+            </a>
+            <a href="/admin/categories/{{ $product->category->id }}" class="breadcrumb">{{ $product->category->name }}</a>
+            @if($product->subcategory)
+            <a href="/admin/subcategories/{{ $product->subcategory->id }}" class="breadcrumb">{{ $product->subcategory->name }}</a>
+            @endif
+            @if($product->productGroup)
+                <a href="/admin/productgroups/{{ $product->productGroup->id }}" class="breadcrumb">{{ $product->productGroup->name }}</a>
+            @endif
+            <span class="breadcrumb">{{ $product->name }}</span>
+        </div>
+
         <p class="lead"><strong>Description: </strong>{{ $product->description }}</p>
     </section>
     <section class="row product-options">
