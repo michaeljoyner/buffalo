@@ -20,7 +20,7 @@
     </section>
     <section class="page-section">
         <h1 class="h1 section-title">Insights</h1>
-        <p class="strong-lead">Learn about our latest news, stories, and industry perspectives to help you stay ahead in this competitive industry.</p>
+        <p class="strong-lead">Latest insights to the world of Buffalo and tools.</p>
         <div class="news-article-listing">
         @foreach($articles as $article)
             <div class="article-summary">
