@@ -11,6 +11,16 @@
         'ogImage' => url($category->imageSrc()),
         'ogDescription' => $subcategory->description
     ])
+    <style>
+        .category-page-banner-container {
+            width: 100%;
+            height: 16.667vw;
+            background: url({{ $category->bannerSrc('large') }});
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: 33%;
+        }
+    </style>
 @endsection
 
 @section('content')
