@@ -24,7 +24,7 @@ class ScrewdriverBitsShiftTest extends TestCase
     public function it_shifts_the_bits_sets_to_the_correct_group()
     {
         $handTools = factory(\App\Products\Category::class)->create(['name' => 'Hand Tools']);
-        $toolKits = $handTools->addSubcategory(['name' => 'Tool Kits', 'description' => 'A sub cat']);
+        $toolKits = $handTools->addSubcategory(['name' => 'Tool kits', 'description' => 'A sub cat']);
         $oldBits = $toolKits->addProductGroup(['name' => 'Bits Sets', 'description' => 'A prg']);
 
         foreach(range(1,10) as $index) {

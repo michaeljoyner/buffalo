@@ -27,7 +27,7 @@ class CuttingToolsShiftTest extends TestCase
         $handTools = factory(Category::class)->create(['name' => 'Hand Tools']);
         $oldCutter = $handTools->addSubcategory(['name' => 'Cutter', 'description' => 'A sub cat']);
         $oldFile = $handTools->addSubcategory(['name' => 'File', 'description' => 'A sub cat']);
-        $oldKnive = $handTools->addSubcategory(['name' => 'Knive', 'description' => 'A sub cat']);
+        $oldKnive = $handTools->addSubcategory(['name' => 'Knife', 'description' => 'A sub cat']);
         $oldKniveBlades = $oldKnive->addProductGroup(['name' => 'Knife Blades', 'description' => 'A prg']);
         $oldSaw = $handTools->addSubcategory(['name' => 'Saw', 'description' => 'A sub cat']);
         $oldScissors = $handTools->addSubcategory(['name' => 'Scissors', 'description' => 'A sub cat']);
@@ -63,7 +63,7 @@ class CuttingToolsShiftTest extends TestCase
         $cutting = $handTools->subcategories()->where('name', 'Cutting & Finishing')->first();
         $newCutter = $cutting->productGroups()->where('name', 'Cutter')->first();
         $newFile = $cutting->productGroups()->where('name', 'File')->first();
-        $newKnive = $cutting->productGroups()->where('name', 'Knive')->first();
+        $newKnive = $cutting->productGroups()->where('name', 'Knife')->first();
         $newSaw = $cutting->productGroups()->where('name', 'Saw')->first();
         $newScissors = $cutting->productGroups()->where('name', 'Scissors')->first();
 

@@ -16,28 +16,28 @@ class CuttingToolsShift extends ProductsShift
 
         $oldCutter = $handTools->subcategories()->where('name', 'Cutter')->first();
         $oldFile = $handTools->subcategories()->where('name', 'File')->first();
-        $oldKnive = $handTools->subcategories()->where('name', 'Knive')->first();
+        $oldKnife = $handTools->subcategories()->where('name', 'Knife')->first();
         $oldSaw = $handTools->subcategories()->where('name', 'Saw')->first();
         $oldScissors = $handTools->subcategories()->where('name', 'Scissors')->first();
 
-        $this->guardAgainstEmpty([$oldCutter, $oldFile, $oldKnive, $oldSaw, $oldScissors]);
+        $this->guardAgainstEmpty([$oldCutter, $oldFile, $oldKnife, $oldSaw, $oldScissors]);
 
         $cutting = ProductOrganiser::getNewGroup($handTools, 'Cutting & Finishing', 'Cutting and Finishing Tools');
         $newCutter = ProductOrganiser::getNewGroup($cutting, 'Cutter', $oldCutter->description);
         $newFile = ProductOrganiser::getNewGroup($cutting, 'File', $oldFile->description);
-        $newKnive = ProductOrganiser::getNewGroup($cutting, 'Knive', $oldKnive->description);
+        $newKnife = ProductOrganiser::getNewGroup($cutting, 'Knife', $oldKnife->description);
         $newSaw = ProductOrganiser::getNewGroup($cutting, 'Saw', $oldSaw->description);
         $newScissors = ProductOrganiser::getNewGroup($cutting, 'Scissors', $oldScissors->description);
 
         ProductOrganiser::moveProducts($oldCutter, $newCutter);
         ProductOrganiser::moveProducts($oldFile, $newFile);
-        ProductOrganiser::moveProducts($oldKnive, $newKnive);
+        ProductOrganiser::moveProducts($oldKnife, $newKnife);
         ProductOrganiser::moveProducts($oldSaw, $newSaw);
         ProductOrganiser::moveProducts($oldScissors, $newScissors);
 
         ProductOrganiser::pruneEmpty($oldCutter);
         ProductOrganiser::pruneEmpty($oldFile);
-        ProductOrganiser::pruneEmpty($oldKnive);
+        ProductOrganiser::pruneEmpty($oldKnife);
         ProductOrganiser::pruneEmpty($oldSaw);
         ProductOrganiser::pruneEmpty($oldScissors);
     }

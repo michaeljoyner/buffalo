@@ -21,7 +21,7 @@ class PlumbingToolsShift extends ProductsShift
 
         $this->guardAgainstEmpty([$oldRiveter, $oldPutty, $oldTrowel]);
 
-        $plumbing = ProductOrganiser::getNewGroup($handTools, 'Plumbing & Building Tools', 'This is the plumbing and buidling tools category');
+        $plumbing = ProductOrganiser::getNewGroup($handTools, 'Plumbing & Building Tools', 'This is the plumbing and building tools category');
         $newRiveter = ProductOrganiser::getNewGroup($plumbing, 'Hand Riveter', $oldRiveter->description);
         $newPutty = ProductOrganiser::getNewGroup($plumbing, 'Putty Knife & Scraper', $oldPutty->description);
         $newTrowel = ProductOrganiser::getNewGroup($plumbing, 'Trowel', $oldTrowel->description);

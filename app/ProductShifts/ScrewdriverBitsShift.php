@@ -15,7 +15,7 @@ class ScrewdriverBitsShift extends ProductsShift
         $handTools = Category::where('name', 'Hand Tools')->first();
         $this->guardAgainstEmpty($handTools);
 
-        $toolKits = $handTools->subcategories()->where('name', 'Tool Kits')->first();
+        $toolKits = $handTools->subcategories()->where('name', 'Tool kits')->first();
         $this->guardAgainstEmpty($toolKits);
 
         $oldBits = $toolKits->productGroups()->where('name', 'Bits Sets')->first();
