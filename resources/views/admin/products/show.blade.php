@@ -29,7 +29,7 @@
             @endif
             <span class="breadcrumb">{{ $product->name }}</span>
         </div>
-
+        <p class="lead"><strong>Product Code: </strong>{{ $product->product_code }}</p>
         <p class="lead"><strong>Description: </strong>{{ $product->description }}</p>
     </section>
     <section class="row product-options">
