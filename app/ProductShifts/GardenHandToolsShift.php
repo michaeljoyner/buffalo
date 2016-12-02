@@ -7,24 +7,19 @@ namespace App\ProductShifts;
 use App\Products\Category;
 use App\Products\ProductOrganiser;
 
-class GardenHandToolsShift
+class GardenHandToolsShift extends ProductsShift
 {
-    public static function execute()
+    public function execute()
     {
         $gardenTools = Category::where('name', 'Garden Tools')->first();
+        $this->guardAgainstEmpty($gardenTools);
 
         $gardenHandToolsSub = $gardenTools->subcategories()->where('name', 'Garden Hand Tools')->first();
-
-        if(! $gardenHandToolsSub) {
-            throw new \Exception('Garden Hand Tools must exist');
-        }
+        $this->guardAgainstEmpty($gardenHandToolsSub);
 
         $leafRakeSub = $gardenTools->subcategories()->where('name', 'Leaf Rake')->first();
         $gardenSawSub = $gardenTools->subcategories()->where('name', 'Garden Saw')->first();
-
-        if(! $leafRakeSub || ! $gardenSawSub) {
-            throw new \Exception('Leaf Rake and Garden Saw subs must exist');
-        }
+        $this->guardAgainstEmpty([$leafRakeSub, $gardenSawSub]);
 
         $newLeafRake = ProductOrganiser::getNewGroup($gardenHandToolsSub, 'Leaf Rake', $leafRakeSub->description);
         $newGardenSaw = ProductOrganiser::getNewGroup($gardenHandToolsSub, 'Garden Saw', $gardenSawSub->description);

@@ -4,19 +4,20 @@
 use App\Products\Category;
 use App\Products\ProductOrganiser;
 
-class PotsPlantersAndContainerAccessoriesShift
+class PotsPlantersAndContainerAccessoriesShift extends ProductsShift
 {
     public function execute()
     {
         $gardenCat = Category::where('name', 'Garden Tools')->first();
+        $this->guardAgainstEmpty($gardenCat);
+
         $wateringTools = $gardenCat->subcategories()->where('name', 'Watering Tools')->first();
         $handTools = $gardenCat->subcategories()->where('name', 'Garden Hand Tools')->first();
+        $this->guardAgainstEmpty([$wateringTools, $handTools]);
+
         $oldPots = $wateringTools->productGroups()->where('name', 'Pot')->first();
         $oldPlanters = $handTools->productGroups()->where('name', 'Planters')->first();
-
-        if (!$oldPots || !$oldPlanters) {
-            throw new \Exception('Source groups not found');
-        }
+        $this->guardAgainstEmpty([$oldPots, $oldPlanters]);
 
         $ppaca = ProductOrganiser::getNewGroup($gardenCat, 'Pots, Planters and Container Accessories',
             'This is the Pots, planters and Container Accessories category');
