@@ -104,6 +104,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('subcategories/{subcategory}/products', 'SubcategoryProductsController@store');
         Route::post('productgroups/{productGroup}/products', 'ProductGroupProductsController@store');
 
+        Route::get('categories/order', 'CategoryOrderController@show');
+        Route::post('categories/order', 'CategoryOrderController@update');
         Route::get('categories', 'CategoriesController@index');
         Route::get('categories/{category}/edit', 'CategoriesController@edit');
         Route::get('categories/{category}', 'CategoriesController@show');

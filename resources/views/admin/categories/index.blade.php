@@ -4,6 +4,7 @@
     <section class="dd-page-header clearfix">
         <h1 class="pull-left">Categories</h1>
         <div class="header-actions pull-right">
+            <a href="/admin/categories/order" class="btn dd-btn btn-light">Set Order</a>
             <button type="button" class="btn dd-btn btn-dark" data-toggle="modal" data-target="#create-category-modal">
                 Add Category
             </button>

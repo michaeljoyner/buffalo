@@ -99,4 +99,23 @@ class Category extends Model implements HasMediaConversions
     {
         return $this->bannerImage()->firstOrCreate([]);
     }
+
+    public static function setOrder(array $order)
+    {
+        static::whereNotIn('id', $order)->get()->each(function($cat) {
+            $cat->position = null;
+            $cat->save();
+        });
+
+        collect($order)->each(function($id, $zeroedPosition) {
+            $category = static::findOrFail($id);
+            $category->position = $zeroedPosition + 1;
+            $category->save();
+        });
+    }
+
+    public static function getOrdered()
+    {
+        return static::orderBy('position')->get()->values();
+    }
 }
