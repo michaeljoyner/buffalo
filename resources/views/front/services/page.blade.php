@@ -30,7 +30,7 @@
             <div class="service-image-container">
 
             </div>
-            <div class="service-text-block">
+            <div class="service-text-block dark-block">
                 <div class="service-writeup">
                     @include('svgicons.service_1')
                     <h5 class="service-title">Sourcing</h5>
@@ -72,7 +72,7 @@
             <div class="service-image-container">
 
             </div>
-            <div class="service-text-block">
+            <div class="service-text-block dark-block">
                 <div class="service-writeup">
                     @include('svgicons.service_3')
                     <h5 class="service-title">Logistics</h5>

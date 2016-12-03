@@ -37,6 +37,18 @@
       @include respond-to(phone) {width: 95%;}
     }
 
+    .service-text-block.dark-block {
+      background: $brand_dark;
+
+      .service-writeup {
+        color: $white;
+
+        .service-intro {
+          color: $white;
+        }
+      }
+    }
+
     &.sourcing {
       .service-image-container {
         background: url(../../images/assets/services_sourcing.jpg);

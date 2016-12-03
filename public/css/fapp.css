@@ -2959,6 +2959,12 @@ html {
       @media only screen and (max-width: 719px) {
         .services-container .service-row .service-text-block {
           width: 95%; } }
+    .services-container .service-row .service-text-block.dark-block {
+      background: #2B2F2B; }
+      .services-container .service-row .service-text-block.dark-block .service-writeup {
+        color: #ffffff; }
+        .services-container .service-row .service-text-block.dark-block .service-writeup .service-intro {
+          color: #ffffff; }
     .services-container .service-row.sourcing .service-image-container {
       background: url(../../images/assets/services_sourcing.jpg);
       background-position-x: 62%;
