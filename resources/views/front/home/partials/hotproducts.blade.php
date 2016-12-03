@@ -9,4 +9,4 @@
         </div>
     @endforeach
 </div>
-<a href="/products" class="btn page-section-cta">See products</a>
+<a href="/categories" class="btn page-section-cta">See products</a>

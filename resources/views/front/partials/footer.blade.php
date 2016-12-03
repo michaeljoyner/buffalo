@@ -1,12 +1,12 @@
 <footer class="standard-footer">
     <div class="quick-links-footer">
         <p class="h3 footer-heading">Quick Links</p>
-        <a href="/cart">cart</a>
+        <a href="/inquiry">cart</a>
         <a href="/about">about</a>
         <a href="/services">services</a>
         <a href="/news">insights</a>
         <a href="/categories">products</a>
-        <a href="/home">home</a>
+        <a href="/">home</a>
         <a href="/faqs">faqs</a>
     </div>
     <div class="social-footer">
