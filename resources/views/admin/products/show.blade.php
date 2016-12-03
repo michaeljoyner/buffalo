@@ -32,30 +32,7 @@
         <p class="lead"><strong>Product Code: </strong>{{ $product->product_code }}</p>
         <p class="lead"><strong>Description: </strong>{{ $product->description }}</p>
     </section>
-    <section class="row product-options">
-        <div class="col-md-4 product-option-box">
-            <p class="lead">Is this product available?</p>
-            <toggle-switch identifier="1"
-                           true-label="yes"
-                           false-label="no"
-                           :initial-state="{{ $product->available ? 'true' : 'false' }}"
-                           toggle-url="/admin/products/{{ $product->id }}/availability"
-                           toggle-attribute="available"
-            ></toggle-switch>
-        </div>
-        <div class="col-md-4 product-option-box">
-            <product-promoter :initial-state="{{ $product->isPromoted() ? 'true' : 'false' }}"
-                              product-id="{{ $product->id }}"
-                              initial-date="{{ $product->promoted_until ? $product->promoted_until->format('Y-m-d') : null}}"
-            ></product-promoter>
-        </div>
-        <div class="col-md-4 product-option-box">
-            <new-until-switch :initially-new="{{ $product->isNew() ? 'true' : 'false' }}"
-                              :initial-days="{{ $product->daysStillNew() }}"
-                              product-id="{{ $product->id }}"
-            ></new-until-switch>
-        </div>
-    </section>
+
     <section class="product-show row">
         <div class="col-md-7">
             <h3>Product Writeup:</h3>
@@ -78,6 +55,30 @@
                     <img src="{{ $image->getUrl('thumb') }}" alt="" class="product-gallery-preview-thumb">
                 @endforeach
             </div>
+        </div>
+    </section>
+    <section class="row product-options">
+        <div class="col-md-4 product-option-box">
+            <p class="lead">Is this product available?</p>
+            <toggle-switch identifier="1"
+                           true-label="yes"
+                           false-label="no"
+                           :initial-state="{{ $product->available ? 'true' : 'false' }}"
+                           toggle-url="/admin/products/{{ $product->id }}/availability"
+                           toggle-attribute="available"
+            ></toggle-switch>
+        </div>
+        <div class="col-md-4 product-option-box">
+            <product-promoter :initial-state="{{ $product->isPromoted() ? 'true' : 'false' }}"
+                              product-id="{{ $product->id }}"
+                              initial-date="{{ $product->promoted_until ? $product->promoted_until->format('Y-m-d') : null}}"
+            ></product-promoter>
+        </div>
+        <div class="col-md-4 product-option-box">
+            <new-until-switch :initially-new="{{ $product->isNew() ? 'true' : 'false' }}"
+                              :initial-days="{{ $product->daysStillNew() }}"
+                              product-id="{{ $product->id }}"
+            ></new-until-switch>
         </div>
     </section>
     <section class="product-notes">

@@ -1,11 +1,12 @@
 {!! Form::model($post, ['url' => $formAction, 'class' => 'dd-form blog-edit-form form-horizontal', 'id' => 'blog-editor-form']) !!}
+@include('errors')
 <div class="form-group">
     <label for="title">Title: </label>
     {!! Form::text('title', null, ['class' => "form-control"]) !!}
 </div>
 <div class="form-group">
     <label for="description">Description: </label>
-    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'post-description']) !!}
 </div>
 <div class="form-group">
     <label for="content">Content: </label>

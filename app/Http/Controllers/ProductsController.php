@@ -23,7 +23,7 @@ class ProductsController extends Controller
     public function category($slug)
     {
         $category = Category::with('subcategories.productGroups')->where('slug', $slug)->firstOrFail();
-        $products = $category->products()->orderBy('new_until', 'desc')->paginate(18);
+        $products = $category->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
 
         return view('front.category.page')->with(compact('category', 'products'));
     }
@@ -32,7 +32,7 @@ class ProductsController extends Controller
     {
         $subcategory = Subcategory::with('productGroups')->where('slug', $slug)->firstOrFail();
         $category = $subcategory->category()->with('subcategories.productGroups')->first();
-        $products = $subcategory->products()->orderBy('new_until', 'desc')->paginate(18);
+        $products = $subcategory->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
 
         return view('front.category.subcategory')->with(compact('subcategory', 'products', 'category'));
     }
@@ -40,7 +40,7 @@ class ProductsController extends Controller
     public function productGroups($slug)
     {
         $productGroup = ProductGroup::where('slug', $slug)->firstOrFail();
-        $products = $productGroup->products()->orderBy('new_until', 'desc')->paginate(18);
+        $products = $productGroup->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
         $category = $productGroup->subcategory->category()->with('subcategories.productGroups')->first();
 
         return view('front.category.productgroup')->with(compact('productGroup', 'products', 'category'));

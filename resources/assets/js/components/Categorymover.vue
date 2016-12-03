@@ -6,6 +6,7 @@
         <modal :show.sync="open" :wider="true">
             <div slot="header">
                 <h3>Change Category</h3>
+                <p><small class="indicator">Current Category: {{ currentCategory }}</small></p>
                 <small class="indicator">Move {{ productName }} to {{ destination }}</small>
             </div>
             <div slot="body">
@@ -66,7 +67,7 @@
 <script type="text/babel">
     module.exports = {
 
-        props: ['csrf_token', 'product-id', 'product-name'],
+        props: ['csrf_token', 'product-id', 'product-name', 'current-category'],
 
         data() {
             return {

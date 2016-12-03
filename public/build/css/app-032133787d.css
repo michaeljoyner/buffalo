@@ -7483,7 +7483,8 @@ body.stop-scrolling {
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: justify;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding: 50px 0; }
   .product-options .product-option-box {
     -webkit-box-flex: 0;
     flex-grow: 0;

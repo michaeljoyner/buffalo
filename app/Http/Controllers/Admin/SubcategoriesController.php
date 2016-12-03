@@ -26,7 +26,7 @@ class SubcategoriesController extends Controller
     public function show(Subcategory $subcategory)
     {
         $subcategory->load(['category', 'productGroups', 'products']);
-        $products = $subcategory->products()->orderBy('new_until', 'desc')->paginate(18);
+        $products = $subcategory->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
         return view('admin.subcategories.show')->with(compact('subcategory', 'products'));
     }
 
