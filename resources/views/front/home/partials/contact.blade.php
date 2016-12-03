@@ -8,26 +8,7 @@
     @if($withFooter)
     <div class="contact-details is-col">
         <h3 class="h3 text-white">Discover more</h3>
-        <div class="social-icon-row">
-            <a href="#" class="social-footer-link">
-                @include('svgicons.social.instagram_black_square')
-            </a>
-            <a href="#" class="social-footer-link">
-                @include('svgicons.social.email_sq')
-            </a>
-            <a href="#" class="social-footer-link">
-                @include('svgicons.social.facebook_black_square')
-            </a>
-            <a href="#" class="social-footer-link">
-                @include('svgicons.social.twitter_black_square')
-            </a>
-            <a href="#" class="social-footer-link">
-                @include('svgicons.social.youtube_black_square')
-            </a>
-            <a href="#" class="social-footer-link">
-                @include('svgicons.social.linkedin_black_square')
-            </a>
-        </div>
+        @include('front.partials.sociallinks')
         <h3 class="h3 contact-heading text-white">Call</h3>
         <p class="body-text contact-info text-white">+886-4-22372753</p>
         <h3 class="h3 contact-heading text-white">Email</h3>
