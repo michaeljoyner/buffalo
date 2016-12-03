@@ -22,7 +22,7 @@ class ProductsController extends Controller
 
     public function category($slug)
     {
-        $category = Category::with('subcategories.productGroups')->where('slug', $slug)->firstOrFail();
+        $category = $this->fetchLoadedCategory(Category::where('slug', $slug));
         $products = $category->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
 
         return view('front.category.page')->with(compact('category', 'products'));
@@ -31,7 +31,7 @@ class ProductsController extends Controller
     public function subcategory($slug)
     {
         $subcategory = Subcategory::with('productGroups')->where('slug', $slug)->firstOrFail();
-        $category = $subcategory->category()->with('subcategories.productGroups')->first();
+        $category = $this->fetchLoadedCategory($subcategory->category());
         $products = $subcategory->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
 
         return view('front.category.subcategory')->with(compact('subcategory', 'products', 'category'));
@@ -41,7 +41,7 @@ class ProductsController extends Controller
     {
         $productGroup = ProductGroup::where('slug', $slug)->firstOrFail();
         $products = $productGroup->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
-        $category = $productGroup->subcategory->category()->with('subcategories.productGroups')->first();
+        $category = $this->fetchLoadedCategory($productGroup->subcategory->category());
 
         return view('front.category.productgroup')->with(compact('productGroup', 'products', 'category'));
     }
@@ -52,5 +52,12 @@ class ProductsController extends Controller
         $relatedProducts = $productsRepository->relatedProducts($product);
 
         return view('front.product.page')->with(compact('product', 'relatedProducts'));
+    }
+
+    protected function fetchLoadedCategory($hasCategory)
+    {
+        return $hasCategory->with(['subcategories' => function($query) {
+            return $query->with('productGroups')->orderBy('name');
+        }])->firstOrFail();
     }
 }
