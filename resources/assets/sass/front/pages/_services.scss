@@ -15,24 +15,34 @@
     min-height: 400px;
 
     .service-image-container {
-      width: 40%;
+      width: 50%;
       flex-basis: auto;
       flex-grow: 0;
-      flex-shrink: 1;
-      background: indianred;
-      background-size: cover;
-      background-repeat: no-repeat;
+      flex-shrink: 0;
+      //background: indianred;
+      //background-size: cover;
+      //background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        display: block;
+        width: 55%;
+        margin: 0 auto;
+        border-radius: 50%;
+      }
 
       @include respond-to(phone) {
         display: none;}
     }
 
     .service-text-block {
-      width: 60%;
+      width: 50%;
       flex-basis: auto;
       flex-grow: 0;
       flex-shrink: 0;
-      padding: 60px 0;
+      padding: 0 0 80px;
 
       @include respond-to(phone) {width: 95%;}
     }
@@ -51,38 +61,38 @@
 
     &.sourcing {
       .service-image-container {
-        background: url(../../images/assets/services_sourcing.jpg);
-        background-position-x: 62%;
-        background-size: cover;
-        background-repeat: no-repeat;
+        //background: url(../../images/assets/services_sourcing.jpg);
+        //background-position-x: 62%;
+        //background-size: cover;
+        //background-repeat: no-repeat;
       }
     }
 
     &.customization {
       .service-image-container {
-        background: url(../../images/assets/services_custom.jpg);
-        background-position-x: 25%;
-        background-size: cover;
-        background-repeat: no-repeat;
+        //background: url(../../images/assets/services_custom.jpg);
+        //background-position-x: 25%;
+        //background-size: cover;
+        //background-repeat: no-repeat;
       }
     }
 
     &.logistics {
 
       .service-image-container {
-        background: url(../../images/assets/logistics.jpg);
-        background-position-x: 25%;
-        background-size: cover;
-        background-repeat: no-repeat;
+        //background: url(../../images/assets/logistics.jpg);
+        //background-position-x: 25%;
+        //background-size: cover;
+        //background-repeat: no-repeat;
       }
     }
 
     &.quality-assurance {
       .service-image-container {
-        background: url(../../images/assets/services_qa.jpg);
-        background-position-x: 75%;
-        background-size: cover;
-        background-repeat: no-repeat;
+        //background: url(../../images/assets/services_qa.jpg);
+        //background-position-x: 75%;
+        //background-size: cover;
+        //background-repeat: no-repeat;
       }
     }
   }

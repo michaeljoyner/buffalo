@@ -2938,24 +2938,32 @@ html {
     flex-wrap: nowrap;
     min-height: 400px; }
     .services-container .service-row .service-image-container {
-      width: 40%;
-      flex-basis: auto;
-      -webkit-box-flex: 0;
-      flex-grow: 0;
-      flex-shrink: 1;
-      background: indianred;
-      background-size: cover;
-      background-repeat: no-repeat; }
-      @media only screen and (max-width: 719px) {
-        .services-container .service-row .service-image-container {
-          display: none; } }
-    .services-container .service-row .service-text-block {
-      width: 60%;
+      width: 50%;
       flex-basis: auto;
       -webkit-box-flex: 0;
       flex-grow: 0;
       flex-shrink: 0;
-      padding: 60px 0; }
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center; }
+      .services-container .service-row .service-image-container img {
+        display: block;
+        width: 55%;
+        margin: 0 auto;
+        border-radius: 50%; }
+      @media only screen and (max-width: 719px) {
+        .services-container .service-row .service-image-container {
+          display: none; } }
+    .services-container .service-row .service-text-block {
+      width: 50%;
+      flex-basis: auto;
+      -webkit-box-flex: 0;
+      flex-grow: 0;
+      flex-shrink: 0;
+      padding: 0 0 80px; }
       @media only screen and (max-width: 719px) {
         .services-container .service-row .service-text-block {
           width: 95%; } }
@@ -2965,26 +2973,6 @@ html {
         color: #ffffff; }
         .services-container .service-row .service-text-block.dark-block .service-writeup .service-intro {
           color: #ffffff; }
-    .services-container .service-row.sourcing .service-image-container {
-      background: url(../../images/assets/services_sourcing.jpg);
-      background-position-x: 62%;
-      background-size: cover;
-      background-repeat: no-repeat; }
-    .services-container .service-row.customization .service-image-container {
-      background: url(../../images/assets/services_custom.jpg);
-      background-position-x: 25%;
-      background-size: cover;
-      background-repeat: no-repeat; }
-    .services-container .service-row.logistics .service-image-container {
-      background: url(../../images/assets/logistics.jpg);
-      background-position-x: 25%;
-      background-size: cover;
-      background-repeat: no-repeat; }
-    .services-container .service-row.quality-assurance .service-image-container {
-      background: url(../../images/assets/services_qa.jpg);
-      background-position-x: 75%;
-      background-size: cover;
-      background-repeat: no-repeat; }
   .services-container .service-writeup {
     max-width: 100%;
     width: 500px;
