@@ -15,7 +15,7 @@ class ProductsController extends Controller
 {
     public function categories()
     {
-        $categories = Category::withCount('products')->get();
+        $categories = Category::getOrdered();
 
         return view('front.categories.page')->with(compact('categories'));
     }
