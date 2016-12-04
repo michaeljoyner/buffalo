@@ -71,17 +71,6 @@
                 return false;
             }
 
-            if(document.querySelector('#post-body').value.trim() === '') {
-                ev.preventDefault();
-                swal({
-                    title: "Wait just a second!",
-                    text: "You need to have some content for this post. If you aren't ready to get started it is fine to just type in some placeholder text. Nobody will see it until you publish the post.",
-                    type: "error",
-                    confirmButtonText: "Got it"
-                });
-
-                return false;
-            }
         }
     };
     submitHandler.init();

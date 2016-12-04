@@ -30,5 +30,9 @@
   .category-name {
     text-align: center;
     color: $brand_green;
+
+    &.dark-text {
+      color: $brand_dark;
+    }
   }
 }

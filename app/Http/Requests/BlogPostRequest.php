@@ -26,7 +26,7 @@ class BlogPostRequest extends Request
         return [
             'title'       => 'required|max:255',
             'description' => 'required',
-            'body'        => 'required'
+            'body'        => ''
         ];
     }
 }

@@ -28,9 +28,9 @@
     <div class="services-container">
         <div class="service-row sourcing">
             <div class="service-image-container">
-                <img src="/images/assets/services_sourcing_sq.jpg" alt="Sourcing image">
+                {{--<img src="/images/assets/services_sourcing_sq.jpg" alt="Sourcing image">--}}
             </div>
-            <div class="service-text-block">
+            <div class="service-text-block dark-block">
                 <div class="service-writeup">
                     @include('svgicons.service_1')
                     <h5 class="service-title">Sourcing</h5>
@@ -65,14 +65,14 @@
                 </div>
             </div>
             <div class="service-image-container">
-                <img src="/images/assets/services_custom_sq.jpg" alt="Sourcing image">
+                {{--<img src="/images/assets/services_custom_sq.jpg" alt="Sourcing image">--}}
             </div>
         </div>
         <div class="service-row logistics">
             <div class="service-image-container">
-                <img src="/images/assets/logistics_sq.jpg" alt="Sourcing image">
+                {{--<img src="/images/assets/logistics_sq.jpg" alt="Sourcing image">--}}
             </div>
-            <div class="service-text-block">
+            <div class="service-text-block dark-block">
                 <div class="service-writeup">
                     @include('svgicons.service_3')
                     <h5 class="service-title">Logistics</h5>
@@ -110,7 +110,7 @@
                 </div>
             </div>
             <div class="service-image-container">
-                <img src="/images/assets/services_qa_sq.jpg" alt="Sourcing image">
+                {{--<img src="/images/assets/services_qa_sq.jpg" alt="Sourcing image">--}}
             </div>
         </div>
     </div>

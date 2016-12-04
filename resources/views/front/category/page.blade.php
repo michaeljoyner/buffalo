@@ -24,7 +24,7 @@
 @endsection
 
 @section('content')
-    <div class="category-page-banner-container"></div>
+    {{--<div class="category-page-banner-container"></div>--}}
     <div class="product-breadcrumbs">
         <a href="/" class="breadcrumb">
             @include('svgicons.home')
@@ -32,9 +32,9 @@
         <a href="/categories" class="breadcrumb">Categories</a>
         <span class="breadcrumb">{{ $category->name }}</span>
     </div>
-    <section class="page-section">
+    <section class="category-page-header">
+        <img src="{{ $category->bannerSrc('large') }}" alt="{{ $category->name }} banner image">
         <h1 class="h1 section-title">{{ $category->name }}</h1>
-
     </section>
     <section class="category-listing-outer">
         @if($category->subcategories->count() > 0)

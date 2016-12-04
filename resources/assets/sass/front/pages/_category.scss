@@ -99,3 +99,20 @@
   background-repeat: no-repeat;
   background-position-y: 33%;
 }
+
+.category-page-header {
+  position: relative;
+  height: 16.667vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .4;
+    z-index: -1;
+    width: 100%;
+  }
+}

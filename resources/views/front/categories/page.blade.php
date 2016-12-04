@@ -24,7 +24,7 @@ Product Categories - Buffalo Tools
             <div class="category-index-card">
                 <a href="/categories/{{ $category->slug }}">
                     <img class="category-image" src="{{ $category->imageSrc('thumb') }}" alt="{{ $category->name }}">
-                    <h3 class="h3 category-name">{{ $category->name }}</h3>
+                    <h3 class="h3 category-name @if(str_contains(strtolower($category->name), 'istone')) dark-text @endif">{{ $category->name }}</h3>
                 </a>
             </div>
             @endforeach

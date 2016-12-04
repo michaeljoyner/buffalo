@@ -2384,6 +2384,8 @@ html {
 .category-index-card .category-name {
   text-align: center;
   color: #46B977; }
+  .category-index-card .category-name.dark-text {
+    color: #2B2F2B; }
 
 .category-listing-outer {
   display: -webkit-box;
@@ -2486,6 +2488,23 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: 33%; }
+
+.category-page-header {
+  position: relative;
+  height: 16.667vw;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center; }
+  .category-page-header img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .4;
+    z-index: -1;
+    width: 100%; }
 
 .product-page-container {
   max-width: 960px;
@@ -2938,41 +2957,59 @@ html {
     flex-wrap: nowrap;
     min-height: 400px; }
     .services-container .service-row .service-image-container {
-      width: 50%;
+      width: 40%;
       flex-basis: auto;
       -webkit-box-flex: 0;
       flex-grow: 0;
       flex-shrink: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
       display: -webkit-box;
       display: flex;
       -webkit-box-pack: center;
       justify-content: center;
       -webkit-box-align: center;
       align-items: center; }
-      .services-container .service-row .service-image-container img {
-        display: block;
-        width: 55%;
-        margin: 0 auto;
-        border-radius: 50%; }
       @media only screen and (max-width: 719px) {
         .services-container .service-row .service-image-container {
           display: none; } }
     .services-container .service-row .service-text-block {
-      width: 50%;
+      width: 60%;
       flex-basis: auto;
       -webkit-box-flex: 0;
       flex-grow: 0;
       flex-shrink: 0;
-      padding: 0 0 80px; }
+      padding: 60px 0; }
       @media only screen and (max-width: 719px) {
         .services-container .service-row .service-text-block {
-          width: 95%; } }
+          width: 100%;
+          padding-left: 15px; } }
     .services-container .service-row .service-text-block.dark-block {
       background: #2B2F2B; }
       .services-container .service-row .service-text-block.dark-block .service-writeup {
         color: #ffffff; }
         .services-container .service-row .service-text-block.dark-block .service-writeup .service-intro {
           color: #ffffff; }
+    .services-container .service-row.sourcing .service-image-container {
+      background: url(../../images/assets/services_sourcing.jpg);
+      background-position-x: 62%;
+      background-size: cover;
+      background-repeat: no-repeat; }
+    .services-container .service-row.customization .service-image-container {
+      background: url(../../images/assets/services_custom.jpg);
+      background-position-x: 25%;
+      background-size: cover;
+      background-repeat: no-repeat; }
+    .services-container .service-row.logistics .service-image-container {
+      background: url(../../images/assets/logistics.jpg);
+      background-position-x: 25%;
+      background-size: cover;
+      background-repeat: no-repeat; }
+    .services-container .service-row.quality-assurance .service-image-container {
+      background: url(../../images/assets/services_qa.jpg);
+      background-position-x: 75%;
+      background-size: cover;
+      background-repeat: no-repeat; }
   .services-container .service-writeup {
     max-width: 100%;
     width: 500px;
