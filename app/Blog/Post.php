@@ -26,10 +26,8 @@ class Post extends Model implements HasMediaConversions
     ];
 
     protected $defaultTitleImages = [
-        '/images/news/default/newspaper.jpg',
-        '/images/news/default/pliers.png',
-        '/images/news/default/spanners.jpg',
-        '/images/news/default/tooltable.jpeg',
+        '/images/news/default/news_default_1.jpg',
+        '/images/news/default/news_default_2.jpg'
     ];
 
     protected $casts = ['published' => 'boolean'];

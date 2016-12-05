@@ -31,8 +31,16 @@
     text-align: center;
     color: $brand_green;
 
+    &:hover {
+      color: lighten($brand_green, 10%);
+    }
+
     &.dark-text {
       color: $brand_dark;
+
+      &:hover {
+        color: lighten($brand_dark, 20%);
+      }
     }
   }
 }

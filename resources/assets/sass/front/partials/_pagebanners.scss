@@ -13,6 +13,8 @@
     font-size: 6em;
     line-height: 1;
     font-family: "Teko", sans-serif;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 
     @include respond-to(phone) {display: none;}
     @include respond-to(largetablet) {font-size: 3em;}
@@ -20,9 +22,21 @@
 
   .banner-quote.to-left {
     left: 100px;
+    animation-name: fadeInLeft;
   }
 
   .banner-quote.to-right {
     right: 100px;
+    animation-name: fadeInRight;
   }
+}
+
+@keyframes fadeInLeft {
+  from {opacity: 0; transform: translate3d(-700px,-50%,0);}
+  to {opacity: 1; transform: translate3d(0,-50%,0);}
+}
+
+@keyframes fadeInRight {
+  from {opacity: 0; transform: translate3d(700px,-50%,0);}
+  to {opacity: 1; transform: translate3d(0,-50%,0);}
 }
