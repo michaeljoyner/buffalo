@@ -23,7 +23,7 @@ class ProductsController extends Controller
     public function category($slug)
     {
         $category = $this->fetchLoadedCategory(Category::where('slug', $slug));
-        $products = $category->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
+        $products = $category->products()->where('available', 1)->orderBy('new_until', 'desc')->latest()->paginate(18);
 
         return view('front.category.page')->with(compact('category', 'products'));
     }
@@ -32,7 +32,7 @@ class ProductsController extends Controller
     {
         $subcategory = Subcategory::with('productGroups')->where('slug', $slug)->firstOrFail();
         $category = $this->fetchLoadedCategory($subcategory->category());
-        $products = $subcategory->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
+        $products = $subcategory->products()->where('available', 1)->orderBy('new_until', 'desc')->latest()->paginate(18);
 
         return view('front.category.subcategory')->with(compact('subcategory', 'products', 'category'));
     }
@@ -40,7 +40,7 @@ class ProductsController extends Controller
     public function productGroups($slug)
     {
         $productGroup = ProductGroup::where('slug', $slug)->firstOrFail();
-        $products = $productGroup->products()->orderBy('new_until', 'desc')->latest()->paginate(18);
+        $products = $productGroup->products()->where('available', 1)->orderBy('new_until', 'desc')->latest()->paginate(18);
         $category = $this->fetchLoadedCategory($productGroup->subcategory->category());
 
         return view('front.category.productgroup')->with(compact('productGroup', 'products', 'category'));
@@ -48,7 +48,7 @@ class ProductsController extends Controller
 
     public function product($slug, ProductsRepository $productsRepository)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::where('available', 1)->where('slug', $slug)->firstOrFail();
         $relatedProducts = $productsRepository->relatedProducts($product);
 
         return view('front.product.page')->with(compact('product', 'relatedProducts'));
