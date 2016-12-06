@@ -155,6 +155,7 @@ return [
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
 
         /*
          * Application Service Providers...
