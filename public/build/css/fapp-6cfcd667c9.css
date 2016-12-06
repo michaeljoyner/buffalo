@@ -3137,17 +3137,41 @@ html {
 .strong-lead.padded-bottom {
   padding-bottom: 60px; }
 
-img.bit-piece {
+img.tape-measure {
   display: block;
-  margin: 40px auto 40px -10px;
-  -webkit-transform: scale(-1);
-  transform: scale(-1);
-  max-width: calc(100% - 10px); }
+  margin: 80px auto 20px;
+  max-width: 75%; }
 
 img.socket-piece {
   display: block;
   margin: 40px -10px 40px auto;
   max-width: calc(100% - 10px); }
+
+.buffalo-breakdown-logos {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 50px 0; }
+  .buffalo-breakdown-logos .image-holder {
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    max-width: 230px;
+    position: relative;
+    border: 1px solid #e2e2e2;
+    padding: 20px 0; }
+  .buffalo-breakdown-logos img {
+    max-width: 60%;
+    display: block;
+    margin: auto auto;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); }
+  .buffalo-breakdown-logos .istone-logo {
+    max-width: 50%; }
 
 .contact-page-banner {
   background-image: url(../../images/assets/connector4.png);

@@ -7,15 +7,51 @@
   padding-bottom: 60px;
 }
 
-img.bit-piece {
+img.tape-measure {
   display: block;
-  margin: 40px auto 40px -10px;
-  transform: scale(-1);
-  max-width: calc(100% - 10px);
+  margin: 80px auto 20px;
+  //transform: scale(-1);
+  max-width: 75%;
 }
 
 img.socket-piece {
   display: block;
   margin: 40px -10px 40px auto;
   max-width: calc(100% - 10px);
+}
+
+.buffalo-breakdown-logos {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 0;
+
+  .image-holder {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    max-width: 230px;
+    position: relative;
+    border: 1px solid $eggshell;
+    padding: 20px 0;
+  }
+
+  img {
+    max-width: 60%;
+    display: block;
+    margin: auto auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .new-logo {
+
+  }
+
+  .old-logo {
+
+  }
+
+  .istone-logo {
+    max-width: 50%;
+  }
 }

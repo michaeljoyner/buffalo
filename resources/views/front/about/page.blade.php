@@ -32,7 +32,19 @@
             stable long-term relationship with customers around the world. The company will always be dedicated to
             providing its
             clients flawless and profitable transactions as well as competitive products.</p>
-        <img class="socket-piece" src="/images/assets/socket_piece_web.png" alt="Buffalo tools socket piece">
+        <p class="body-text is-contained">Huang Buffalo is not only a manufacturing associate company, but also has its own brands, BUFFALO TOOLS & ISTONE TOOLS, which operates as an independent entity on the market.  Each brand has its own character and share a common goal: provide customer with quality tools.</p>
+        <div class="buffalo-breakdown-logos is-contained">
+            <div class="image-holder">
+                <img width="200" src="/images/about/logo_black.png" alt="Huang Buffalo logo" class="new-logo">
+            </div>
+            <div class="image-holder">
+                <img width="200" src="/images/about/old_buffalo_logo.png" alt="Buffalo Tools logo" class="old-logo">
+            </div>
+            <div class="image-holder">
+                <img width="200" src="/images/about/istone_logo.png" alt="IStone Tools logo" class="istone-logo">
+            </div>
+        </div>
+        {{--<img class="socket-piece" src="/images/assets/socket_piece_web.png" alt="Buffalo tools socket piece">--}}
         <h2 class="h1 text-centered section-title">Why Choose Huang Buffalo</h2>
         <p class="strong-text is-contained no-margin-bottom">Our Experience</p>
         <p class="body-text is-contained no-margin-top">With over 26 years experience in the hand tool industry, Huang Buffalo has a talented
@@ -42,7 +54,7 @@
         <p class="body-text is-contained no-margin-top">We conduct audits to confirm that the quality remains stable as well as make
             sure the product is identical to the sample you approved. We will also provide a pre-shipment inspection
             report if required. Huang Buffalo takes full responsibility for every product we sell.</p>
-        <img class="bit-piece" src="/images/assets/bit_piece_web.png" alt="Buffalo tools bit piece">
+        <img class="tape-measure" src="/images/about/tape.png" alt="Buffalo tools tape measure">
     </section>
     <section class="customers">
         <h2 class="h1 text-centered section-title">Our Customers</h2>
