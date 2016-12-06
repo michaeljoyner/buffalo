@@ -62,3 +62,5 @@ document.body.addEventListener('keypress', (ev) => {
     }
     ev.preventDefault();
 }, false);
+
+window.addEventListener("load", (event) => document.body.classList.add('page-loaded'));

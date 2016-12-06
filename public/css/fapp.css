@@ -1098,16 +1098,15 @@ html {
     margin: 0;
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+    opacity: 0;
     width: 5em;
     font-size: 6em;
     line-height: 1;
     font-family: "Teko", sans-serif;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards; }
+    -webkit-transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1); }
     @media only screen and (max-width: 719px) {
       .page-banner .banner-quote {
         display: none; } }
@@ -1116,29 +1115,34 @@ html {
         font-size: 3em; } }
   .page-banner .banner-quote.to-left {
     left: 100px;
-    -webkit-animation-name: fadeInLeft;
-    animation-name: fadeInLeft; }
+    -webkit-transform: translate3d(-700px, -50%, 0);
+    transform: translate3d(-700px, -50%, 0); }
   .page-banner .banner-quote.to-right {
     right: 100px;
-    -webkit-animation-name: fadeInRight;
-    animation-name: fadeInRight; }
+    -webkit-transform: translate3d(700px, -50%, 0);
+    transform: translate3d(700px, -50%, 0); }
+
+.page-loaded .banner-quote.to-left, .page-loaded .banner-quote.to-right {
+  opacity: 1;
+  -webkit-transform: translate3d(0, -50%, 0);
+  transform: translate3d(0, -50%, 0); }
 
 @-webkit-keyframes fadeInLeft {
-  from {
+  0% {
     opacity: 0;
     -webkit-transform: translate3d(-700px, -50%, 0);
     transform: translate3d(-700px, -50%, 0); }
-  to {
+  100% {
     opacity: 1;
     -webkit-transform: translate3d(0, -50%, 0);
     transform: translate3d(0, -50%, 0); } }
 
 @keyframes fadeInLeft {
-  from {
+  0% {
     opacity: 0;
     -webkit-transform: translate3d(-700px, -50%, 0);
     transform: translate3d(-700px, -50%, 0); }
-  to {
+  100% {
     opacity: 1;
     -webkit-transform: translate3d(0, -50%, 0);
     transform: translate3d(0, -50%, 0); } }

@@ -32,7 +32,7 @@
             stable long-term relationship with customers around the world. The company will always be dedicated to
             providing its
             clients flawless and profitable transactions as well as competitive products.</p>
-        <p class="body-text is-contained">Huang Buffalo is not only a manufacturing associate company, but also has its own brands, BUFFALO TOOLS & ISTONE TOOLS, which operates as an independent entity on the market.  Each brand has its own character and share a common goal: provide customer with quality tools.</p>
+        <p class="body-text is-contained">Huang Buffalo is not only a manufacturing associate company, but also has its own brands, BUFFALO TOOLS & ISTONE TOOLS, which operates as an independent entity on the market.  Each brand has its own character and shares a common goal: to provide quality tools.</p>
         <div class="buffalo-breakdown-logos is-contained">
             <div class="image-holder">
                 <img width="200" src="/images/about/logo_black.png" alt="Huang Buffalo logo" class="new-logo">
