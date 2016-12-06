@@ -33,15 +33,15 @@ img.socket-piece {
     position: relative;
     border: 1px solid $eggshell;
     padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   img {
     max-width: 60%;
     display: block;
     margin: auto auto;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .new-logo {
 
