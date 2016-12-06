@@ -15,7 +15,7 @@ Product Categories - Buffalo Tools
 
 @section('content')
     <section class="page-banner products-page-banner">
-        <h1 class="h1 text-white banner-quote to-right">Precision<br> is an art.</h1>
+        <h1 class="h1 text-white banner-quote to-right">Success through<br>quality.</h1>
     </section>
     <section class="page-section">
         <h1 class="h1 section-title">Categories</h1>

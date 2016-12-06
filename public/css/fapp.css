@@ -3001,7 +3001,7 @@ html {
   margin-top: 100px; }
 
 .services-page-banner {
-  background-image: url(../../images/assets/phone.jpeg);
+  background-image: url(../../images/assets/services_banner.jpg);
   background-size: cover;
   background-position: center; }
 
@@ -3172,6 +3172,9 @@ img.socket-piece {
     transform: translateY(-50%); }
   .buffalo-breakdown-logos .istone-logo {
     max-width: 50%; }
+
+.customers {
+  padding: 10px; }
 
 .contact-page-banner {
   background-image: url(../../images/assets/connector4.png);
