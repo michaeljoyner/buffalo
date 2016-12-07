@@ -52,10 +52,10 @@ class ProductsRepository
                 $filler = Product::where('is_promoted', 0)->where('available', 1)
                     ->get()->shuffle()->take($quantity - $promoted->count());
 
-                return $promoted->merge($filler)->shuffle();
+                return $promoted->merge($filler)->shuffle()->sortByDesc('promoted_until')->values();
             }
 
-            return $promoted->shuffle()->take($quantity);
+            return $promoted->shuffle()->take($quantity)->sortByDesc('promoted_until')->values();
         });
     }
 
