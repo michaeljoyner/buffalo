@@ -2875,7 +2875,7 @@ html {
   padding: 10px; }
 
 .page-banner.news-page-banner {
-  background: url("../../images/assets/iStock_insightbanner_web_2.jpg");
+  background: url("../../images/assets/insight_banner.jpg");
   background-size: cover; }
 
 .news-article-listing {
@@ -3183,7 +3183,7 @@ img.socket-piece {
   padding: 10px; }
 
 .contact-page-banner {
-  background-image: url(../../images/assets/connector4.png);
+  background-image: url(../../images/assets/connect_banner.png);
   background-size: cover; }
 
 .contact-section.full-contact-page-section {

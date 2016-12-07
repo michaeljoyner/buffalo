@@ -4,13 +4,14 @@
     <style>
         .fourohfour-img {
             display: block;
-            margin: 0 auto;
+            margin: 100px auto;
             width: 300px;
         }
 
         h1.h1.huge-text {
             font-size: 72px;
             margin: 0;
+            margin-top: 50px;
         }
 
         .no-margin-top {

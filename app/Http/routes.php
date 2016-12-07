@@ -163,17 +163,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('orders/{order}', 'OrdersController@show');
         Route::post('orders/{order}/archiving', 'OrdersController@setArchiveStatus');
 
-        Route::get('slides', 'SlidesController@index');
-        Route::get('slides/sort', 'SlidesOrderController@edit');
-        Route::get('slides/create', 'SlidesController@create');
-        Route::get('slides/{slide}/edit', 'SlidesController@edit');
-        Route::post('api/slides/order', 'SlidesOrderController@update');
-        Route::post('api/slides/{slide}', 'SlidesController@update');
-        Route::delete('slides/{slide}', 'SlidesController@delete');
+        Route::get('slides', 'SlidesController@index')->middleware('superauth');
+        Route::get('slides/sort', 'SlidesOrderController@edit')->middleware('superauth');
+        Route::get('slides/create', 'SlidesController@create')->middleware('superauth');
+        Route::get('slides/{slide}/edit', 'SlidesController@edit')->middleware('superauth');
+        Route::post('api/slides/order', 'SlidesOrderController@update')->middleware('superauth');
+        Route::post('api/slides/{slide}', 'SlidesController@update')->middleware('superauth');
+        Route::delete('slides/{slide}', 'SlidesController@delete')->middleware('superauth');
 
-        Route::post('slides/{slide}/media', 'SlidesMediaController@store');
+        Route::post('slides/{slide}/media', 'SlidesMediaController@store')->middleware('superauth');
 
-        Route::post('slides/{slide}/publishing', 'SlidesPublishingController@update');
+        Route::post('slides/{slide}/publishing', 'SlidesPublishingController@update')->middleware('superauth');
 
         Route::get('/sitelinks', 'SiteLinkController@index');
 
