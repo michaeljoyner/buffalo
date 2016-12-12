@@ -45,7 +45,7 @@
                        value="return_customer" name="customer_type"
                        @if(old('customer_type') === 'return_customer') checked @endif
                 >
-                <label class="dd-checkbox-label" for="existing_customer_option">Return customer</label>
+                <label class="dd-checkbox-label" for="existing_customer_option">Existing customer</label>
             </div>
             @include('errors')
             <div class="form-group">

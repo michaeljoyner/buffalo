@@ -32,7 +32,7 @@
                         <li><a href="/admin/slides">Banner Slides</a></li>
                     </ul>
                 </li>
-                <li><a href="/admin/blog/posts">News</a></li>
+                <li><a href="/admin/blog/posts">Insight</a></li>
                 <li><a href="/admin/social">Social</a></li>
                 @endif
             </ul>
