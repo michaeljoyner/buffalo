@@ -58,7 +58,7 @@ class ProductsRepositoryTest extends TestCase
 
         $this->assertResultsContainsProduct($results, [$product1, $product2]);
         $this->assertCount(2, $results);
-        $this->assertEquals($product1->id, $results->first()->id);
+        $this->assertEquals($product1->id, $results->first()['id']);
     }
 
     protected function assertResultsContainsProduct($results, $product)
@@ -67,7 +67,7 @@ class ProductsRepositoryTest extends TestCase
             $product = [$product];
         }
         foreach ($product as $item) {
-            $this->assertTrue($results->contains($item),
+            $this->assertContains($item->id, $results->pluck('id')->toArray(),
                 'expected product [' . $item->name . '] does not exist in results');
         }
     }

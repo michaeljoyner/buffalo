@@ -9,3 +9,14 @@
         });
     </script>
 @endif
+
+@if(count($errors) > 0)
+    <script>
+        swal({
+            type: "error",
+            title: "There was a problem with your input",
+            text: "Some input you entered was not valid. Please check for error messages and try again.",
+            showConfirmButton: true
+        });
+    </script>
+@endif

@@ -7,6 +7,7 @@
             </div>
             <div class="modal-body">
                 {!! Form::open(['url' => $formAction, 'class' => 'form-horizontal dd-form modal-form']) !!}
+                @include('errors')
                 <div class="form-group">
                     <label for="name">Name: </label>
                     {!! Form::text('name', null, ['class' => "form-control", 'placeholder' => 'The product name', 'required']) !!}
@@ -16,7 +17,7 @@
                     {!! Form::text('product_code', null, ['class' => "form-control", 'placeholder' => 'The product code', 'required']) !!}
                 </div>
                 <div class="form-group">
-                    <label for="description">Description: </label>
+                    <label for="description">SEO Description: </label>
                     {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'you can edit this later']) !!}
                 </div>
             </div>

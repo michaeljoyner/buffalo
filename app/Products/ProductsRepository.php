@@ -14,7 +14,15 @@ class ProductsRepository
         $productCodeMatches = Product::with('category')->where('product_code', 'LIKE', $searchTerm)->get();
         $productNameMatches = Product::with('category')->where('name', 'LIKE', '%' . $searchTerm . '%')->get();
 
-        return $productCodeMatches->merge($productNameMatches);
+        return $productCodeMatches->merge($productNameMatches)->map(function($product) {
+            return [
+              'id' => $product->id,
+                'product_code' => $product->product_code,
+                'name' => $product->name,
+                'product_category' => $product->category->name,
+                'thumb_img' => $product->imageSrc('thumb')
+            ];
+        });
     }
 
     public function searchAvailable($searchTerm)

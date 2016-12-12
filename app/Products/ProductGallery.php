@@ -20,10 +20,10 @@ class ProductGallery extends Model implements HasMediaConversions
     public function registerMediaConversions()
     {
         $this->addMediaConversion('thumb')
-            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'crop', 'fm' => 'src'])
+            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'fill', 'fm' => 'src'])
             ->performOnCollections('default');
         $this->addMediaConversion('web')
-            ->setManipulations(['w' => 800, 'h' => 600, 'fit' => 'crop', 'fm' => 'src'])
+            ->setManipulations(['w' => 800, 'h' => 600, 'fit' => 'fill', 'fm' => 'src'])
             ->performOnCollections('default');
     }
 }

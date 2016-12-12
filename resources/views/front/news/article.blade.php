@@ -34,7 +34,7 @@
                 @include('svgicons.social.twitter_black_square')
             </a>
         </div>
-        <a href="/news" class="btn page-section-cta back-to-news-btn">Back to News</a>
+        <a href="/news" class="btn page-section-cta back-to-news-btn">Back to Insights</a>
     </section>
     @include('front.partials.footer')
 @endsection

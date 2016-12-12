@@ -1,4 +1,5 @@
 {!! Form::model($model, ['url' => $formAction, 'class' => 'dd-form form-horizontal']) !!}
+@include('errors')
 <div class="form-group">
     <label for="name">Name: </label>
     {!! Form::text('name', null, ['class' => "form-control"]) !!}

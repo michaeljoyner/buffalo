@@ -49,7 +49,7 @@
                     text: 'There was a problem syncing with the server. Maybe refresh the page and try again',
                     confirm: true,
                     type: 'error'
-                })
+                });
             }
         }
     }

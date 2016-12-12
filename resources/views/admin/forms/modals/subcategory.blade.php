@@ -7,6 +7,7 @@
             </div>
             <div class="modal-body">
                 {!! Form::open(['url' => '/admin/categories/' . $category->id . '/subcategories', 'class' => 'form-horizontal dd-form modal-form']) !!}
+                @include('errors')
                 <div class="form-group">
                     <label for="name">Name: </label>
                     {!! Form::text('name', null, ['class' => "form-control", 'placeholder' => 'The product name', 'required']) !!}

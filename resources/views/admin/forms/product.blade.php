@@ -1,4 +1,5 @@
 {!! Form::model($product, ['url' => '/admin/products/'.$product->id, 'class' => 'dd-form form-horizontal']) !!}
+@include('errors')
 <div class="form-group">
     <label for="name">Name: </label>
     {!! Form::text('name', null, ['class' => "form-control"]) !!}
@@ -12,7 +13,7 @@
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    <label for="writeup">Writeup: </label>
+    <label for="writeup">Product Description: </label>
     {!! Form::textarea('writeup', null, ['class' => 'form-control', 'id' => 'writeup']) !!}
 </div>
 <div class="form-group">

@@ -6,6 +6,7 @@
                 <h4 class="modal-title">Ceate a new blog post</h4>
             </div>
             <div class="modal-body">
+                @include('errors')
                 {!! Form::open(['url' => '/admin/blog/posts', 'class' => 'form-horizontal dd-form modal-form']) !!}
                 <div class="form-group">
                     <label for="title">Title: </label>
