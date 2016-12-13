@@ -39,7 +39,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255|unique:categories,name',
+            'name' => 'required|max:255',
             'description' => ''
         ]);
 
@@ -58,7 +58,7 @@ class CategoriesController extends Controller
     public function update(Request $request, Category $category)
     {
         $this->validate($request, [
-            'name' => 'required|max:255|unique:categories,name,' . $category->id,
+            'name' => 'required|max:255',
             'description' => ''
         ]);
 

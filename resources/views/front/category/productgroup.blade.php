@@ -24,20 +24,24 @@
 @endsection
 
 @section('content')
-    <div class="category-page-banner-container"></div>
+    {{--<div class="category-page-banner-container"></div>--}}
     <div class="product-breadcrumbs">
         <a href="/" class="breadcrumb">
             @include('svgicons.home')
         </a>
         <a href="/categories" class="breadcrumb">Categories</a>
         <a href="/categories/{{ $category->slug }}" class="breadcrumb">{{ $category->name }}</a>
-        <a href="/categories/{{ $productGroup->subcategory->slug }}" class="breadcrumb">{{ $productGroup->subcategory->name }}</a>
+        <a href="/subcategories/{{ $productGroup->subcategory->slug }}" class="breadcrumb">{{ $productGroup->subcategory->name }}</a>
         <span class="breadcrumb">{{ $productGroup->name }}</span>
     </div>
-    <section class="page-section">
+    <section class="category-page-header">
+        <img src="{{ $category->bannerSrc('large') }}" alt="{{ $productGroup->name }} banner image">
         <h1 class="h1 section-title">{{ $productGroup->name }}</h1>
-        <p class="page-position">Page <span>{{ $products->currentPage() }}</span> of <span>{{ $products->lastPage() }}</span></p>
     </section>
+    {{--<section class="page-section">--}}
+        {{--<h1 class="h1 section-title">{{ $productGroup->name }}</h1>--}}
+        {{--<p class="page-position">Page <span>{{ $products->currentPage() }}</span> of <span>{{ $products->lastPage() }}</span></p>--}}
+    {{--</section>--}}
     <section class="category-listing-outer">
         <div class="category-menu side-menu side-panel">
             <p class="body-text no-margin-top">Browse by Category</p>

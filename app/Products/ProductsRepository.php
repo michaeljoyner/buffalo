@@ -28,7 +28,7 @@ class ProductsRepository
     public function searchAvailable($searchTerm)
     {
         $productCodeMatches = Product::with('category')->where('available', 1)->where('product_code', 'LIKE',
-            $searchTerm)->get();
+            '%' . $searchTerm . '%')->get();
         $productNameMatches = Product::with('category')->where('available', 1)->where('name', 'LIKE',
             '%' . $searchTerm . '%')->get();
 
