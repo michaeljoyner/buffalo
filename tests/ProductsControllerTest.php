@@ -66,7 +66,7 @@ class ProductsControllerTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_product_with_an_existing_note_and_no_product_note_on_update_request_has_note_deleted()
     {
@@ -108,5 +108,38 @@ class ProductsControllerTest extends TestCase
         $this->assertRedirectResponse($response);
 
         $this->assertSoftDeleted($product);
+    }
+
+    /**
+     * @test
+     */
+    public function a_product_cannot_be_created_with_a_non_unique_product_code()
+    {
+        $product = factory(Product::class)->create(['product_code' => '123abc']);
+        $this->asLoggedInUser();
+
+        $this->post('/admin/categories/' . $product->category->id . '/products', [
+            'name'         => 'Product A',
+            'product_code' => '123abc',
+            'description'  => 'A product'
+        ])->assertResponseStatus(302)
+            ->assertSessionHasErrors()
+            ->notSeeInDatabase('products', ['name' => 'Product A']);
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_can_be_created_if_it_has_the_same_product_code_as_a_soft_deleted_product()
+    {
+        $product = factory(Product::class)->create(['product_code' => '123abc', 'deleted_at' => \Carbon\Carbon::now()]);
+        $this->asLoggedInUser();
+
+        $this->post('/admin/categories/' . $product->category->id . '/products', [
+            'name'         => 'Product A',
+            'product_code' => '123abc',
+            'description'  => 'A product'
+        ])->assertResponseStatus(302)
+            ->seeInDatabase('products', ['name' => 'Product A']);
     }
 }

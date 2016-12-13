@@ -63,6 +63,17 @@ class Category extends Model implements HasMediaConversions
 
     public function addProduct($attributes)
     {
+        $hasSameCode = Product::withTrashed()->where('product_code', $attributes['product_code'])->get();
+        $counter = 1;
+
+        while($hasSameCode->count() > 0) {
+            $hasSameCode->each(function($product) use ($counter) {
+                $product->product_code = $product->product_code . '_' . $counter;
+                $product->save();
+                $counter = $counter + 1;
+            });
+            $hasSameCode = Product::withTrashed()->where('product_code', $attributes['product_code'])->get();
+        }
         return $this->products()->create($attributes);
     }
 

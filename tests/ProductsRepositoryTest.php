@@ -61,6 +61,18 @@ class ProductsRepositoryTest extends TestCase
         $this->assertEquals($product1->id, $results->first()['id']);
     }
 
+    /**
+     *@test
+     */
+    public function a_soft_deleted_model_does_not_show_in_search_results()
+    {
+        $product1 = factory(Product::class)->create(['product_code' => 'COOL', 'deleted_at' => \Carbon\Carbon::now()]);
+
+        $results = $this->repo->search('COOL');
+
+        $this->assertCount(0, $results);
+    }
+
     protected function assertResultsContainsProduct($results, $product)
     {
         if (!is_array($product)) {
