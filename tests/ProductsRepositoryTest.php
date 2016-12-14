@@ -34,6 +34,19 @@ class ProductsRepositoryTest extends TestCase
     }
 
     /**
+     *@test
+     */
+    public function a_search_can_match_an_incomplete_product_code()
+    {
+        $product = factory(Product::class)->create(['product_code' => 'PC123']);
+
+        $results = $this->repo->search('PC1');
+
+        $this->assertCount(1, $results);
+        $this->assertResultsContainsProduct($results, $product);
+    }
+
+    /**
      * @test
      */
     public function search_matches_on_product_name()
