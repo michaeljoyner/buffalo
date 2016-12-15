@@ -7,7 +7,7 @@
                 <div class="icon-holder">
                     @include('svgicons.news_icon')
                 </div>
-                <span class="article-date text-white">{{ $article->updated_at->toFormattedDateString() }}</span>
+                <span class="article-date text-white">{{ $article->published_at->toFormattedDateString() }}</span>
                 <span class="article-title-line text-white body-text">{{ $article->title }}</span>
             </div>
         </a>
