@@ -22,6 +22,6 @@ class ProductsSearchController extends Controller
     {
         $this->validate($request, ['searchterm' => 'required']);
 
-        return $repository->search($request->searchterm);
+        return $repository->search($request->searchterm)->unique('id');
     }
 }
