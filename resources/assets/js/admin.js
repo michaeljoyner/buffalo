@@ -26,6 +26,14 @@ Vue.component('category-mover', require('./components/Categorymover.vue'));
 Vue.component('product-promoter', require('./components/Productpromoter.vue'));
 Vue.component('new-until-switch', require('./components/Newuntilswitch.vue'));
 
+Vue.http.interceptors.unshift(function(request, next) {
+    next(function(response) {
+        if(typeof response.headers['content-type'] != 'undefined') {
+            response.headers['Content-Type'] = response.headers['content-type'];
+        }
+    });
+});
+
 window.Vue = Vue;
 
 new Vue({
