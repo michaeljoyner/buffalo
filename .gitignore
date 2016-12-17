@@ -11,3 +11,4 @@ Homestead.json
 .DS_Store
 workspace.xml
 /public/media/**/*
+/public/sitemap.xml

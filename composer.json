@@ -18,7 +18,8 @@
     "thujohn/twitter": "^2.2",
     "google/apiclient": "^2.0",
     "spatie/laravel-backup": "^4.3",
-    "league/flysystem-aws-s3-v3": "~1.0"
+    "league/flysystem-aws-s3-v3": "~1.0",
+    "spatie/laravel-sitemap": "^2.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
