@@ -18,6 +18,7 @@
     <section class="row">
         <div class="col-md-7">
             <div class="customer-details">
+                <p class="lead"><strong>Date: </strong>{{ $order->created_at->toFormattedDateString() }}</p>
                 <p class="lead"><strong>Company: </strong>{{ $order->company }}</p>
                 <p class="lead"><strong>Contact Person: </strong>{{ $order->contact_person }}</p>
                 <p class="lead"><strong>Email: </strong><a href="mailto:{{ $order->email }}">{{ $order->email }}</a></p>
