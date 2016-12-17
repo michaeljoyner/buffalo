@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'noreply@buffalo-tools.com', 'name' => 'Bufalo Tools'],
+    'from' => ['address' => 'noreply@buffalo-tools.com', 'name' => 'Buffalo Tools'],
 
     /*
     |--------------------------------------------------------------------------

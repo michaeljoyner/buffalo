@@ -60,7 +60,7 @@
 
             fetchSlides() {
                 this.$http.get('/api/slides')
-                        .then((res) => this.$set('slides', res.data))
+                        .then((res) => this.$set('slides', res.json()))
                         .catch(() => console.log('error fetching slides'));
             },
 
