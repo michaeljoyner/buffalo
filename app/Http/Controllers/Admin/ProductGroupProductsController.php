@@ -29,6 +29,6 @@ class ProductGroupProductsController extends Controller
 
         $this->flasher->success('Product Added', $product->name . ' has been added to ' . $productGroup->name);
 
-        return redirect('admin/products/' . $product->id);
+        return redirect('admin/products/' . $product->id . '/edit');
     }
 }

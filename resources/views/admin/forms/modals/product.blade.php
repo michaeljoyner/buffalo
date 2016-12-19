@@ -16,10 +16,10 @@
                     <label for="product_code">Product Code: </label>
                     {!! Form::text('product_code', null, ['class' => "form-control", 'placeholder' => 'The product code', 'required']) !!}
                 </div>
-                <div class="form-group">
-                    <label for="description">SEO Description: </label>
-                    {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'you can edit this later']) !!}
-                </div>
+                {{--<div class="form-group">--}}
+                    {{--<label for="description">SEO Description: </label>--}}
+                    {{--{!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'you can edit this later']) !!}--}}
+                {{--</div>--}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dd-btn btn-light dd-modal-cancel-btn" data-dismiss="modal">Cancel</button>
