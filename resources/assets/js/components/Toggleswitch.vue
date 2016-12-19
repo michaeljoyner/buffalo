@@ -37,7 +37,7 @@
             toggleState: function () {
                 let initialState = !this.currentStatus;
                 this.$http.post(this.toggleUrl, this.makePayloadFor(this.currentStatus))
-                        .then((res) => this.currentStatus = res.data.new_state)
+                        .then((res) => this.currentStatus = res.json().new_state)
                         .catch((res) => this.currentStatus = initialState);
             },
 

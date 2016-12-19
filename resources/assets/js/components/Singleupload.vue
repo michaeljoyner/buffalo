@@ -112,7 +112,7 @@
                 this.uploadMsg = "Uploaded successfully";
                 this.uploadStatus = 'success'
                 this.uploading = false;
-                this.$dispatch('singleuploadcomplete', res.data);
+                this.$dispatch('singleuploadcomplete', res.json());
             },
 
             onUploadFailed(err) {

@@ -67,13 +67,13 @@
             promote() {
                 this.saving = true;
                 this.$http.post('/admin/products/' + this.productId + '/promote', {promote: true, promote_until: this.promote_until})
-                        .then((res) => this.onSuccess(res.data.new_state))
+                        .then((res) => this.onSuccess(res.json().new_state))
                         .catch((err) => this.onFailure());
             },
 
             demote() {
                 this.$http.post('/admin/products/' + this.productId + '/promote', {promote: false})
-                        .then((res) => this.onSuccess(res.data.new_state))
+                        .then((res) => this.onSuccess(res.json().new_state))
                         .catch((err) => this.onFailure());
             },
 

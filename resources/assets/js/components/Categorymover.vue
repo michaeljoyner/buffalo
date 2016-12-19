@@ -125,7 +125,7 @@
         methods: {
             fetchCategories() {
                 this.$http.get('/admin/productcategories/categories')
-                        .then((res) => this.$set('categories', res.data))
+                        .then((res) => this.$set('categories', res.json()))
                         .catch((err) => console.log(err));
             },
 
