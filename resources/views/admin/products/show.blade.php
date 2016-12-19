@@ -81,6 +81,7 @@
             ></new-until-switch>
         </div>
     </section>
+    <a href="{{ $product->imageSrc() }}" download="{{ $product->product_code }}" class="btn dd-btn">Download original image</a>
     <section class="product-notes">
         <h3>Product Notes</h3>
         @if(!$product->note)
