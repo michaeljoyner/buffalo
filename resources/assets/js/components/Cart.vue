@@ -42,7 +42,7 @@
             },
 
             setItems(res) {
-              this.$set('items', res.json());
+              this.$set('items', res.data);
             },
 
             failedToFetch() {

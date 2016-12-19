@@ -63,7 +63,7 @@
             },
 
             onSuccess(res) {
-                const data = res.json();
+                const data = res.data;
                 this.user.name = data.user.name;
                 this.user.cover_src = data.user.cover_src;
                 this.user.id = data.user.id;

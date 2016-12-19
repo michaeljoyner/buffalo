@@ -50,7 +50,6 @@
 
         methods: {
             canShow() {
-                console.log('loaded');
                 if(! this.virgin) {
                     this.virgin = true;
                     this.$parent.markAsReady(this.slideIndex);

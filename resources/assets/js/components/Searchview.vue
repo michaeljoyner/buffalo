@@ -82,7 +82,7 @@
                 this.lastTermSearched = this.searchterm;
                 this.$http.post(this.searchUrl, {searchterm: this.searchterm})
                         .then((res) => this.onSearchSuccess(res.data))
-                        .catch(() => console.log('search error'));
+                        .catch(() => this.showSearchError());
                 this.searchterm = '';
                 this.suggestions = [];
             },

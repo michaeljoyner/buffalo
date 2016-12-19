@@ -35,7 +35,7 @@
             },
 
             setState(res, show) {
-                this.quantity = res.json().total_products;
+                this.quantity = res.data.total_products;
                 if(show) {
                     this.showAlert();
                 }

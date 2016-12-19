@@ -60,7 +60,7 @@
 
             fetchSlides() {
                 this.$http.get('/api/slides')
-                        .then((res) => this.$set('slides', res.json()))
+                        .then((res) => this.$set('slides', res.data))
                         .catch(() => console.log('error fetching slides'));
             },
 
@@ -87,12 +87,10 @@
 
             nextInLine(current, listLength) {
                 return current == listLength - 1 ? 0 : current + 1;
-                console.log('forward');
             },
 
             prevInLine(current, listLength) {
               return current == 0 ? listLength - 1 : current - 1;
-                console.log('backward');
             },
 
             changeSlide(nextIndex) {

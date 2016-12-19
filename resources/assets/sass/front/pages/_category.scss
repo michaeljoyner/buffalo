@@ -65,6 +65,12 @@
       text-align: center;
     }
 
+    .product-code {
+      text-align: center;
+      font-size: 80%;
+      color: $brand_green;
+    }
+
     &.new::before {
       content: 'new';
       text-transform: uppercase;

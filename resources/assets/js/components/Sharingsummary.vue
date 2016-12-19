@@ -71,7 +71,7 @@
         methods: {
             fetchFacebook() {
                 this.$http.get('/admin/social/facebook/user')
-                        .then((res) => this.checkFacebook(res.json()))
+                        .then((res) => this.checkFacebook(res.data))
                         .catch((er) => console.log(er));
             },
 
@@ -83,7 +83,7 @@
 
             fetchTwitter() {
                 this.$http.get('/admin/social/twitter/user')
-                        .then((res) => this.checkTwitter(res.json()))
+                        .then((res) => this.checkTwitter(res.data))
                         .catch((er) => console.log(er));
             },
 
@@ -95,7 +95,7 @@
 
             fetchGooglePlus() {
                 this.$http.get('/admin/social/googleplus/user')
-                        .then((res) => this.checkGooglePlus(res.json()))
+                        .then((res) => this.checkGooglePlus(res.data))
                         .catch((er) => console.log(er));
             },
 

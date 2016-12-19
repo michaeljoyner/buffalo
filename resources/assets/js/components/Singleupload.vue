@@ -64,7 +64,7 @@
                     return 'auto';
                 }
 
-                if(this.size === 'larrge') {
+                if(this.size === 'large') {
                     return '300px';
                 }
 
@@ -112,7 +112,7 @@
                 this.uploadMsg = "Uploaded successfully";
                 this.uploadStatus = 'success'
                 this.uploading = false;
-                this.$dispatch('singleuploadcomplete', res.json());
+                this.$dispatch('singleuploadcomplete', res.data);
             },
 
             onUploadFailed(err) {
