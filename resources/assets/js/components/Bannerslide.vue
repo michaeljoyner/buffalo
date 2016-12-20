@@ -123,7 +123,7 @@
 
             fetchLinks() {
                 this.$http.get('/admin/sitelinks')
-                        .then((res) => this.setLinkOptions(res.json()))
+                        .then((res) => this.setLinkOptions(res.body))
                         .catch(() => this.sendAlert('Unable to get links', 'There was a problem, sorry. Please refresh and try again.'))
             },
 

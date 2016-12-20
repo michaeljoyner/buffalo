@@ -71,7 +71,7 @@
 
             setFetchedImages(res) {
                 this.syncing = false;
-                this.$set('postImages', res.json())
+                this.$set('postImages', res.body)
                 this.setNewFeaturedImage(this.featuredImage);
             },
 

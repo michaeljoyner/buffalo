@@ -83,7 +83,7 @@
 
             sendPayload(payload) {
                 this.$http.post('/admin/products/' + this.productId + '/markednew', payload)
-                        .then((res) => this.onSuccess(res.json()))
+                        .then((res) => this.onSuccess(res.body))
                         .catch((err) => this.onFailure());
             },
 

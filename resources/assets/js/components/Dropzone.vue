@@ -56,7 +56,7 @@
                         .then((res) => {
                             upload.setStatus('success');
                             this.uploads.$remove(upload);
-                            this.alertParent(res.json());
+                            this.alertParent(res.body);
                         })
                         .catch(() => upload.setStatus('failed'));
                 this.uploads.push(upload);

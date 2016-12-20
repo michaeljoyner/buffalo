@@ -64,7 +64,7 @@
 
                 this.saving = true;
                 this.$http.post('/api/cart/items/' + this.productId, {id: this.productId, quantity: this.quantity})
-                        .then((res) => this.onSuccessfulUpdate(res.json()))
+                        .then((res) => this.onSuccessfulUpdate(res.body))
                         .catch(() => this.onUpdateFailure());
             },
 

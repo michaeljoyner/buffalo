@@ -71,7 +71,7 @@
                     return;
                 }
                 this.$http.post(this.searchUrl, {searchterm: this.searchterm})
-                        .then((res) => this.suggestions = res.json())
+                        .then((res) => this.suggestions = res.body)
                         .catch(() => this.showSearchError());
             },
 
@@ -81,7 +81,7 @@
                 }
                 this.lastTermSearched = this.searchterm;
                 this.$http.post(this.searchUrl, {searchterm: this.searchterm})
-                        .then((res) => this.onSearchSuccess(res.json()))
+                        .then((res) => this.onSearchSuccess(res.body))
                         .catch(() => this.showSearchError());
                 this.searchterm = '';
                 this.suggestions = [];

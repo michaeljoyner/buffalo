@@ -45,7 +45,7 @@
                 messageObj[this.toggleprop] = !(this.state);
 
                 this.$http.post(this.url, messageObj).then(function(res) {
-                    this.$set('state', res.json().new_state ? 1 : 0);
+                    this.$set('state', res.body.new_state ? 1 : 0);
                     this.syncing = false;
                 });
             }

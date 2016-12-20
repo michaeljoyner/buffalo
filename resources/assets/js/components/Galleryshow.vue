@@ -38,7 +38,7 @@
 
             fetchImages() {
                 this.$http.get(this.geturl)
-                        .then((res) =>  this.$set('images', res.json()))
+                        .then((res) =>  this.$set('images', res.body))
                         .catch((res) => console.log(res));
             },
 

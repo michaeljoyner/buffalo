@@ -71,7 +71,7 @@
             },
 
             onSuccess(res) {
-              this.published = res.json().new_state;
+              this.published = res.body.new_state;
                 this.syncing = false;
             },
 
