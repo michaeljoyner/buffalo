@@ -17,6 +17,7 @@
     <tr>
         <th style="text-align: left;">#</th>
         <th style="text-align: left;">Product</th>
+        <th style="text-align: left;">Product Code</th>
         <th style="text-align: left;">Qty</th>
     </tr>
     </thead>
@@ -25,6 +26,7 @@
         <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $item->name }}</td>
+            <td>{{ $item->product->product_code ?? 'Not available' }}</td>
             <td>{{ $item->quantity }}</td>
         </tr>
     @endforeach
