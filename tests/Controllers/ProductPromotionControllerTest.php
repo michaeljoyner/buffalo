@@ -9,14 +9,18 @@ class ProductPromotionControllerTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     *@test
+     * @test
      */
     public function a_product_can_be_promoted_by_posting_to_endpoint()
     {
         $this->asLoggedInUser();
         $product = factory(Product::class)->create();
+        $promote_until = \Carbon\Carbon::now()->addDays(30)->format('Y-m-d');
 
-        $this->post('/admin/products/' . $product->id . '/promote', ['promote' => true, 'promote_until' => '2017-01-01'])
+        $this->post('/admin/products/' . $product->id . '/promote', [
+            'promote'       => true,
+            'promote_until' => $promote_until
+        ])
             ->assertResponseOk()
             ->seeJson(['new_state' => true]);
 
@@ -25,7 +29,7 @@ class ProductPromotionControllerTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_promoted_product_can_be_demoted_by_posting_to_endpoint()
     {
