@@ -130,3 +130,12 @@ $factory->define(App\SiteContent\Slide::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->define(App\Sourcing\Supplier::class, function (Faker\Generator $faker) {
+    return [
+        'name'   => $faker->company,
+        'email'  => $faker->companyEmail,
+        'address'  => $faker->address,
+        'phone'  => $faker->phoneNumber,
+    ];
+});
+
