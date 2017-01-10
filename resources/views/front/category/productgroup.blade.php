@@ -44,11 +44,11 @@
     {{--</section>--}}
     <section class="category-listing-outer">
         <div class="category-menu side-menu side-panel">
-            <p class="body-text no-margin-top">Browse by Category</p>
+            <p class="body-text no-margin-top small-pad-left">Browse by Category</p>
             @include('front.category.sidemenu')
         </div>
         <div class="main-panel">
-            <p class="no-margin-top body-text">Browse all {{ $productGroup->name }} Products</p>
+            <p class="no-margin-top body-text small-pad-left">Browse all {{ $productGroup->name }} Products</p>
             <div class="category-index">
                 @foreach($products as $product)
                     @include('front.category.productcard')

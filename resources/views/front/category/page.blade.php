@@ -39,13 +39,13 @@
     <section class="category-listing-outer">
         @if($category->subcategories->count() > 0)
         <div class="category-menu side-menu side-panel">
-            <p class="body-text no-margin-top">Browse by Category</p>
+            <p class="body-text no-margin-top small-pad-left">Browse by Category</p>
             @include('front.category.mobilemenu', ['mobileCategoryItems' => $category->subcategories, 'slugBase' => '/subcategories/'])
             @include('front.category.sidemenu')
         </div>
         @endif
         <div class="main-panel">
-            <p class="no-margin-top body-text">Browse all {{ $category->name }} Products</p>
+            <p class="no-margin-top body-text small-pad-left">Browse all {{ $category->name }} Products</p>
             <div class="category-index product-listing">
                 @foreach($products as $product)
                     @include('front.category.productcard')

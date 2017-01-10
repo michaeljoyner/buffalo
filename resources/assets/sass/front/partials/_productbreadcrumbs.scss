@@ -1,6 +1,8 @@
 .product-breadcrumbs {
   padding: 15px;
 
+  @include respond-to(phone) { display: none; }
+
   .breadcrumb {
     color: $text_grey;
     font-family: $strong_type;
