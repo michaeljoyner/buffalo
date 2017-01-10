@@ -38,6 +38,9 @@ Route::post('contact', 'ContactController@sendSiteMessage');
 
 Route::get('search', 'ProductSearchResultsController@index');
 
+
+Route::get('legal/privacy', 'PagesController@privacy');
+Route::get('legal/terms', 'PagesController@terms');
 // Authentication Routes...
 Route::get('admin/login', 'Auth\LoginController@showLoginForm');
 Route::post('admin/login', 'Auth\LoginController@login');

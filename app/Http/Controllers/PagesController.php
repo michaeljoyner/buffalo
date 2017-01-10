@@ -56,4 +56,14 @@ class PagesController extends Controller
     {
         return view('front.faqs.page');
     }
+
+    public function privacy()
+    {
+        return view('front.legal.privacy');
+    }
+
+    public function terms()
+    {
+        return view('front.legal.terms');
+    }
 }
