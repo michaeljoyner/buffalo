@@ -1,0 +1,14 @@
+.product-supplies {
+
+  .filter-link {
+    display: block;
+    padding-bottom: 40px;
+    color: $brand_green;
+    text-decoration: underline;
+  }
+
+  .btn.dd-btn {
+    transform: scale(.7);
+    transform-origin: top;
+  }
+}

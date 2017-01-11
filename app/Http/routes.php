@@ -173,6 +173,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('suppliers/{supplier}', 'SuppliersController@update');
         Route::delete('suppliers/{supplier}', 'SuppliersController@delete');
 
+        Route::get('products/{product}/supplies', 'SuppliesController@index');
+        Route::post('products/{product}/supplies', 'SuppliesController@store');
+        Route::delete('supplies/{supply}', 'SuppliesController@delete');
+
         Route::get('slides', 'SlidesController@index')->middleware('superauth');
         Route::get('slides/sort', 'SlidesOrderController@edit')->middleware('superauth');
         Route::get('slides/create', 'SlidesController@create')->middleware('superauth');

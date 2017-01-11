@@ -3,6 +3,7 @@
 namespace App\Products;
 
 use App\GetsSlugFromName;
+use App\Sourcing\Supply;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
@@ -248,5 +249,15 @@ class Product extends Model implements HasMediaConversions
     public function getNote()
     {
         return $this->note ? $this->note->content : '';
+    }
+
+    public function supplies()
+    {
+        return $this->hasMany(Supply::class, 'product_id');
+    }
+
+    public function addSupply($data)
+    {
+        return $this->supplies()->create($data);
     }
 }

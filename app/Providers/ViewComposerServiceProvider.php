@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Products\Category;
+use App\Sourcing\Supplier;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +20,12 @@ class ViewComposerServiceProvider extends ServiceProvider
             $menuCategories = Category::orderBy('name')->get();
 
             return $view->with(compact('menuCategories'));
+        });
+
+        View::composer('admin.forms.modals.productsupply', function ($view) {
+            $suppliers = Supplier::orderBy('name')->get();
+
+            return $view->with(compact('suppliers'));
         });
     }
 
