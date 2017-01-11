@@ -24,17 +24,7 @@ class SupplierForm extends FormRequest
      */
     public function rules()
     {
-        if($this->route('supplier')) {
-            return [
-                'name' => [
-                    'required',
-                    Rule::unique('suppliers')->ignore($this->route('supplier')->id),
-                ]
-            ];
-        }
-
-        return ['name' => 'required|unique:suppliers'];
-
+        return ['name' => 'required'];
     }
 
     public function acceptedFields()
