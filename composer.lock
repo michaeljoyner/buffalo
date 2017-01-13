@@ -2215,16 +2215,16 @@
         },
         {
             "name": "sammyk/laravel-facebook-sdk",
-            "version": "3.4.0",
+            "version": "3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SammyK/LaravelFacebookSdk.git",
-                "reference": "8bd9d66ef57fb182f77ab41dee89b2a81ee59677"
+                "reference": "8cef4beb5e2c6c928e390458264f7a7e44eff2d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SammyK/LaravelFacebookSdk/zipball/8bd9d66ef57fb182f77ab41dee89b2a81ee59677",
-                "reference": "8bd9d66ef57fb182f77ab41dee89b2a81ee59677",
+                "url": "https://api.github.com/repos/SammyK/LaravelFacebookSdk/zipball/8cef4beb5e2c6c928e390458264f7a7e44eff2d1",
+                "reference": "8cef4beb5e2c6c928e390458264f7a7e44eff2d1",
                 "shasum": ""
             },
             "require": {
@@ -2270,7 +2270,7 @@
                 "lumen",
                 "sdk"
             ],
-            "time": "2016-08-25 14:54:47"
+            "time": "2016-10-12 19:16:35"
         },
         {
             "name": "spatie/crawler",

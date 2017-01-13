@@ -5,6 +5,7 @@ namespace App\Social;
 
 
 use App\Blog\Post;
+use Facebook\Authentication\AccessToken;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class Facebook
@@ -21,7 +22,7 @@ class Facebook
 
     public function login()
     {
-        return redirect($this->facebookSdk->getLoginUrl(['email', 'publish_actions']));
+        return redirect($this->facebookSdk->getLoginUrl(['email', 'manage_pages', 'publish_pages']));
     }
 
     public function createAuthentictedUser()
@@ -32,17 +33,17 @@ class Facebook
             return false;
         }
 
-        if (! $token) {
+        if (!$token) {
             $helper = $this->facebookSdk->getRedirectLoginHelper();
 
-            if (! $helper->getError()) {
+            if (!$helper->getError()) {
                 abort(403, 'Unauthorized action.');
             }
 
             return false;
         }
 
-        if (! $token->isLongLived()) {
+        if (!$token->isLongLived()) {
             $oauth_client = $this->facebookSdk->getOAuth2Client();
             try {
                 $token = $oauth_client->getLongLivedAccessToken($token);
@@ -60,18 +61,18 @@ class Facebook
     {
         $facebook_user = $this->getUserDetails();
 
-        if(! $facebook_user) {
+        if (!$facebook_user) {
             return false;
         }
 
-        FacebookUser::all()->each(function($outdated) {
+        FacebookUser::all()->each(function ($outdated) {
             $outdated->delete();
         });
 
         return FacebookUser::create([
             'token_serialized' => serialize($token),
-            'name' => $facebook_user['name'],
-            'cover_src' => isset($facebook_user['cover']['source']) ? isset($facebook_user['cover']['source']) : ''
+            'name'             => $facebook_user['name'],
+            'cover_src'        => isset($facebook_user['cover']['source']) ? isset($facebook_user['cover']['source']) : ''
         ]);
     }
 
@@ -90,7 +91,7 @@ class Facebook
     {
         $user = $this->getLastSavedUser();
 
-        if(! $user) {
+        if (!$user) {
             return new FacebookUser(['name' => '', 'cover_src' => '', 'authorized' => 'false']);
         }
 
@@ -98,8 +99,9 @@ class Facebook
 
         $facebook_user = $this->getUserDetails();
 
-        if(! $facebook_user) {
+        if (!$facebook_user) {
             $user->authorized = false;
+
             return $user;
         }
 
@@ -108,6 +110,7 @@ class Facebook
             'cover_src' => $facebook_user['cover']['source']
         ]);
         $user->authorised = true;
+
         return $user;
     }
 
@@ -123,10 +126,15 @@ class Facebook
         $this->facebookSdk->setDefaultAccessToken($this->tokenFromUser($user));
 
         try {
-            $this->facebookSdk->post('/me/feed', [
+            $page_id = env('FACEBOOK_PAGE_ID');
+            $page_info = $this->facebookSdk->get("/$page_id?fields=access_token");
+            $page_token = json_decode($page_info->getBody(), true)['access_token'];
+            $this->facebookSdk->setDefaultAccessToken($page_token);
+            $args = [
                 'message' => $post->description,
-                'link' => url('/news/' . $post->slug)
-            ]);
+                'link'    => url('/news/' . $post->slug)
+            ];
+            $this->facebookSdk->post('/' . $page_id . '/feed', $args);
         } catch (Facebook\Exceptions\FacebookSDKException $e) {
 
         }
@@ -140,6 +148,7 @@ class Facebook
     protected function tokenFromUser($user)
     {
         $token = unserialize($user->token_serialized);
+
         return $token->getValue();
     }
 }
