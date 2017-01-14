@@ -15,7 +15,7 @@
                 <h3>Ready to publish</h3>
             </div>
             <div slot="body">
-                <p class="lead">You are about to publish this article for the first time, which will automatically share to social media. This only happens this once, so now is a good time to check if the article is complete and has a featured image.</p>
+                <p class="lead">You are about to publish this article for the first time, which will automatically share to the social media, such as <span class="facebook-name">Facebook</span>, if you have it enabled. This only happens this once, so now is a good time to check if the article is complete and has a featured image.</p>
             </div>
             <div slot="footer">
                 <button class="btn dd-btn btn-grey"

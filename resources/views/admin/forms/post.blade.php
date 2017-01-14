@@ -6,6 +6,7 @@
 </div>
 <div class="form-group">
     <label for="description">Description: </label>
+    <p class="sharing-info">This text you add here will be the message that accompanies the link to this post shared on social sites such as <span class="facebook-name">facebook</span>, if you choose to enable sharing.</p>
     {!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'post-description']) !!}
 </div>
 <div class="form-group">
