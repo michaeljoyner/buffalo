@@ -8,6 +8,7 @@
     <section class="dd-page-header clearfix">
         <h1 class="pull-left">{{ $product->name }}</h1>
         <div class="header-actions pull-right">
+            <a href="/admin/products/{{ $product->id }}/supplies" class="btn dd-btn btn-dark">Supplies</a>
             <a href="/admin/products/{{ $product->id }}/edit" class="btn dd-btn btn-light">Edit</a>
             @include('admin.partials.deletebutton', [
                 'objectName' => $product->name,
