@@ -12,3 +12,6 @@ Homestead.json
 workspace.xml
 /public/media/**/*
 /public/sitemap.xml
+/public/js/**/*
+/public/css/**/*
+/public/build/
