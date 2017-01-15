@@ -6,6 +6,7 @@ use App\Products\Product;
 use App\Products\ProductGroup;
 use App\Products\ProductsRepository;
 use App\Products\Subcategory;
+use App\Sourcing\Supply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ProductsRepositoryTest extends TestCase
@@ -72,6 +73,35 @@ class ProductsRepositoryTest extends TestCase
         $this->assertResultsContainsProduct($results, [$product1, $product2]);
         $this->assertCount(2, $results);
         $this->assertEquals($product1->id, $results->first()['id']);
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_can_be_searched_on_its_supply_item_number()
+    {
+        $supplyData = factory(Supply::class)->make(['item_number' => 'ABC123'])->toArray();
+        $product = factory(Product::class)->create();
+        $product->addSupply($supplyData);
+
+        $results = $this->repo->search('ABC123');
+
+        $this->assertResultsContainsProduct($results, $product);
+    }
+
+    /**
+     *@test
+     */
+    public function a_product_is_not_duplicated_if_it_matches_on_more_than_one_criteria()
+    {
+        $supplyData = factory(Supply::class)->make(['item_number' => 'ABC123'])->toArray();
+        $product = factory(Product::class)->create(['product_code' => 'ABC124']);
+        $product->addSupply($supplyData);
+
+        $results = $this->repo->search('ABC12');
+
+        $this->assertResultsContainsProduct($results, $product);
+        $this->assertCount(1, $results);
     }
 
     /**

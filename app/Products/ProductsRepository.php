@@ -11,10 +11,13 @@ class ProductsRepository
 {
     public function search($searchTerm)
     {
+        $factoryNumberMatches = Product::whereHas('supplies', function($query) use ($searchTerm) {
+            $query->where('item_number', 'LIKE', '%' . $searchTerm . '%');
+        })->get();
         $productCodeMatches = Product::with('category')->where('product_code', 'LIKE', '%' . $searchTerm . '%')->get();
         $productNameMatches = Product::with('category')->where('name', 'LIKE', '%' . $searchTerm . '%')->get();
 
-        return $productCodeMatches->merge($productNameMatches)->map(function($product) {
+        return $factoryNumberMatches->merge($productCodeMatches->merge($productNameMatches))->map(function($product) {
             return [
               'id' => $product->id,
                 'product_code' => $product->product_code,
