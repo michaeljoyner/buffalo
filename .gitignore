@@ -14,4 +14,4 @@ workspace.xml
 /public/sitemap.xml
 /public/js/**/*
 /public/css/**/*
-/public/build/
+/public/build
