@@ -11,7 +11,7 @@ class Supplier extends Model
 
     protected $table = 'suppliers';
 
-    protected $fillable = ['name', 'email', 'address', 'phone'];
+    protected $fillable = ['name', 'email', 'address', 'phone', 'contact_person', 'website'];
 
     protected $dates = ['deleted_at'];
 }

@@ -23,10 +23,12 @@ class SuppliersControllerTest extends TestCase
         ])
             ->assertResponseStatus(302)
             ->seeInDatabase('suppliers', [
-                'name'    => 'HardTack Fabricators',
-                'email'   => 'supply@hardtack.con',
-                'address' => null,
-                'phone'   => null
+                'name'           => 'HardTack Fabricators',
+                'email'          => 'supply@hardtack.con',
+                'address'        => null,
+                'phone'          => null,
+                'website'        => null,
+                'contact_person' => null
             ]);
     }
 
@@ -42,7 +44,9 @@ class SuppliersControllerTest extends TestCase
             'name'    => 'HardTack Fabricators',
             'email'   => 'supply@hardtack.con',
             'address' => '',
-            'phone'   => '042456897'
+            'phone'   => '042456897',
+            'website' => 'http://example.com',
+            'contact_person' => 'Joe Soap'
         ])
             ->assertResponseStatus(302)
             ->seeInDatabase('suppliers', [
@@ -50,13 +54,15 @@ class SuppliersControllerTest extends TestCase
                 'name'    => 'HardTack Fabricators',
                 'email'   => 'supply@hardtack.con',
                 'address' => null,
-                'phone'   => '042456897'
+                'phone'   => '042456897',
+                'website' => 'http://example.com',
+                'contact_person' => 'Joe Soap'
             ]);
 
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_supplier_can_be_deleted()
     {

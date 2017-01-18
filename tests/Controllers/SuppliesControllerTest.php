@@ -9,9 +9,9 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class SuppliesControllerTest extends TestCase
 {
     use DatabaseMigrations;
-    
+
     /**
-     *@test
+     * @test
      */
     public function a_new_supply_is_correctly_stored_on_the_product()
     {
@@ -20,26 +20,28 @@ class SuppliesControllerTest extends TestCase
         $this->asLoggedInUser();
 
         $this->post('/admin/products/' . $product->id . '/supplies', [
-            'quoted_date' => '2017-01-11',
-            'supplier_id' => $supplier->id,
-            'item_number' => '12345',
-            'price' => 1000,
+            'quoted_date'   => '2017-01-11',
+            'supplier_id'   => $supplier->id,
+            'item_number'   => '12345',
+            'currency'      => 'twd',
+            'price'         => 1000,
             'package_price' => 20,
-            'remarks' => ''
+            'remarks'       => ''
         ])->assertResponseStatus(302)
-          ->seeInDatabase('supplies', [
-                'product_id' => $product->id,
-                'quoted_date' => '2017-01-11 00:00:00',
-                'supplier_id' => $supplier->id,
-                'item_number' => '12345',
-                'price' => 1000,
+            ->seeInDatabase('supplies', [
+                'product_id'    => $product->id,
+                'quoted_date'   => '2017-01-11 00:00:00',
+                'supplier_id'   => $supplier->id,
+                'item_number'   => '12345',
+                'currency'      => 'twd',
+                'price'         => 1000,
                 'package_price' => 20,
-                'remarks' => null
+                'remarks'       => null
             ]);
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_supply_is_correctly_deleted()
     {

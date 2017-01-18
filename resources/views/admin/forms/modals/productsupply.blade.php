@@ -26,6 +26,16 @@
                     {!! Form::text('item_number', null, ['class' => "form-control", 'placeholder' => 'The factory item number', 'required']) !!}
                 </div>
                 <div class="form-group">
+                    <label for="currency">Currency</label>
+                    <select name="currency" id="currency_select" class="form-control">
+                        <option value="TWD">New Taiwan Dollar</option>
+                        <option value="USD">United States Dollar</option>
+                        @foreach(config('currency_codes') as $code => $name)
+                            <option value="{{ $code }}">{{ $name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="price">Price</label>
                     <input type="number" name="price" required class="form-control">
                 </div>

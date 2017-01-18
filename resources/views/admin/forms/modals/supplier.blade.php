@@ -13,6 +13,10 @@
                     {!! Form::text('name', null, ['class' => "form-control", 'placeholder' => 'The factory name', 'required']) !!}
                 </div>
                 <div class="form-group">
+                    <label for="contact_person">Contact Person: </label>
+                    {!! Form::text('contact_person', null, ['class' => "form-control"]) !!}
+                </div>
+                <div class="form-group">
                     <label for="name">Email: </label>
                     {!! Form::email('email', null, ['class' => "form-control", 'placeholder' => 'Contact person email']) !!}
                 </div>
@@ -23,6 +27,10 @@
                 <div class="form-group">
                     <label for="name">Phone: </label>
                     {!! Form::text('phone', null, ['class' => "form-control"]) !!}
+                </div>
+                <div class="form-group">
+                    <label for="name">Website: </label>
+                    {!! Form::text('website', null, ['class' => "form-control", 'placeholder' => 'Must include http:// or https://']) !!}
                 </div>
             </div>
             <div class="modal-footer">

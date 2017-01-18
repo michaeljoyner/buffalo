@@ -29,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('password', function($attribute, $value, $parameters, $validator) {
             return Hash::check($value, Auth::user()->password);
         });
+
+        Validator::extend('currency', function($attribute, $value, $parameters, $validator) {
+            return in_array(strtoupper($value), array_keys(config('currency_codes')));
+        });
     }
 
     /**

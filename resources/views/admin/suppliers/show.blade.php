@@ -13,9 +13,18 @@
     </section>
     <section class="supplier-show">
         <p class="lead"><strong>Name: </strong>{{ $supplier->name }}</p>
+        <p class="lead"><strong>Contact Person: </strong>{{ $supplier->contact_person ?? 'Not set' }}</p>
         <p class="lead"><strong>Email: </strong>{{ $supplier->email }}</p>
         <p class="lead"><strong>Address: </strong>{{ $supplier->address }}</p>
         <p class="lead"><strong>Phone: </strong>{{ $supplier->phone }}</p>
+        <p class="lead">
+            <strong>Website: </strong>
+            @if($supplier->website)
+            <a href="{{ $supplier->website }}">{{ $supplier->website }}</a>
+            @else
+            Not set
+            @endif
+        </p>
     </section>
     @include('admin.partials.deletemodal')
 @endsection

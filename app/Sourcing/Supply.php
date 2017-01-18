@@ -13,6 +13,7 @@ class Supply extends Model
         'quoted_date',
         'supplier_id',
         'item_number',
+        'currency',
         'price',
         'package_price',
         'remarks'

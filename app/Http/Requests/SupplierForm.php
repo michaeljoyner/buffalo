@@ -24,13 +24,18 @@ class SupplierForm extends FormRequest
      */
     public function rules()
     {
-        return ['name' => 'required'];
+        return [
+            'name' => 'required',
+            'email' => 'email',
+            'website' => 'url'
+        ];
     }
 
     public function acceptedFields()
     {
-        return collect($this->only('name', 'phone', 'email', 'address'))->flatMap(function($value, $field) {
-            return [$field => $value === '' ? null : $value];
-        })->toArray();
+        return collect($this->only('name', 'phone', 'email', 'address', 'website', 'contact_person'))
+            ->flatMap(function($value, $field) {
+                return [$field => $value === '' ? null : $value];
+            })->toArray();
     }
 }

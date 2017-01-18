@@ -132,16 +132,12 @@ $factory->define(App\SiteContent\Slide::class, function (Faker\Generator $faker)
 
 $factory->define(App\Sourcing\Supplier::class, function (Faker\Generator $faker) {
     return [
-<<<<<<< HEAD
-        'name'   => $faker->company,
-        'email'  => $faker->companyEmail,
-        'address'  => $faker->address,
-        'phone'  => $faker->phoneNumber,
-=======
-        'name'    => $faker->company,
-        'email'   => $faker->companyEmail,
-        'address' => $faker->address,
-        'phone'   => $faker->phoneNumber,
+        'name'           => $faker->company,
+        'email'          => $faker->companyEmail,
+        'address'        => $faker->address,
+        'phone'          => $faker->phoneNumber,
+        'website'        => $faker->url,
+        'contact_person' => $faker->name
     ];
 });
 
@@ -153,12 +149,12 @@ $factory->define(App\Sourcing\Supply::class, function (Faker\Generator $faker) {
         'product_id'    => function () {
             return factory(\App\Products\Product::class)->create()->id;
         },
-        'quoted_date'          => \Carbon\Carbon::now(),
+        'quoted_date'   => \Carbon\Carbon::now(),
         'item_number'   => $faker->numberBetween(10000, 99999),
+        'currency'      => $faker->currencyCode,
         'price'         => $faker->numberBetween(1000, 9999),
         'package_price' => $faker->numberBetween(100, 999),
         'remarks'       => $faker->paragraph
->>>>>>> factories
     ];
 });
 

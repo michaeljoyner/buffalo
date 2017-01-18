@@ -17,4 +17,14 @@ class SuppliesTest extends TestCase
 
         $this->assertInstanceOf(Supply::class, $supply);
     }
+
+    /**
+     *@test
+     */
+    public function a_supply_has_a_persistable_currency()
+    {
+        $supply = factory(Supply::class)->create(['currency' => 'NTD']);
+
+        $this->seeInDatabase('supplies', ['id' => $supply->id, 'currency' => 'NTD']);
+    }
 }
