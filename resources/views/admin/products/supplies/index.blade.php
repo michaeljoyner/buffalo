@@ -35,10 +35,14 @@
                         <td>{{ $supply->package_price }}</td>
                         <td>{!! nl2br($supply->remarks) !!}</td>
                         <td>
-                            @include('admin.partials.deletebutton', [
-                                'objectName' => $supply->item_number,
-                                'deleteFormAction' => '/admin/supplies/' . $supply->id
-                            ])
+                            @if(Auth::user()->isA('super_admin'))
+                                @include('admin.partials.deletebutton', [
+                                    'objectName' => $supply->item_number,
+                                    'deleteFormAction' => '/admin/supplies/' . $supply->id
+                                ])
+                            @else
+                                <span>No actions</span>
+                            @endif
                         </td>
                     </tr>
                 </table>
@@ -71,10 +75,14 @@
                     <td>{{ $supply->package_price }}</td>
                     <td>{!! nl2br($supply->remarks) !!}</td>
                     <td>
-                        @include('admin.partials.deletebutton', [
-                            'objectName' => $supply->item_number,
-                            'deleteFormAction' => '/admin/supplies/' . $supply->id
-                        ])
+                        @if(Auth::user()->isA('super_admin'))
+                            @include('admin.partials.deletebutton', [
+                                'objectName' => $supply->item_number,
+                                'deleteFormAction' => '/admin/supplies/' . $supply->id
+                            ])
+                        @else
+                            <span>No actions</span>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

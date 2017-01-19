@@ -176,7 +176,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('products/{product}/supplies', 'SuppliesController@index');
         Route::post('products/{product}/supplies', 'SuppliesController@store');
-        Route::delete('supplies/{supply}', 'SuppliesController@delete');
+        Route::delete('supplies/{supply}', 'SuppliesController@delete')->middleware('superauth');;
 
 
         Route::get('slides', 'SlidesController@index')->middleware('superauth');
