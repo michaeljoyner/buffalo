@@ -20,6 +20,7 @@
                         <tr>
                             <th>Factory</th>
                             <th>Factory Item #</th>
+                            <th>Currency</th>
                             <th>Price</th>
                             <th>Package Price</th>
                             <th>Remarks</th>
@@ -29,6 +30,7 @@
                     <tr>
                         <td>{{ $supply->supplier->name }}</td>
                         <td>{{ $supply->item_number }}</td>
+                        <td>{{ strtoupper($supply->currency) }}</td>
                         <td>{{ $supply->price }}</td>
                         <td>{{ $supply->package_price }}</td>
                         <td>{!! nl2br($supply->remarks) !!}</td>
@@ -53,6 +55,7 @@
                 <tr>
                     <th>Date</th>
                     <th>Factory Item #</th>
+                    <td>{{ strtoupper($supply->currency) }}</td>
                     <th>Price</th>
                     <th>Package Price</th>
                     <th>Remarks</th>
@@ -63,6 +66,7 @@
                 <tr>
                     <td>{{ $supply->quoted_date->toFormattedDateString() }}</td>
                     <td>{{ $supply->item_number }}</td>
+                    <td>{{ strtoupper($supply->currency) }}</td>
                     <td>{{ $supply->price }}</td>
                     <td>{{ $supply->package_price }}</td>
                     <td>{!! nl2br($supply->remarks) !!}</td>
