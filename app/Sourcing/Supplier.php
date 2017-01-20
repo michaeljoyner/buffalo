@@ -14,4 +14,16 @@ class Supplier extends Model
     protected $fillable = ['name', 'email', 'address', 'phone', 'contact_person', 'website'];
 
     protected $dates = ['deleted_at'];
+
+    public function supplies()
+    {
+        return $this->hasMany(Supply::class, 'supplier_id');
+    }
+
+    public function products()
+    {
+        return $this->supplies()->with('product')->get()->map(function($supply) {
+            return $supply->product;
+        })->unique();
+    }
 }

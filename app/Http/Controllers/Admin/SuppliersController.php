@@ -7,6 +7,7 @@ use App\Http\Requests\SupplierForm;
 use App\Sourcing\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SuppliersController extends Controller
 {
@@ -30,7 +31,8 @@ class SuppliersController extends Controller
 
     public function show(Supplier $supplier)
     {
-        return view('admin.suppliers.show')->with(compact('supplier'));
+        $supplierProducts = $this->makePaginator(request(), $supplier->products());
+        return view('admin.suppliers.show')->with(compact('supplier', 'supplierProducts'));
     }
 
     public function store(SupplierForm $request)
@@ -63,5 +65,19 @@ class SuppliersController extends Controller
         $this->flasher->success('Supplier Deleted', 'The supplier has been deleted from the system');
 
         return redirect('admin/suppliers');
+    }
+
+    protected function makePaginator($request, $items, $perPage = 18)
+    {
+        $page = $request->get('page', 1);
+        $offset = ($page * $perPage) - $perPage;
+
+        return new LengthAwarePaginator(
+            $items->slice($offset, $perPage)->all(),
+            count($items),
+            $perPage,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
     }
 }

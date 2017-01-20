@@ -26,6 +26,14 @@
             @endif
         </p>
     </section>
+    <hr>
+    <h3 class="text-center">Factory Products</h3>
+    <section class="supplier-products product-grid">
+        @foreach($supplierProducts as $product)
+            @include('admin.partials.productgridcard')
+        @endforeach
+    </section>
+    @include('admin.partials.pagination', ['paginator' => $supplierProducts])
     @include('admin.partials.deletemodal')
 @endsection
 
