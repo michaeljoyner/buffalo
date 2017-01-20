@@ -42,4 +42,16 @@ class ProductSuppliesTest extends TestCase
 
         $this->assertEquals($product->id, $supply->product->id);
     }
+
+    /**
+     *@test
+     */
+    public function a_supply_price_can_be_a_float()
+    {
+        $supply = factory(Supply::class)->create(['price' => 33.33]);
+        $databasePrice = $supply->fresh()->price;
+
+        //multiply by 1 to ensure not testing with string value
+        $this->assertTrue(is_float($supply->fresh()->price * 1), "Failed to assert that $databasePrice is a float");
+    }
 }

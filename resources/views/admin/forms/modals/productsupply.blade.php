@@ -37,11 +37,11 @@
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="number" name="price" required class="form-control">
+                    <input type="number" step="0.01" name="price" required class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="package_price">Package Price</label>
-                    <input type="number" name="package_price" required class="form-control">
+                    <input type="number" step="0.01" name="package_price" required class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="remarks">Remarks: </label>
