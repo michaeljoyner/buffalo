@@ -30,5 +30,28 @@
     ga('create','UA-51468211-9','auto');ga('send','pageview')
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+<script type='application/ld+json'>
+{
+  "@context": "http://www.schema.org",
+  "@type": "Corporation",
+  "name": "Huang Buffalo",
+  "url": "https://buffalo-tools.com/",
+  "logo": "https://buffalo-tools.com/images/about/logo_black.png",
+  "description": "Huang Buffalo Co., Ltd. has specialized in exporting professional hardware, DIY hand tools and OEM products to Europe, America and Asia area for more than 20 years. We are proud of our wide products range, competitive prices and high quality products.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "22F-2, No. 698, Sec 4, Wenxin Road",
+    "addressLocality": "Taichung City",
+    "addressRegion": "Taichung",
+    "postalCode": "406",
+    "addressCountry": "Taiwan"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+886(042)2372753",
+    "contactType": "customer service"
+  }
+}
+ </script>
 </body>
 </html>
