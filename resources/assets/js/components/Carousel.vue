@@ -14,6 +14,7 @@
                       :slide-index="$index"
                       v-show="$index == currentImg"
                       :direction="direction"
+                      @requestnext="onRequestNext"
         ></banner-slide>
         <img src="/images/slider_arrow.png" v-show="readyCount > 1" class="carousel-prev-arrow carousel-nav-arrow" @click="prevSlide">
         <img src="/images/slider_arrow.png" v-show="readyCount > 1" class="carousel-next-arrow carousel-nav-arrow" @click="nextSlide">
@@ -127,7 +128,7 @@
                 if(! this.autoPlay || this.interval) {
                     return;
                 }
-                this.interval = setInterval(() => this.nextSlide(), this.slideTime);
+                this.interval = setTimeout(() => this.nextSlide(), this.slideTime);
             },
 
             stop() {
@@ -141,6 +142,12 @@
 
             removeOriginal() {
                 setTimeout(() => document.querySelector('.original-slide').style.display = "none", 1500);
+            },
+
+            onRequestNext(requesterIndex) {
+                if(requesterIndex === this.currentImg) {
+                    this.nextSlide();
+                }
             }
         }
     }

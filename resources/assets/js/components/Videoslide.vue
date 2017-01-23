@@ -3,7 +3,8 @@
 <template>
     <video :src="videoSrc"
            @canplaythrough="canPlay"
-           muted playsinline preload loop
+           @ended="videoEnded"
+           muted playsinline preload
     ></video>
 </template>
 
@@ -37,8 +38,11 @@
             },
 
             play() {
-                console.log('yebo');
                 this.$el.play();
+            },
+
+            videoEnded() {
+                this.$dispatch('videoended');
             }
 
         }

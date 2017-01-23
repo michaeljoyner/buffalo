@@ -9,7 +9,7 @@
                 <img @load="canShow" :src="imageSrc" :alt="slideText">
             </picture>
             <!--<img @load="canShow" :src="imageSrc" :alt="slideText" v-if="!isVideo">-->
-            <video-slide v-ref:vid v-if="isVideo" :video-src="'/videos/' + video"></video-slide>
+            <video-slide v-ref:vid v-if="isVideo" :video-src="'/videos/' + video" @videoended="endOfVideo"></video-slide>
         </div>
         <span class="slide-text">{{ slideText }}</span>
         <a v-if="actionLink && actionText" href="{{ actionLink }}" class="slide-action">{{
@@ -58,14 +58,22 @@
 
             onLeaving() {
                 if (this.isVideo) {
-                    this.$refs.vid.pause();
+//                    this.$refs.vid.pause();
                 }
             },
 
             onShow() {
+
                 if (this.isVideo) {
-                    this.$refs.vid.play();
+                    this.$refs.vid.currentTime = 0;
+                    return this.$refs.vid.play();
                 }
+
+                window.setTimeout(() => this.$dispatch('requestnext', this.slideIndex), this.$parent.slideTime);
+            },
+
+            endOfVideo() {
+                window.setTimeout(() => this.$dispatch('requestnext', this.slideIndex), 500);
             }
         }
     }
