@@ -45,6 +45,16 @@
         left: 0;
         top: 0;
       }
+
+      video {
+        @include respond-to(phone) {
+          height: 60vw;
+          width: auto;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
 
     img, video, picture {
