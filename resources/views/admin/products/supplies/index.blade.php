@@ -33,7 +33,7 @@
                         <td>{{ strtoupper($supply->currency) }}</td>
                         <td>{{ $supply->price }}</td>
                         <td>{{ $supply->package_price }}</td>
-                        <td>{!! nl2br($supply->remarks) !!}</td>
+                        <td class="supply-table-remark">{!! nl2br($supply->remarks) !!}</td>
                         <td>
                             @if(Auth::user()->isA('super_admin'))
                                 @include('admin.partials.deletebutton', [
@@ -59,7 +59,7 @@
                 <tr>
                     <th>Date</th>
                     <th>Factory Item #</th>
-                    <td>{{ strtoupper($supply->currency) }}</td>
+                    <th>Currency</th>
                     <th>Price</th>
                     <th>Package Price</th>
                     <th>Remarks</th>
@@ -73,7 +73,7 @@
                     <td>{{ strtoupper($supply->currency) }}</td>
                     <td>{{ $supply->price }}</td>
                     <td>{{ $supply->package_price }}</td>
-                    <td>{!! nl2br($supply->remarks) !!}</td>
+                    <td class="supply-table-remark">{!! nl2br($supply->remarks) !!}</td>
                     <td>
                         @if(Auth::user()->isA('super_admin'))
                             @include('admin.partials.deletebutton', [

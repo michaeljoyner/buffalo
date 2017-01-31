@@ -25,6 +25,8 @@ Vue.component('sharing-summary', require('./components/Sharingsummary.vue'));
 Vue.component('category-mover', require('./components/Categorymover.vue'));
 Vue.component('product-promoter', require('./components/Productpromoter.vue'));
 Vue.component('new-until-switch', require('./components/Newuntilswitch.vue'));
+Vue.component('type-ahead', require('./components/Typeahead.vue'));
+Vue.component('factory-input', require('./components/Factoryinput.vue'));
 
 Vue.http.interceptors.unshift(function(request, next) {
     next(function(response) {

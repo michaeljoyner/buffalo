@@ -12,15 +12,19 @@
                     <label for="quoted_date">Date: </label>
                     <input type="date" name="quoted_date" class="form-control" required>
                 </div>
-                <div class="form-group">
-                    <label for="supplier_id">Supplier/Factory: </label>
-                    <select name="supplier_id" id="supplier_id" class="form-control">
-                        <option value="">Select a supplier</option>
-                        @foreach($suppliers as $supplier)
-                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <factory-input :factory-list='{{ json_encode($suppliers->map(function($supplier) { return ['id' => $supplier->id, 'name' => $supplier->name]; })->toArray()) }}'></factory-input>
+                {{--<div class="form-group">--}}
+                    {{--<type-ahead :suggestions='{{ json_encode($suppliers->map(function($supplier) { return ['id' => $supplier->id, 'name' => $supplier->name]; })->toArray()) }}'></type-ahead>--}}
+                {{--</div>--}}
+                {{--<div class="form-group">--}}
+                    {{--<label for="supplier_id">Supplier/Factory: </label>--}}
+                    {{--<select name="supplier_id" id="supplier_id" class="form-control">--}}
+                        {{--<option value="">Select a supplier</option>--}}
+                        {{--@foreach($suppliers as $supplier)--}}
+                            {{--<option value="{{ $supplier->id }}">{{ $supplier->name }}</option>--}}
+                        {{--@endforeach--}}
+                    {{--</select>--}}
+                {{--</div>--}}
                 <div class="form-group">
                     <label for="product_code">Factory Item number: </label>
                     {!! Form::text('item_number', null, ['class' => "form-control", 'placeholder' => 'The factory item number', 'required']) !!}
