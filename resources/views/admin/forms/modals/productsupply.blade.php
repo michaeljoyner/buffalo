@@ -12,7 +12,7 @@
                     <label for="quoted_date">Date: </label>
                     <input type="date" name="quoted_date" class="form-control" required>
                 </div>
-                <factory-input :factory-list='{{ json_encode($suppliers->map(function($supplier) { return ['id' => $supplier->id, 'name' => $supplier->name]; })->toArray()) }}'></factory-input>
+                <factory-input :factory-list='{!! json_encode($suppliers->map(function($supplier) { return ['id' => $supplier->id, 'name' => $supplier->name]; })->toArray()) !!}'></factory-input>
                 {{--<div class="form-group">--}}
                     {{--<type-ahead :suggestions='{{ json_encode($suppliers->map(function($supplier) { return ['id' => $supplier->id, 'name' => $supplier->name]; })->toArray()) }}'></type-ahead>--}}
                 {{--</div>--}}
