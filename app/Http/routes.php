@@ -221,6 +221,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('customers/{customer}', 'CustomersController@update');
         Route::delete('customers/{customer}', 'CustomersController@delete');
 
+        Route::post('customers/from-order/{order}', 'OrderToCustomerController@store');
     });
 
 });

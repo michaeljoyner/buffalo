@@ -13,6 +13,10 @@
                     Back to Orders
                 </div>
             </a>
+            <form action="/admin/customers/from-order/{{ $order->id }}" method="POST" class="convert-to-customer-form">
+                {!! csrf_field() !!}
+                <button class="btn dd-btn btn-dark" type="submit">Convert To Customer</button>
+            </form>
         </div>
     </section>
     <section class="row">

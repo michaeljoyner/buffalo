@@ -19,4 +19,16 @@ class Customer extends Model
         'remarks',
         'payment_terms'
     ];
+
+    public static function createFromOrder($order)
+    {
+        return static::create([
+            'name' => $order->company,
+            'contact_person' => $order->contact_person,
+            'email' => $order->email,
+            'phone' => $order->phone,
+            'fax' => $order->fax,
+            'website' => $order->website,
+        ]);
+    }
 }
