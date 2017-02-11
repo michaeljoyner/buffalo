@@ -16,6 +16,10 @@
     max-height: 120px;
   }
 
+  textarea.sized {
+    min-height: 120px;
+  }
+
   textarea.taller {
     min-height: 300px;
   }

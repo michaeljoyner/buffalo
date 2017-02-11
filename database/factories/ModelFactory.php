@@ -175,3 +175,16 @@ $factory->define(App\Sourcing\Supply::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Customers\Customer::class, function (Faker\Generator $faker) {
+    return [
+        'name'           => $faker->company,
+        'contact_person' => $faker->name,
+        'phone'          => $faker->phoneNumber,
+        'fax'            => $faker->phoneNumber,
+        'email'          => $faker->email,
+        'website'        => $faker->url,
+        'remarks'        => $faker->paragraph,
+        'address'        => $faker->address,
+        'payment_terms'  => $faker->sentence
+    ];
+});

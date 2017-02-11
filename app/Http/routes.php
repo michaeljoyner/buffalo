@@ -214,6 +214,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('social/googleplus/user', 'GooglePlusUserController@fetchUser')->middleware('superauth');
         Route::post('social/googleplus/user/{googlePlusUser}/share', 'GooglePlusUserController@setSharingStatus')->middleware('superauth');
 
+        Route::get('customers', 'CustomersController@index');
+        Route::get('customers/{customer}', 'CustomersController@show');
+        Route::get('customers/{customer}/edit', 'CustomersController@edit');
+        Route::post('customers', 'CustomersController@store');
+        Route::post('customers/{customer}', 'CustomersController@update');
+        Route::delete('customers/{customer}', 'CustomersController@delete');
+
     });
 
 });

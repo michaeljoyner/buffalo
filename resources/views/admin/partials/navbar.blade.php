@@ -20,6 +20,7 @@
                 <li><a href="/admin/categories">Categories</a></li>
                 <li><a href="/admin/orders">Product Enquiries</a></li>
                 <li><a href="/admin/suppliers">Factories</a></li>
+                <li><a href="/admin/customers">Customers</a></li>
                 @if(Auth::user()->isA('super_admin'))
                 <li class="dropdown">
                     <a href="#"
