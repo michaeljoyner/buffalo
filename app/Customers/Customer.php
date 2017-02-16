@@ -2,6 +2,7 @@
 
 namespace App\Customers;
 
+use App\Quotes\Quote;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
@@ -30,5 +31,33 @@ class Customer extends Model
             'fax' => $order->fax,
             'website' => $order->website,
         ]);
+    }
+
+    public static function matchingOrder($order)
+    {
+        return static::where('name', 'LIKE', $order->company)
+            ->orWhere('email', $order->email)
+            ->orWhere('contact_person', 'LIKE', $order->contact_person)
+            ->get();
+    }
+
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class, 'customer_id');
+    }
+
+    public function newQuote($order = null)
+    {
+        if(! $order) {
+            return $this->quotes()->create([]);
+        }
+
+        $quote = $this->quotes()->create(['order_id' => $order->id]);
+
+        $order->items->each(function($item) use ($quote) {
+            $quote->addItemFromOrder($item);
+        });
+
+        return $quote;
     }
 }

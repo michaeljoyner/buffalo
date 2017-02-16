@@ -138,6 +138,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('products/search', 'ProductsSearchController@show');
         Route::post('api/products/search', 'ProductsSearchController@search');
 
+        Route::get('api/products/{product}', 'ProductsApiController@show');
+
         Route::get('products/{product}', 'ProductsController@show');
         Route::get('products/{product}/edit', 'ProductsController@edit');
         Route::post('products/{product}/availability', 'ProductAvailabilityController@update');
@@ -165,6 +167,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('orders/archived', 'OrdersController@archived');
         Route::get('orders/{order}', 'OrdersController@show');
         Route::post('orders/{order}/archiving', 'OrdersController@setArchiveStatus');
+
+        Route::get('orders/{order}/start-quote', 'OrderQuoteCustomerController@show');
 
         Route::get('suppliers', 'SuppliersController@index');
         Route::get('suppliers/{supplier}', 'SuppliersController@show');
@@ -222,6 +226,19 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::delete('customers/{customer}', 'CustomersController@delete');
 
         Route::post('customers/from-order/{order}', 'OrderToCustomerController@store');
+
+        Route::get('api/customers', 'CustomersApiController@index');
+
+        Route::post('customers/{customer}/quotes', 'CustomerQuotesController@store');
+
+        Route::get('quotes', 'QuotesController@index');
+        Route::get('quotes/{quote}', 'QuotesController@show');
+        Route::get('quotes/{quote}/edit', 'QuotesController@edit');
+        Route::post('quotes/{quote}', 'QuotesController@update');
+        Route::post('quotes', 'QuotesController@store');
+
+        Route::get('quotes/{quote}/items/edit', 'QuoteQuoteItemsController@edit');
+
     });
 
 });

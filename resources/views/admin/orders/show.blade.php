@@ -13,6 +13,7 @@
                     Back to Orders
                 </div>
             </a>
+            <a href="/admin/orders/{{ $order->id }}/start-quote" class="btn dd-btn">Make Quote</a>
             <form action="/admin/customers/from-order/{{ $order->id }}" method="POST" class="convert-to-customer-form">
                 {!! csrf_field() !!}
                 <button class="btn dd-btn btn-dark" type="submit">Convert To Customer</button>

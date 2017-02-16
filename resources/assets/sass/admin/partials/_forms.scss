@@ -51,3 +51,7 @@
 .dd-labelled-checkbox:checked + .dd-checkbox-label:after {
   background: $brand_green;
 }
+
+.dd-button-form {
+  display: inline-block;
+}

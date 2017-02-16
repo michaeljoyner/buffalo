@@ -9,6 +9,7 @@
                v-on:keydown.up="up"
                v-on:keydown.enter.prevent.stop="hit"
                v-on:keydown="letterPress($event)"
+               v-on:keyup="requestSuggestions | debounce 200"
         >
         <ul class="type-ahead-suggestions">
             <li v-for="match in matches"
@@ -26,14 +27,26 @@
 <script type="text/babel">
     export default {
 
-        props: ['suggestions'],
+        props: {
+            suggestions: {
+                type: Array,
+                required: false,
+                default: function() { return []; }
+            },
+            'live-search-url': {
+                type: String,
+                required: false,
+                default: null
+            }
+        },
 
         data() {
             return {
                 query: '',
                 current: null,
                 current_index: null,
-                selection: null
+                selection: null,
+                previous_live_search: null
             }
         },
 
@@ -139,6 +152,24 @@
             hasMatches() {
                 console.log(this.matches.length)
                 return this.matches.length > 0;
+            },
+
+            requestSuggestions(ev) {
+                if(this.query.length < 4 || !this.liveSearchUrl) {
+                    return;
+                }
+                if(this.previous_live_search === this.query) {
+                    return;
+                }
+                this.$http.post(this.liveSearchUrl, {searchterm: this.query})
+                        .then(res => this.addFetchedSuggestions(res))
+                        .catch(err => console.log(err));
+                this.previous_live_search = this.query;
+            },
+
+            addFetchedSuggestions(res) {
+                const results = res.data.slice(0,10);
+                this.suggestions = results.map(item => ({id: item.id, name: item.name}));
             }
         }
     }

@@ -188,3 +188,19 @@ $factory->define(App\Customers\Customer::class, function (Faker\Generator $faker
         'payment_terms'  => $faker->sentence
     ];
 });
+
+$factory->define(App\Quotes\Quote::class, function (Faker\Generator $faker) {
+    return [
+        'quote_number'  => $faker->word,
+        'customer_id'   => function () {
+            return factory(\App\Customers\Customer::class)->create()->id;
+        },
+        'order_id'      => function () {
+            return factory(\App\Orders\Order::class)->create()->id;
+        },
+        'finalized_on'  => null,
+        'valid_until'   => null,
+        'payment_terms' => $faker->sentence,
+        'remarks'       => $faker->paragraph
+    ];
+});

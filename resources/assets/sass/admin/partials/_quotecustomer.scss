@@ -1,0 +1,19 @@
+.quote-customer-section {
+  padding-bottom: 30px;
+
+  .customer-select-card {
+    width: 400px;
+    margin: 2em 1em;
+    display: inline-block;
+    border: 1px solid $text_grey;
+    padding: 20px;
+  }
+}
+
+.customer-search-component {
+  max-width: 400px;
+
+  .selected-customer-details {
+    padding-top: 20px;
+  }
+}

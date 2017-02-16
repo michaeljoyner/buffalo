@@ -27,6 +27,9 @@ Vue.component('product-promoter', require('./components/Productpromoter.vue'));
 Vue.component('new-until-switch', require('./components/Newuntilswitch.vue'));
 Vue.component('type-ahead', require('./components/Typeahead.vue'));
 Vue.component('factory-input', require('./components/Factoryinput.vue'));
+Vue.component('customer-search', require('./components/Customersearch.vue'));
+Vue.component('quote-app', require('./components/QuoteApp.vue'));
+Vue.component('quote-item-add', require('./components/QuoteItemAdd.vue'));
 
 Vue.http.interceptors.unshift(function(request, next) {
     next(function(response) {

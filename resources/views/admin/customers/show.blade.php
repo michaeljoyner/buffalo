@@ -9,6 +9,7 @@
         <h1 class="pull-left">{{ $customer->name }}</h1>
         <div class="header-actions pull-right">
             <a href="/admin/customers/{{ $customer->id }}/edit" class="btn dd-btn btn-light">Edit</a>
+            @include('admin.customers.newquoteform')
             @include('admin.partials.deletebutton', [
                 'objectName' => $customer->name,
                 'deleteFormAction' => '/admin/customers/' . $customer->id
