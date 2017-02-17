@@ -37,6 +37,11 @@
                 type: String,
                 required: false,
                 default: null
+            },
+            'clear-on-hit': {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
 
@@ -123,12 +128,13 @@
 
             hit() {
                 if (this.current === null) {
-                    console.log('no selection');
                     return;
                 }
-                console.log(this.current.id + ': ' + this.current.name);
                 this.$dispatch('typeahead-selected', this.current);
                 this.setSelection();
+                if(this.clearOnHit) {
+                    this.query = '';
+                }
             },
 
             setCurrent(match) {
@@ -150,7 +156,6 @@
             },
 
             hasMatches() {
-                console.log(this.matches.length)
                 return this.matches.length > 0;
             },
 

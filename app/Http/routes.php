@@ -239,6 +239,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('quotes/{quote}/items/edit', 'QuoteQuoteItemsController@edit');
 
+        Route::get('quotes/{quote}/items', 'QuoteItemsController@index');
+        Route::post('quotes/{quote}/items', 'QuoteItemsController@store');
+        Route::patch('quoteitems/{item}', 'QuoteItemsController@update');
+        Route::delete('quoteitems/{item}', 'QuoteItemsController@delete');
+
+
     });
 
 });

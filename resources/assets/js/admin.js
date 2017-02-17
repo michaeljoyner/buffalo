@@ -30,6 +30,8 @@ Vue.component('factory-input', require('./components/Factoryinput.vue'));
 Vue.component('customer-search', require('./components/Customersearch.vue'));
 Vue.component('quote-app', require('./components/QuoteApp.vue'));
 Vue.component('quote-item-add', require('./components/QuoteItemAdd.vue'));
+Vue.component('quote-item', require('./components/QuoteItem.vue'));
+Vue.component('delete-button', require('./components/DeleteButton.vue'));
 
 Vue.http.interceptors.unshift(function(request, next) {
     next(function(response) {

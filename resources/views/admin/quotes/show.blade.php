@@ -26,7 +26,7 @@
         </div>
         <div class="col-md-offset-2 col-md-5 quote-quote-details">
             <h3>Quote</h3>
-            <p><strong>Valid Until: </strong>{{ $quote->valid_until->toFormattedDateString() ?? 'Not set' }}</p>
+            <p><strong>Valid Until: </strong>{{ $quote->valid_until ? $quote->valid_until->toFormattedDateString() : 'Not set' }}</p>
             <p><strong>Payment Terms: </strong>{{ $quote->payment_terms ?? 'Not set' }}</p>
             <p><strong>Remarks: </strong>{{ $quote->remarks ?? 'None' }}</p>
         </div>

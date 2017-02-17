@@ -13,6 +13,18 @@ class QuoteItem extends Model
         'description',
         'quantity',
         'name',
-        'buffalo_product_code'
+        'buffalo_product_code',
+        'currency',
+        'factory_price',
+        'supplier_name',
+        'factory_number',
+        'exchange_rate'
+    ];
+
+    protected $casts = [
+        'quantity' => 'integer',
+        'currency' => 'string',
+        'factory_price' => 'float',
+        'factory_number' => 'string'
     ];
 }

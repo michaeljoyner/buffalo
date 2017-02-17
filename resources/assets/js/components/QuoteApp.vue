@@ -10,9 +10,12 @@
             </div>
         </section>
         <section class="quote-app-items">
-            <!--<quote-item v-for="item in items"></quote-item>-->
+            <quote-item v-for="item in items"
+                        :initial-props="item"
+                        v-on:remove-quoteitem="removeItem"
+            ></quote-item>
         </section>
-        <quote-item-add v-on:ad-to-quote="addNewItem"></quote-item-add>
+        <quote-item-add :quote-id="quoteId" v-on:add-to-quote="addNewItem"></quote-item-add>
     </div>
 
 </template>
@@ -27,13 +30,27 @@
             };
         },
 
+        ready() {
+          this.fetchItems();
+        },
+
         methods: {
             openAddModal() {
                 this.$broadcast('add-item');
             },
 
             addNewItem() {
+                this.fetchItems();
+            },
 
+            fetchItems() {
+                this.$http.get(`/admin/quotes/${this.quoteId}/items`)
+                        .then(({data}) => this.items = data)
+                        .catch(err => console.log(err));
+            },
+
+            removeItem({id}) {
+                this.items.$remove(this.items.find(item => item.id === id));
             }
         }
     }

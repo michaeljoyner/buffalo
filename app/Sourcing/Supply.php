@@ -22,6 +22,11 @@ class Supply extends Model
 
     protected $dates = ['quoted_date', 'valid_until'];
 
+    protected $casts = [
+        'item_number' => 'string'
+    ];
+
+
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');

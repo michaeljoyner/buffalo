@@ -19,13 +19,13 @@ class Quote extends Model
     {
         parent::boot();
 
-        static::deleted(function($quote) {
-           $quote->items->each(function($item) {
-               $item->delete();
-           });
+        static::deleted(function ($quote) {
+            $quote->items->each(function ($item) {
+                $item->delete();
+            });
         });
 
-        static::creating(function($quote) {
+        static::creating(function ($quote) {
             $prefix = strtoupper(str_random(3));
             $timestring = Carbon::now()->format('Ymd');
             $quote->quote_number = $prefix . '_' . $timestring;
@@ -40,11 +40,26 @@ class Quote extends Model
     public function addItemFromOrder($orderItem)
     {
         return $this->items()->create([
-            'product_id' => $orderItem->product_id,
-            'quantity' => $orderItem->quantity,
-            'description' => $orderItem->product->description ?? null,
-            'name' => $orderItem->name,
+            'product_id'           => $orderItem->product_id,
+            'quantity'             => $orderItem->quantity,
+            'description'          => $orderItem->product->writeup ?? null,
+            'name'                 => $orderItem->name,
             'buffalo_product_code' => $orderItem->product->product_code ?? null
+        ]);
+    }
+
+    public function addItem($product, $quantity = 1, $supply = null)
+    {
+        return $this->items()->create([
+            'product_id'           => $product->id,
+            'name'                 => $product->name,
+            'description'          => $product->writeup,
+            'buffalo_product_code' => $product->product_code,
+            'currency'             => $supply->currency ?? null,
+            'supplier_name'        => $supply->supplier->name ?? null,
+            'factory_number'       => $supply->item_number ?? null,
+            'factory_price'        => $supply->price ?? null,
+            'quantity'             => $quantity
         ]);
     }
 

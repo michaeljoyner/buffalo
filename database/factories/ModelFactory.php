@@ -204,3 +204,23 @@ $factory->define(App\Quotes\Quote::class, function (Faker\Generator $faker) {
         'remarks'       => $faker->paragraph
     ];
 });
+
+$factory->define(App\Quotes\QuoteItem::class, function (Faker\Generator $faker) {
+    $product = factory(\App\Products\Product::class)->create();
+    return [
+        'quote_id'   => function () {
+            return factory(\App\Quotes\Quote::class)->create()->id;
+        },
+        'product_id'      => $product->id,
+        'name' => $product->name,
+        'buffalo_product_code' => $product->product_code,
+        'supplier_name' => $faker->company,
+        'factory_number' => str_random(6),
+        'currency' => $faker->randomElement(['USD', 'NTD', 'GBP', 'ZAR']),
+        'factory_price' => $faker->randomFloat(2, 5.0, 5000.0),
+        'additional_cost' => $faker->randomFloat(2, 1.0, 500.0),
+        'exchange_rate' => $faker->randomFloat(2, 1.0, 50.0),
+        'quantity' => $faker->numberBetween(1, 200),
+        'description' => $product->writeup
+    ];
+});

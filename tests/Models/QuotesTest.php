@@ -1,7 +1,9 @@
 <?php
 
 
+use App\Products\Product;
 use App\Quotes\Quote;
+use App\Sourcing\Supply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class QuotesTest extends TestCase
@@ -13,7 +15,7 @@ class QuotesTest extends TestCase
      */
     public function it_can_add_an_item_based_on_a_order_item()
     {
-        $product = factory(\App\Products\Product::class)->create();
+        $product = factory(Product::class)->create();
         $order = factory(\App\Orders\Order::class)->create();
         $item = $order->addItem($product, 10);
         $quote = factory(Quote::class)->create();
@@ -34,7 +36,7 @@ class QuotesTest extends TestCase
      */
     public function deleting_a_quote_deletes_all_its_items()
     {
-        $product = factory(\App\Products\Product::class)->create();
+        $product = factory(Product::class)->create();
         $order = factory(\App\Orders\Order::class)->create();
         $item = $order->addItem($product, 10);
         $quote = factory(Quote::class)->create();
@@ -69,5 +71,28 @@ class QuotesTest extends TestCase
         $quote->finalize();
 
         $this->assertTrue($quote->fresh()->isFinal());
+    }
+
+    /**
+     *@test
+     */
+    public function an_item_can_be_added_to_a_quote()
+    {
+        $product = factory(Product::class)->create();
+        $supply = factory(Supply::class)->create(['product_id' => $product->id]);
+        $quote = factory(Quote::class)->create();
+
+        $item = $quote->addItem($product, 1, $supply);
+
+//        dd($item);
+
+        $this->assertEquals($product->id, $item->product_id);
+        $this->assertEquals($product->name, $item->name);
+        $this->assertEquals($product->writeup, $item->description);
+        $this->assertEquals($product->product_code, $item->buffalo_product_code);
+        $this->assertEquals($supply->supplier->name, $item->supplier_name);
+        $this->assertEquals($supply->item_number, $item->factory_number);
+        $this->assertEquals($supply->currency, $item->currency);
+        $this->assertEquals($supply->price, $item->factory_price);
     }
 }

@@ -22,7 +22,7 @@ class QuotesControllerTest extends TestCase
         ])->assertResponseStatus(302)
             ->seeInDatabase('quotes', [
                 'id' => $quote->id,
-                'valid_until' => \Carbon\Carbon::parse('+1 month')->format('Y-m-d'),
+                'valid_until' => \Carbon\Carbon::parse('+1 month')->format('Y-m-d') . ' 00:00:00',
                 'remarks' => 'What a lovely day'
             ]);
     }
