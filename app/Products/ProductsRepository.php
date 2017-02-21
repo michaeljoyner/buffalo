@@ -13,7 +13,9 @@ class ProductsRepository
     {
         $factoryNumberMatches = Product::whereHas('supplies', function($query) use ($searchTerm) {
             $query->where('item_number', 'LIKE', '%' . $searchTerm . '%');
-        })->get();
+        })->with(['supplies' => function($q) use ($searchTerm) {
+            $q->where('item_number', 'LIKE', '%' . $searchTerm . '%');
+        }])->get();
         $productCodeMatches = Product::with('category')->where('product_code', 'LIKE', '%' . $searchTerm . '%')->get();
         $productNameMatches = Product::with('category')->where('name', 'LIKE', '%' . $searchTerm . '%')->get();
 
@@ -23,7 +25,8 @@ class ProductsRepository
                 'product_code' => $product->product_code,
                 'name' => $product->name,
                 'product_category' => $product->category->name,
-                'thumb_img' => $product->imageSrc('thumb')
+                'thumb_img' => $product->imageSrc('thumb'),
+                'factory_number' => $product->supplies->first()->item_number ?? null,
             ];
         });
     }

@@ -31,7 +31,9 @@
             suggestions: {
                 type: Array,
                 required: false,
-                default: function() { return []; }
+                default: function () {
+                    return [];
+                }
             },
             'live-search-url': {
                 type: String,
@@ -42,6 +44,13 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            'search-fields': {
+                type: Array,
+                required: false,
+                default: function() {
+                    return [];
+                }
             }
         },
 
@@ -63,12 +72,28 @@
                 }
                 return this.suggestions
                         .filter((suggestion) => {
-                            return (suggestion.name.toLowerCase().indexOf(this.query.toLowerCase()) !== -1) && (!this.isSelected(suggestion));
+                            return (this.suggestionMatchesQuery(suggestion)) && (!this.isSelected(suggestion));
                         });
             }
         },
 
         methods: {
+
+            getSearchFields() {
+                return ['name'].concat(this.searchFields);
+            },
+
+            suggestionMatchesQuery(suggestion) {
+                return this.getSearchFields().some((field) => {
+                    return suggestion.hasOwnProperty(field) &&
+                            suggestion[field] &&
+                            this.wordMatchesQuery(suggestion[field]);
+                });
+            },
+
+            wordMatchesQuery(word) {
+              return word.toLowerCase().indexOf(this.query.toLowerCase()) !== -1;
+            },
 
             isCurrent(suggestion) {
                 return this.current && (this.current.id === suggestion.id);
@@ -132,7 +157,7 @@
                 }
                 this.$dispatch('typeahead-selected', this.current);
                 this.setSelection();
-                if(this.clearOnHit) {
+                if (this.clearOnHit) {
                     this.query = '';
                 }
             },
@@ -160,10 +185,10 @@
             },
 
             requestSuggestions(ev) {
-                if(this.query.length < 4 || !this.liveSearchUrl) {
+                if (this.query.length < 4 || !this.liveSearchUrl) {
                     return;
                 }
-                if(this.previous_live_search === this.query) {
+                if (this.previous_live_search === this.query) {
                     return;
                 }
                 this.$http.post(this.liveSearchUrl, {searchterm: this.query})
@@ -173,8 +198,8 @@
             },
 
             addFetchedSuggestions(res) {
-                const results = res.data.slice(0,10);
-                this.suggestions = results.map(item => ({id: item.id, name: item.name}));
+                const results = res.data.slice(0, 10);
+                this.suggestions = results;//.map(item => ({id: item.id, name: item.name}));
             }
         }
     }

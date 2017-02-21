@@ -38,6 +38,9 @@
                 <button class="btn dd-btn btn-light" @click="editMode = true">
                     Edit
                 </button>
+                <supply-selector :product-id="initialProps.product_id"
+                                 v-on:supply-selected="resetSupplyInfo"
+                ></supply-selector>
             </div>
         </div>
         <modal :show.sync="editMode" :wider="true">
@@ -159,6 +162,15 @@
 
             deletedItem() {
                 this.$dispatch('remove-quoteitem', {id: this.itemData.itemId});
+            },
+
+            resetSupplyInfo(supply) {
+                this.itemData.supplier_name = supply.supplier.name;
+                this.itemData.factory_number = supply.item_number;
+                this.itemData.factory_price = supply.price;
+                this.itemData.currency = supply.currency;
+
+                this.updateItem();
             }
         }
 

@@ -11,6 +11,7 @@
                     <type-ahead live-search-url="/admin/api/products/search"
                                 v-on:typeahead-selected="setProduct"
                                 :clear-on-hit="true"
+                                :search-fields='["factory_number", "product_code"]'
                     ></type-ahead>
                 </div>
                 <div class="product-supply-select" v-show="selected_product.id">

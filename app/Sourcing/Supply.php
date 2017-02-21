@@ -23,7 +23,9 @@ class Supply extends Model
     protected $dates = ['quoted_date', 'valid_until'];
 
     protected $casts = [
-        'item_number' => 'string'
+        'item_number' => 'string',
+        'price' => 'float',
+        'package_price' => 'float'
     ];
 
 
