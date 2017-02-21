@@ -88,7 +88,7 @@
         @if(!$product->note)
             <p class="lead">This product has no notes yet.</p>
         @else
-            <small>Last updated by {{ $product->note->author->name }} {{ $product->note->updated_at->diffForHumans() }}</small>
+            <small>Last updated by {{ $product->note->author->name ?? '[Deleted User]' }} {{ $product->note->updated_at->diffForHumans() }}</small>
             <p class="lead">{!! nl2br($product->note->content) !!}</p>
         @endif
     </section>
