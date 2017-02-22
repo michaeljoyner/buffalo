@@ -9,6 +9,10 @@
     {!! Form::text('product_code', null, ['class' => "form-control"]) !!}
 </div>
 <div class="form-group">
+    <label for="minimum_order_quantity">MOQ: </label>
+    <input type="number" step="1" min="0" class="form-control" name="minimum_order_quantity" value="{{ old('minimum_order_quantity') ?? $product->minimum_order_quantity }}">
+</div>
+<div class="form-group">
     <label for="description">SEO Description: </label>
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>

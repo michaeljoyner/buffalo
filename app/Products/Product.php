@@ -27,12 +27,18 @@ class Product extends Model implements HasMediaConversions
         'writeup',
         'original_image',
         'subcategory_id',
-        'product_group_id'
+        'product_group_id',
+        'minimum_order_quantity'
     ];
 
     protected $casts = ['available' => 'boolean', 'is_promoted' => 'boolean', 'marked_new' => 'boolean'];
 
     protected $dates = ['deleted_at', 'new_until', 'promoted_until'];
+
+    public function getMinimumOrderQuantityAttribute($moq)
+    {
+        return $moq ?? 500;
+    }
 
     public function registerMediaConversions()
     {

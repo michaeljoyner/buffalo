@@ -61,7 +61,7 @@
                 <div class="product-writeup">
                     {!! $product->writeup !!}
                 </div>
-                <cart-button product-id="{{ $product->id }}"></cart-button>
+                <cart-button moq="{{ $product->minimum_order_quantity }}" product-id="{{ $product->id }}"></cart-button>
             </div>
         </section>
         <section class="page-section related-products">

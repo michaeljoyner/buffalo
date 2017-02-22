@@ -3,7 +3,7 @@
 <template>
     <form action="" v-on:submit.stop.prevent="addToCart" class="add-to-cart-form">
         <label>Quantity: </label>
-        <input type="number" min="1" name="quantity" v-model="quantity" class="quantity-input">
+        <input type="number" :min="moq" name="quantity" v-model="quantity" class="quantity-input">
         <button class="btn add-cart-btn" type="submit" :disabled="adding">
             <span v-show="!adding">Add to cart</span>
             <div class="spinner" v-show="adding">
@@ -17,7 +17,7 @@
 
 <script type="text/babel">
     module.exports = {
-        props: ['product-id'],
+        props: ['product-id', 'moq'],
 
         data() {
             return {
@@ -26,10 +26,14 @@
             }
         },
 
+        ready() {
+          this.quantity = this.moq;
+        },
+
         methods: {
             addToCart() {
-                if (this.quantity < 1) {
-                    return this.quantity = 1;
+                if (this.quantity < this.moq) {
+                    return this.quantity = this.moq;
                 }
                 this.adding = true;
                 this.$http.post('/api/cart/items', {

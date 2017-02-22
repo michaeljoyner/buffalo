@@ -24,6 +24,7 @@ class ProductsControllerTest extends TestCase
         $this->visit('/admin/products/' . $product->id . '/edit')
             ->type('Zions Hammer', 'name')
             ->type('newCODE', 'product_code')
+            ->type('600', 'minimum_order_quantity')
             ->type('Hammer, hammer, hammer, you down', 'description')
             ->type('A catchy tune', 'writeup')
             ->press('Save Changes')
@@ -32,7 +33,8 @@ class ProductsControllerTest extends TestCase
                 'name'         => 'Zions Hammer',
                 'product_code' => 'newCODE',
                 'description'  => 'Hammer, hammer, hammer, you down',
-                'writeup'      => 'A catchy tune'
+                'writeup'      => 'A catchy tune',
+                'minimum_order_quantity' => 600
             ]);
     }
 

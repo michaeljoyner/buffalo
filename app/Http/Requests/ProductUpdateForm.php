@@ -28,13 +28,14 @@ class ProductUpdateForm extends FormRequest
             'product_code' => 'required|unique:products,product_code,' . $this->product->id,
             'description' => '',
             'writeup' => '',
-            'product_note' => ''
+            'product_note' => '',
+            'minimum_order_quantity' => 'numeric|min:1'
         ];
     }
 
     public function requiredFields()
     {
-        return $this->only(['name', 'description', 'product_code', 'writeup']);
+        return $this->only(['name', 'description', 'product_code', 'writeup', 'minimum_order_quantity']);
     }
 
     public function hasNote()

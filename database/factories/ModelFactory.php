@@ -32,37 +32,38 @@ $factory->define(App\Blog\Post::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Products\Product::class, function (Faker\Generator $faker) {
     return [
-        'category_id'      => function () {
+        'category_id'            => function () {
             return factory(\App\Products\Category::class)->create()->id;
         },
-        'subcategory_id'   => function () {
+        'subcategory_id'         => function () {
             return factory(\App\Products\Subcategory::class)->create()->id;
         },
-        'product_group_id' => function () {
+        'product_group_id'       => function () {
             return factory(\App\Products\ProductGroup::class)->create()->id;
         },
-        'product_code'     => \Illuminate\Support\Str::random(7),
-        'name'             => $faker->words(4, true),
-        'description'      => $faker->paragraph,
-        'writeup'          => $faker->paragraph,
-        'available'        => 1,
-        'is_promoted'      => 0,
-        'marked_new'       => 0
+        'product_code'           => \Illuminate\Support\Str::random(7),
+        'name'                   => $faker->words(4, true),
+        'description'            => $faker->paragraph,
+        'writeup'                => $faker->paragraph,
+        'available'              => 1,
+        'is_promoted'            => 0,
+        'marked_new'             => 0,
+        'minimum_order_quantity' => 500
     ];
 });
 
 $factory->define(App\Products\Packaging::class, function (Faker\Generator $faker) {
     return [
-        'product_id'      => function () {
+        'product_id'   => function () {
             return factory(\App\Products\Product::class)->create()->id;
         },
-        'type'     => 'Example package type',
-        'unit'             => 'Example unit',
-        'inner'      => $faker->numberBetween(24, 80),
-        'outer'          => $faker->numberBetween(80,160),
-        'carton'        => $faker->word,
-        'net_weight'      => $faker->randomFloat(1, 1.0, 15.0),
-        'gross_weight'       => $faker->randomFloat(1, 1.0, 15.0)
+        'type'         => 'Example package type',
+        'unit'         => 'Example unit',
+        'inner'        => $faker->numberBetween(24, 80),
+        'outer'        => $faker->numberBetween(80, 160),
+        'carton'       => $faker->word,
+        'net_weight'   => $faker->randomFloat(1, 1.0, 15.0),
+        'gross_weight' => $faker->randomFloat(1, 1.0, 15.0)
     ];
 });
 

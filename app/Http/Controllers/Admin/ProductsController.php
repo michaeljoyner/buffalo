@@ -36,7 +36,7 @@ class ProductsController extends Controller
 
     public function update(ProductUpdateForm $request, Product $product)
     {
-        $product->update($request->only(['name', 'description', 'product_code', 'writeup']));
+        $product->update($request->requiredFields());
 
         $request->hasNote() ? $product->setNote($request->product_note, $request->user()) : $product->clearNote();
 

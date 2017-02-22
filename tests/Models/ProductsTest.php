@@ -231,4 +231,17 @@ class ProductsTest extends TestCase
 
         $this->assertEquals(33, $product->daysStillNew());
     }
+
+    /**
+     *@test
+     */
+    public function a_product_can_have_a_minimum_order_quantity()
+    {
+        $product = factory(Product::class)->create();
+
+        $product->minimum_order_quantity = 500;
+        $product->save();
+
+        $this->assertEquals(500, $product->fresh()->minimum_order_quantity);
+    }
 }
