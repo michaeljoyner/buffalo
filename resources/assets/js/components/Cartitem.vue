@@ -15,7 +15,7 @@
             </div>
             <div v-show="editing" class="edit-edit">
                 <form v-on:submit.stop.prevent="editQuantity">
-                    <input class="number qty-input" type="number" min="1" v-model="quantity">
+                    <input class="number qty-input" type="number" :min="moq" v-model="quantity">
                     <button class="cart-save-btn small-action-btn btn">
                         <span v-show="!saving">Save</span>
                         <div class="spinner" v-show="saving">
@@ -42,7 +42,7 @@
 
 <script type="text/babel">
     module.exports = {
-        props: ['product-id', 'product-name', 'thumb', 'product-qty', 'product-code'],
+        props: ['product-id', 'product-name', 'thumb', 'product-qty', 'product-code', 'moq'],
 
         data() {
             return {
@@ -58,8 +58,8 @@
 
         methods: {
             editQuantity() {
-                if(this.quantity < 1) {
-                    return this.quantity = 1;
+                if(this.quantity < this.moq) {
+                    return this.quantity = this.moq;
                 }
 
                 this.saving = true;

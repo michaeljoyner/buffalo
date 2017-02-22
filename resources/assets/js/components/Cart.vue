@@ -8,6 +8,7 @@
                    :thumb="item.thumb"
                    :product-code="item.product_code"
                    :product-qty="item.quantity"
+                   :moq="item.minimum_order_quantity"
         ></cart-item>
         <a class="btn page-section-cta checkout-button" href="/enquire" v-show="items.length">Proceed</a>
         <p class="sub-heading text-centered" v-else>You don't have any products in your cart.</p>

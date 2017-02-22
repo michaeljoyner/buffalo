@@ -75,7 +75,8 @@ class ShoppingCartController extends Controller
             'id'           => $item->id,
             'name'         => $item->name,
             'thumb'        => $product->imageSrc('thumb'),
-            'product_code' => $product->product_code
+            'product_code' => $product->product_code,
+            'minimum_order_quantity' => $product->minimum_order_quantity
         ];
     }
 
