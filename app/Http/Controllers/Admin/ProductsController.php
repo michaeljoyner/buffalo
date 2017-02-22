@@ -25,7 +25,8 @@ class ProductsController extends Controller
 
     public function show(Product $product)
     {
-        return view('admin.products.show')->with(compact('product'));
+        $packaging = $product->getPackaging();
+        return view('admin.products.show')->with(compact('product', 'packaging'));
     }
 
     public function edit(Product $product)

@@ -260,4 +260,26 @@ class Product extends Model implements HasMediaConversions
     {
         return $this->supplies()->create($data);
     }
+
+    public function packaging()
+    {
+        return $this->hasMany(Packaging::class, 'product_id');
+    }
+
+//    public function package()
+//    {
+//        return $this->hasOne(Packaging::class, 'product_id');
+//    }
+
+    public function addPackaging($packagingData)
+    {
+        return $this->packaging()->create($packagingData);
+    }
+
+    public function getPackaging()
+    {
+        $package = $this->packaging()->latest()->first();
+
+        return $package ?? new Packaging();
+    }
 }

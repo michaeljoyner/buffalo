@@ -83,6 +83,10 @@
         </div>
     </section>
     <a href="{{ $product->imageSrc() }}" download="{{ $product->product_code }}" class="btn dd-btn">Download original image</a>
+    <section class="product-packaging-section">
+        <h3>Packaging</h3>
+        @include('admin.products.partials.packaging', ['packaging' => $packaging])
+    </section>
     <section class="product-notes">
         <h3>Product Notes</h3>
         @if(!$product->note)
@@ -94,6 +98,11 @@
     </section>
 
     @include('admin.partials.deletemodal')
+    @include('admin.forms.modals.packaging', [
+        'packaging' => $packaging,
+        'formAction' => $packaging->id ? '/admin/packaging/' . $packaging->id : '/admin/products/' . $product->id . '/packaging',
+         'buttonText' => $packaging->id ? 'Save Changes' : 'Create',
+    ])
 @endsection
 
 @section('bodyscripts')

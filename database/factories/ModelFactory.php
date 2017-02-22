@@ -51,6 +51,21 @@ $factory->define(App\Products\Product::class, function (Faker\Generator $faker) 
     ];
 });
 
+$factory->define(App\Products\Packaging::class, function (Faker\Generator $faker) {
+    return [
+        'product_id'      => function () {
+            return factory(\App\Products\Product::class)->create()->id;
+        },
+        'type'     => 'Example package type',
+        'unit'             => 'Example unit',
+        'inner'      => $faker->numberBetween(24, 80),
+        'outer'          => $faker->numberBetween(80,160),
+        'carton'        => $faker->word,
+        'net_weight'      => $faker->randomFloat(1, 1.0, 15.0),
+        'gross_weight'       => $faker->randomFloat(1, 1.0, 15.0)
+    ];
+});
+
 $factory->define(App\Products\ProductNote::class, function (Faker\Generator $faker) {
     return [
         'product_id' => function () {
