@@ -25,6 +25,7 @@ class ProductSupplyForm extends FormRequest
     {
         return [
             'quoted_date' => 'required|date',
+            'valid_until' => 'date|after:today',
             'supplier_id' => 'required|integer|exists:suppliers,id',
             'item_number' => 'required',
             'currency' => 'required|currency',
@@ -35,7 +36,7 @@ class ProductSupplyForm extends FormRequest
 
     public function requiredFields()
     {
-        return collect($this->only('quoted_date', 'supplier_id', 'item_number', 'currency', 'price', 'package_price', 'remarks'))
+        return collect($this->only('quoted_date', 'valid_until', 'supplier_id', 'item_number', 'currency', 'price', 'package_price', 'remarks'))
             ->flatMap(function($value, $field) {
                 return [$field => $value === '' ? null : $value];
             })->toArray();

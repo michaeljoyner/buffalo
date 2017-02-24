@@ -11,6 +11,7 @@ class Supply extends Model
 
     protected $fillable = [
         'quoted_date',
+        'valid_until',
         'supplier_id',
         'item_number',
         'currency',
@@ -19,7 +20,7 @@ class Supply extends Model
         'remarks'
     ];
 
-    protected $dates = ['quoted_date'];
+    protected $dates = ['quoted_date', 'valid_until'];
 
     public function supplier()
     {

@@ -8,9 +8,19 @@
             <div class="modal-body">
                 {!! Form::open(['url' => '/admin/products/' . $product->id . '/supplies', 'class' => 'form-horizontal dd-form modal-form']) !!}
                 @include('errors')
-                <div class="form-group">
-                    <label for="quoted_date">Date: </label>
-                    <input type="date" name="quoted_date" class="form-control" required>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="quoted_date">Quoted Date: </label>
+                            <input type="date" name="quoted_date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-2 col-md-5">
+                        <div class="form-group">
+                            <label for="valid_until">Valid Until: </label>
+                            <input type="date" name="valid_until" class="form-control">
+                        </div>
+                    </div>
                 </div>
                 <factory-input :factory-list='{!! json_encode($suppliers->map(function($supplier) { return ['id' => $supplier->id, 'name' => $supplier->name]; })->toArray()) !!}'
                 ></factory-input>

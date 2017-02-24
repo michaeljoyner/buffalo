@@ -26,6 +26,7 @@
                             <th>Price</th>
                             <th>Package Price</th>
                             <th>Remarks</th>
+                            <th>Valid Until</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -38,6 +39,7 @@
                                 <td>{{ $supply->price }}</td>
                                 <td>{{ $supply->package_price }}</td>
                                 <td class="supply-table-remark">{!! nl2br($supply->remarks) !!}</td>
+                                <td>{{ $supply->valid_until ? $supply->valid_until->toFormattedDateString() : 'Not set' }}</td>
                                 <td>
                                     @if(Auth::user()->isA('super_admin'))
                                         @include('admin.partials.deletebutton', [
@@ -71,6 +73,7 @@
                         <th>Price</th>
                         <th>Package Price</th>
                         <th>Remarks</th>
+                        <th>Valid Until</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -82,6 +85,7 @@
                             <td>{{ $supply->price }}</td>
                             <td>{{ $supply->package_price }}</td>
                             <td class="supply-table-remark">{!! nl2br($supply->remarks) !!}</td>
+                            <td>{{ $supply->valid_until ? $supply->valid_until->toFormattedDateString() : 'Not set' }}</td>
                             <td>
                                 @if(Auth::user()->isA('super_admin'))
                                     @include('admin.partials.deletebutton', [

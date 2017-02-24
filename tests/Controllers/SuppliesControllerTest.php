@@ -4,6 +4,7 @@
 use App\Products\Product;
 use App\Sourcing\Supplier;
 use App\Sourcing\Supply;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SuppliesControllerTest extends TestCase
@@ -19,8 +20,12 @@ class SuppliesControllerTest extends TestCase
         $supplier = factory(Supplier::class)->create();
         $this->asLoggedInUser();
 
+        $today = Carbon::now()->format('Y-m-d');
+        $thirtyDaysLater = Carbon::parse('+30 days')->format('Y-m-d');
+
         $this->post('/admin/products/' . $product->id . '/supplies', [
-            'quoted_date'   => '2017-01-11',
+            'quoted_date'   => $today,
+            'valid_until'   => $thirtyDaysLater,
             'supplier_id'   => $supplier->id,
             'item_number'   => '12345',
             'currency'      => 'twd',
@@ -30,7 +35,8 @@ class SuppliesControllerTest extends TestCase
         ])->assertResponseStatus(302)
             ->seeInDatabase('supplies', [
                 'product_id'    => $product->id,
-                'quoted_date'   => '2017-01-11 00:00:00',
+                'quoted_date'   => $today . ' 00:00:00',
+                'valid_until'   => $thirtyDaysLater . ' 00:00:00',
                 'supplier_id'   => $supplier->id,
                 'item_number'   => '12345',
                 'currency'      => 'twd',

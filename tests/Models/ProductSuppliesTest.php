@@ -54,4 +54,15 @@ class ProductSuppliesTest extends TestCase
         //multiply by 1 to ensure not testing with string value
         $this->assertTrue(is_float($supply->fresh()->price * 1), "Failed to assert that $databasePrice is a float");
     }
+
+    /**
+     *@test
+     */
+    public function a_product_supply_has_a_valid_until_date()
+    {
+        $supply = factory(Supply::class)->create(['valid_until' => \Carbon\Carbon::parse('+30 days')]);
+
+        $this->assertNotNull($supply->fresh()->valid_until);
+        $this->assertTrue($supply->fresh()->valid_until->subDays(30)->isToday());
+    }
 }

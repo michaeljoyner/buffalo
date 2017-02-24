@@ -166,6 +166,7 @@ $factory->define(App\Sourcing\Supply::class, function (Faker\Generator $faker) {
             return factory(\App\Products\Product::class)->create()->id;
         },
         'quoted_date'   => \Carbon\Carbon::now(),
+        'valid_until'   => \Carbon\Carbon::parse('+30 days'),
         'item_number'   => $faker->numberBetween(10000, 99999),
         'currency'      => $faker->currencyCode,
         'price'         => $faker->numberBetween(1000, 9999),
