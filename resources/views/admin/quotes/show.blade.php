@@ -28,7 +28,12 @@
             <h3>Quote</h3>
             <p><strong>Valid Until: </strong>{{ $quote->valid_until ? $quote->valid_until->toFormattedDateString() : 'Not set' }}</p>
             <p><strong>Payment Terms: </strong>{{ $quote->payment_terms ?? 'Not set' }}</p>
-            <p><strong>Remarks: </strong>{{ $quote->remarks ?? 'None' }}</p>
+            <p><strong>Terms: </strong>{{ $quote->terms ?? 'Not set' }}</p>
+            <p><strong>Shipment: </strong>{{ $quote->shipment ?? 'Not set' }}</p>
+            <p><strong>Remarks (private): </strong>{{ $quote->remarks ?? 'None' }}</p>
+            <p><strong>Remarks (for quote): </strong>{{ $quote->quotation_remarks ?? 'None' }}</p>
+            <p><strong>Base profit factor: </strong>{{ $quote->base_profit ?? 'Not set' }}</p>
+            <p><strong>Base exchange rate: </strong>{{ $quote->base_exchange_rate ?? 'Not set' }}</p>
         </div>
     </section>
     <hr>

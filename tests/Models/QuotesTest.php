@@ -95,4 +95,69 @@ class QuotesTest extends TestCase
         $this->assertEquals($supply->currency, $item->currency);
         $this->assertEquals($supply->price, $item->factory_price);
     }
+
+    /**
+     *@test
+     */
+    public function a_quote_has_terms()
+    {
+        $quote = factory(Quote::class)->create(['terms' => 'Example terms']);
+
+        $quote->terms = 'Updated terms';
+        $quote->save();
+
+        $this->assertEquals('Updated terms', $quote->fresh()->terms);
+    }
+
+    /**
+     *@test
+     */
+    public function a_quote_has_a_shipment()
+    {
+        $quote = factory(Quote::class)->create(['shipment' => 'Across the sea']);
+
+        $quote->shipment = 'Over the land';
+        $quote->save();
+
+        $this->assertEquals('Over the land', $quote->fresh()->shipment);
+    }
+
+    /**
+     *@test
+     */
+    public function a_quote_has_a_quotation_remark()
+    {
+        $quote = factory(Quote::class)->create(['quotation_remarks' => 'Example quotation remarks']);
+
+        $quote->quotation_remarks = 'New remarks';
+        $quote->save();
+
+        $this->assertEquals('New remarks', $quote->fresh()->quotation_remarks);
+    }
+
+    /**
+     *@test
+     */
+    public function a_quote_has_a_base_profit_value()
+    {
+        $quote = factory(Quote::class)->create(['base_profit' => 0.9]);
+
+        $quote->base_profit = 0.5;
+        $quote->save();
+
+        $this->assertEquals(0.5, $quote->fresh()->base_profit);
+    }
+
+    /**
+     *@test
+     */
+    public function a_quote_has_a_base_exchange_rate()
+    {
+        $quote = factory(Quote::class)->create(['base_exchange_rate' => 0.3]);
+
+        $quote->base_exchange_rate = 0.2;
+        $quote->save();
+
+        $this->assertEquals(0.2, $quote->fresh()->base_exchange_rate);
+    }
 }

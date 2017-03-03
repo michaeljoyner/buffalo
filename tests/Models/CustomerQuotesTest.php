@@ -42,4 +42,31 @@ class CustomerQuotesTest extends TestCase
         $this->assertEquals($order->id, $quote->order_id);
         $this->assertCount(2, $quote->items);
     }
+
+    /**
+     *@test
+     */
+    public function a_quote_created_for_a_customer_has_the_customers_payment_terms_and_terms()
+    {
+        $customer = factory(Customer::class)->create();
+
+        $quote = $customer->newQuote();
+
+        $this->assertEquals($customer->payment_terms, $quote->payment_terms);
+        $this->assertEquals($customer->terms, $quote->terms);
+        $this->assertNotNull($customer->terms);
+        $this->assertNotNull($customer->payment_terms);
+    }
+
+    /**
+     *@test
+     */
+    public function a_created_quote_has_a_default_valid_until_date_of_30_days_later()
+    {
+        $customer = factory(Customer::class)->create();
+
+        $quote = $customer->newQuote();
+
+        $this->assertTrue(\Carbon\Carbon::parse('+30 days')->isSameDay($quote->valid_until));
+    }
 }

@@ -42,4 +42,11 @@ class QuotesController extends Controller
 
         return redirect('/admin/quotes/' . $quote->id);
     }
+
+    public function delete(Quote $quote)
+    {
+        $quote->delete();
+
+        return redirect('/admin/quotes');
+    }
 }

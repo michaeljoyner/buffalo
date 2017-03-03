@@ -6,6 +6,17 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class QuoteUpdate extends FormRequest
 {
+    protected $fieldList = [
+        'quote_number',
+        'valid_until',
+        'payment_terms',
+        'terms',
+        'remarks',
+        'quotation_remarks',
+        'shipment',
+        'base_profit',
+        'base_exchange_rate'
+    ];
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -30,7 +41,7 @@ class QuoteUpdate extends FormRequest
 
     public function requiredFields()
     {
-        return collect($this->only('valid_until', 'payment_terms', 'remarks'))
+        return collect($this->only($this->fieldList))
             ->flatMap(function($value, $field) {
                 return [$field => $value === '' ? null : $value];
             })->toArray();

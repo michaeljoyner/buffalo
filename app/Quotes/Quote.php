@@ -11,7 +11,19 @@ class Quote extends Model
 {
     protected $table = 'quotes';
 
-    protected $fillable = ['customer_id', 'order_id', 'valid_until', 'payment_terms', 'remarks'];
+    protected $fillable = [
+        'quote_number',
+        'customer_id',
+        'order_id',
+        'valid_until',
+        'payment_terms',
+        'terms',
+        'remarks',
+        'quotation_remarks',
+        'shipment',
+        'base_profit',
+        'base_exchange_rate'
+    ];
 
     protected $dates = ['valid_until'];
 

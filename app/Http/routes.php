@@ -237,6 +237,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('quotes/{quote}/edit', 'QuotesController@edit');
         Route::post('quotes/{quote}', 'QuotesController@update');
         Route::post('quotes', 'QuotesController@store');
+        Route::delete('quotes/{quote}', 'QuotesController@delete');
 
         Route::get('quotes/{quote}/items/edit', 'QuoteQuoteItemsController@edit');
 

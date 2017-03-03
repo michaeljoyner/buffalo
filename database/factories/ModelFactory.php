@@ -192,17 +192,22 @@ $factory->define(App\Customers\Customer::class, function (Faker\Generator $faker
 
 $factory->define(App\Quotes\Quote::class, function (Faker\Generator $faker) {
     return [
-        'quote_number'  => $faker->word,
-        'customer_id'   => function () {
+        'quote_number'       => $faker->word,
+        'customer_id'        => function () {
             return factory(\App\Customers\Customer::class)->create()->id;
         },
-        'order_id'      => function () {
+        'order_id'           => function () {
             return factory(\App\Orders\Order::class)->create()->id;
         },
-        'finalized_on'  => null,
-        'valid_until'   => null,
-        'payment_terms' => $faker->sentence,
-        'remarks'       => $faker->paragraph
+        'finalized_on'       => null,
+        'valid_until'        => null,
+        'base_profit'        => 0.8,
+        'base_exchange_rate' => 0.3,
+        'payment_terms'      => $faker->sentence,
+        'terms'              => $faker->sentence,
+        'remarks'            => $faker->paragraph,
+        'quotation_remarks'  => $faker->paragraph,
+        'shipment'           => $faker->sentence
     ];
 });
 

@@ -3,6 +3,7 @@
 namespace App\Customers;
 
 use App\Quotes\Quote;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
@@ -50,15 +51,25 @@ class Customer extends Model
     public function newQuote($order = null)
     {
         if(! $order) {
-            return $this->quotes()->create([]);
+            return $this->createCustomerQuote();
         }
 
-        $quote = $this->quotes()->create(['order_id' => $order->id]);
+        $quote = $this->createCustomerQuote(['order_id' => $order->id]);
 
         $order->items->each(function($item) use ($quote) {
             $quote->addItemFromOrder($item);
         });
 
         return $quote;
+    }
+
+    protected function createCustomerQuote($parameters = [])
+    {
+        $data = array_merge([
+            'valid_until' => Carbon::parse('+30 days'),
+            'payment_terms' => $this->payment_terms,
+            'terms' => $this->terms
+        ], $parameters);
+        return $this->quotes()->create($data);
     }
 }
