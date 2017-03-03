@@ -18,7 +18,8 @@ class Customer extends Model
         'website',
         'address',
         'remarks',
-        'payment_terms'
+        'payment_terms',
+        'terms'
     ];
 
     public static function createFromOrder($order)

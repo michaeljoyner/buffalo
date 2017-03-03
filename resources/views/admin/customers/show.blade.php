@@ -27,6 +27,7 @@
                 <p class="lead"><strong>Website: </strong>{{ $customer->website }}</p>
                 <p class="lead"><strong>Address: </strong>{!! nl2br($customer->address) !!}</p>
                 <p class="lead"><strong>Payment Terms: </strong>{{ $customer->payment_terms }}</p>
+                <p class="lead"><strong>Terms: </strong>{{ $customer->terms }}</p>
                 <p class="lead"><strong>Remarks: </strong>{!! nl2br($customer->remarks) !!}</p>
             </div>
         </div>

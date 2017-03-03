@@ -16,7 +16,8 @@ class CustomerForm extends FormRequest
         'website',
         'address',
         'remarks',
-        'payment_terms'
+        'payment_terms',
+        'terms'
     ];
 
     /**

@@ -63,4 +63,17 @@ class CustomersTest extends TestCase
         $this->assertTrue($matches->contains($customerC));
         $this->assertFalse($matches->contains($customerD));
     }
+
+    /**
+     *@test
+     */
+    public function customers_have_a_terms_field()
+    {
+        $customer = factory(Customer::class)->create(['terms' => 'FOB example terms']);
+
+        $customer->terms = 'New terms';
+        $customer->save();
+
+        $this->assertEquals('New terms', $customer->fresh()->terms);
+    }
 }

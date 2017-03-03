@@ -40,6 +40,10 @@
                     <label for="payment_terms">Payment Terms: </label>
                     {!! Form::text('payment_terms', null, ['class' => "form-control"]) !!}
                 </div>
+                <div class="form-group">
+                    <label for="terms">Terms: </label>
+                    {!! Form::text('terms', null, ['class' => "form-control"]) !!}
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dd-btn btn-light dd-modal-cancel-btn" data-dismiss="modal">Cancel</button>

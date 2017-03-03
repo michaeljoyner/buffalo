@@ -53,6 +53,13 @@
                 @endif
                 <input type="text" name="payment_terms" value="{{ old('payment_terms') ?? $customer->payment_terms }}" class="form-control">
             </div>
+            <div class="form-group{{ $errors->has('terms') ? ' has-error' : '' }}">
+                <label for="terms">Terms: </label>
+                @if($errors->has('terms'))
+                <span class="error-message">{{ $errors->first('terms') }}</span>
+                @endif
+                <input type="text" name="terms" value="{{ old('terms') ?? $customer->terms }}" class="form-control">
+            </div>
             <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                 <label for="address">Address: </label>
                 @if($errors->has('address'))

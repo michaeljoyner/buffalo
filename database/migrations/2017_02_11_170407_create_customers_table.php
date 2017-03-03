@@ -22,6 +22,7 @@ class CreateCustomersTable extends Migration
             $table->string('fax')->nullable();
             $table->string('website')->nullable();
             $table->text('payment_terms')->nullable();
+            $table->text('terms')->nullable();
             $table->text('remarks')->nullable();
             $table->text('address')->nullable();
             $table->timestamps();

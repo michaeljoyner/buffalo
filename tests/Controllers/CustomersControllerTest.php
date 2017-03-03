@@ -58,7 +58,8 @@ class CustomersControllerTest extends TestCase
             'website' => '',
             'address' => '123 Sesame Street',
             'remarks' => 'Let us milk this guy',
-            'payment_terms' => 'Easy'
+            'payment_terms' => 'Easy',
+            'terms' => 'FOB example terms'
         ];
     }
 
