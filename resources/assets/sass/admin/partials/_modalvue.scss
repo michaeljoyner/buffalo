@@ -29,6 +29,12 @@
   &.wide {
     max-width: 900px;
   }
+
+  &.fixed-height {
+    .modal-body {
+      height: 66vh;
+    }
+  }
 }
 
 .modal-header h3 {
@@ -38,6 +44,8 @@
 
 .modal-body {
   margin: 20px 0;
+  max-height: 66vh;
+  overflow-y: auto;
 }
 
 .modal-default-button {

@@ -14,27 +14,20 @@ class QuoteItemsControllerTest extends TestCase
     /**
      * @test
      */
-    public function a_quote_item_is_correctly_stored_on_the_quote()
+    public function multiple_quote_items_are_correctly_stored_on_the_quote()
     {
+        $this->disableExceptionHandling();
         $quote = factory(Quote::class)->create();
-        $product = factory(Product::class)->create();
-        $supply = factory(Supply::class)->create(['product_id' => $product]);
+        $products = factory(Product::class, 5)->create();
         $this->asLoggedInUser();
 
         $this->post('/admin/quotes/' . $quote->id . '/items', [
-            'product_id' => $product->id,
-            'supply_id'  => $supply->id
-        ])->assertResponseStatus(201)
-            ->seeInDatabase('quote_items', [
-                'product_id'           => $product->id,
-                'buffalo_product_code' => $product->product_code,
-                'name'                 => $product->name,
-                'description'          => $product->writeup,
-                'currency'             => $supply->currency,
-                'supplier_name'        => $supply->supplier->name,
-                'factory_number'       => $supply->item_number,
-                'factory_price'        => $supply->price
-            ]);
+            'product_ids' => $products->pluck('id')->toArray()
+        ])->assertResponseStatus(201);
+
+        $products->each(function($product) use ($quote) {
+            $this->seeInDatabase('quote_items', ['product_id' => $product->id, 'quote_id' => $quote->id]);
+        });
     }
 
     /**

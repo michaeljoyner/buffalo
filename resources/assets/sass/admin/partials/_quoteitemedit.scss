@@ -1,0 +1,12 @@
+.quote-item-edit-form {
+  label {
+    font-size: 80%;
+    color: $brand_green;
+    display: block;
+  }
+
+  input, textarea {
+    display: block;
+    width: 90%;
+  }
+}

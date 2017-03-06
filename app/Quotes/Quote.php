@@ -3,6 +3,7 @@
 namespace App\Quotes;
 
 use App\Customers\Customer;
+use App\Products\Product;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -51,28 +52,47 @@ class Quote extends Model
 
     public function addItemFromOrder($orderItem)
     {
+        $product = Product::find($orderItem->product_id);
+
+        if ($product) {
+            $item = $this->addItem($product, $orderItem->quantity);
+            $item->name = $orderItem->name;
+            $item->save();
+
+            return $item;
+        }
+
         return $this->items()->create([
             'product_id'           => $orderItem->product_id,
             'quantity'             => $orderItem->quantity,
-            'description'          => $orderItem->product->writeup ?? null,
+            'description'          => null,
             'name'                 => $orderItem->name,
-            'buffalo_product_code' => $orderItem->product->product_code ?? null
+            'buffalo_product_code' => null
         ]);
     }
 
-    public function addItem($product, $quantity = 1, $supply = null)
+    public function addItem($product, $quantity = null, $supply = null)
     {
+        if($this->itemHasAlreadyBeenAddedForProduct($product)) {
+            return;
+        }
+        
+        $packaging = $product->getPackaging();
+        $supply = $supply ?: $product->getBestSupply();
+
         return $this->items()->create([
-            'product_id'           => $product->id,
-            'name'                 => $product->name,
-            'description'          => $product->writeup,
-            'buffalo_product_code' => $product->product_code,
-            'currency'             => $supply->currency ?? null,
-            'supplier_name'        => $supply->supplier->name ?? null,
-            'factory_number'       => $supply->item_number ?? null,
-            'factory_price'        => $supply->price ?? null,
-            'quantity'             => $quantity
-        ]);
+            'product_id'    => $product->id,
+            'exchange_rate' => $this->base_exchange_rate,
+            'profit'        => $this->base_profit,
+            'quantity'      => $quantity ?: $product->minimum_order_quantity,
+        ])->withProductData($product)
+            ->withPackagingData($packaging)
+            ->withSupplyData($supply);
+    }
+
+    protected function itemHasAlreadyBeenAddedForProduct($product)
+    {
+        return QuoteItem::where('product_id', $product->id)->where('quote_id', $this->id)->count() > 0;
     }
 
     public function isFinal()

@@ -226,8 +226,20 @@ $factory->define(App\Quotes\QuoteItem::class, function (Faker\Generator $faker) 
         'currency'             => $faker->randomElement(['USD', 'NTD', 'GBP', 'ZAR']),
         'factory_price'        => $faker->randomFloat(2, 5.0, 5000.0),
         'additional_cost'      => $faker->randomFloat(2, 1.0, 500.0),
-        'exchange_rate'        => $faker->randomFloat(2, 1.0, 50.0),
+        'exchange_rate'        => $faker->randomFloat(2, 0.1, 5.0),
         'quantity'             => $faker->numberBetween(1, 200),
-        'description'          => $product->writeup
+        'description'          => $product->writeup,
+        'package_price'        => $faker->randomFloat(2, 1.0, 500.0),
+        'additional_cost_memo' => $faker->sentence,
+        'profit'               => $faker->randomFloat(2, 0.1, 0.9),
+        'moq'                  => $faker->numberBetween(100, 500),
+        'remark'               => $faker->sentence,
+        'package_type'         => 'Example package type',
+        'package_unit'         => 'Example unit',
+        'package_inner'        => $faker->numberBetween(24, 80),
+        'package_outer'        => $faker->numberBetween(80, 160),
+        'package_carton'       => $faker->word,
+        'net_weight'           => $faker->randomFloat(1, 1.0, 15.0),
+        'gross_weight'         => $faker->randomFloat(1, 1.0, 15.0)
     ];
 });

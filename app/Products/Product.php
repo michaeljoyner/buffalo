@@ -267,6 +267,13 @@ class Product extends Model implements HasMediaConversions
         return $this->supplies()->create($data);
     }
 
+    public function getBestSupply()
+    {
+        $latest = $this->supplies()->latest()->first();
+
+        return $latest ?: new Supply();
+    }
+
     public function packaging()
     {
         return $this->hasMany(Packaging::class, 'product_id');

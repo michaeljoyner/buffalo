@@ -20,13 +20,14 @@ class QuoteItemsController extends Controller
 
     public function store(Request $request, Quote $quote)
     {
-        $this->validate($request, ['product_id' => 'required|exists:products,id']);
+        $this->validate($request, [
+            'product_ids' => 'required|array',
+            'product_ids.*' => 'integer|exists:products,id'
+        ]);
 
-        $quote->addItem(
-            Product::findOrFail($request->product_id),
-            request('quantity', 1),
-            Supply::find(request('supply_id', null))
-        );
+        collect(request('product_ids'))->each(function($id) use ($quote) {
+            $quote->addItem(Product::find($id));
+        });
 
         return response()->json([], 201);
     }

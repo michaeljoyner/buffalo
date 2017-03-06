@@ -48,30 +48,112 @@
                 <h3>Edit Details for {{ itemData.buffalo_product_code }}</h3>
             </div>
             <div slot="body">
-                <div class="form-group">
-                    <label for="supplier">Factory: </label>
-                    <input id="supplier" type="text" v-model="itemData.supplier_name">
+                <div class="quote-item-edit-form">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="buffalo_product_code">Product Code: </label>
+                                <input id="buffalo_product_code" type="text" v-model="itemData.buffalo_product_code">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="name">Name: </label>
+                                <input id="name" type="text" v-model="itemData.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="supplier">Factory: </label>
+                                <input id="supplier" type="text" v-model="itemData.supplier_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="factory_number">Factory Item #: </label>
+                                <input id="factory_number" type="text" v-model="itemData.factory_number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="remark">Remark: </label>
+                                <textarea id="remark" v-model="itemData.remark"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description: </label>
+                                <p id="description">{{{ itemData.description }}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="currency">Currency: </label>
+                                <input id="currency" type="text" v-model="itemData.currency">
+                            </div>
+                            <div class="form-group">
+                                <label for="exchange_rate">Exchange Rate: </label>
+                                <input id="exchange_rate" type="text" v-model="itemData.exchange_rate">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Factory Price: </label>
+                                <input id="price" type="text" v-model="itemData.factory_price">
+                            </div>
+                            <div class="form-group">
+                                <label for="package_price">Package Price: </label>
+                                <input id="package_price" type="text" v-model="itemData.package_price">
+                            </div>
+                            <div class="form-group">
+                                <label for="additional_cost">Additional Cost: </label>
+                                <input id="additional_cost" type="text" v-model="itemData.additional_cost">
+                            </div>
+                            <div class="form-group">
+                                <label for="additional_cost_memo">Additional Cost Note: </label>
+                                <input id="additional_cost_memo" type="text" v-model="itemData.additional_cost_memo">
+                            </div>
+                            <div class="form-group">
+                                <label for="profit">Profit rate: </label>
+                                <input id="profit" type="text" v-model="itemData.profit">
+                            </div>
+                            <div class="form-group">
+                                <label for="moq">MOQ: </label>
+                                <input id="moq" type="text" v-model="itemData.moq">
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Quantity: </label>
+                                <input id="quantity" type="text" v-model="itemData.quantity">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="package_type">Package type: </label>
+                                <input id="package_type" type="text" v-model="itemData.package_type">
+                            </div>
+                            <div class="form-group">
+                                <label for="package_unit">Package unit: </label>
+                                <input id="package_unit" type="text" v-model="itemData.package_unit">
+                            </div>
+                            <div class="form-group">
+                                <label for="package_inner">Package inner: </label>
+                                <input id="package_inner" type="text" v-model="itemData.package_inner">
+                            </div>
+                            <div class="form-group">
+                                <label for="package_outer">Package outer: </label>
+                                <input id="package_outer" type="text" v-model="itemData.package_outer">
+                            </div>
+                            <div class="form-group">
+                                <label for="package_carton">Package carton: </label>
+                                <input id="package_carton" type="text" v-model="itemData.package_carton">
+                            </div>
+                            <div class="form-group">
+                                <label for="net_weight">Net weight: </label>
+                                <input id="net_weight" type="text" v-model="itemData.net_weight">
+                            </div>
+                            <div class="form-group">
+                                <label for="gross_weight">Gross weight: </label>
+                                <input id="gross_weight" type="text" v-model="itemData.gross_weight">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="factory_number">Factory Item #: </label>
-                    <input id="factory_number" type="text" v-model="itemData.factory_number">
-                </div>
-                <div class="form-group">
-                    <label for="price">Factory Price: </label>
-                    <input id="price" type="text" v-model="itemData.factory_price">
-                </div>
-                <div class="form-group">
-                    <label for="currency">Currency: </label>
-                    <input id="currency" type="text" v-model="itemData.currency">
-                </div>
-                <div class="form-group">
-                    <label for="exchange_rate">Exchange Rate: </label>
-                    <input id="exchange_rate" type="text" v-model="itemData.exchange_rate">
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Quantity: </label>
-                    <input id="quantity" type="text" v-model="itemData.quantity">
-                </div>
+
             </div>
             <div slot="footer">
                 <button class="btn dd-btn btn-grey"
@@ -113,11 +195,24 @@
                     supplier_name: '',
                     factory_number: null,
                     factory_price: null,
+                    package_price: null,
+                    additional_cost: null,
+                    additional_cost_memo: null,
+                    moq: null,
                     currency: '',
                     itemId: null,
                     quote_id: null,
                     product_id: null,
                     exchange_rate: null,
+                    profit: null,
+                    remark: null,
+                    package_type: null,
+                    package_unit: null,
+                    package_inner: null,
+                    package_outer: null,
+                    package_carton: null,
+                    net_weight: null,
+                    gross_weight: null
                 },
                 editMode: false,
                 saving: false
