@@ -76,7 +76,7 @@ class Quote extends Model
         if($this->itemHasAlreadyBeenAddedForProduct($product)) {
             return;
         }
-        
+
         $packaging = $product->getPackaging();
         $supply = $supply ?: $product->getBestSupply();
 

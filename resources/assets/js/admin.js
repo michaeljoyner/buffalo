@@ -33,6 +33,7 @@ Vue.component('quote-item-add', require('./components/QuoteItemAdd.vue'));
 Vue.component('quote-item', require('./components/QuoteItem.vue'));
 Vue.component('delete-button', require('./components/DeleteButton.vue'));
 Vue.component('supply-selector', require('./components/SupplySelector.vue'));
+Vue.component('description-editor', require('./components/QuoteItemDescriptionEditor.vue'));
 
 Vue.http.interceptors.unshift(function(request, next) {
     next(function(response) {

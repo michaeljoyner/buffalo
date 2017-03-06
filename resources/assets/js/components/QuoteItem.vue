@@ -30,6 +30,9 @@
         </table>
         <div class="component-footer clearfix">
             <div class="component-actions pull-right">
+                <description-editor :item-id="itemData.itemId"
+                                    :initial-content="itemData.description"
+                ></description-editor>
                 <delete-button :message="`Are you sure you want to remove ${itemData.name} from this quote?`"
                                :delete-url="'/admin/quoteitems/' + itemData.itemId"
                                v-on:item-deleted="deletedItem"
@@ -80,7 +83,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description: </label>
-                                <p id="description">{{{ itemData.description }}}</p>
+                                <div id="description">{{{ itemData.description }}}</div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -90,19 +93,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="exchange_rate">Exchange Rate: </label>
-                                <input id="exchange_rate" type="text" v-model="itemData.exchange_rate">
+                                <input id="exchange_rate" type="number" step="0.001" min="0" v-model="itemData.exchange_rate">
                             </div>
                             <div class="form-group">
                                 <label for="price">Factory Price: </label>
-                                <input id="price" type="text" v-model="itemData.factory_price">
+                                <input id="price" type="number" step="0.01" min="0" v-model="itemData.factory_price">
                             </div>
                             <div class="form-group">
                                 <label for="package_price">Package Price: </label>
-                                <input id="package_price" type="text" v-model="itemData.package_price">
+                                <input id="package_price" type="number" step="0.01" min="0" v-model="itemData.package_price">
                             </div>
                             <div class="form-group">
                                 <label for="additional_cost">Additional Cost: </label>
-                                <input id="additional_cost" type="text" v-model="itemData.additional_cost">
+                                <input id="additional_cost" type="number" step="0.01" min="0" v-model="itemData.additional_cost">
                             </div>
                             <div class="form-group">
                                 <label for="additional_cost_memo">Additional Cost Note: </label>
@@ -110,15 +113,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="profit">Profit rate: </label>
-                                <input id="profit" type="text" v-model="itemData.profit">
+                                <input id="profit" type="number" step="0.001" min="0" v-model="itemData.profit">
                             </div>
                             <div class="form-group">
                                 <label for="moq">MOQ: </label>
-                                <input id="moq" type="text" v-model="itemData.moq">
+                                <input id="moq" type="number" step="1" min="0" v-model="itemData.moq">
                             </div>
                             <div class="form-group">
                                 <label for="quantity">Quantity: </label>
-                                <input id="quantity" type="text" v-model="itemData.quantity">
+                                <input id="quantity" type="number" step="1" min="0" v-model="itemData.quantity">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -132,11 +135,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="package_inner">Package inner: </label>
-                                <input id="package_inner" type="text" v-model="itemData.package_inner">
+                                <input id="package_inner" type="number" step="1" min="0" v-model="itemData.package_inner">
                             </div>
                             <div class="form-group">
                                 <label for="package_outer">Package outer: </label>
-                                <input id="package_outer" type="text" v-model="itemData.package_outer">
+                                <input id="package_outer" type="number" step="1" min="0" v-model="itemData.package_outer">
                             </div>
                             <div class="form-group">
                                 <label for="package_carton">Package carton: </label>
@@ -144,11 +147,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="net_weight">Net weight: </label>
-                                <input id="net_weight" type="text" v-model="itemData.net_weight">
+                                <input id="net_weight" type="number" step="0.001" min="0" v-model="itemData.net_weight">
                             </div>
                             <div class="form-group">
                                 <label for="gross_weight">Gross weight: </label>
-                                <input id="gross_weight" type="text" v-model="itemData.gross_weight">
+                                <input id="gross_weight" type="number" step="0.001" min="0" v-model="itemData.gross_weight">
                             </div>
                         </div>
                     </div>
