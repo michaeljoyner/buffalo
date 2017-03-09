@@ -8,12 +8,17 @@
     <section class="dd-page-header clearfix">
         <h1 class="pull-left">Quote #{{ $quote->quote_number }}</h1>
         <div class="header-actions pull-right">
-            <a href="/admin/quotes/{{ $quote->id }}/edit" class="btn dd-btn btn-light">Edit</a>
-            <a href="/admin/quotes/{{ $quote->id }}/items/edit" class="btn dd-btn btn-dark">Edit Products</a>
-            @include('admin.partials.deletebutton', [
-                'objectName' => $quote->quote_number,
-                'deleteFormAction' => '/admin/quotes/' . $quote->id
-            ])
+            @if($quote->isFinal())
+                <span class="warning-notice text-uppercase text-capitalize">FINAL</span>
+            @else
+                <finalise-quote-button quote-id="{{ $quote->id }}" csrf-token="{{ csrf_token() }}"></finalise-quote-button>
+                <a href="/admin/quotes/{{ $quote->id }}/edit" class="btn dd-btn btn-light">Edit</a>
+                <a href="/admin/quotes/{{ $quote->id }}/items/edit" class="btn dd-btn btn-dark">Edit Products</a>
+                @include('admin.partials.deletebutton', [
+                    'objectName' => $quote->quote_number,
+                    'deleteFormAction' => '/admin/quotes/' . $quote->id
+                ])
+            @endif
         </div>
     </section>
     <section class="row quote-details">

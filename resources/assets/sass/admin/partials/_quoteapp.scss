@@ -2,4 +2,38 @@
   padding: 10px;
   background: lighten($eggshell, 10%);
   margin: 1em;
+
+  .lead {
+    display: flex;
+
+    .quote-item-header-item {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: auto;
+
+      .quote-item-header-item-label {
+        font-size: 50%;
+        color: $brand_green;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  table {
+    background: $white;
+
+    td {
+      color: $text_grey;
+    }
+
+    th {
+      color: $brand_dark;
+      text-transform: uppercase;
+      font-size: 90%;
+    }
+  }
+
+
 }

@@ -1,8 +1,10 @@
 <?php
 
 
+use App\Customers\Customer;
 use App\Products\Product;
 use App\Quotes\Quote;
+use App\Quotes\QuoteItem;
 use App\Sourcing\Supply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -65,12 +67,48 @@ class QuotesTest extends TestCase
     public function a_quote_may_be_finalised()
     {
         $quote = factory(Quote::class)->create(['finalized_on' => null]);
+        factory(QuoteItem::class)->create(['quote_id' => $quote->id]);
 
         $this->assertFalse($quote->isFinal());
 
         $quote->finalize();
 
         $this->assertTrue($quote->fresh()->isFinal());
+    }
+
+    /**
+     *@test
+     */
+    public function finalising_a_quote_will_set_the_total_cost_and_selling_price_in_of_each_item()
+    {
+        $quote = factory(Quote::class)->create();
+        $item = factory(QuoteItem::class)->create(['quote_id' => $quote->id]);
+
+        $this->assertNull($item->total_cost);
+        $this->assertNull($item->selling_price);
+
+        $quote->finalize();
+
+        $this->assertNotNull($item->fresh()->total_cost);
+        $this->assertNotNull($item->fresh()->selling_price);
+    }
+
+    /**
+     *@test
+     */
+    public function a_quote_with_no_items_can_not_be_finalised()
+    {
+        $quote = factory(Quote::class)->create();
+        $this->assertCount(0, $quote->items);
+
+        try {
+            $quote->finalize();
+        } catch(Exception $e) {
+            $this->assertEquals('Can not finalise a quote with no items', $e->getMessage());
+            return;
+        }
+
+        $this->fail('Expected exception to be thrown');
     }
 
     /**
@@ -287,5 +325,69 @@ class QuotesTest extends TestCase
 
         $this->assertCount(1, $quote->fresh()->items);
 
+    }
+
+    /**
+     *@test
+     */
+    public function a_quote_that_has_values_for_all_expected_fields_is_complete()
+    {
+        $incompleteCustomer = factory(Customer::class)->create(['address' => null]);
+        $incompleteQuote = $this->makeQuoteWithout(['valid_until', 'shipment', 'terms']);
+        $completeQuote = factory(Quote::class)->create();
+        $missingCustomerData = factory(Quote::class)->create(['customer_id' => $incompleteCustomer->id]);
+
+        $this->assertFalse($incompleteQuote->hasAllExpectedFields());
+        $this->assertFalse($missingCustomerData->hasAllExpectedFields());
+        $this->assertTrue($completeQuote->hasAllExpectedFields());
+    }
+
+    /**
+     *@test
+     */
+    public function a_quote_that_does_not_have_all_expected_fields_knows_what_is_missing()
+    {
+        $incompleteCustomer = factory(Customer::class)->create(['address' => null]);
+        $incompleteQuote = factory(Quote::class)->create([
+            'customer_id' => $incompleteCustomer->id,
+            'valid_until' => null,
+            'shipment' => null
+        ]);
+
+        $result = $incompleteQuote->missingFields();
+        $this->assertTrue(in_array('Customer address', $result));
+        $this->assertTrue(in_array('Valid until', $result));
+        $this->assertTrue(in_array('Shipment', $result));
+    }
+
+    /**
+     *@test
+     */
+    public function a_quote_that_has_been_finalised_can_not_be_updated()
+    {
+        $quote = factory(Quote::class)->create();
+        factory(QuoteItem::class)->create(['quote_id' => $quote->id]);
+        $customer = factory(Customer::class)->create();
+        $original_customer_id = $quote->customer->id;
+
+        $quote->finalize();
+
+        $quote->customer_id = $customer->id;
+        $quote->save();
+
+        $this->assertEquals($original_customer_id, $quote->fresh()->customer_id);
+    }
+
+    protected function makeQuoteWithout($emptyFields)
+    {
+        $quote = factory(Quote::class)->create();
+
+        collect($emptyFields)->each(function($field) use ($quote) {
+            $quote->{$field} = null;
+        });
+
+        $quote->save();
+
+        return $quote;
     }
 }

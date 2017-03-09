@@ -200,7 +200,7 @@ $factory->define(App\Quotes\Quote::class, function (Faker\Generator $faker) {
             return factory(\App\Orders\Order::class)->create()->id;
         },
         'finalized_on'       => null,
-        'valid_until'        => null,
+        'valid_until'        => \Carbon\Carbon::parse('+30 days'),
         'base_profit'        => 0.8,
         'base_exchange_rate' => 0.3,
         'payment_terms'      => $faker->sentence,

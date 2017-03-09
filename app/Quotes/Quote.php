@@ -43,6 +43,14 @@ class Quote extends Model
             $timestring = Carbon::now()->format('Ymd');
             $quote->quote_number = $prefix . '_' . $timestring;
         });
+
+        static::saving(function ($quote) {
+            $original = $quote->fresh();
+            if($original && $original->isFinal()) {
+                return false;
+            }
+            return true;
+        });
     }
 
     public function items()
@@ -73,7 +81,7 @@ class Quote extends Model
 
     public function addItem($product, $quantity = null, $supply = null)
     {
-        if($this->itemHasAlreadyBeenAddedForProduct($product)) {
+        if ($this->itemHasAlreadyBeenAddedForProduct($product)) {
             return;
         }
 
@@ -102,6 +110,14 @@ class Quote extends Model
 
     public function finalize()
     {
+        if ($this->items->count() === 0) {
+            throw new \Exception('Can not finalise a quote with no items');
+        }
+
+        $this->items->each(function ($item) {
+            $item->setComputedPrices();
+        });
+
         $this->finalized_on = Carbon::now();
         $this->save();
     }
@@ -109,6 +125,53 @@ class Quote extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
+    public function hasAllExpectedFields()
+    {
+        list($missingQuoteFields, $missingCustomerFields) = $this->getMissingFields();
+
+        return $missingCustomerFields->count() + $missingQuoteFields->count() === 0;
+    }
+
+    public function missingFields()
+    {
+        list($missingQuoteFields, $missingCustomerFields) = $this->getMissingFields();
+
+        $missingCustomerFields->each(function ($field) use ($missingQuoteFields) {
+            $missingQuoteFields->push('Customer ' . $field);
+        });
+
+        return $missingQuoteFields->map(function ($field) {
+            return ucfirst(str_replace('_', ' ', $field));
+        })->values()->toArray();
+    }
+
+    protected function getMissingFields()
+    {
+        $expectedQuoteFields = [
+            'valid_until',
+            'payment_terms',
+            'terms',
+            'shipment'
+        ];
+        $expectedCustomerFields = [
+            'name',
+            'contact_person',
+            'address'
+        ];
+
+        $missingQuoteFields = $this->filterToMissingFields($expectedQuoteFields, $this);
+        $missingCustomerFields = $this->filterToMissingFields($expectedCustomerFields, $this->customer);
+
+        return [$missingQuoteFields, $missingCustomerFields];
+    }
+
+    protected function filterToMissingFields($original, $owner)
+    {
+        return collect($original)->filter(function ($field) use ($owner) {
+            return $owner->{$field} === null || $owner->{$field} === "";
+        });
     }
 
 

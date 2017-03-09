@@ -2,28 +2,79 @@
 
 <template>
     <div class="quote-item-component">
-        <p class="lead">
-            <span class="quote-item-code">{{ itemData.buffalo_product_code }}</span> |
-            <span class="quote-item-name">{{ itemData.name }}</span>
-        </p>
-        <table class="table table-responsive">
+        <div class="lead">
+            <div class="quote-item-header-item">
+                <span class="quote-item-header-item-label">Buffalo Code</span>
+                <span class="quote-item-code">{{ itemData.buffalo_product_code }}</span>
+            </div>
+            <div class="quote-item-header-item">
+                <span class="quote-item-header-item-label">Product</span>
+                <span class="quote-item-code">{{ itemData.name }}</span>
+            </div>
+            <div class="quote-item-header-item">
+                <span class="quote-item-header-item-label">Factory</span>
+                <span class="quote-item-code">{{ itemData.supplier_name }}</span>
+            </div>
+            <div class="quote-item-header-item">
+                <span class="quote-item-header-item-label">Factory #</span>
+                <span class="quote-item-code">{{ itemData.factory_number }}</span>
+            </div>
+        </div>
+        <table class="table table-responsive quote-item-table price-table table-bordered">
             <thead>
             <tr>
-                <th>Factory Item #</th>
-                <th>Factory/Supplier</th>
-                <th>Factory Price</th>
                 <th>Currency</th>
+                <th>Factory Price</th>
+                <th>Package Price</th>
+                <th>Additional Cost</th>
+                <th>Additional Cost Note</th>
+                <th>Total Cost</th>
                 <th>Exchange Rate</th>
-                <th>Quantity</th>
+                <th>Profit</th>
+                <th>Selling Price</th>
             </tr>
             <tbody>
             <tr>
-                <td>{{ itemData.factory_number }}</td>
-                <td>{{ itemData.supplier_name }}</td>
-                <td>{{ itemData.factory_price }}</td>
                 <td>{{ itemData.currency }}</td>
+                <td>{{ itemData.factory_price }}</td>
+                <td>{{ itemData.package_price }}</td>
+                <td>{{ itemData.additional_cost }}</td>
+                <td>{{ itemData.additional_cost_memo }}</td>
+                <td>{{ totalCost }}</td>
                 <td>{{ itemData.exchange_rate }}</td>
-                <td>{{ itemData.quantity }}</td>
+                <td>{{ itemData.profit }}</td>
+                <td>{{ sellingPrice }}</td>
+            </tr>
+            </tbody>
+            </thead>
+        </table>
+        <table class="table table-responsive quote-item-table package-table table-bordered">
+            <thead>
+            <tr>
+                <th colspan="7">Packaging</th>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <th>Unit</th>
+                <th>Inner</th>
+                <th>Outer</th>
+                <th>Carton</th>
+                <th>N.W.</th>
+                <th>G.W.</th>
+                <th>MOQ</th>
+                <th>Remark</th>
+            </tr>
+            <tbody>
+            <tr>
+                <td>{{ itemData.package_type }}</td>
+                <td>{{ itemData.package_unit }}</td>
+                <td>{{ itemData.package_inner }}</td>
+                <td>{{ itemData.package_outer }}</td>
+                <td>{{ itemData.package_carton }}</td>
+                <td>{{ itemData.net_weight }}</td>
+                <td>{{ itemData.gross_weight }}</td>
+                <td>{{ itemData.moq }}</td>
+                <td>{{ itemData.remark }}</td>
             </tr>
             </tbody>
             </thead>
@@ -93,7 +144,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exchange_rate">Exchange Rate: </label>
-                                <input id="exchange_rate" type="number" step="0.001" min="0" v-model="itemData.exchange_rate">
+                                <input id="exchange_rate" type="number" step="0.001" min="0"
+                                       v-model="itemData.exchange_rate">
                             </div>
                             <div class="form-group">
                                 <label for="price">Factory Price: </label>
@@ -101,11 +153,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="package_price">Package Price: </label>
-                                <input id="package_price" type="number" step="0.01" min="0" v-model="itemData.package_price">
+                                <input id="package_price" type="number" step="0.01" min="0"
+                                       v-model="itemData.package_price">
                             </div>
                             <div class="form-group">
                                 <label for="additional_cost">Additional Cost: </label>
-                                <input id="additional_cost" type="number" step="0.01" min="0" v-model="itemData.additional_cost">
+                                <input id="additional_cost" type="number" step="0.01" min="0"
+                                       v-model="itemData.additional_cost">
                             </div>
                             <div class="form-group">
                                 <label for="additional_cost_memo">Additional Cost Note: </label>
@@ -135,11 +189,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="package_inner">Package inner: </label>
-                                <input id="package_inner" type="number" step="1" min="0" v-model="itemData.package_inner">
+                                <input id="package_inner" type="number" step="1" min="0"
+                                       v-model="itemData.package_inner">
                             </div>
                             <div class="form-group">
                                 <label for="package_outer">Package outer: </label>
-                                <input id="package_outer" type="number" step="1" min="0" v-model="itemData.package_outer">
+                                <input id="package_outer" type="number" step="1" min="0"
+                                       v-model="itemData.package_outer">
                             </div>
                             <div class="form-group">
                                 <label for="package_carton">Package carton: </label>
@@ -151,7 +207,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="gross_weight">Gross weight: </label>
-                                <input id="gross_weight" type="number" step="0.001" min="0" v-model="itemData.gross_weight">
+                                <input id="gross_weight" type="number" step="0.001" min="0"
+                                       v-model="itemData.gross_weight">
                             </div>
                         </div>
                     </div>
@@ -220,6 +277,24 @@
                 editMode: false,
                 saving: false
             };
+        },
+
+        computed: {
+
+            totalCost() {
+                const factory = this.itemData.factory_price ? this.itemData.factory_price : 0;
+                const packing = this.itemData.package_price ? this.itemData.package_price : 0;
+                const additional = this.itemData.additional_cost ? this.itemData.additional_cost : 0;
+                return factory + packing + additional;
+            },
+
+            sellingPrice() {
+                const total = this.totalCost;
+                const exchange = this.itemData.exchange_rate ? this.itemData.exchange_rate : 1;
+                const profit = this.itemData.profit ? this.itemData.profit : 1;
+
+                return Math.round((total / exchange / profit) * 100) / 100;
+            }
         },
 
         ready() {
