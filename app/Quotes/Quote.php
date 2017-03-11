@@ -5,11 +5,14 @@ namespace App\Quotes;
 use App\Customers\Customer;
 use App\Products\Product;
 use Carbon\Carbon;
+use Hemp\Presenter\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Quote extends Model
 {
+    use Presentable;
+
     protected $table = 'quotes';
 
     protected $fillable = [

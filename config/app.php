@@ -157,6 +157,8 @@ return [
         Thujohn\Twitter\TwitterServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
         Spatie\Sitemap\SitemapServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Hemp\Presenter\PresenterServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -214,7 +216,8 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Form'         => Collective\Html\FormFacade::class,
-        'Twitter'      => Thujohn\Twitter\Facades\Twitter::class
+        'Twitter'      => Thujohn\Twitter\Facades\Twitter::class,
+        'Excel'        => Maatwebsite\Excel\Facades\Excel::class
 
     ],
 

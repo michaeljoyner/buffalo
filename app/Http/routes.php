@@ -245,6 +245,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::post('quotes/{quote}/finalise', 'QuoteFinalisingController@update');
 
+        Route::get('quotes/{quote}/excel', 'QuoteToExcelController@store');
+
         Route::get('quotes/{quote}/items', 'QuoteItemsController@index');
         Route::post('quotes/{quote}/items', 'QuoteItemsController@store');
         Route::patch('quoteitems/{item}', 'QuoteItemsController@update');

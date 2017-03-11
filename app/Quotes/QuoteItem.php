@@ -2,10 +2,13 @@
 
 namespace App\Quotes;
 
+use Hemp\Presenter\Presentable;
 use Illuminate\Database\Eloquent\Model;
 
 class QuoteItem extends Model
 {
+    use Presentable;
+
     const LESS_THAN_HALF_COMPLETE = 1;
     const LESS_THAN_ALMOST_COMPLETE = 2;
     const ALMOST_COMPLETE = 3;

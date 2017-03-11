@@ -8,6 +8,7 @@
     <section class="dd-page-header clearfix">
         <h1 class="pull-left">Quote #{{ $quote->quote_number }}</h1>
         <div class="header-actions pull-right">
+            <a href="/admin/quotes/{{ $quote->id }}/excel" class="btn dd-btn btn-clear-danger">Excel</a>
             @if($quote->isFinal())
                 <span class="warning-notice text-uppercase text-capitalize">FINAL</span>
             @else
