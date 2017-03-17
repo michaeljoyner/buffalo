@@ -29,7 +29,7 @@ class Quote extends Model
         'base_exchange_rate'
     ];
 
-    protected $dates = ['valid_until'];
+    protected $dates = ['valid_until', 'finalized_on'];
 
     public static function boot()
     {
@@ -175,6 +175,28 @@ class Quote extends Model
         return collect($original)->filter(function ($field) use ($owner) {
             return $owner->{$field} === null || $owner->{$field} === "";
         });
+    }
+
+    public function cloneFor(Customer $customer)
+    {
+        $newQuote = $customer->newQuote(null, [
+            'remarks' => $this->remarks,
+            'quotation_remarks' => $this->quotation_remarks,
+            'shipment' => $this->shipment,
+            'base_profit' => $this->base_profit,
+            'base_exchange_rate' => $this->base_exchange_rate
+        ]);
+
+        $this->items->each(function($item) use ($newQuote) {
+            $newQuote->copyItem($item);
+        });
+
+        return $newQuote;
+    }
+
+    public function copyItem(QuoteItem $item)
+    {
+        return $this->items()->create($item->toArray());
     }
 
 

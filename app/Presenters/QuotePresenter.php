@@ -58,4 +58,21 @@ class QuotePresenter extends Presenter
     {
         return 'Ref: ' . $this->model->quote_number;
     }
+
+    public function getAddressHeightAttribute()
+    {
+        return $this->heightBasedOnLines($this->customer_address);
+    }
+
+    public function getRemarksHeightAttribute()
+    {
+        return $this->heightBasedOnLines($this->quotation_remarks);
+    }
+
+    protected function heightBasedOnLines($multiline)
+    {
+        $lines = substr_count($multiline, "\n") + 1;
+
+        return ($lines * 20) + 10;
+    }
 }

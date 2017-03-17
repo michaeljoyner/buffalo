@@ -67,7 +67,8 @@ class QuoteItemPresenter extends Presenter
 
     public function getCompleteDescriptionAttribute()
     {
-        $desc = $this->description . "\n\n";
+        $desc = $this->name . "\n";
+        $desc .= $this->description . "\n\n";
         $desc .= 'Packaging: ' . $this->packaging_summary . "\n";
         $desc .= 'Inner: ' . $this->inner_package . "\n";
         $desc .= 'Outer: ' . $this->outer_package . "\n";
@@ -76,5 +77,12 @@ class QuoteItemPresenter extends Presenter
         $desc .= 'MOQ: ' . $this->moq . "\n";
 
         return $desc;
+    }
+
+    public function getDescriptionHeightAttribute()
+    {
+        $lineCount = substr_count($this->complete_description, "\n");
+
+        return ($lineCount * 20) + 20;
     }
 }

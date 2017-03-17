@@ -19,7 +19,7 @@ class QuoteFinalisingControllerTest extends TestCase
         $this->post('/admin/quotes/' . $quote->id . '/finalise')
             ->assertResponseStatus(302);
 
-        $this->assertContains(\Carbon\Carbon::now()->format('Y-m-d'), $quote->fresh()->finalized_on);
+        $this->assertTrue($quote->fresh()->finalized_on->isToday());
         $this->assertTrue($quote->fresh()->isFinal());
     }
 

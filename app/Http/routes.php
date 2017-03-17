@@ -228,9 +228,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::post('customers/from-order/{order}', 'OrderToCustomerController@store');
 
+        Route::post('customers/{customer}/clone-quote/{quote}', 'ClonedCustomerQuotesController@store');
+
         Route::get('api/customers', 'CustomersApiController@index');
 
+        Route::get('quotes-search/customers/{customer}', 'QuotesSearchController@byCustomer');
+        Route::get('quotes-search/products/{product}', 'QuotesSearchController@byProduct');
+        Route::get('quotes-search/customers/{customer}/products/{product}', 'QuotesSearchController@byCustomerWithProduct');
+
         Route::post('customers/{customer}/quotes', 'CustomerQuotesController@store');
+
 
         Route::get('quotes', 'QuotesController@index');
         Route::get('quotes/{quote}', 'QuotesController@show');

@@ -17,13 +17,17 @@
         </div>
     </section>
     <section class="row">
-        <div class="col-md-12">
+        <div class="col-md-5">
             <div class="customer-details">
                 <p class="lead"><strong>Name: </strong>{{ $customer->name }}</p>
                 <p class="lead"><strong>Contact Person: </strong>{{ $customer->contact_person }}</p>
                 <p class="lead"><strong>Email: </strong><a href="mailto:{{ $customer->email }}">{{ $customer->email }}</a></p>
                 <p class="lead"><strong>Phone no: </strong>{{ $customer->phone }}</p>
                 <p class="lead"><strong>Fax: </strong>{{ $customer->fax }}</p>
+            </div>
+        </div>
+        <div class="col-md-offset-2 col-md-5">
+            <div class="customer-details">
                 <p class="lead"><strong>Website: </strong>{{ $customer->website }}</p>
                 <p class="lead"><strong>Address: </strong>{!! nl2br($customer->address) !!}</p>
                 <p class="lead"><strong>Payment Terms: </strong>{{ $customer->payment_terms }}</p>
@@ -31,6 +35,30 @@
                 <p class="lead"><strong>Remarks: </strong>{!! nl2br($customer->remarks) !!}</p>
             </div>
         </div>
+    </section>
+    <section class="customer-quotes">
+        <hr>
+        <h1 class="text-center">Quotes</h1>
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>Created</th>
+                <th>Quote #</th>
+                <th>Is Final</th>
+                <th>Finalized Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($customer->quotes as $quote)
+            <tr>
+                <td>{{ $quote->created_at->toFormattedDateString() }}</td>
+                <td><a href="/admin/quotes/{{ $quote->id }}">{{ $quote->quote_number }}</a></td>
+                <td>{{ $quote->isFinal() ? 'Yes' : 'No' }}</td>
+                <td>{{ $quote->isFinal() ? $quote->finalized_on->toFormattedDateString() : 'NA' }}</td>
+            </tr>
+            @endforeach
+            </tbody>
+        </table>
     </section>
     @include('admin.partials.deletemodal')
 @endsection

@@ -8,6 +8,7 @@
     <section class="dd-page-header clearfix">
         <h1 class="pull-left">Quote #{{ $quote->quote_number }}</h1>
         <div class="header-actions pull-right">
+            <clone-quote-form quote-id="{{ $quote->id }}" csrf_token="{{ csrf_token() }}"></clone-quote-form>
             <a href="/admin/quotes/{{ $quote->id }}/excel" class="btn dd-btn btn-clear-danger">Excel</a>
             @if($quote->isFinal())
                 <span class="warning-notice text-uppercase text-capitalize">FINAL</span>
@@ -51,6 +52,8 @@
                     <tr>
                         <th>Product Code</th>
                         <th>Item Name</th>
+                        <th>Factory</th>
+                        <th>Factory #</th>
                         <th>Quantity</th>
                     </tr>
                 </thead>
@@ -59,6 +62,8 @@
                     <tr>
                         <td>{{ $item->buffalo_product_code }}</td>
                         <td>{{ $item->name }}</td>
+                        <td>{{ $item->supplier_name }}</td>
+                        <td>{{ $item->factory_number }}</td>
                         <td>{{ $item->quantity }}</td>
                     </tr>
                 @endforeach

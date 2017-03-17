@@ -48,13 +48,13 @@ class Customer extends Model
         return $this->hasMany(Quote::class, 'customer_id');
     }
 
-    public function newQuote($order = null)
+    public function newQuote($order = null, $attributes = [])
     {
         if(! $order) {
-            return $this->createCustomerQuote();
+            return $this->createCustomerQuote($attributes);
         }
 
-        $quote = $this->createCustomerQuote(['order_id' => $order->id]);
+        $quote = $this->createCustomerQuote(array_merge(['order_id' => $order->id], $attributes));
 
         $order->items->each(function($item) use ($quote) {
             $quote->addItemFromOrder($item);

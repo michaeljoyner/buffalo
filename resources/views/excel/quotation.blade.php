@@ -1,74 +1,96 @@
 <table>
-    <thead>
-        <tr>
-            <th colspan="11" style="text-align: center;">Quotation</th>
-        </tr>
-    </thead>
-    <tbody>
     <tr>
-        <td colspan="8">{{ $quote->customer->name }}</td>
-        <td colspan="3">{{ \Carbon\Carbon::now()->toFormattedDateString() }}</td>
+        <td></td>
+        <td>{{ $quote->customer_name }}</td>
+        <td></td>
+        <td>{{ $quote->quote_date }}</td>
     </tr>
     <tr>
-        <td colspan="8">{!! nl2br($quote->customer->address) !!}</td>
-        <td colspan="3">Ref: {{ $quote->quote_number }}</td>
+        <td></td>
+        <td>{{ $quote->customer_address }}</td>
+        <td></td>
+        <td>{{ $quote->quote_number }}</td>
     </tr>
     <tr>
-        <td colspan="8">Attn: {{ $quote->customer->contact_person }}</td>
+        <td></td>
+        <td>{{ $quote->contact_person }}</td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-        <td colspan="8">Validity: By {{ $quote->valid_until->toFormattedDateString() }}</td>
+        <td></td>
+        <td>{{ $quote->validity }}</td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-        <td colspan="8">Payment: {{ $quote->payment_terms }}</td>
+        <td></td>
+        <td>{{ $quote->payment_terms }}</td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-        <td colspan="8">Shipment: {{ $quote->shipment }}</td>
+        <td></td>
+        <td>{{ $quote->shipment }}</td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-        <td colspan="8">Terms: {{ $quote->terms }}</td>
+        <td></td>
+        <td>{{ $quote->terms }}</td>
+        <td></td>
+        <td></td>
     </tr>
-    </tbody>
-</table>
-<table>
-    <thead>
     <tr>
-        <th colspan="1">ITEM NO</th>
-        <th colspan="5">DESCRIPTION</th>
-        <th colspan="3">PHOTO</th>
-        <th colspan="2">FOB TAIWAN</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
-    </thead>
-    <tbody>
+    <tr>
+        <td>No</td>
+        <td>Description</td>
+        <td>Photo</td>
+        <td>FOB TAIWAN</td>
+    </tr>
     @foreach($quote->items->values() as $index => $item)
         <tr>
-            <td colspan="1" style="vertical-align: middle; text-align: center;">{{ $index + 1 }}</td>
-            <td colspan="5">
-                    {!! nl2br($item->description) !!}<br>
-                    Packaging: 1{{ $item->packaging_summary }}<br>
-                    Inner: {{ $item->inner_package }}<br>
-                    Outer: {{ $item->outer_package }}<br>
-                    Carton: {{ $item->package_carton }}<br>
-                    N.W/G.W: {{ $item->weights }}<br>
-                    MOQ: {{ $item->moq }}<br>
+            <td>$index + 1</td>
+            <td>{{ $item->complete_description }}</td>
+            <td>
+                <img src="{{ $item->imageSrc }}" alt="" width="100" height="100">
             </td>
-            <td colspan="3" style="vertical-align: middle; text-align: center;">
-                <img src="{{ $item->imageSrc }}" width="80" height="80">
-            </td>
-            <td colspan="2" style="vertical-align: middle; text-align: center;">{{ $item->selling_price }}</td>
+            <td>{{ $item->selling_price }}</td>
         </tr>
     @endforeach
     <tr>
-        <td colspan="11"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-        <td colspan="11">REMARKS:</td>
+        <td>Remarks:</td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-        <td colspan="11">MINIMUM ORDER'S REQUIRED PER SHIPMENT IS US$ 5,000.00, THE HANDLING FEE OF US$ 250.00</td>
+        <td>1.</td>
+        <td>MINIMUM ORDER'S REQUIRED PER SHIPMENT IS US$ 5,000.00, THE HANDLING FEE OF US$ 250.00</td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-        <td colspan="11">WILL BE CHARGED IF SHIPMENT AMOUNT UNDER US$ 5,000.00.</td>
+        <td></td>
+        <td>WILL BE CHARGED IF SHIPMENT AMOUNT UNDER US$ 5,000.00.</td>
+        <td></td>
+        <td></td>
     </tr>
-    </tbody>
+    <tr>
+        <td>2</td>
+        <td>{{ $quote->quotation_reamrks }}</td>
+        <td></td>
+        <td></td>
+    </tr>
 </table>

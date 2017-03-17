@@ -30,6 +30,7 @@ class CustomersController extends Controller
 
     public function show(Customer $customer)
     {
+        $customer->load('quotes');
         return view('admin.customers.show')->with(compact('customer'));
     }
 

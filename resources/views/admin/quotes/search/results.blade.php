@@ -6,11 +6,23 @@
 
 @section('content')
     <section class="dd-page-header clearfix">
-        <h1 class="pull-left">Quotes</h1>
+        <h1 class="pull-left">Quote Search Results</h1>
         <div class="header-actions pull-right">
             <search-quote-form></search-quote-form>
         </div>
     </section>
+    <section class="search-summary">
+        @if($customer)
+        <p>Customer: {{ $customer->name }}</p>
+        @endif
+        @if($product)
+        <p>Product: {{ $product->name }}</p>
+        @endif
+        @if($quotes->count() < 1)
+            <p class="lead">Sorry, no results matched your search.</p>
+        @endif
+    </section>
+    @if($quotes->count() > 0)
     <section class="quotes-list">
         <table class="table table-responsive">
             <thead>
@@ -34,4 +46,5 @@
         </table>
         @include('admin.partials.pagination', ['paginator' => $quotes])
     </section>
+    @endif
 @endsection

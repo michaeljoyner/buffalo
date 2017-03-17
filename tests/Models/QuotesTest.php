@@ -378,6 +378,69 @@ class QuotesTest extends TestCase
         $this->assertEquals($original_customer_id, $quote->fresh()->customer_id);
     }
 
+    /**
+     *@test
+     */
+    public function a_quote_can_cloned_for_a_new_customer()
+    {
+        $quote = factory(Quote::class)->create();
+        factory(QuoteItem::class, 3)->create(['quote_id' => $quote->id]);
+        $newCustomer = factory(Customer::class)->create();
+
+        $newQuote = $quote->cloneFor($newCustomer);
+
+
+        $this->assertEquals($newCustomer->id, $newQuote->customer_id);
+
+        $this->assertNotEquals($quote->quote_number, $newQuote->quote_number);
+        $this->assertNull($newQuote->order_id);
+        $this->assertTrue($newQuote->valid_until->subDays(30)->isToday());
+        $this->assertEquals($newCustomer->payment_terms, $newQuote->payment_terms);
+        $this->assertEquals($newCustomer->terms, $newQuote->terms);
+        $this->assertEquals($quote->remarks, $newQuote->remarks);
+        $this->assertEquals($quote->quotation_remarks, $newQuote->quotation_remarks);
+        $this->assertEquals($quote->shipment, $newQuote->shipment);
+        $this->assertEquals($quote->base_profit, $newQuote->base_profit);
+        $this->assertEquals($quote->base_exchange_rate, $newQuote->base_exchange_rate);
+
+        $this->assertCount(3, $newQuote->items);
+    }
+
+    /**
+     *@test
+     */
+    public function a_quote_can_copy_a_given_item_for_itself()
+    {
+        $item = factory(QuoteItem::class)->create();
+        $newQuote = factory(Quote::class)->create();
+
+        $newQuote->copyItem($item);
+        $this->assertCount(1, $newQuote->items);
+        $newItem = $newQuote->items->first();
+        $this->assertEquals($item->product_id, $newItem->product_id);
+        $this->assertEquals($item->buffalo_product_code, $newItem->buffalo_product_code);
+        $this->assertEquals($item->supplier_name, $newItem->supplier_name);
+        $this->assertEquals($item->factory_number, $newItem->factory_number);
+        $this->assertEquals($item->factory_price, $newItem->factory_price);
+        $this->assertEquals($item->package_price, $newItem->package_price);
+        $this->assertEquals($item->additional_cost, $newItem->additional_cost);
+        $this->assertEquals($item->additional_cost_memo, $newItem->additional_cost_memo);
+        $this->assertEquals($item->total_cost, $newItem->total_cost);
+        $this->assertEquals($item->exchange_rate, $newItem->exchange_rate);
+        $this->assertEquals($item->profit, $newItem->profit);
+        $this->assertEquals($item->selling_price, $newItem->selling_price);
+        $this->assertEquals($item->package_type, $newItem->package_type);
+        $this->assertEquals($item->package_unit, $newItem->package_unit);
+        $this->assertEquals($item->package_inner, $newItem->package_inner);
+        $this->assertEquals($item->package_outer, $newItem->package_outer);
+        $this->assertEquals($item->package_carton, $newItem->package_carton);
+        $this->assertEquals($item->net_weight, $newItem->net_weight);
+        $this->assertEquals($item->gross_weight, $newItem->gross_weight);
+        $this->assertEquals($item->moq, $newItem->moq);
+        $this->assertEquals($item->remark, $newItem->remark);
+        $this->assertEquals($item->quantity, $newItem->quantity);
+    }
+
     protected function makeQuoteWithout($emptyFields)
     {
         $quote = factory(Quote::class)->create();

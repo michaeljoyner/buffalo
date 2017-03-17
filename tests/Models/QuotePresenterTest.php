@@ -134,6 +134,29 @@ class QuotePresenterTest extends TestCase
         $this->assertContains('Ref: ', $quote->quote_number);
     }
 
+    /**
+     *@test
+     */
+    public function it_presents_the_address_height()
+    {
+        $threeLines = "123 sesame street\nNew York\nUSA";
+        $customer = factory(\App\Customers\Customer::class)->create(['address' => $threeLines]);
+        $quote = $this->makePresenterForQuote(['customer_id' => $customer->id]);
+        //20px for each line plus 10 extra
+        $this->assertEquals(70, $quote->address_height);
+    }
+
+    /**
+     *@test
+     */
+    public function it_presents_the_remarks_height()
+    {
+        $fourLines = "Line one\nLine two\nLine three\nLine four";
+        $quote = $this->makePresenterForQuote(['quotation_remarks' => $fourLines]);
+        //20px for each line plus 10px extra
+        $this->assertEquals(90, $quote->remarks_height);
+    }
+
     protected function makePresenterForQuote($attributes = [])
     {
         $quote = factory(Quote::class)->create($attributes);
@@ -151,4 +174,6 @@ class QuotePresenterTest extends TestCase
 
         return $quote->fresh();
     }
+
+
 }

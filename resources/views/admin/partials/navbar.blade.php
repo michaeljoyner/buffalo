@@ -16,8 +16,19 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/admin/products/search">Products</a></li>
-                <li><a href="/admin/categories">Categories</a></li>
+                <li class="dropdown">
+                    <a href="#"
+                       class="dropdown-toggle"
+                       data-toggle="dropdown"
+                       role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                    >Products <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/products/search">Search</a></li>
+                        <li><a href="/admin/categories">Categories</a></li>
+                    </ul>
+                </li>
                 <li><a href="/admin/orders">Product Enquiries</a></li>
                 <li><a href="/admin/suppliers">Factories</a></li>
                 <li><a href="/admin/customers">Customers</a></li>
@@ -33,10 +44,10 @@
                     >Site Content <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/admin/slides">Banner Slides</a></li>
+                        <li><a href="/admin/blog/posts">Insights</a></li>
+                        <li><a href="/admin/social">Social</a></li>
                     </ul>
                 </li>
-                <li><a href="/admin/blog/posts">Insight</a></li>
-                <li><a href="/admin/social">Social</a></li>
                 @endif
             </ul>
 
