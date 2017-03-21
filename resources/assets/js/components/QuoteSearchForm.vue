@@ -24,10 +24,10 @@
                                 :clear-on-hit="true"
                                 :search-fields='["factory_number", "product_code"]'
                     ></type-ahead>
-                </div>
-                <div class="selected-product" v-show="selected_product.name">
-                    <h4 class="text-center">Selected Product</h4>
-                    <p class="lead">{{ selected_product.name }}</p>
+                    <div class="selected-product" v-show="selected_product.name">
+                        <h4 class="text-center">Selected Product</h4>
+                        <p class="lead">{{ selected_product.name }}</p>
+                    </div>
                 </div>
             </div>
             <div slot="footer">

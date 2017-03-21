@@ -6,13 +6,16 @@
 
 @section('content')
     <section class="dd-page-header clearfix">
-        <h1 class="pull-left">Quote #{{ $quote->quote_number }}</h1>
+        <h1 class="pull-left">
+            Quote #{{ $quote->quote_number }}
+            @if($quote->isFinal())
+                <span class="warning-notice text-uppercase text-capitalize">FINAL</span>
+            @endif
+        </h1>
         <div class="header-actions pull-right">
             <clone-quote-form quote-id="{{ $quote->id }}" csrf_token="{{ csrf_token() }}"></clone-quote-form>
             <a href="/admin/quotes/{{ $quote->id }}/excel" class="btn dd-btn btn-clear-danger">Excel</a>
-            @if($quote->isFinal())
-                <span class="warning-notice text-uppercase text-capitalize">FINAL</span>
-            @else
+            @if(! $quote->isFinal())
                 <finalise-quote-button quote-id="{{ $quote->id }}" csrf-token="{{ csrf_token() }}"></finalise-quote-button>
                 <a href="/admin/quotes/{{ $quote->id }}/edit" class="btn dd-btn btn-light">Edit</a>
                 <a href="/admin/quotes/{{ $quote->id }}/items/edit" class="btn dd-btn btn-dark">Edit Products</a>

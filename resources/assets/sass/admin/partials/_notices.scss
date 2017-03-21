@@ -1,7 +1,30 @@
 .warning-notice {
-  font-size: 1.2em;
+  font-size: 1em;
   padding: 5px 8px;
   border-radius: 5px;
   color: $danger;
   border: 2px solid $danger;
+}
+
+.dot-indicator {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 8px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: $brand_dark;
+
+  &.red {
+    background: $danger;
+  }
+
+  &.orange {
+    background: darkorange;
+  }
+
+  &.green {
+    background: $brand_green;
+  }
+
 }

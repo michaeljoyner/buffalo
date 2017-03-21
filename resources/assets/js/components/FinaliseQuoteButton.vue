@@ -10,13 +10,29 @@
             <div slot="body">
                 <p class="lead">You are about to finalise this quote. Once you do, it may no longer be edited. Please
                     check to see if everything is correct.</p>
-                <p><strong>Quote Has All Necessary Info: </strong>{{ has_all_fields }}</p>
+                <p>
+                    <span class="dot-indicator" :class="{'green': hasAllExpectedFields, 'red': !hasAllExpectedFields}"></span>
+                    <strong>Quote Has All Necessary Info: </strong>
+                    {{ has_all_fields }}
+                </p>
                 <p v-show="!hasAllExpectedFields"><strong>Missing Fields: </strong>{{ missing_fields }}</p>
                 <p><strong>Number of items: </strong>{{ items.length }}</p>
-                <p v-show="very_incomplete_total"><strong>{{ very_incomplete_total }}</strong> items are <strong>very incomplete</strong></p>
-                <p v-show="incomplete_total"><strong>{{ incomplete_total }}</strong> items are <strong>quite incomplete</strong></p>
-                <p v-show="almost_complete_total"><strong>{{ almost_complete_total }}</strong> items are <strong>almost complete</strong></p>
-                <p v-show="complete_total"><strong>{{ complete_total }}</strong> items are <strong>complete</strong></p>
+                <p v-show="very_incomplete_total">
+                    <span class="dot-indicator red"></span>
+                    <strong>{{ very_incomplete_total }}</strong> items are <strong>very incomplete</strong>
+                </p>
+                <p v-show="incomplete_total">
+                    <span class="dot-indicator red"></span>
+                    <strong>{{ incomplete_total }}</strong> items are <strong>quite incomplete</strong>
+                </p>
+                <p v-show="almost_complete_total">
+                    <span class="dot-indicator orange"></span>
+                    <strong>{{ almost_complete_total }}</strong> items are <strong>almost complete</strong>
+                </p>
+                <p v-show="complete_total">
+                    <span class="dot-indicator green"></span>
+                    <strong>{{ complete_total }}</strong> items are <strong>complete</strong>
+                </p>
             </div>
             <div slot="footer">
                 <button class="btn dd-btn btn-grey"

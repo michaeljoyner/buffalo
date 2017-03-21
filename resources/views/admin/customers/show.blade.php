@@ -39,6 +39,9 @@
     <section class="customer-quotes">
         <hr>
         <h1 class="text-center">Quotes</h1>
+        @if($customer->quotes->count() < 1)
+       <p class="lead">There are no quotes for this customer.</p>
+        @else
         <table class="table table-responsive">
             <thead>
             <tr>
@@ -59,6 +62,7 @@
             @endforeach
             </tbody>
         </table>
+        @endif
     </section>
     @include('admin.partials.deletemodal')
 @endsection
