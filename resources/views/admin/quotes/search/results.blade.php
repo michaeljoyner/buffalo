@@ -24,13 +24,14 @@
     </section>
     @if($quotes->count() > 0)
     <section class="quotes-list">
-        <table class="table table-responsive">
+        <table class="table table-responsive buff-table">
             <thead>
             <tr>
                 <th>#</th>
                 <th>Customer</th>
                 <th>Finalized</th>
                 <th>Created On</th>
+                <th>Remarks</th>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +41,7 @@
                     <td><a href="/admin/quotes/{{ $quote->id }}">{{ $quote->customer->name }}</a></td>
                     <td>{{ $quote->isFinal() ? 'Yes' : 'No' }}</td>
                     <td>{{ $quote->created_at->toFormattedDateString() }}</td>
+                    <td>{{ $quote->remarks }}</td>
                 </tr>
             @endforeach
             </tbody>

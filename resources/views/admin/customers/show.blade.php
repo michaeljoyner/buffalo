@@ -42,13 +42,14 @@
         @if($customer->quotes->count() < 1)
        <p class="lead">There are no quotes for this customer.</p>
         @else
-        <table class="table table-responsive">
+        <table class="table table-responsive buff-table">
             <thead>
             <tr>
                 <th>Created</th>
                 <th>Quote #</th>
                 <th>Is Final</th>
                 <th>Finalized Date</th>
+                <th>Remarks</th>
             </tr>
             </thead>
             <tbody>
@@ -58,6 +59,7 @@
                 <td><a href="/admin/quotes/{{ $quote->id }}">{{ $quote->quote_number }}</a></td>
                 <td>{{ $quote->isFinal() ? 'Yes' : 'No' }}</td>
                 <td>{{ $quote->isFinal() ? $quote->finalized_on->toFormattedDateString() : 'NA' }}</td>
+                <td>{{ $quote->remarks }}</td>
             </tr>
             @endforeach
             </tbody>
