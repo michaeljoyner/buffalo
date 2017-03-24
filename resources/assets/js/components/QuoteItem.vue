@@ -285,7 +285,7 @@
                 const factory = this.itemData.factory_price ? this.itemData.factory_price : 0;
                 const packing = this.itemData.package_price ? this.itemData.package_price : 0;
                 const additional = this.itemData.additional_cost ? this.itemData.additional_cost : 0;
-                return factory + packing + additional;
+                return Number(factory + Number(packing + additional));
             },
 
             sellingPrice() {
