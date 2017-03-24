@@ -10,7 +10,7 @@
         </div>
     </section>
     <section class="customer-list">
-        <table class="table table-responsive">
+        <table class="table table-responsive buff-table">
             <thead>
             <tr>
                 <th>#</th>

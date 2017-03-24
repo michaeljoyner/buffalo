@@ -149,12 +149,12 @@ class QuoteItemPresenterTest extends TestCase
     {
         $html = '<div>Line one</div><div>Line two</div><div>Line three</div><div>Line four</div>';
         $item = $this->makePresenterForQuoteItem(['description' => $html]);
-        //title + 4 lines of item description plus blank line plus 6 lines of packaging = 11 lines
-        $this->assertEquals(260, $item->description_height);
+        //title + 4 lines of item description plus blank line plus 5 lines of packaging = 11 lines
+        $this->assertEquals(240, $item->description_height);
 
         $fiveLines = "Line one\nLine two\nLine three\nLine four\nLine five";
         $item2 = $this->makePresenterForQuoteItem(['description' => $fiveLines]);
-        //title + 5 lines of item description plus blank line plus 6 lines of packaging = 12 lines
-        $this->assertEquals(280, $item2->description_height);
+        //title + 5 lines of item description plus blank line plus 5 lines of packaging = 12 lines
+        $this->assertEquals(260, $item2->description_height);
     }
 }

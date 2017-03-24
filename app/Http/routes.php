@@ -175,7 +175,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('suppliers/{supplier}/edit', 'SuppliersController@edit');
         Route::post('suppliers', 'SuppliersController@store');
         Route::post('suppliers/{supplier}', 'SuppliersController@update');
-        Route::delete('suppliers/{supplier}', 'SuppliersController@delete');
+        Route::delete('suppliers/{supplier}', 'SuppliersController@delete')->middleware('superauth');
 
 
         Route::get('products/{product}/supplies', 'SuppliesController@index');
@@ -224,7 +224,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('customers/{customer}/edit', 'CustomersController@edit');
         Route::post('customers', 'CustomersController@store');
         Route::post('customers/{customer}', 'CustomersController@update');
-        Route::delete('customers/{customer}', 'CustomersController@delete');
+        Route::delete('customers/{customer}', 'CustomersController@delete')->middleware('superauth');
 
         Route::post('customers/from-order/{order}', 'OrderToCustomerController@store');
 
@@ -250,7 +250,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('quotes/{quote}/completeness', 'QuoteCompletenessController@show');
 
-        Route::post('quotes/{quote}/finalise', 'QuoteFinalisingController@update');
+        Route::post('quotes/{quote}/finalise', 'QuoteFinalisingController@update')->middleware('superauth');
 
         Route::get('quotes/{quote}/excel', 'QuoteToExcelController@store');
 
