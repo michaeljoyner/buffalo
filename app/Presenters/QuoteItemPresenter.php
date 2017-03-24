@@ -32,7 +32,7 @@ class QuoteItemPresenter extends Presenter
 
     public function getOuterPackageAttribute()
     {
-        return $this->model->package_outer . $this->model->package_unit;
+        return $this->model->package_outer . $this->model->package_unit . '/CTN/' . $this->model->package_carton . ' cu. ft';
     }
 
     public function getWeightsAttribute()
@@ -72,7 +72,6 @@ class QuoteItemPresenter extends Presenter
         $desc .= 'Packaging: ' . $this->packaging_summary . "\n";
         $desc .= 'Inner: ' . $this->inner_package . "\n";
         $desc .= 'Outer: ' . $this->outer_package . "\n";
-        $desc .= 'Carton: ' . $this->package_carton . "\n";
         $desc .= 'N.W/G.W: ' . $this->weights . "\n";
         $desc .= 'MOQ: ' . $this->moq . "\n";
 

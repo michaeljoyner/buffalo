@@ -74,9 +74,9 @@ class QuoteItemPresenterTest extends TestCase
      */
     public function it_presents_the_outer_packaging()
     {
-        $item = $this->makePresenterForQuoteItem(['package_unit' => 'PC', 'package_outer' => 96]);
+        $item = $this->makePresenterForQuoteItem(['package_unit' => 'PC', 'package_outer' => 96, 'package_carton' => 10]);
 
-        $this->assertEquals('96PC', $item->outer_package);
+        $this->assertEquals('96PC/CTN/10 cu. ft', $item->outer_package);
     }
 
     /**

@@ -78,14 +78,14 @@ class QuotationFile
     private function insertItemsIntoQuoteSheet($sheet)
     {
         $this->presentedQuote->items->values()->each(function ($item, $index) use ($sheet) {
-            $this->addQuoteItemToQuoteSheet($sheet, $index + static::QUOTE_ITEMS_ROW_OFFSET, $item, $index + 1);
+            $this->addQuoteItemToQuoteSheet($sheet, $index + static::QUOTE_ITEMS_ROW_OFFSET, $item);
         });
     }
 
-    private function addQuoteItemToQuoteSheet($sheet, $row, $item, $itemNumber)
+    private function addQuoteItemToQuoteSheet($sheet, $row, $item)
     {
         $sheet->prependRow($row, [
-            $itemNumber,
+            $item->buffalo_product_code,
             $item->complete_description,
             null,
             null,

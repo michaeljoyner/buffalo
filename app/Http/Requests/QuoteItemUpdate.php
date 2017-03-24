@@ -43,7 +43,7 @@ class QuoteItemUpdate extends FormRequest
             'package_unit' => 'max:255',
             'package_inner' => 'numeric',
             'package_outer' => 'numeric',
-            'package_carton' => 'max:255',
+            'package_carton' => 'numeric',
             'net_weight' => 'numeric',
             'gross_weight' => 'numeric'
         ];

@@ -49,7 +49,7 @@ class QuotePresenterTest extends TestCase
         $customer = factory(\App\Customers\Customer::class)->create(['name' => 'Corporate Example']);
         $quote = $this->makePresenterForQuote(['customer_id' => $customer->id]);
 
-        $this->assertEquals('Corporate Example', $quote->customer_name);
+        $this->assertEquals('Company: Corporate Example', $quote->customer_name);
     }
 
     /**
@@ -60,7 +60,7 @@ class QuotePresenterTest extends TestCase
         $customer = factory(\App\Customers\Customer::class)->create(['address' => '123 Sesame Street']);
         $quote = $this->makePresenterForQuote(['customer_id' => $customer->id]);
 
-        $this->assertEquals('123 Sesame Street', $quote->customer_address);
+        $this->assertEquals("Address:\n123 Sesame Street", $quote->customer_address);
     }
 
     /**
@@ -142,8 +142,8 @@ class QuotePresenterTest extends TestCase
         $threeLines = "123 sesame street\nNew York\nUSA";
         $customer = factory(\App\Customers\Customer::class)->create(['address' => $threeLines]);
         $quote = $this->makePresenterForQuote(['customer_id' => $customer->id]);
-        //20px for each line plus 10 extra
-        $this->assertEquals(70, $quote->address_height);
+        //20px for label, 20px for each line plus 10 extra
+        $this->assertEquals(90, $quote->address_height);
     }
 
     /**

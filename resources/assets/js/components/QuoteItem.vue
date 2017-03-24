@@ -102,6 +102,7 @@
                 <h3>Edit Details for {{ itemData.buffalo_product_code }}</h3>
             </div>
             <div slot="body">
+                <p class="lead text-danger" v-show="validationError">Error: {{ validationError }}</p>
                 <div class="quote-item-edit-form">
                     <div class="row">
                         <div class="col-md-4">
@@ -198,7 +199,7 @@
                                        v-model="itemData.package_outer">
                             </div>
                             <div class="form-group">
-                                <label for="package_carton">Package carton: </label>
+                                <label for="package_carton">Package carton size (cu ft): </label>
                                 <input id="package_carton" type="text" v-model="itemData.package_carton">
                             </div>
                             <div class="form-group">
@@ -275,7 +276,8 @@
                     gross_weight: null
                 },
                 editMode: false,
-                saving: false
+                saving: false,
+                validationError: ''
             };
         },
 
@@ -314,14 +316,37 @@
 
             updateItem() {
                 this.saving = true;
+                this.validationError = '';
                 this.$http.patch('/admin/quoteitems/' + this.itemData.itemId, this.validFields())
                         .then(({data}) => this.onUpdate(data))
-                        .catch(err => console.log('error: ', err));
+                        .catch(err => this.onError(err));
             },
 
             onUpdate(data) {
                 this.saving = false;
                 this.editMode = false;
+            },
+
+            onError(err) {
+                if (err.status === 422) {
+                    this.saving = false;
+                    return this.showValidationErrors(err.body);
+                }
+
+                this.$dispatch('user-alert', {
+                    title: 'An error occurred!',
+                    type: 'error',
+                    text: 'Unable to save your changes. Please refresh and try again',
+                    confirm: true
+                });
+                this.saving = false;
+                this.editMode = false;
+            },
+
+            showValidationErrors(data) {
+                const fields = Object.keys(data);
+                const message = 'There were problems with the following fields: ' + fields.join(', ');
+                this.validationError = message;
             },
 
             validFields() {

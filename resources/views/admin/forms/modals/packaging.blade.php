@@ -36,7 +36,7 @@
                     <input type="number" step="1" min="1" name="outer" value="{{ old('outer') ?? $packaging->outer }}" class="form-control">
                 </div>
                 <div class="form-group{{ $errors->has('carton') ? ' has-error' : '' }}">
-                    <label for="carton">Carton: </label>
+                    <label for="carton">Carton size (cu ft): </label>
                     @if($errors->has('carton'))
                     <span class="error-message">{{ $errors->first('carton') }}</span>
                     @endif

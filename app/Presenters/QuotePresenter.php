@@ -16,12 +16,12 @@ class QuotePresenter extends Presenter
 
     public function getCustomerNameAttribute()
     {
-        return $this->model->customer->name;
+        return 'Company: ' . $this->model->customer->name;
     }
 
     public function getCustomerAddressAttribute()
     {
-        return $this->model->customer->address;
+        return "Address:\n" .  $this->model->customer->address;
     }
 
     public function getContactPersonAttribute()
