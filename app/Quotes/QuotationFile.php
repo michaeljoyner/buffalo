@@ -122,7 +122,7 @@ class QuotationFile
         $objDrawing->setPath($image);
         $objDrawing->setCoordinates($coordinates);
         $objDrawing->setResizeProportional(true);
-        $objDrawing->setWidthAndHeight(100, 100);
+        $objDrawing->setWidthAndHeight(150, 150);
         $objDrawing->setOffsetX(50);
         $objDrawing->setOffsetY(80);
         $objDrawing->setWorksheet($sheet);
