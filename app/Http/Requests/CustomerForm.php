@@ -40,7 +40,6 @@ class CustomerForm extends FormRequest
         return [
             'name'           => 'required|max:255',
             'contact_person' => 'required|max:255',
-            'email'          => 'required|email|max:255'
         ];
     }
 

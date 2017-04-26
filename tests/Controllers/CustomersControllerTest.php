@@ -23,6 +23,21 @@ class CustomersControllerTest extends TestCase
     /**
      *@test
      */
+    public function a_customer_can_be_stored_with_no_email_address()
+    {
+        $customerData = $this->getRawCustomerData();
+        $customerData['email'] = null;
+        $this->asLoggedInUser();
+
+        $this->post('/admin/customers', $customerData)
+            ->assertResponseStatus(302)
+            ->assertSessionMissing('errors')
+            ->seeInDatabase('customers', array_merge($this->expectedCustomerData(), ['email' => null]));
+    }
+
+    /**
+     *@test
+     */
     public function a_customers_details_may_be_updated()
     {
 
