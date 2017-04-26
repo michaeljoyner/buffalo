@@ -7,6 +7,7 @@
             <button type="button" class="btn dd-btn btn-dark" data-toggle="modal" data-target="#create-supply-modal">
                 Add Supply
             </button>
+            <a href="/admin/products/{{ $product->id }}" class="btn dd-btn btn-light">Back</a>
         </div>
     </section>
     @if($byDateOnly)
