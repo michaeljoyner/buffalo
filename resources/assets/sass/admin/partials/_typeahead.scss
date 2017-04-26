@@ -8,5 +8,10 @@
     padding: 0;
     margin: 0;
     width: 100%;
+
+    li .type-ahead-sub-field {
+      font-weight: 700;
+      float: right;
+    }
   }
 }

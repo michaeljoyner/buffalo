@@ -19,6 +19,7 @@
                 v-on:mousedown="hit"
             >
                 {{ match.name }}
+                <span class="type-ahead-sub-field" v-if="subField">{{ match[this.subField] }}</span>
             </li>
         </ul>
     </div>
@@ -34,6 +35,11 @@
                 default: function () {
                     return [];
                 }
+            },
+            'sub-field': {
+                type: String,
+                required: false,
+                default: null
             },
             'live-search-url': {
                 type: String,
