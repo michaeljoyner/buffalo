@@ -29,7 +29,7 @@
                         <li><a href="/admin/categories">Categories</a></li>
                     </ul>
                 </li>
-                <li><a href="/admin/orders">Product Enquiries</a></li>
+                <li><a href="/admin/orders">Customer Inquiry</a></li>
                 <li><a href="/admin/suppliers">Factories</a></li>
                 <li><a href="/admin/customers">Customers</a></li>
                 <li><a href="/admin/quotes">Quotes</a></li>

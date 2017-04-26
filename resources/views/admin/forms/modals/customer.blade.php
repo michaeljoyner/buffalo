@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email: </label>
-                    {!! Form::email('email', null, ['class' => "form-control", 'required']) !!}
+                    {!! Form::email('email', null, ['class' => "form-control"]) !!}
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone: </label>

@@ -65,7 +65,7 @@
                 @if($errors->has('quotation_remarks'))
                 <span class="error-message">{{ $errors->first('quotation_remarks') }}</span>
                 @endif
-                <textarea name="quotation_remarks" class="form-control">{{ old('quotation_remarks') ?? $quote->quotation_remarks }}</textarea>
+                <textarea name="quotation_remarks" class="form-control taller">{{ old('quotation_remarks') ?? $quote->quotation_remarks }}</textarea>
             </div>
         </div>
     </div>
