@@ -18,7 +18,7 @@
             @if(! $quote->isFinal())
                 <a href="/admin/quotes/{{ $quote->id }}/edit" class="btn dd-btn btn-light">Edit</a>
                 <a href="/admin/quotes/{{ $quote->id }}/items/edit" class="btn dd-btn btn-dark">Edit Products</a>
-                @if(auth()->user()->isA(\App\Role::superadmin()))
+                @if(auth()->user()->isA('super_admin'))
                     <finalise-quote-button quote-id="{{ $quote->id }}"
                                            csrf-token="{{ csrf_token() }}"></finalise-quote-button>
                     @include('admin.partials.deletebutton', [
