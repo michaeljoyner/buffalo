@@ -5,7 +5,7 @@
         <h1 class="pull-left">{{ $supplier->name }}</h1>
         <div class="header-actions pull-right">
             <a href="/admin/suppliers/{{ $supplier->id }}/edit" class="btn dd-btn btn-light">Edit</a>
-            @if(auth()->user()->isA(\App\Role::superadmin()))
+            @if(auth()->user()->isA('super_admin'))
             @include('admin.partials.deletebutton', [
                 'objectName' => $supplier->name,
                 'deleteFormAction' => '/admin/suppliers/' . $supplier->id
