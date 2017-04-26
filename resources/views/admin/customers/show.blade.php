@@ -10,7 +10,7 @@
         <div class="header-actions pull-right">
             <a href="/admin/customers/{{ $customer->id }}/edit" class="btn dd-btn btn-light">Edit</a>
             @include('admin.customers.newquoteform')
-            @if(auth()->user()->isA(\App\Role::superadmin()))
+            @if(auth()->user()->isA('super_admin'))
             @include('admin.partials.deletebutton', [
                 'objectName' => $customer->name,
                 'deleteFormAction' => '/admin/customers/' . $customer->id
