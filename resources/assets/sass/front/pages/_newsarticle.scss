@@ -13,6 +13,8 @@
     font-family: $strong_type;
     color: $brand_dark;
     margin: 10px 0;
+    font-size: 2em;
+
   }
 
   .publish-date {
@@ -24,6 +26,7 @@
     padding-bottom: 40px;
     font-size: 120%;
     line-height: 1.6;
+    word-wrap: break-word;
 
     img {
       max-width: 100%;
