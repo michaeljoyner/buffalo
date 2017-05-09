@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        Commands\MakeProductDescriptionsUnique::class,
         Commands\CreateDefaultProductDescriptions::class,
         Commands\CreateDefaultCategoryDescriptions::class,
         Commands\ConvertExistingProductImages::class,
