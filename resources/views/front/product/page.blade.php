@@ -1,7 +1,7 @@
 @extends('front.base')
 
 @section('title')
-    {{ $product->name }} - Buffalo Tools'
+    {{ $product->name }} ({{ $product->product_code }}) - Buffalo Tools'
 @endsection
 
 @section('head')
