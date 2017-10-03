@@ -29,6 +29,6 @@
 
     <div class="signoff">
         <img src="/images/Logo_white.png" alt="Buffalo Tools Logo">
-        <p class="text-grey">Copyright 2016 @if((new \Carbon\Carbon())->year > 2016) - {{ (new \Carbon\Carbon())->year }} @endif</p>
+        <p class="text-grey">&copy; Copyright {{ \Carbon\Carbon::today()->year }}. All Rights Reserved. Brilliantly Built by <a class="dymantic-link" href="https://dymanticdesign.com">Dymantic Design</a></p>
     </div>
 </footer>

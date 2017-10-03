@@ -192,3 +192,9 @@
     font-family: $body_font;
   }
 }
+
+.dymantic-link {
+  &:hover {
+    color: #f94b4b;
+  }
+}
