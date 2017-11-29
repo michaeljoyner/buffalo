@@ -37,6 +37,6 @@ class OrderFormRequest extends FormRequest
 
     public function acceptedFields()
     {
-        return $this->only(['company', 'contact_person', 'phone', 'fax', 'email', 'website', 'referrer', 'other_referrer', 'requirements']);
+        return $this->all(['company', 'contact_person', 'phone', 'fax', 'email', 'website', 'referrer', 'other_referrer', 'requirements']);
     }
 }

@@ -8,12 +8,14 @@ use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
+use Spatie\MediaLibrary\Media;
 
 class Product extends Model implements HasMediaConversions
 {
-    use SoftDeletes, Sluggable, GetsSlugFromName, UrgesForDescription, HasMediaTrait, HasModelImage;
+    use SoftDeletes, Sluggable, UrgesForDescription, HasMediaTrait, HasModelImage;
 
     const DEFAULT_PRIMARY_IMAGE = '/images/buffalo_logo_small.png';
     const DAYS_TO_BE_NEW = 90;
@@ -35,19 +37,33 @@ class Product extends Model implements HasMediaConversions
 
     protected $dates = ['deleted_at', 'new_until', 'promoted_until'];
 
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+
     public function getMinimumOrderQuantityAttribute($moq)
     {
         return $moq ?? 500;
     }
 
-    public function registerMediaConversions()
+    public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'fill', 'fm' => 'src'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 200, 200)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
         $this->addMediaConversion('web')
-            ->setManipulations(['w' => 800, 'h' => 600, 'fit' => 'fill', 'fm' => 'src'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_MAX, 800, 600)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
     }
 
     public function category()
@@ -113,7 +129,7 @@ class Product extends Model implements HasMediaConversions
 
     public function addGalleryImage($image)
     {
-        return $this->getGallery()->addMedia($image)->preservingOriginal()->toMediaLibrary();
+        return $this->getGallery()->addMedia($image)->preservingOriginal()->toMediaCollection();
     }
 
     public function allImageUrls($conversion = '')

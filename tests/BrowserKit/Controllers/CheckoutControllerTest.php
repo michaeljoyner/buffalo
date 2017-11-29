@@ -54,6 +54,7 @@ class CheckoutControllerTest extends BrowserKitTestCase
      */
     public function an_order_can_still_be_placed_with_only_the_required_fields()
     {
+        $this->disableExceptionHandling();
         $cart = $this->app->make(ShoppingCart::class);
         $product = factory(Product::class)->create();
         $product2 = factory(Product::class)->create();

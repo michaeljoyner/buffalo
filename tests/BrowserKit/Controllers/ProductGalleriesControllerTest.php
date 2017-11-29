@@ -13,6 +13,7 @@ class ProductGalleriesControllerTest extends BrowserKitTestCase
      */
     public function an_image_can_be_added_to_a_product_gallery_by_posting_to_correct_endpoint()
     {
+        $this->disableExceptionHandling();
         $this->asLoggedInUser();
         $product = factory(Product::class)->create();
 

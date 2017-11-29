@@ -6,12 +6,14 @@ use App\GetsSlugFromName;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
+use Spatie\MediaLibrary\Media;
 
 class Category extends Model implements HasMediaConversions
 {
-    use SoftDeletes, Sluggable, GetsSlugFromName, HasMediaTrait, UrgesForDescription, HasModelImage;
+    use SoftDeletes, Sluggable, HasMediaTrait, UrgesForDescription, HasModelImage;
 
     const DEFAULT_BANNER_SRC = '/images/assets/leaves.jpg';
 
@@ -24,14 +26,28 @@ class Category extends Model implements HasMediaConversions
 
     protected $dates = ['deleted_at'];
 
-    public function registerMediaConversions()
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+
+    public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'crop', 'fm' => 'src'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 200, 200)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
         $this->addMediaConversion('web')
-            ->setManipulations(['w' => 500, 'h' => 300, 'fit' => 'crop', 'fm' => 'src'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 500, 300)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
     }
 
     public static function boot()

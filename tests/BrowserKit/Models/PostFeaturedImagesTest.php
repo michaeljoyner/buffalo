@@ -33,9 +33,17 @@ class PostFeaturedImagesTest extends BrowserKitTestCase
 
         $image = $post->addImage($this->prepareFileUpload('tests/testpic1.png'));
 
-        $this->setExpectedException('Exception', 'Image must belong to post to be set as featured.');
-        $post2->setFeaturedImage($image);
+        try {
+            $post2->setFeaturedImage($image);
+
+        } catch(Exception $e) {
+            $this->assertEquals('Image must belong to post to be set as featured.', $e->getMessage());
+            $post->clearMediaCollection();
+            return;
+        }
 
         $post->clearMediaCollection();
+        $this->fail();
+
     }
 }

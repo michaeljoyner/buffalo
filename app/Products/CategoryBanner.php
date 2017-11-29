@@ -3,8 +3,10 @@
 namespace App\Products;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
+use Spatie\MediaLibrary\Media;
 
 class CategoryBanner extends Model implements HasMediaConversions
 {
@@ -14,14 +16,20 @@ class CategoryBanner extends Model implements HasMediaConversions
 
     protected $fillable = [];
 
-    public function registerMediaConversions()
+    public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->setManipulations(['w' => 300, 'h' => 50, 'fit' => 'crop'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 300, 50)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
         $this->addMediaConversion('large')
-            ->setManipulations(['w' => 1400, 'h' => 234, 'fit' => 'crop'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 1400, 234)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
     }
 
     public function category()

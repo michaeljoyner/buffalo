@@ -7,6 +7,7 @@ use App\User;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 use Spatie\MediaLibrary\Media;
@@ -34,14 +35,20 @@ class Post extends Model implements HasMediaConversions
 
     protected $dates = ['published_at'];
 
-    public function registerMediaConversions()
+    public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'crop', 'fm' => 'src'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 200, 200)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
         $this->addMediaConversion('web')
-            ->setManipulations(['w' => 800, 'h' => 600, 'fit' => 'max', 'fm' => 'src'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_MAX, 800, 600)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
     }
 
     public function sluggable()
@@ -56,7 +63,7 @@ class Post extends Model implements HasMediaConversions
 
     public function addImage($file)
     {
-        return $this->addMedia($file)->withCustomProperties(['is_feature' => false])->preservingOriginal()->toMediaLibrary();
+        return $this->addMedia($file)->withCustomProperties(['is_feature' => false])->preservingOriginal()->toMediaCollection();
     }
 
     public function getImages()

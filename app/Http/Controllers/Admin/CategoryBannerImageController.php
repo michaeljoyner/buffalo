@@ -20,6 +20,6 @@ class CategoryBannerImageController extends Controller
     {
         $this->validate($request, ['file' => 'required|image']);
 
-        return $category->setBannerImage($request->file('file'));
+        $category->setBannerImage($request->file('file'));
     }
 }

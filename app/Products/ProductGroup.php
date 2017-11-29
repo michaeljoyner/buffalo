@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductGroup extends Model
 {
-    use SoftDeletes, Sluggable, GetsSlugFromName, UrgesForDescription;
+    use SoftDeletes, Sluggable, UrgesForDescription;
 
     protected $table = 'product_groups';
 
@@ -29,6 +29,15 @@ class ProductGroup extends Model
                 $product->delete();
             });
         });
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 
     public function subcategory()

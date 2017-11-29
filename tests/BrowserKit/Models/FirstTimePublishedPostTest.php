@@ -4,6 +4,7 @@
 use App\Blog\Post;
 use App\Events\PostFirstPublished;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Event;
 
 class FirstTimePublishedPostTest extends BrowserKitTestCase
 {
@@ -12,13 +13,16 @@ class FirstTimePublishedPostTest extends BrowserKitTestCase
     /**
      *@test
      */
-    public function an_event_is_fired_when_a_post_is_fired_for_the_first_time()
+    public function an_event_is_fired_when_a_post_is_published_for_the_first_time()
     {
-        $post = factory(Post::class)->create(['published_at' => null, 'published' => 0]);
+        Event::fake();
 
-        $this->expectsEvents(PostFirstPublished::class);
-
+        $post = factory(Post::class)->create(['published_at' => null, 'published' => false, 'slug' => 'slug']);
         $post->setPublishedStatus(true);
+
+        Event::assertDispatched(PostFirstPublished::class, function($event) use ($post) {
+            return $event->post->id === $post->id;
+        });
     }
 
     /**
@@ -26,11 +30,12 @@ class FirstTimePublishedPostTest extends BrowserKitTestCase
      */
     public function an_event_is_not_fired_if_a_previously_published_post_is_republished()
     {
-        $post = factory(Post::class)->create(['published_at' => '2015-01-01', 'published' => 0]);
+        Event::fake();
 
-        $this->doesntExpectEvents(PostFirstPublished::class);
-
+        $post = factory(Post::class)->create(['published_at' => '2015-01-01', 'published' => 0, 'slug' => 'slug']);
         $post->setPublishedStatus(true);
+
+        Event::assertNotDispatched(PostFirstPublished::class);
     }
 
     /**
@@ -38,10 +43,11 @@ class FirstTimePublishedPostTest extends BrowserKitTestCase
      */
     public function an_event_is_not_fired_when_a_post_is_being_retracted()
     {
-        $post = factory(Post::class)->create(['published_at' => '2015-01-01', 'published' => 1]);
+        Event::fake();
 
-        $this->doesntExpectEvents(PostFirstPublished::class);
-
+        $post = factory(Post::class)->create(['published_at' => '2015-01-01', 'published' => 1, 'slug' => 'slug']);
         $post->setPublishedStatus(false);
+
+        Event::assertNotDispatched(PostFirstPublished::class);
     }
 }

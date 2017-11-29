@@ -13,6 +13,7 @@ class CategoryBannerImageControllerTest extends BrowserKitTestCase
      */
     public function an_uploaded_image_is_correctly_stored_as_the_category_banner()
     {
+        $this->disableExceptionHandling();
         $this->asLoggedInUser();
         $category = factory(Category::class)->create();
 

@@ -6,8 +6,10 @@ use App\Products\HasModelImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
+use Spatie\MediaLibrary\Media;
 
 class Slide extends Model implements HasMediaConversions
 {
@@ -41,17 +43,25 @@ class Slide extends Model implements HasMediaConversions
         return true;
     }
 
-    public function registerMediaConversions()
+    public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('small')
-            ->setManipulations(['w' => 500, 'h' => 300, 'fit' => 'crop'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 500, 500)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
         $this->addMediaConversion('phone')
-            ->setManipulations(['w' => 720, 'h' => 432, 'fit' => 'crop'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 720, 432)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
         $this->addMediaConversion('large')
-            ->setManipulations(['w' => 1400, 'h' => 467, 'fit' => 'crop'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 1400, 467)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
     }
 
     public static function createDefault()

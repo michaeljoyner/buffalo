@@ -96,9 +96,14 @@ class UsersTest extends BrowserKitTestCase
     {
         $user = factory(User::class)->create();
 
-        $this->setExpectedException('App\Exceptions\LastUserDeletionException');
+        try {
+            $user->delete();
+        } catch(\App\Exceptions\LastUserDeletionException $e) {
+            $this->assertTrue(true);
+            return;
+        }
 
-        $user->delete();
+        $this->fail();
 
     }
 

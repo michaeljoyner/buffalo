@@ -3,8 +3,10 @@
 namespace App\Products;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
+use Spatie\MediaLibrary\Media;
 
 class ProductGallery extends Model implements HasMediaConversions
 {
@@ -17,13 +19,19 @@ class ProductGallery extends Model implements HasMediaConversions
         return $this->belongsTo(Product::class);
     }
 
-    public function registerMediaConversions()
+    public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->setManipulations(['w' => 200, 'h' => 200, 'fit' => 'fill', 'fm' => 'src'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_CROP, 200, 200)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
         $this->addMediaConversion('web')
-            ->setManipulations(['w' => 800, 'h' => 600, 'fit' => 'fill', 'fm' => 'src'])
-            ->performOnCollections('default');
+             ->fit(Manipulations::FIT_MAX, 800, 600)
+             ->keepOriginalImageFormat()
+             ->optimize()
+             ->performOnCollections('default');
+
     }
 }
