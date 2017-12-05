@@ -1,9 +1,11 @@
 <style></style>
 
 <template>
-    <div class="cart-alert" :class="{'show': show}">
+    <div class="cart-alert"
+         :class="{'show': show}">
         <p class="alert-text">Products in inquiry: {{ quantity }}</p>
-        <a class="alert-link" href="/inquiry">view</a>
+        <a class="alert-link"
+           href="/inquiry">view</a>
     </div>
 </template>
 
@@ -17,26 +19,23 @@
             }
         },
 
-        events: {
-          'cart-item-added': function() {
-              this.fetchSummary(true);
-          }
-        },
-
-        ready() {
+        mounted() {
+            eventHub.$on('cart-item-added', this.fetchSummary);
             this.fetchSummary(false);
         },
 
         methods: {
 
-            fetchSummary(thenShow) {
-                this.$http.get('/api/cart/summary')
-                        .then((res) => this.setState(res, thenShow));
+            fetchSummary(thenShow = true) {
+                console.log('here');
+                axios.get('/api/cart/summary')
+                     .then(({data}) => this.setState(data, thenShow))
+                     .catch(() => eventHub.$emit('error-alert', 'Failed to fetch cart cart summary'));
             },
 
-            setState(res, show) {
-                this.quantity = res.body.total_products;
-                if(show) {
+            setState(data, show) {
+                this.quantity = data.total_products;
+                if (show) {
                     this.showAlert();
                 }
             },

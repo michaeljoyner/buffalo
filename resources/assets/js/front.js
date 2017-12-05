@@ -19,24 +19,47 @@ if (token) {
 }
 
 import Vue from "vue";
-window.Vue = Vue;
 
+window.Vue = Vue;
 
 
 // Vue.component('carousel-slider', require('./components/Carousel.vue'));
 // Vue.component('video-slide', require('./components/Videoslide.vue'));
 // Vue.component('banner-slide', require('./components/Slide.vue'));
 // Vue.component('contact-form', require('./components/Contactform.vue'));
-// Vue.component('cart-button', require('./components/Cartbutton.vue'));
-// Vue.component('cart-item', require('./components/Cartitem.vue'));
-// Vue.component('cart-app', require('./components/Cart.vue'));
-// Vue.component('cart-alert', require('./components/Cartalert.vue'));
+Vue.component('cart-button', require('./components/Cartbutton.vue'));
+Vue.component('cart-item', require('./components/Cartitem.vue'));
+Vue.component('cart-app', require('./components/Cart.vue'));
+Vue.component('cart-alert', require('./components/Cartalert.vue'));
 Vue.component('stat-counter', require('./components/Statcounter.vue'));
 
 window.eventHub = new Vue();
 
 new Vue({
-    el:'#app',
+    el: '#app',
+
+    mounted() {
+        eventHub.$on('error-alert', this.showErrorMessage);
+        eventHub.$on('success-alert', this.showSuccessMessage);
+    },
+
+    methods: {
+        showErrorMessage(message) {
+            swal({
+                type: 'error',
+                title: 'Oh no! An error!',
+                text: message,
+            });
+        },
+
+        showSuccessMessage(message, title = 'Success!') {
+            swal({
+                type: 'success',
+                title: title,
+                text: message,
+            });
+        }
+    }
 
     // events: {
     //     'user-alert': function(message) {
@@ -54,25 +77,27 @@ new Vue({
     // }
 });
 
-if(document.querySelector('#search-trigger')) {
+if (document.querySelector('#search-trigger')) {
     const trigger = document.querySelector('#search-trigger');
     const searchInput = document.querySelector('.search-input');
-    trigger.addEventListener('change', (ev) => {if(trigger.checked) searchInput.focus() }, false);
+    trigger.addEventListener('change', (ev) => {
+        if (trigger.checked) searchInput.focus()
+    }, false);
 }
 
-if(document.querySelector('.menu-select')) {
+if (document.querySelector('.menu-select')) {
     const select = document.querySelector('.menu-select');
     select.addEventListener('change', (ev) => window.location = ev.target.value, false);
 }
 
 document.body.addEventListener('keypress', (ev) => {
-    if(ev.keyCode !== 47) {
+    if (ev.keyCode !== 47) {
         return;
     }
     const trigger = document.querySelector('#search-trigger');
     const searchInput = document.querySelector('.search-input');
     trigger.checked = !trigger.checked;
-    if(trigger.checked) {
+    if (trigger.checked) {
         searchInput.focus();
     }
     ev.preventDefault();
