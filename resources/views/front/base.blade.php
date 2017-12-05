@@ -5,9 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@yield('title', 'Buffalo Tools')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
-    <link rel="stylesheet" href="{{ elixir('css/fapp.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/fapp.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700|Teko:700|Ubuntu" rel="stylesheet">
     @yield('head')
+    <meta id="csrf-token-meta"
+          name="csrf-token"
+          content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -20,8 +23,10 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 @include('front.partials.navbar')
-@yield('content')
-<script src="{{ elixir('js/front.js') }}"></script>
+<div id="app">
+    @yield('content')
+</div>
+<script src="{{ mix('js/front.js') }}"></script>
 @yield('bodyscripts')
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>
