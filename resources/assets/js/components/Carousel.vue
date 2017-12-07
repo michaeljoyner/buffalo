@@ -1,8 +1,12 @@
 <style></style>
 
 <template>
-    <div class="carousel-slider" :class="{'ready': isReadyToStart}" @mouseenter.stop="stop" @mouseleave.stop="play">
-        <banner-slide v-for="slide in slides | orderBy 'position'"
+    <div class="carousel-slider"
+         :class="{'ready': isReadyToStart}"
+         @mouseenter.stop="stop"
+         @mouseleave.stop="play">
+        <banner-slide v-for="(slide, index) in ordered_slides"
+                      :key="slide.id"
                       :text-colour="slide.text_colour"
                       :slide-text="slide.slide_text"
                       :action-text="slide.action_text"
@@ -11,16 +15,25 @@
                       :image-src="slide.image_src"
                       :small-img-src="slide.small_image"
                       :video="slide.video"
-                      :slide-index="$index"
-                      v-show="$index == currentImg"
+                      :slide-index="index"
+                      v-show="index == currentImg"
                       :direction="direction"
                       @requestnext="onRequestNext"
         ></banner-slide>
-        <img src="/images/slider_arrow.png" v-show="readyCount > 1" class="carousel-prev-arrow carousel-nav-arrow" @click="prevSlide">
-        <img src="/images/slider_arrow.png" v-show="readyCount > 1" class="carousel-next-arrow carousel-nav-arrow" @click="nextSlide">
-        <div class="carousel-dot-nav" v-show="readyCount > 1">
+
+        <img src="/images/slider_arrow.png"
+             v-show="readyCount > 1"
+             class="carousel-prev-arrow carousel-nav-arrow"
+             @click="prevSlide">
+        <img src="/images/slider_arrow.png"
+             v-show="readyCount > 1"
+             class="carousel-next-arrow carousel-nav-arrow"
+             @click="nextSlide">
+        <div class="carousel-dot-nav"
+             v-show="readyCount > 1">
             <div class="carousel-dot"
                  v-for="slide in readySlides"
+                 :key="slide.id"
                  @click="setCurrentImg(slide)"
             ></div>
         </div>
@@ -28,7 +41,7 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         props: ['auto-play', 'slide-time'],
 
@@ -50,23 +63,27 @@
 
             isReadyToStart() {
                 return this.readyCount > 1 && this.slides[0].is_ready;
+            },
+
+            ordered_slides() {
+                return this.slides.sort((a, b) => b.position - a.position);
             }
         },
 
-        ready() {
+        mounted() {
             this.fetchSlides();
         },
 
         methods: {
 
             fetchSlides() {
-                this.$http.get('/api/slides')
-                        .then((res) => this.$set('slides', res.body))
-                        .catch(() => console.log('error fetching slides'));
+                axios.get('/api/slides')
+                     .then(({data}) => this.slides = data)
+                     .catch(() => console.log('error fetching slides'));
             },
 
             isCurrent(slide) {
-                if(this.currentImg === null) {
+                if (this.currentImg === null) {
                     return false;
                 }
                 return (slide.id === this.slides[this.currentImg].id) && slide.is_ready;
@@ -75,7 +92,7 @@
             setCurrentImg(slide) {
                 this.currentImg = this.slides.findIndex((s) => s.id === slide.id);
             },
-            
+
             nextSlide() {
                 this.direction = 'slide';
                 this.changeSlide(this.nextInLine);
@@ -87,23 +104,23 @@
             },
 
             nextInLine(current, listLength) {
-                return current == listLength - 1 ? 0 : current + 1;
+                return current === listLength - 1 ? 0 : current + 1;
             },
 
             prevInLine(current, listLength) {
-              return current == 0 ? listLength - 1 : current - 1;
+                return current === 0 ? listLength - 1 : current - 1;
             },
 
             changeSlide(nextIndex) {
-                this.$broadcast('now-leaving', this.currentImg);
+                eventHub.$emit('slide-now-leaving', this.currentImg);
                 let next = nextIndex(this.currentImg, this.slides.length);
 
-                while(! this.slides[next].is_ready) {
+                while (!this.slides[next].is_ready) {
                     next = nextIndex(next, this.slides.length);
                 }
 
                 this.currentImg = next;
-                this.$broadcast('now-showing', this.currentImg);
+                eventHub.$emit('slide-now-showing', this.currentImg);
             },
 
             markAsReady(slideIndex) {
@@ -111,11 +128,11 @@
                 slide.is_ready = true;
                 this.readyCount++;
 
-                if(this.isReadyToStart) {
+                if (this.isReadyToStart) {
                     this.removeOriginal();
                 }
 
-                if(this.shouldPlay()) {
+                if (this.shouldPlay()) {
                     this.play();
                 }
             },
@@ -125,13 +142,14 @@
             },
 
             play() {
-                if(! this.autoPlay || this.interval) {
+                if (!this.autoPlay || this.interval) {
                     return;
                 }
                 this.interval = setTimeout(() => this.nextSlide(), this.slideTime);
             },
 
             stop() {
+                console.log('stopp');
                 clearInterval(this.interval);
                 this.interval = null;
             },
@@ -145,7 +163,7 @@
             },
 
             onRequestNext(requesterIndex) {
-                if(requesterIndex === this.currentImg) {
+                if (requesterIndex === this.currentImg && this.interval) {
                     this.nextSlide();
                 }
             }

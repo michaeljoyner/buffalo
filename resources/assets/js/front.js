@@ -23,10 +23,10 @@ import Vue from "vue";
 window.Vue = Vue;
 
 
-// Vue.component('carousel-slider', require('./components/Carousel.vue'));
-// Vue.component('video-slide', require('./components/Videoslide.vue'));
-// Vue.component('banner-slide', require('./components/Slide.vue'));
-// Vue.component('contact-form', require('./components/Contactform.vue'));
+Vue.component('carousel-slider', require('./components/Carousel.vue'));
+Vue.component('video-slide', require('./components/Videoslide.vue'));
+Vue.component('banner-slide', require('./components/Slide.vue'));
+Vue.component('contact-form', require('./components/Contactform.vue'));
 Vue.component('cart-button', require('./components/Cartbutton.vue'));
 Vue.component('cart-item', require('./components/Cartitem.vue'));
 Vue.component('cart-app', require('./components/Cart.vue'));
@@ -46,15 +46,15 @@ new Vue({
     methods: {
         showErrorMessage(message) {
             swal({
-                type: 'error',
+                icon: 'error',
                 title: 'Oh no! An error!',
                 text: message,
             });
         },
 
-        showSuccessMessage(message, title = 'Success!') {
+        showSuccessMessage({message, title = 'Success!'}) {
             swal({
-                type: 'success',
+                icon: 'success',
                 title: title,
                 text: message,
             });
@@ -90,8 +90,8 @@ if (document.querySelector('.menu-select')) {
     select.addEventListener('change', (ev) => window.location = ev.target.value, false);
 }
 
-document.body.addEventListener('keypress', (ev) => {
-    if (ev.keyCode !== 47) {
+document.body.addEventListener('keyup', (ev) => {
+    if (ev.keyCode !== 121 || ['INPUT', 'TEXTAREA'].indexOf(ev.target.tagName) !== -1) {
         return;
     }
     const trigger = document.querySelector('#search-trigger');
