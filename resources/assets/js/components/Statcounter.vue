@@ -2,13 +2,13 @@
 
 <template>
     <div class="stat-counter">
-        <span class="stat-number">{{ initial }}</span>
+        <span class="stat-number">{{ counter }}</span>
         <h3 class="stat-title">{{ statTitle }}</h3>
     </div>
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         props: {
             initial: {
@@ -25,8 +25,13 @@
                 type: Number
             }
         },
+        data() {
+          return {
+              counter: this.initial
+          };
+        },
 
-        ready() {
+        mounted() {
           if(this.initial < this.upperVal) {
               window.requestAnimationFrame(this.count);
           }
@@ -35,10 +40,10 @@
         methods: {
 
             count() {
-                let gap = this.upperVal - this.initial;
+                let gap = this.upperVal - this.counter;
                 let jump = gap > this.step ? this.step : gap;
                 if(gap > 0) {
-                    this.initial += jump;
+                    this.counter += jump;
                     window.requestAnimationFrame(this.count);
                 }
             }

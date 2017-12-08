@@ -14,13 +14,16 @@
     @yield('head')
 </head>
 <body>
-@if(Auth::check())
-    @include('admin.partials.navbar')
-@endif
-<div class="container">
-    @yield('content')
+<div id="app">
+    @if(Auth::check())
+        @include('admin.partials.navbar')
+    @endif
+    <div class="container">
+        @yield('content')
+    </div>
+        <div class="main-footer"></div>
 </div>
-<div class="main-footer"></div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="{{ mix('js/admin.js') }}"></script>
