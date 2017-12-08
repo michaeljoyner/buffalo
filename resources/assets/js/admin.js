@@ -1,3 +1,10 @@
+try {
+    window.$ = window.jQuery = require('jquery');
+
+    require('bootstrap-sass');
+} catch (e) {}
+
+
 window.swal = require('sweetalert');
 
 window.axios = require('axios');
@@ -22,11 +29,11 @@ import Vue from "vue";
 window.Vue = Vue;
 
 
-// Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
 // Vue.component('toggle-button', require('./components/Togglebutton.vue'));
 // Vue.component('publish-button', require('./components/Publishbutton.vue'));
 // Vue.component('single-upload', require('./components/Singleupload.vue'));
-// Vue.component('toggle-switch', require('./components/Toggleswitch.vue'));
+Vue.component('toggle-switch', require('./components/Toggleswitch.vue'));
 // Vue.component('banner-slide', require('./components/Bannerslide.vue'));
 // Vue.component('sort-list', require('./components/Sortvue.vue'));
 Vue.component('search-view', require('./components/Searchview.vue'));

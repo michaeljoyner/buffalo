@@ -3,13 +3,13 @@
 </style>
 
 <template>
-    <div class="btn dd-btn btn-light" v-bind:class="{ 'btn-clear-danger': state, 'btn-light': !state}" v-on:click="toggleState">
+    <div class="btn dd-btn btn-light" :class="{ 'btn-clear-danger': state, 'btn-light': !state}" @click="toggleState">
         {{ buttonText }}
     </div>
 </template>
 
 <script>
-    module.exports = {
+    export default {
         props: ['url', 'initial', 'ontext', 'offtext', 'onclass', 'offclass', 'toggleprop', 'state'],
 
         template: '#toggle-btn-template',

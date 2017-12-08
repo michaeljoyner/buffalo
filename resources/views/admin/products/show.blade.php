@@ -1,9 +1,5 @@
 @extends('admin.base')
 
-@section('head')
-    <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
-@stop
-
 @section('content')
     <section class="dd-page-header clearfix">
         <h1 class="pull-left">{{ $product->name }}</h1>
@@ -41,22 +37,22 @@
                 {!! $product->writeup !!}
             </div>
         </div>
-        <div class="col-md-5">
-            <div class="product-image-box single-image-uploader-box">
-                <single-upload default="{{ $product->imageSrc('thumb') }}"
-                               url="/admin/products/{{ $product->id }}/image"
-                               shape="square"
-                               size="large"
-                ></single-upload>
-            </div>
-            <h3>Product Gallery</h3>
-            <a href="/admin/products/{{ $product->id }}/gallery" class="btn dd-btn btn-light">Edit</a>
-            <div class="product-gallery-preview">
-                @foreach($product->galleryImages() as $image)
-                    <img src="{{ $image->getUrl('thumb') }}" alt="" class="product-gallery-preview-thumb">
-                @endforeach
-            </div>
-        </div>
+        {{--<div class="col-md-5">--}}
+            {{--<div class="product-image-box single-image-uploader-box">--}}
+                {{--<single-upload default="{{ $product->imageSrc('thumb') }}"--}}
+                               {{--url="/admin/products/{{ $product->id }}/image"--}}
+                               {{--shape="square"--}}
+                               {{--size="large"--}}
+                {{--></single-upload>--}}
+            {{--</div>--}}
+            {{--<h3>Product Gallery</h3>--}}
+            {{--<a href="/admin/products/{{ $product->id }}/gallery" class="btn dd-btn btn-light">Edit</a>--}}
+            {{--<div class="product-gallery-preview">--}}
+                {{--@foreach($product->galleryImages() as $image)--}}
+                    {{--<img src="{{ $image->getUrl('thumb') }}" alt="" class="product-gallery-preview-thumb">--}}
+                {{--@endforeach--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </section>
     <section class="row product-options">
         <div class="col-md-4 product-option-box">
@@ -70,16 +66,16 @@
             ></toggle-switch>
         </div>
         <div class="col-md-4 product-option-box">
-            <product-promoter :initial-state="{{ $product->isPromoted() ? 'true' : 'false' }}"
-                              product-id="{{ $product->id }}"
-                              initial-date="{{ $product->promoted_until ? $product->promoted_until->format('Y-m-d') : null}}"
-            ></product-promoter>
+            {{--<product-promoter :initial-state="{{ $product->isPromoted() ? 'true' : 'false' }}"--}}
+                              {{--product-id="{{ $product->id }}"--}}
+                              {{--initial-date="{{ $product->promoted_until ? $product->promoted_until->format('Y-m-d') : null}}"--}}
+            {{--></product-promoter>--}}
         </div>
         <div class="col-md-4 product-option-box">
-            <new-until-switch :initially-new="{{ $product->isNew() ? 'true' : 'false' }}"
-                              :initial-days="{{ $product->daysStillNew() }}"
-                              product-id="{{ $product->id }}"
-            ></new-until-switch>
+            {{--<new-until-switch :initially-new="{{ $product->isNew() ? 'true' : 'false' }}"--}}
+                              {{--:initial-days="{{ $product->daysStillNew() }}"--}}
+                              {{--product-id="{{ $product->id }}"--}}
+            {{--></new-until-switch>--}}
         </div>
     </section>
     <a href="{{ $product->imageSrc() }}" download="{{ $product->product_code }}" class="btn dd-btn">Download original image</a>
