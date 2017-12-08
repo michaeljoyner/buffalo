@@ -53,24 +53,32 @@ window.Vue = Vue;
 // Vue.component('clone-quote-form', require('./components/CloneQuoteForm.vue'));
 
 
-
+window.eventHub = new Vue();
 
 
 new Vue({
     el:'#app',
 
-    // events: {
-    //     'user-alert': function(message) {
-    //         swal({
-    //             type: message.type,
-    //             title: message.title,
-    //             text: message.text,
-    //             showConfirmButton: message.confirm
-    //         });
-    //     },
-    //
-    //     'image-added': function(image) {
-    //         this.$broadcast('add-image', image);
-    //     }
-    // }
+    mounted() {
+        eventHub.$on('error-alert', this.showErrorMessage);
+        eventHub.$on('success-alert', this.showSuccessMessage);
+    },
+
+    methods: {
+        showErrorMessage(message) {
+            swal({
+                icon: 'error',
+                title: 'Oh no! An error!',
+                text: message,
+            });
+        },
+
+        showSuccessMessage({message, title = 'Success!'}) {
+            swal({
+                icon: 'success',
+                title: title,
+                text: message,
+            });
+        }
+    }
 });

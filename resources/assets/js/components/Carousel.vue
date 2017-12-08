@@ -95,12 +95,12 @@
 
             nextSlide() {
                 this.direction = 'slide';
-                this.changeSlide(this.nextInLine);
+                this.$nextTick(() => this.changeSlide(this.nextInLine));
             },
 
             prevSlide() {
                 this.direction = 'slide-right';
-                this.changeSlide(this.prevInLine);
+                this.$nextTick(() => this.changeSlide(this.prevInLine));
             },
 
             nextInLine(current, listLength) {
@@ -149,7 +149,6 @@
             },
 
             stop() {
-                console.log('stopp');
                 clearInterval(this.interval);
                 this.interval = null;
             },
