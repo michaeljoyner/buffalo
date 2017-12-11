@@ -37,22 +37,22 @@
                 {!! $product->writeup !!}
             </div>
         </div>
-        {{--<div class="col-md-5">--}}
-            {{--<div class="product-image-box single-image-uploader-box">--}}
-                {{--<single-upload default="{{ $product->imageSrc('thumb') }}"--}}
-                               {{--url="/admin/products/{{ $product->id }}/image"--}}
-                               {{--shape="square"--}}
-                               {{--size="large"--}}
-                {{--></single-upload>--}}
-            {{--</div>--}}
-            {{--<h3>Product Gallery</h3>--}}
-            {{--<a href="/admin/products/{{ $product->id }}/gallery" class="btn dd-btn btn-light">Edit</a>--}}
-            {{--<div class="product-gallery-preview">--}}
-                {{--@foreach($product->galleryImages() as $image)--}}
-                    {{--<img src="{{ $image->getUrl('thumb') }}" alt="" class="product-gallery-preview-thumb">--}}
-                {{--@endforeach--}}
-            {{--</div>--}}
-        {{--</div>--}}
+        <div class="col-md-5">
+            <div class="product-image-box single-image-uploader-box">
+                <single-upload default="{{ $product->imageSrc('thumb') }}"
+                               url="/admin/products/{{ $product->id }}/image"
+                               shape="square"
+                               size="large"
+                ></single-upload>
+            </div>
+            <h3>Product Gallery</h3>
+            <a href="/admin/products/{{ $product->id }}/gallery" class="btn dd-btn btn-light">Edit</a>
+            <div class="product-gallery-preview">
+                @foreach($product->galleryImages() as $image)
+                    <img src="{{ $image->getUrl('thumb') }}" alt="" class="product-gallery-preview-thumb">
+                @endforeach
+            </div>
+        </div>
     </section>
     <section class="row product-options">
         <div class="col-md-4 product-option-box">
