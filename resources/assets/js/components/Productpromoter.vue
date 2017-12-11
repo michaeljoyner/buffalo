@@ -32,17 +32,17 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         props: ['initial-date', 'initial-state', 'product-id'],
 
         data() {
             return {
                 saving: false,
-                promote_until: null,
+                promote_until: this.initialDate,
                 modalOpen: false,
-                is_promoted: null,
-                last_confirmed_date: null,
+                is_promoted: this.initialState,
+                last_confirmed_date: this.initialDate,
             };
         },
 
@@ -56,25 +56,19 @@
             }
         },
 
-        ready() {
-            this.promote_until = this.initialDate;
-            this.is_promoted = this.initialState;
-            this.last_confirmed_date = this.initialDate;
-        },
-
         methods: {
 
             promote() {
                 this.saving = true;
-                this.$http.post('/admin/products/' + this.productId + '/promote', {promote: true, promote_until: this.promote_until})
-                        .then((res) => this.onSuccess(res.body.new_state))
-                        .catch((err) => this.onFailure());
+                axios.post(`/admin/products/${this.productId}/promote`, {promote: true, promote_until: this.promote_until})
+                        .then(({data}) => this.onSuccess(data.new_state))
+                        .catch(() => this.onFailure());
             },
 
             demote() {
-                this.$http.post('/admin/products/' + this.productId + '/promote', {promote: false})
-                        .then((res) => this.onSuccess(res.body.new_state))
-                        .catch((err) => this.onFailure());
+                axios.post(`/admin/products/${this.productId}/promote`, {promote: false})
+                        .then(({data}) => this.onSuccess(data.new_state))
+                        .catch(() => this.onFailure());
             },
 
             onSuccess(promoted) {
@@ -85,11 +79,7 @@
             },
 
             onFailure() {
-                this.$dispatch('user-alert', {
-                    type: 'error',
-                    title: 'Sorry, there was a problem',
-                    text: 'Unable to save your changes. Please refresh and try again. Thanks.'
-                });
+                eventHub.$emit('error-alert', 'Unable to save your changes. Please refresh and try again. Thanks.');
                 this.saving = false;
                 this.modalOpen = false;
                 this.promote_until = this.last_confirmed_date;

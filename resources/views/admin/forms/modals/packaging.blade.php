@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Manage the Packaging Info</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['url' => $formAction, 'class' => 'form-horizontal dd-form modal-form']) !!}
+                {!! Form::open(['url' => $formAction, 'class' => 'form-horizontal dd-form modal-form', 'id' => 'packaging-form']) !!}
                 <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                     <label for="type">Type: </label>
                     @if($errors->has('type'))
@@ -59,7 +59,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dd-btn btn-light dd-modal-cancel-btn" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn dd-btn dd-modal-confirm-btn">{{ $buttonText }}</button>
+                <button type="submit" form="packaging-form" class="btn dd-btn dd-modal-confirm-btn">{{ $buttonText }}</button>
             </div>
             {!! Form::close() !!}
         </div><!-- /.modal-content -->

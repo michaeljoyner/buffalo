@@ -4,7 +4,7 @@
     <div class="new-until-switch-component">
         <p class="lead">{{ component_status }}</p>
         <div class="days-edit-section">
-            <button class="btn dd-btn btn-clear-danger" v-show="is_new" v-on:click="markAsOld">
+            <button class="btn dd-btn btn-clear-danger" v-show="is_new" @click="markAsOld">
                 <span v-show="!saving">Clear</span>
                 <div class="spinner" v-show="saving">
                     <div class="bounce1"></div>
@@ -12,10 +12,10 @@
                     <div class="bounce3"></div>
                 </div>
             </button>
-            <button class="btn dd-btn btn-light" v-on:click="modalOpen = true">
+            <button class="btn dd-btn btn-light" @click="modalOpen = true">
                 {{ is_new ? 'Edit' : 'Mark New' }}
             </button>
-            <modal :show.sync="modalOpen">
+            <modal :show="modalOpen">
                 <div slot="header">
                     <h3>Select the number of days this should be new for</h3>
                 </div>
@@ -50,9 +50,9 @@
         data() {
             return {
                 desired_days: 90,
-                days_new: null,
+                days_new: this.initialDays,
                 modalOpen: false,
-                is_new: null,
+                is_new: this.initiallyNew,
                 saving: false
             }
         },
@@ -61,17 +61,12 @@
 
             component_status() {
                 if (this.is_new) {
-                    return 'This product is marked as new for the next ' + this.days_new + ' day' + (this.days_new > 1 ? 's.' : '.');
+                    return `This product is marked as new for the next ${this.days_new} day${this.days_new > 1 ? 's.' : '.'}`;
                 }
 
                 return 'This product is currently not marked as new.';
             }
 
-        },
-
-        ready() {
-            this.is_new = this.initiallyNew;
-            this.days_new = this.initialDays;
         },
 
         methods: {
@@ -82,9 +77,9 @@
             },
 
             sendPayload(payload) {
-                this.$http.post('/admin/products/' + this.productId + '/markednew', payload)
-                        .then((res) => this.onSuccess(res.body))
-                        .catch((err) => this.onFailure());
+                axios.post('/admin/products/' + this.productId + '/markednew', payload)
+                        .then(({data}) => this.onSuccess(data))
+                        .catch(() => this.onFailure());
             },
 
             onSuccess(res) {
@@ -96,12 +91,7 @@
 
             onFailure() {
                 this.modalOpen = false;
-                this.$dispatch('user-alert', {
-                    type: 'error',
-                    title: 'Oops! An Error!',
-                    text: 'There was an error while trying to sync the data. Maybe refresh the page and try again.',
-                    confirm: true
-                });
+                eventHub.$emit('error-alert', 'There was an error while trying to sync the data. Maybe refresh the page and try again.');
             },
 
             markAsOld() {

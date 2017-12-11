@@ -66,16 +66,16 @@
             ></toggle-switch>
         </div>
         <div class="col-md-4 product-option-box">
-            {{--<product-promoter :initial-state="{{ $product->isPromoted() ? 'true' : 'false' }}"--}}
-                              {{--product-id="{{ $product->id }}"--}}
-                              {{--initial-date="{{ $product->promoted_until ? $product->promoted_until->format('Y-m-d') : null}}"--}}
-            {{--></product-promoter>--}}
+            <product-promoter :initial-state="{{ $product->isPromoted() ? 'true' : 'false' }}"
+                              product-id="{{ $product->id }}"
+                              initial-date="{{ $product->promoted_until ? $product->promoted_until->format('Y-m-d') : null}}"
+            ></product-promoter>
         </div>
         <div class="col-md-4 product-option-box">
-            {{--<new-until-switch :initially-new="{{ $product->isNew() ? 'true' : 'false' }}"--}}
-                              {{--:initial-days="{{ $product->daysStillNew() }}"--}}
-                              {{--product-id="{{ $product->id }}"--}}
-            {{--></new-until-switch>--}}
+            <new-until-switch :initially-new="{{ $product->isNew() ? 'true' : 'false' }}"
+                              :initial-days="{{ $product->daysStillNew() ?? 'null' }}"
+                              product-id="{{ $product->id }}"
+            ></new-until-switch>
         </div>
     </section>
     <a href="{{ $product->imageSrc() }}" download="{{ $product->product_code }}" class="btn dd-btn">Download original image</a>
