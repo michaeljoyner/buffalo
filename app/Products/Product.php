@@ -54,7 +54,8 @@ class Product extends Model implements HasMediaConversions
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-             ->fit(Manipulations::FIT_CROP, 200, 200)
+             ->fit(Manipulations::FIT_FILL, 200, 200)
+            ->background('ffffff')
              ->keepOriginalImageFormat()
              ->optimize()
              ->performOnCollections('default');
