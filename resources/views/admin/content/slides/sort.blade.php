@@ -2,7 +2,6 @@
 
 @section('head')
     <link href="https://fonts.googleapis.com/css?family=Teko:700" rel="stylesheet">
-    <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
 @stop
 
 @section('content')
