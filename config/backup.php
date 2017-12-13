@@ -101,7 +101,7 @@ return [
             /*
              * If this is set to null the default channel of the webhook will be used.
              */
-            'channel' => '#backups',
+            'channel' => null,
         ],
     ],
 
