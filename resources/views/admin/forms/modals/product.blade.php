@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Add a new Product to {{ $parent->name }}</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['url' => $formAction, 'class' => 'form-horizontal dd-form modal-form']) !!}
+                {!! Form::open(['url' => $formAction, 'class' => 'form-horizontal dd-form modal-form', 'id' => 'new-product-form']) !!}
                 @include('errors')
                 <div class="form-group">
                     <label for="name">Name: </label>
@@ -23,7 +23,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dd-btn btn-light dd-modal-cancel-btn" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn dd-btn dd-modal-confirm-btn">Create</button>
+                <button type="submit" form="new-product-form" class="btn dd-btn dd-modal-confirm-btn">Create</button>
             </div>
             {!! Form::close() !!}
         </div><!-- /.modal-content -->
