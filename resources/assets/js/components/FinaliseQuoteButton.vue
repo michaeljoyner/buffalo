@@ -3,7 +3,7 @@
 <template>
     <span class="finalise-quote-button-component">
         <button @click="open = true" class="btn dd-btn">Finalise</button>
-        <modal :show.sync="open" :wider="true">
+        <modal :show="open" :wider="true">
             <div slot="header">
                 <h3>Are you ready to finalise this quote?</h3>
             </div>
@@ -92,13 +92,13 @@
             }
         },
 
-        ready() {
+        mounted() {
             this.getReport();
         },
 
         methods: {
             getReport() {
-                this.$http.get(`/admin/quotes/${this.quoteId}/completeness`)
+                axios.get(`/admin/quotes/${this.quoteId}/completeness`)
                         .then(({data}) => this.setData(data))
                         .catch(err => console.log(err));
             },

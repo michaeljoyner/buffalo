@@ -1,9 +1,5 @@
 @extends('admin.base')
 
-@section('head')
-    <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
-@stop
-
 @section('content')
     <section class="dd-page-header clearfix">
         <h1 class="pull-left">

@@ -1,15 +1,35 @@
+try {
+    window.$ = window.jQuery = require('jquery');
+
+    require('bootstrap-sass');
+} catch (e) {}
+
+
 window.swal = require('sweetalert');
 
-var Vue = require('vue');
+window.axios = require('axios');
 
-Vue.use(require('vue-resource'));
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-if(document.querySelector('#x-token')) {
-    Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#x-token').getAttribute('content');
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+import Vue from "vue";
+window.Vue = Vue;
+
+
 Vue.component('modal', require('./components/Modal.vue'));
-Vue.component('toggle-button', require('./components/Togglebutton.vue'));
 Vue.component('publish-button', require('./components/Publishbutton.vue'));
 Vue.component('single-upload', require('./components/Singleupload.vue'));
 Vue.component('toggle-switch', require('./components/Toggleswitch.vue'));
@@ -38,31 +58,33 @@ Vue.component('finalise-quote-button', require('./components/FinaliseQuoteButton
 Vue.component('search-quote-form', require('./components/QuoteSearchForm.vue'));
 Vue.component('clone-quote-form', require('./components/CloneQuoteForm.vue'));
 
-Vue.http.interceptors.unshift(function(request, next) {
-    next(function(response) {
-        if(typeof response.headers['content-type'] != 'undefined') {
-            response.headers['Content-Type'] = response.headers['content-type'];
-        }
-    });
-});
 
-window.Vue = Vue;
+window.eventHub = new Vue();
+
 
 new Vue({
-    el:'body',
+    el:'#app',
 
-    events: {
-        'user-alert': function(message) {
+    mounted() {
+        eventHub.$on('error-alert', this.showErrorMessage);
+        eventHub.$on('success-alert', this.showSuccessMessage);
+    },
+
+    methods: {
+        showErrorMessage(message) {
             swal({
-                type: message.type,
-                title: message.title,
-                text: message.text,
-                showConfirmButton: message.confirm
+                icon: 'error',
+                title: 'Oh no! An error!',
+                text: message,
             });
         },
 
-        'image-added': function(image) {
-            this.$broadcast('add-image', image);
+        showSuccessMessage({message, title = 'Success!'}) {
+            swal({
+                icon: 'success',
+                title: title,
+                text: message,
+            });
         }
     }
 });

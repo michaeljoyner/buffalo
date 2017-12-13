@@ -1,12 +1,27 @@
 window.swal = require('sweetalert');
 
-var Vue = require('vue');
+window.axios = require('axios');
 
-Vue.use(require('vue-resource'));
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-if(document.querySelector('#x-token')) {
-    Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#x-token').getAttribute('content');
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+import Vue from "vue";
+
+window.Vue = Vue;
+
 
 Vue.component('carousel-slider', require('./components/Carousel.vue'));
 Vue.component('video-slide', require('./components/Videoslide.vue'));
@@ -16,48 +31,72 @@ Vue.component('cart-button', require('./components/Cartbutton.vue'));
 Vue.component('cart-item', require('./components/Cartitem.vue'));
 Vue.component('cart-app', require('./components/Cart.vue'));
 Vue.component('cart-alert', require('./components/Cartalert.vue'));
-Vue.component('stat-counter', require('./components/Statcounter.vue'));
 
-window.Vue = Vue;
+window.eventHub = new Vue();
 
 new Vue({
-    el:'body',
+    el: '#app',
 
-    events: {
-        'user-alert': function(message) {
+    mounted() {
+        eventHub.$on('error-alert', this.showErrorMessage);
+        eventHub.$on('success-alert', this.showSuccessMessage);
+    },
+
+    methods: {
+        showErrorMessage(message) {
             swal({
-                type: message.type,
-                title: message.title,
-                text: message.text,
-                showConfirmButton: message.confirm
+                icon: 'error',
+                title: 'Oh no! An error!',
+                text: message,
             });
         },
 
-        'item-added': function() {
-            this.$broadcast('cart-item-added');
+        showSuccessMessage({message, title = 'Success!'}) {
+            swal({
+                icon: 'success',
+                title: title,
+                text: message,
+            });
         }
     }
+
+    // events: {
+    //     'user-alert': function(message) {
+    //         swal({
+    //             type: message.type,
+    //             title: message.title,
+    //             text: message.text,
+    //             showConfirmButton: message.confirm
+    //         });
+    //     },
+    //
+    //     'item-added': function() {
+    //         this.$broadcast('cart-item-added');
+    //     }
+    // }
 });
 
-if(document.querySelector('#search-trigger')) {
+if (document.querySelector('#search-trigger')) {
     const trigger = document.querySelector('#search-trigger');
     const searchInput = document.querySelector('.search-input');
-    trigger.addEventListener('change', (ev) => {if(trigger.checked) searchInput.focus() }, false);
+    trigger.addEventListener('change', (ev) => {
+        if (trigger.checked) searchInput.focus()
+    }, false);
 }
 
-if(document.querySelector('.menu-select')) {
+if (document.querySelector('.menu-select')) {
     const select = document.querySelector('.menu-select');
     select.addEventListener('change', (ev) => window.location = ev.target.value, false);
 }
 
-document.body.addEventListener('keypress', (ev) => {
-    if(ev.keyCode !== 47) {
+document.body.addEventListener('keyup', (ev) => {
+    if (ev.keyCode !== 121 || ['INPUT', 'TEXTAREA'].indexOf(ev.target.tagName) !== -1) {
         return;
     }
     const trigger = document.querySelector('#search-trigger');
     const searchInput = document.querySelector('.search-input');
     trigger.checked = !trigger.checked;
-    if(trigger.checked) {
+    if (trigger.checked) {
         searchInput.focus();
     }
     ev.preventDefault();

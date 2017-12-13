@@ -2,8 +2,6 @@
 
 @section('head')
     <link href="https://fonts.googleapis.com/css?family=Teko:700" rel="stylesheet">
-    <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
 @stop
 
 @section('content')

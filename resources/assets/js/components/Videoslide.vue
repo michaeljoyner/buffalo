@@ -9,7 +9,7 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         props: ['video-src'],
 
@@ -42,7 +42,7 @@
             },
 
             videoEnded() {
-                this.$dispatch('videoended');
+                this.$emit('videoended');
             }
 
         }

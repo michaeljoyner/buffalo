@@ -6,23 +6,23 @@
             Click on a thumbnail image on the left to select a featured image, or upload a new image on the right.
         </p>
         <p v-show="!postImages.length" class="lead">Upload an image to get started.</p>
-        <div class="featured-image-selecter" class="{'busy': syncing}">
+        <div class="featured-image-selecter" :class="{'busy': syncing}">
             <div class="current-images">
                 <div v-for="postImage in postImages"
                      class="post-image-box"
                      :class="{'featured': postImage.is_feature}"
-                     v-on:click="postNewFeaturedImage(postImage)"
+                     @click="postNewFeaturedImage(postImage)"
                 >
                     <img :src="postImage.thumb" alt="">
                 </div>
             </div>
             <div class="single-image-uploader-box">
-                <single-upload :url="'/admin/blog/posts/' + postId + '/images/featured/upload'"
+                <single-upload :url="`/admin/blog/posts/${postId}/images/featured/upload`"
                                default="/images/buffalo_logo_small.png"
                                shape="square"
                                size="large"
-                               v-on:singleuploadcomplete="addUploadedFeaturedImage"
-                               v-ref:uploader
+                               @singleuploadcomplete="addUploadedFeaturedImage"
+                               ref="uploader"
                 ></single-upload>
             </div>
         </div>
@@ -37,7 +37,7 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         props: ['post-id'],
 
@@ -50,13 +50,15 @@
 
         computed: {
             featuredImage() {
-                let featured = this.postImages.filter((image) => image.is_feature);
+                // let featured = this.postImages.filter((image) => image.is_feature);
+                //
+                // return featured.length ? featured[0] : '';
 
-                return featured.length ? featured[0] : '';
+                return this.postImages.find(image => image.is_feature);
             }
         },
 
-        ready() {
+        mounted() {
             this.syncing = true;
             this.fetchImages();
         },
@@ -64,22 +66,25 @@
         methods: {
 
             fetchImages() {
-                this.$http.get('/admin/blog/posts/' + this.postId + '/images')
-                        .then((res) => this.setFetchedImages(res))
-                        .catch(() => console.log('failed'));
+                axios.get(`/admin/blog/posts/${this.postId}/images`)
+                        .then(({data}) => this.setFetchedImages(data))
+                        .catch(() => eventHub.$emit('error-alert', 'Unable to fetch images.'));
             },
 
-            setFetchedImages(res) {
+            setFetchedImages(data) {
                 this.syncing = false;
-                this.$set('postImages', res.body)
-                this.setNewFeaturedImage(this.featuredImage);
+                this.postImages = data;
+                console.log(this.featuredImage);
+                if(this.featuredImage) {
+                    this.setNewFeaturedImage(this.featuredImage);
+                }
             },
 
             postNewFeaturedImage(img) {
                 this.syncing = true;
-                this.$http.post('/admin/blog/posts/' + this.postId + '/images/featured', {image_id: img.id})
-                        .then((res) => this.setNewFeaturedImage(img))
-                        .catch(() => console.log('unable to save'));
+                axios.post(`/admin/blog/posts/${this.postId}/images/featured`, {image_id: img.id})
+                        .then(() => this.setNewFeaturedImage(img))
+                        .catch(() => eventHub.$emit('error-alert', 'Unable to set featured image.'));
             },
 
             addUploadedFeaturedImage(img) {

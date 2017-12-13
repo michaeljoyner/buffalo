@@ -2,16 +2,16 @@
 
 <template>
     <div class="customer-search-component">
-        <type-ahead :suggestions="customerList" v-on:typeahead-selected="setSelectedCustomer"></type-ahead>
+        <type-ahead :suggestions="customerList" @typeahead-selected="setSelectedCustomer"></type-ahead>
         <div class="selected-customer-details">
             <p>Name: {{ selected_customer.name }}</p>
             <p>Contact Person: {{ selected_customer.contact_person }}</p>
             <p>Email: {{ selected_customer.email }}</p>
             <form v-show="selected_customer.id"
-                  :action="'/admin/customers/' + selected_customer.id + '/quotes'"
+                  :action="`/admin/customers/${selected_customer.id}/quotes`"
                   method="POST">
-                <input type="hidden" value="{{ csrf_token }}" name="_token">
-                <input type="hidden" value="{{ order }}" name="order_id">
+                <input type="hidden" :value="csrf_token" name="_token">
+                <input type="hidden" :value="order" name="order_id">
                 <button class="btn dd-btn btn-light" type="submit">Quote {{ selected_customer.name }}</button>
             </form>
         </div>
@@ -29,7 +29,7 @@
             };
         },
 
-        ready() {
+        mounted() {
             this.fetchCustomers();
         },
 
@@ -41,8 +41,8 @@
 
         methods: {
             fetchCustomers() {
-                this.$http.get('/admin/api/customers')
-                        .then(res => this.customers = res.data)
+                axios.get('/admin/api/customers')
+                        .then(({data}) => this.customers = data)
                         .catch(err => console.log(err));
             },
 

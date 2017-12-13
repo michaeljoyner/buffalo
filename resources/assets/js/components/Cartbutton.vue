@@ -1,7 +1,7 @@
 <style></style>
 
 <template>
-    <form action="" v-on:submit.stop.prevent="addToCart" class="add-to-cart-form">
+    <form @submit.stop.prevent="addToCart" class="add-to-cart-form">
         <label>Quantity: </label>
         <input type="number" :min="moq" name="quantity" v-model="quantity" class="quantity-input">
         <button class="btn add-cart-btn" type="submit" :disabled="adding">
@@ -16,18 +16,14 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
         props: ['product-id', 'moq'],
 
         data() {
             return {
-                quantity: 1,
+                quantity: this.moq,
                 adding: false
             }
-        },
-
-        ready() {
-          this.quantity = this.moq;
         },
 
         methods: {
@@ -35,8 +31,9 @@
                 if (this.quantity < this.moq) {
                     return this.quantity = this.moq;
                 }
+
                 this.adding = true;
-                this.$http.post('/api/cart/items', {
+                axios.post('/api/cart/items', {
                             product_id: this.productId,
                             quantity: this.quantity
                         })
@@ -46,17 +43,13 @@
 
             onSuccess() {
                 this.adding = false;
-                this.$dispatch('item-added');
-                this.quantity = 1;
+                eventHub.$emit('cart-item-added', true);
+                this.quantity = this.moq;
             },
 
             onFail() {
                 this.adding = false;
-                this.$dispatch('user-alert', {
-                    type: 'error',
-                    title: 'Oops, an error occurred.',
-                    text: 'We were unable to add this product to the cart. Please refresh the page and try again. Thanks.',
-                });
+                eventHub.$emit('error-alert', 'We were unable to add this product to the cart. Please refresh the page and try again. Thanks.');
             }
         }
     }

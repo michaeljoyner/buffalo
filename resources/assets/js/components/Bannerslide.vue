@@ -9,34 +9,34 @@
                 <p>Video should ideally be cropped at 1400 x 840 and have a small as possible file size.</p>
             </div>
             <label for="media-input">
-                <img v-bind:class="{'uploading': progress > 0}" v-bind:src="media" alt="" v-show="!isVideo">
-                <video v-bind:src="videoSrc" v-show="isVideo" autoplay muted loop></video>
-                <input id="media-input" type="file" v-on:change="processFile">
+                <img :class="{'uploading': progress > 0}" :src="media" alt="" v-show="!isVideo">
+                <video :src="videoSrc" v-show="isVideo" autoplay muted loop></video>
+                <input id="media-input" type="file" @change="processFile">
             </label>
             <div class="progress-outer">
-                <div class="progress-inner" v-bind:style="{ width: progress + '%'}"></div>
+                <div class="progress-inner" :style="{ width: progress + '%'}"></div>
             </div>
-            <p :class="{'dark': textColour === colours.black, 'brand': textColour === colours.brand}"
+            <p :class="{'dark': text_colour === colours.black, 'brand': text_colour === colours.brand}"
                class="banner-slide-text">{{ slideText }}</p>
-            <a :class="textColour" class="banner-cta"
-               v-show="actionText" href="{{ actionLink }}">{{ actionText }}</a>
+            <a :class="text_colour" class="banner-cta"
+               v-show="actionText" :href="actionLink">{{ actionText }}</a>
         </div>
         <div class="dd-form form-horizontal">
             <div class="form-group">
                 <label for="">Slide text:</label>
-                <input type="text" v-model="slideText" class="form-control" placeholder="Text to be shown on slide">
+                <input type="text" v-model="slide_text" class="form-control" placeholder="Text to be shown on slide">
             </div>
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="">Action Button text:</label>
-                        <input type="text" v-model="actionText" class="form-control" placeholder="Text for the button">
+                        <input type="text" v-model="action_text" class="form-control" placeholder="Text for the button">
                     </div>
                 </div>
                 <div class="col-md-5 col-md-offset-2">
                     <div class="form-group">
                         <label for="">Button links to:</label>
-                        <select type="text" v-model="actionLink" class="form-control"
+                        <select type="text" v-model="action_link" class="form-control"
                                 placeholder="where does the button link to">
                             <option v-for="option in linkOptions" :value="option.link">{{ option.name }}</option>
                         </select>
@@ -47,13 +47,13 @@
                 <div class="col-md-5">
                     <div class="colour-choices">
                         <label for="">Text color:</label>
-                        <input type="radio" id="colour-1" v-model="textColour" :value="colours.white">
+                        <input type="radio" id="colour-1" v-model="text_colour" :value="colours.white">
                         <label class="colour-label" for="colour-1">
                         </label>
-                        <input type="radio" id="colour-2" v-model="textColour" :value="colours.brand">
+                        <input type="radio" id="colour-2" v-model="text_colour" :value="colours.brand">
                         <label class="colour-label" for="colour-2">
                         </label>
-                        <input type="radio" id="colour-3" v-model="textColour" :value="colours.black">
+                        <input type="radio" id="colour-3" v-model="text_colour" :value="colours.black">
                         <label class="colour-label" for="colour-3">
                         </label>
                     </div>
@@ -71,7 +71,7 @@
             </div>
 
             <div class="save-button">
-                <button class="btn dd-btn" v-on:click="saveData" style="width: 10em;">
+                <button class="btn dd-btn" @click="saveData" style="width: 10em;">
                     <span v-show="!saving">Save</span>
                     <div class="spinner" v-show="saving">
                         <div class="bounce1"></div>
@@ -85,7 +85,7 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         data() {
             return {
@@ -94,9 +94,13 @@
                 progress: 0,
                 linkOptions: [],
                 colours: {white: 'white', brand: 'brand', black: 'dark'},
-                lastConfirmedSrc: null,
-                lastConfirmedIsVideo: null,
+                lastConfirmedSrc: this.isVideo ? this.videoSrc : this.media,
+                lastConfirmedIsVideo: this.isVideo,
                 videoSrcIsObjectUrl: false,
+                text_colour: this.textColour,
+                slide_text: this.slideText,
+                action_text: this.actionText,
+                action_link: this.actionLink,
                 messages: {
                     invalid_file: 'That file is not an acceptable image or video type. Please use jpg or png for images and mp4 for video',
                     failed_upload: 'An error occurred while uploading. Reverting to previous state. Please try again later.',
@@ -107,23 +111,21 @@
 
         props: ['media', 'video-src', 'slide-id', 'slide-text', 'action-text', 'action-link', 'text-colour', 'is-video', 'is-published'],
 
-        ready() {
-            this.lastConfirmedSrc = this.isVideo ? this.videoSrc : this.media;
-            this.lastConfirmedIsVideo = this.isVideo;
+        mounted() {
             this.fetchLinks();
         },
 
         computed: {
             maxFileSizeMessage() {
-                return 'Large file sizes for videos will load very slowly. Please use files lower than ' + this.max_file_size_mb + 'MB';
+                return `Large file sizes for videos will load very slowly. Please use files lower than ${this.max_file_size_mb}MB`;
             }
         },
 
         methods: {
 
             fetchLinks() {
-                this.$http.get('/admin/sitelinks')
-                        .then((res) => this.setLinkOptions(res.body))
+                axios.get('/admin/sitelinks')
+                        .then(({data}) => this.setLinkOptions(data))
                         .catch(() => this.sendAlert('Unable to get links', 'There was a problem, sorry. Please refresh and try again.'))
             },
 
@@ -134,11 +136,11 @@
             processFile(ev) {
                 let file = ev.target.files[0];
                 if (file.type.indexOf('image') === -1 && file.type.indexOf('video') !== 0) {
-                    this.sendAlert('Sorry, Invalid File Type', this.messages.invalid_file)
+                    this.sendAlert('Sorry, Invalid File Type', this.messages.invalid_file);
                     return;
                 }
                 if (file.size > (1024 * 1000 * this.max_file_size_mb)) {
-                    this.sendAlert('Sorry, That file is just too big.', this.maxFileSizeMessage)
+                    this.sendAlert('Sorry, That file is just too big.', this.maxFileSizeMessage);
                     return;
                 }
                 this.handleFile(file);
@@ -158,7 +160,7 @@
                 fileReader.onload = (ev) => {
                     uploaded.src = ev.target.result;
                     uploaded.onload = (ev) => this.generatePreview(ev.target);
-                }
+                };
                 fileReader.readAsDataURL(file);
                 this.uploadFile(file);
             },
@@ -209,8 +211,8 @@
             },
 
             uploadFile(file) {
-                this.$http.post('/admin/slides/' + this.slideId + '/media', this.prepareFormData(file), this.getUploadOptions())
-                        .then((res) => this.onUploadSuccess())
+                axios.post(`/admin/slides/${this.slideId}/media`, this.prepareFormData(file), this.getUploadOptions())
+                        .then(({data}) => this.onUploadSuccess())
                         .catch(() => this.onUploadFailure());
             },
 
@@ -251,27 +253,22 @@
 
             saveData() {
                 this.saving = true;
-                this.$http.post('/admin/api/slides/' + this.slideId, {
-                    'slide_text': this.slideText,
-                    'action_text': this.actionText,
-                    'action_link': this.actionLink,
-                    'text_colour': this.textColour
-                }).then((res) => this.saving = false)
+                axios.post(`/admin/api/slides/${this.slideId}`, {
+                    'slide_text': this.slide_text,
+                    'action_text': this.action_text,
+                    'action_link': this.action_link,
+                    'text_colour': this.text_colour
+                }).then(({data}) => this.saving = false)
                         .catch(() => this.failedToSave());
             },
 
             failedToSave() {
-                this.sendAlert('Unable to Save', this.messages.failed_save)
+                this.sendAlert('Unable to Save', this.messages.failed_save);
                 this.saving = false;
             },
 
             sendAlert(title, message) {
-                this.$dispatch('user-alert', {
-                    title: title,
-                    text: message,
-                    confirm: true,
-                    type: 'error'
-                });
+                eventHub.$emit('error-alert', message);
             }
         }
     }

@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Add a new Supply for this Product</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['url' => '/admin/products/' . $product->id . '/supplies', 'class' => 'form-horizontal dd-form modal-form']) !!}
+                {!! Form::open(['url' => '/admin/products/' . $product->id . '/supplies', 'class' => 'form-horizontal dd-form modal-form', 'id' => 'product-supplier-form']) !!}
                 @include('errors')
                 <div class="row">
                     <div class="col-md-5">
@@ -53,7 +53,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dd-btn btn-light dd-modal-cancel-btn" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn dd-btn dd-modal-confirm-btn">Create</button>
+                <button type="submit" form="product-supplier-form" class="btn dd-btn dd-modal-confirm-btn">Create</button>
             </div>
             {!! Form::close() !!}
         </div><!-- /.modal-content -->

@@ -9,12 +9,12 @@
         <div class="cart-item-qty-box">
             <div v-show="!editing" class="edit-show">
                 <span class="cart-item-quantity number">{{ quantity }}</span>
-                <button class="cart-edit-btn small-action-btn btn" v-on:click="editing = ! editing">
+                <button class="cart-edit-btn small-action-btn btn" @click="editing = ! editing">
                     Edit
                 </button>
             </div>
             <div v-show="editing" class="edit-edit">
-                <form v-on:submit.stop.prevent="editQuantity">
+                <form @submit.stop.prevent="editQuantity">
                     <input class="number qty-input" type="number" :min="moq" v-model="quantity">
                     <button class="cart-save-btn small-action-btn btn">
                         <span v-show="!saving">Save</span>
@@ -29,7 +29,7 @@
         </div>
         <span class="cart-item-code">{{ productCode }}</span>
         <div class="cart-item-trash">
-            <button v-on:click.stop="deleteItem">
+            <button @click.prevent="deleteItem">
                 <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0h24v24H0V0z" fill="none"/>
                     <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
@@ -41,19 +41,15 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
         props: ['product-id', 'product-name', 'thumb', 'product-qty', 'product-code', 'moq'],
 
         data() {
             return {
-                quantity: 1,
+                quantity: this.productQty,
                 editing: false,
                 saving: false
             }
-        },
-
-        ready() {
-            this.quantity = this.productQty;
         },
 
         methods: {
@@ -63,8 +59,8 @@
                 }
 
                 this.saving = true;
-                this.$http.post('/api/cart/items/' + this.productId, {id: this.productId, quantity: this.quantity})
-                        .then((res) => this.onSuccessfulUpdate(res.body))
+                axios.post(`/api/cart/items/${this.productId}`, {id: this.productId, quantity: this.quantity})
+                        .then(({data}) => this.onSuccessfulUpdate(data))
                         .catch(() => this.onUpdateFailure());
             },
 
@@ -72,21 +68,16 @@
                 this.subtotal = responseData.subtotal;
                 this.saving = false;
                 this.editing = false;
-                this.$dispatch('item-updated');
+                this.$emit('item-updated');
             },
 
             onUpdateFailure() {
                 this.saving = false;
-                this.$dispatch('message', {
-                    type: 'error',
-                    title: 'Oops. Sorry',
-                    text: 'There was an error updating the quantity of your cart item. Please try again, or refresh the page. If you have further problems please contact us and we will help you directly. Thanks',
-                    confirm: true
-                });
+                eventHub.$emit('error-alert', 'There was an error updating the quantity of your cart item. Please try again, or refresh the page. If you have further problems please contact us and we will help you directly. Thanks');
             },
 
             deleteItem() {
-                this.$dispatch('delete-cart-item', {id: this.productId});
+                this.$emit('delete-cart-item', this.productId);
             }
         }
     }

@@ -2,7 +2,7 @@
 
 <template>
     <div class="contact-form-outer">
-        <form action="/contact" @submit.stop.prevent="submitForm" v-el:form>
+        <form action="/contact" @submit.stop.prevent="submitForm" ref="form">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" name="name" v-model="name" required>
@@ -68,7 +68,7 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         data() {
             return {
@@ -85,7 +85,7 @@
             }
         },
 
-        ready() {
+        mounted() {
           this.resetForm();
         },
 
@@ -93,7 +93,7 @@
 
             submitForm() {
                 this.sending = true;
-                this.$http.post('/contact', this.allData())
+                axios.post('/contact', this.allData())
                         .then(() => this.onSuccess())
                         .catch(() => this.onFail())
             },
@@ -101,23 +101,13 @@
             onSuccess() {
                 this.sending = false;
                 this.spent = true;
-                this.$dispatch('user-alert', {
-                    type: 'success',
-                    title: 'Thanks ' + this.name,
-                    text: 'Your message has been received, and we will be in touch soon if need be.',
-                    confirm: true
-                });
+                eventHub.$emit('success-alert', {title: 'Message Received!', message: 'Thank you for contacting us. We will be in touch.'});
                 this.resetForm();
             },
 
             onFail() {
                 this.sending = false;
-                this.$dispatch('user-alert', {
-                    type: 'error',
-                    title: 'Oh dear, sorry ' + this.name,
-                    text: 'There was a problem getting your message through. Please try again, or contact us using our details on this page.',
-                    confirm: true
-                });
+                eventHub.$emit('error-alert', 'There was a problem getting your message through. Please try again, or contact us using our details on this page.');
             },
 
             allData() {
@@ -129,7 +119,7 @@
             },
 
             resetForm() {
-                this.$els.form.reset();
+                this.$refs.form.reset();
             }
         }
     }

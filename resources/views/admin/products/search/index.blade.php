@@ -1,9 +1,5 @@
 @extends('admin.base')
 
-@section('head')
-    <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
-@endsection
-
 @section('content')
     <search-view search-url="/admin/api/products/search"
                  page-size="20"

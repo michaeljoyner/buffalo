@@ -1,5 +1,5 @@
 .services-page-banner {
-  background-image: url(../../images/assets/services_banner.jpg);
+  background-image: url(./images/services_banner.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -61,7 +61,7 @@
 
     &.sourcing {
       .service-image-container {
-        background: url(../../images/assets/services_sourcing.jpg);
+        background: url(./images/services_sourcing.jpg);
         background-position-x: 62%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -70,7 +70,7 @@
 
     &.customization {
       .service-image-container {
-        background: url(../../images/assets/services_custom.jpg);
+        background: url(./images/services_custom.jpg);
         background-position-x: 25%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -80,7 +80,7 @@
     &.logistics {
 
       .service-image-container {
-        background: url(../../images/assets/logistics.jpg);
+        background: url(./images/logistics.jpg);
         background-position-x: 25%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -89,7 +89,7 @@
 
     &.quality-assurance {
       .service-image-container {
-        background: url(../../images/assets/services_qa.jpg);
+        background: url(./images/services_qa.jpg);
         background-position-x: 75%;
         background-size: cover;
         background-repeat: no-repeat;

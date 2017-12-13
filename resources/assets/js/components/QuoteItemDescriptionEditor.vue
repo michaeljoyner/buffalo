@@ -3,7 +3,7 @@
 <template>
     <span class="quote-item-description-editor-component">
         <button @click="toggleModal" class="btn dd-btn">Edit Description</button>
-        <modal :show.sync="open" :wider="true" :fixed="true">
+        <modal :show="open" :wider="true" :fixed="true">
             <div slot="header">
                 <h3>Update the description for this item</h3>
             </div>
@@ -44,7 +44,7 @@
             }
         },
 
-        ready() {
+        mounted() {
             this.$nextTick(() => this.setUpInitial());
         },
 
@@ -69,7 +69,7 @@
                 console.log(this.editor.getContent());
                 this.saving = true;
                 const description = this.editor.getContent();
-                this.$http.patch('/admin/quoteitems/' + this.itemId, {description: description})
+                axios.patch('/admin/quoteitems/' + this.itemId, {description: description})
                         .then(({data}) => this.onUpdate(data))
                         .catch(err => this.onFail());
             },

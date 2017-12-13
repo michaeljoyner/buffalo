@@ -8,7 +8,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_URL'),
+        'name' => config('app.name'),
 
         'source' => [
 
@@ -29,7 +29,6 @@ return [
                 'exclude' => [
                     base_path('vendor'),
                     base_path('node_modules'),
-                    base_path('storage/medialibrary/temp')
                 ],
 
                 /*
@@ -40,12 +39,17 @@ return [
 
             /*
              * The names of the connections to the databases that should be backed up
-             * Only MySQL and PostgreSQL databases are supported.
+             * MySQL, PostgreSQL, SQLite and Mongo databases are supported.
              */
             'databases' => [
                 'mysql',
             ],
         ],
+
+        /*
+         * The database dump can be gzipped to decrease diskspace usage.
+         */
+        'gzip_database_dump' => false,
 
         'destination' => [
 
@@ -63,7 +67,6 @@ return [
         ],
     ],
 
-
     /*
      * You can get notified when specific events occur. Out of the box you can use 'mail' and 'slack'.
      * For Slack you need to install guzzlehttp/guzzle.
@@ -74,12 +77,12 @@ return [
     'notifications' => [
 
         'notifications' => [
-            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class         => ['mail', 'slack'],
-            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['slack'],
-            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class        => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class         => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class        => ['mail'],
             \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class     => ['slack'],
-            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class   => ['slack'],
-            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class    => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class   => ['mail'],
+//            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class    => ['mail'],
         ],
 
         /*
@@ -89,11 +92,16 @@ return [
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
         'mail' => [
-            'to' => env('ADMIN_DEV_EMAIL'),
+            'to' => 'joyner.michael@gmail.com',
         ],
 
         'slack' => [
-            'webhook_url' => env('SLACK_ENDPOINT'),
+            'webhook_url' => config('services.slack.backup_webhook'),
+
+            /*
+             * If this is set to null the default channel of the webhook will be used.
+             */
+            'channel' => '#backups',
         ],
     ],
 
@@ -104,10 +112,10 @@ return [
      */
     'monitorBackups' => [
         [
-            'name' => env('APP_URL'),
-            'disks' => ['s3'],
+            'name' => config('app.name'),
+            'disks' => ['local'],
             'newestBackupsShouldNotBeOlderThanDays' => 1,
-            'storageUsedMayNotBeHigherThanMegabytes' => 1700,
+            'storageUsedMayNotBeHigherThanMegabytes' => 5000,
         ],
 
         /*
@@ -119,7 +127,6 @@ return [
         ],
         */
     ],
-
 
     'cleanup' => [
         /*
@@ -138,27 +145,27 @@ return [
             /*
              * The number of days for which backups must be kept.
              */
-            'keepAllBackupsForDays' => 3,
+            'keepAllBackupsForDays' => 5,
 
             /*
              * The number of days for which daily backups must be kept.
              */
-            'keepDailyBackupsForDays' => 16,
+            'keepDailyBackupsForDays' => 5,
 
             /*
              * The number of weeks for which one weekly backup must be kept.
              */
-            'keepWeeklyBackupsForWeeks' => 8,
+            'keepWeeklyBackupsForWeeks' => 0,
 
             /*
              * The number of months for which one monthly backup must be kept.
              */
-            'keepMonthlyBackupsForMonths' => 4,
+            'keepMonthlyBackupsForMonths' => 0,
 
             /*
              * The number of years for which one yearly backup must be kept.
              */
-            'keepYearlyBackupsForYears' => 2,
+            'keepYearlyBackupsForYears' => 0,
 
             /*
              * After cleaning up the backups remove the oldest backup until

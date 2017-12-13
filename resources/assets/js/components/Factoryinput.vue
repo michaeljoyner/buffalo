@@ -3,7 +3,7 @@
 <template>
     <div class="form-group factory-search-input">
         <label for="supplier-id">Supplier: </label><span v-show="errorMessage">{{ errorMessage }}</span>
-        <type-ahead :suggestions="factoryList" v-on:typeahead-selected="setSelection"></type-ahead>
+        <type-ahead :suggestions="factoryList" @typeahead-selected="setSelection"></type-ahead>
         <input type="hidden" name="supplier_id" v-model="selected_factory.id">
     </div>
 </template>

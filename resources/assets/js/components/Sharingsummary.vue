@@ -42,7 +42,7 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         data() {
             return {
@@ -62,7 +62,7 @@
             }
         },
 
-        ready() {
+        mounted() {
             this.fetchFacebook();
             this.fetchTwitter();
             this.fetchGooglePlus();
@@ -70,8 +70,8 @@
 
         methods: {
             fetchFacebook() {
-                this.$http.get('/admin/social/facebook/user')
-                        .then((res) => this.checkFacebook(res.body))
+                axios.get('/admin/social/facebook/user')
+                        .then(({data}) => this.checkFacebook(data))
                         .catch((er) => console.log(er));
             },
 
@@ -82,8 +82,8 @@
             },
 
             fetchTwitter() {
-                this.$http.get('/admin/social/twitter/user')
-                        .then((res) => this.checkTwitter(res.body))
+                axios.get('/admin/social/twitter/user')
+                        .then(({data}) => this.checkTwitter(data))
                         .catch((er) => console.log(er));
             },
 
@@ -94,8 +94,8 @@
             },
 
             fetchGooglePlus() {
-                this.$http.get('/admin/social/googleplus/user')
-                        .then((res) => this.checkGooglePlus(res.body))
+                axios.get('/admin/social/googleplus/user')
+                        .then(({data}) => this.checkGooglePlus(data))
                         .catch((er) => console.log(er));
             },
 

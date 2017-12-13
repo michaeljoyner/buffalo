@@ -5,7 +5,7 @@
         <button class="btn dd-btn btn-dark" @click="fetchSupplies">
             Set Supply
         </button>
-        <modal :show.sync="openModal" :wider="true">
+        <modal :show="openModal" :wider="true">
             <div slot="header">
                 <h3>Select the supply information</h3>
             </div>
@@ -75,7 +75,7 @@
 
         methods: {
             fetchSupplies() {
-                this.$http.get(`/admin/api/products/${this.productId}/supplies`)
+                axios.get(`/admin/api/products/${this.productId}/supplies`)
                         .then(({data}) => this.onFetched(data))
                         .catch(err => console.log(err));
             },
@@ -87,7 +87,7 @@
 
             publishSelection() {
                 const sup = this.supplies.find(supply => supply.id === this.selected_supply_id);
-                this.$dispatch('supply-selected', sup);
+                this.$emit('supply-selected', sup);
                 this.openModal = false;
             }
         }

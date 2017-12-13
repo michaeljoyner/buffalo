@@ -1,9 +1,5 @@
 @extends('admin.base')
 
-@section('head')
-    <meta id="x-token" property="CSRF-token" content="{{ Session::token() }}"/>
-@stop
-
 @section('content')
     <section class="dd-page-header clearfix">
         <h1 class="pull-left">{{ $product->name }}</h1>
@@ -77,7 +73,7 @@
         </div>
         <div class="col-md-4 product-option-box">
             <new-until-switch :initially-new="{{ $product->isNew() ? 'true' : 'false' }}"
-                              :initial-days="{{ $product->daysStillNew() }}"
+                              :initial-days="{{ $product->daysStillNew() ?? 'null' }}"
                               product-id="{{ $product->id }}"
             ></new-until-switch>
         </div>

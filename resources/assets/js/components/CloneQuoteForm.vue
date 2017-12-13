@@ -3,13 +3,13 @@
 <template>
     <span class="clone-quote-form-component">
         <button class="btn dd-btn btn-dark" @click="modalOpen = true">Clone</button>
-        <modal :show.sync="modalOpen" :fixed="true">
+        <modal :show="modalOpen" :fixed="true">
             <div slot="header">
                 <h3>Select a customer to copy quote to</h3>
             </div>
             <div slot="body">
                 <div class="customer-search-component">
-                    <type-ahead :suggestions="customerList" v-on:typeahead-selected="setSelectedCustomer"></type-ahead>
+                    <type-ahead :suggestions="customerList" @typeahead-selected="setSelectedCustomer"></type-ahead>
                     <div class="selected-customer-details">
                         <p>Name: {{ selected_customer.name }}</p>
                         <p>Contact Person: {{ selected_customer.contact_person }}</p>
@@ -27,11 +27,10 @@
                         @click="modalOpen = false">
                     Cancel
                 </button>
-                <form :action="'/admin/customers/' + selected_customer.id + '/clone-quote/' + quoteId"
-
+                <form :action="`/admin/customers/${selected_customer.id}/clone-quote/${quoteId}`"
                       class="dd-button-form"
                       method="POST">
-                    <input type="hidden" value="{{ csrf_token }}" name="_token">
+                    <input type="hidden" :value="csrf_token" name="_token">
                     <button class="btn dd-btn"
                             :disabled="!selected_customer.id"
                             type="submit">Copy</button>
@@ -53,7 +52,7 @@
             };
         },
 
-        ready() {
+        mounted() {
             this.fetchCustomers();
         },
 
@@ -65,8 +64,8 @@
 
         methods: {
             fetchCustomers() {
-                this.$http.get('/admin/api/customers')
-                        .then(res => this.customers = res.data)
+                axios.get('/admin/api/customers')
+                        .then(({data}) => this.customers = data)
                         .catch(err => console.log(err));
             },
 

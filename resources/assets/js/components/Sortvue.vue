@@ -10,7 +10,7 @@
                 <div class="bounce3"></div>
             </div>
         </div>
-        <div class="slides-index sortable-list" v-el:sortlist>
+        <div class="slides-index sortable-list" ref="sortlist">
             <slot>
                 <h3>There are no items to sort</h3>
             </slot>
@@ -19,7 +19,9 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    import Sortable from "sortablejs";
+
+    export default {
 
         props: ['sort-url'],
 
@@ -30,26 +32,21 @@
             }
         },
 
-        ready() {
-            this.sorts = new Sortable(this.$els.sortlist, {onSort: this.onSort});
+        mounted() {
+            this.sorts = Sortable.create(this.$refs.sortlist, {onSort: this.onSort});
         },
 
         methods: {
             onSort: function () {
                 this.syncing = true;
-                this.$http.post(this.sortUrl, {order: this.sorts.toArray()})
+                axios.post(this.sortUrl, {order: this.sorts.toArray()})
                         .then(() => this.syncing = false)
                         .catch(() => this.onFailedSync());
             },
 
             onFailedSync() {
                 this.syncing = false;
-                this.$dispatch('user-alert', {
-                    title: 'Oops, an error occurred!',
-                    text: 'There was a problem syncing with the server. Maybe refresh the page and try again',
-                    confirm: true,
-                    type: 'error'
-                });
+                eventHub.$emit('error-alert', 'There was a problem syncing with the server. Maybe refresh the page and try again');
             }
         }
     }
