@@ -29,6 +29,10 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'slack' => [
+        'backup_webhook' => env('SLACK_ENDPOINT')
+    ],
+
     'stripe' => [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
