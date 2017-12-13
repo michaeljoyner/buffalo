@@ -30,7 +30,6 @@ window.Vue = Vue;
 
 
 Vue.component('modal', require('./components/Modal.vue'));
-// Vue.component('toggle-button', require('./components/Togglebutton.vue'));
 Vue.component('publish-button', require('./components/Publishbutton.vue'));
 Vue.component('single-upload', require('./components/Singleupload.vue'));
 Vue.component('toggle-switch', require('./components/Toggleswitch.vue'));
