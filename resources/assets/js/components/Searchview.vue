@@ -117,6 +117,7 @@
             },
 
             onSearchSuccess(res) {
+                this.suggestions = [];
                 this.results = res;
                 this.is_virgin = false;
                 this.offset = 0;
