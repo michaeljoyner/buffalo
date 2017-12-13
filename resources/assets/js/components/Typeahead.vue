@@ -5,18 +5,18 @@
         <input type="text"
                class="type-ahead-input form-control"
                v-model="query"
-               v-on:keydown.down="down"
-               v-on:keydown.up="up"
-               v-on:keydown.enter.prevent.stop="hit"
-               v-on:keydown="letterPress($event)"
-               v-on:keyup="requestSuggestions | debounce 200"
+               @keydown.down="down"
+               @keydown.up="up"
+               @keydown.enter.prevent.stop="hit"
+               @keydown="letterPress($event)"
+               @keyup="requestSuggestions"
         >
         <ul class="type-ahead-suggestions">
-            <li v-for="match in matches"
+            <li v-for="match in matches" :key="match.id"
                 class="list-group-item"
                 :class="{'highlight': isCurrent(match)}"
-                v-on:mouseenter="setCurrent(match)"
-                v-on:mousedown="hit"
+                @mouseenter="setCurrent(match)"
+                @mousedown="hit"
             >
                 {{ match.name }}
                 <span class="type-ahead-sub-field" v-if="subField">{{ match[this.subField] }}</span>
@@ -26,6 +26,9 @@
 </template>
 
 <script type="text/babel">
+
+    import {debounce} from "lodash";
+
     export default {
 
         props: {
@@ -66,7 +69,8 @@
                 current: null,
                 current_index: null,
                 selection: null,
-                previous_live_search: null
+                previous_live_search: null,
+                real_suggestions: this.suggestions
             }
         },
 
@@ -76,11 +80,19 @@
                 if (this.query === '') {
                     return;
                 }
-                return this.suggestions
+                return this.real_suggestions
                         .filter((suggestion) => {
                             return (this.suggestionMatchesQuery(suggestion)) && (!this.isSelected(suggestion));
                         });
             }
+        },
+
+        watch: {
+          suggestions(fetched_suggestions) {
+              if(this.real_suggestions.length === 0) {
+                  this.real_suggestions = fetched_suggestions;
+              }
+          }
         },
 
         methods: {
@@ -161,7 +173,7 @@
                 if (this.current === null) {
                     return;
                 }
-                this.$dispatch('typeahead-selected', this.current);
+                this.$emit('typeahead-selected', this.current);
                 this.setSelection();
                 if (this.clearOnHit) {
                     this.query = '';
@@ -190,22 +202,22 @@
                 return this.matches.length > 0;
             },
 
-            requestSuggestions(ev) {
+            requestSuggestions: debounce(function() {
                 if (this.query.length < 4 || !this.liveSearchUrl) {
                     return;
                 }
                 if (this.previous_live_search === this.query) {
                     return;
                 }
-                this.$http.post(this.liveSearchUrl, {searchterm: this.query})
-                        .then(res => this.addFetchedSuggestions(res))
-                        .catch(err => console.log(err));
+                axios.post(this.liveSearchUrl, {searchterm: this.query})
+                     .then(({data}) => this.addFetchedSuggestions(data))
+                     .catch(err => console.log(err));
                 this.previous_live_search = this.query;
-            },
+            }, 200),
 
             addFetchedSuggestions(res) {
-                const results = res.data.slice(0, 10);
-                this.suggestions = results;//.map(item => ({id: item.id, name: item.name}));
+                const results = res.slice(0, 10);
+                this.real_suggestions = results;//.map(item => ({id: item.id, name: item.name}));
             }
         }
     }

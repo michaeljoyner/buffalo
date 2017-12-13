@@ -4,22 +4,22 @@
 
 <template>
     <div class="drop-area"
-         v-on:drop.prevent="handleFiles"
-         v-on:dragenter.prevent="hover=true"
-         v-on:dragover.prevent="hover=true"
-         v-on:dragleave="hover=false"
-         v-bind:class="{'hovering': hover}">
+         @drop.prevent="handleFiles"
+         @dragenter.prevent="hover=true"
+         @dragover.prevent="hover=true"
+         @dragleave="hover=false"
+         :class="{'hovering': hover}">
         <label for="dropzone-input">
             <p class="drag-prompt" v-show="uploads.length === 0">Drag files or click to upload!</p>
-            <input v-on:change.stop.prevent="handleFiles" type="file" id="dropzone-input" multiple style="display:none;"/>
+            <input @change.stop.prevent="handleFiles" type="file" id="dropzone-input" multiple style="display:none;"/>
             <ul>
                 <li v-for="upload in uploads" v-show="upload.status !== 'success'">
                     <p
                             class="image-upload-info"
-                            v-bind:class="{'failed': upload.status === 'failed'}"
+                            :class="{'failed': upload.status === 'failed'}"
                     >
                         <span class="upload-progress-bar"
-                              v-bind:style="{width: upload.progress + '%'}"></span>
+                              :style="{width: upload.progress + '%'}"></span>
                         {{ upload.name }}
                     </p>
                 </li>
@@ -52,11 +52,11 @@
 
             processFile(file) {
                 var upload = new Upload(file.name, 'pending');
-                this.$http.post(this.url, this.makeFormData(file), this.makeUploadOptions(upload))
-                        .then((res) => {
+                axios.post(this.url, this.makeFormData(file), this.makeUploadOptions(upload))
+                        .then(({data}) => {
                             upload.setStatus('success');
-                            this.uploads.$remove(upload);
-                            this.alertParent(res.body);
+                            this.removeUpload(upload);
+                            this.alertParent(data);
                         })
                         .catch(() => upload.setStatus('failed'));
                 this.uploads.push(upload);
@@ -75,7 +75,11 @@
             },
 
             alertParent: function (image) {
-                this.$dispatch('image-added', image);
+                eventHub.$emit('dz-image-added', image);
+            },
+
+            removeUpload(upload) {
+                this.uploads.splice(this.uploads.indexOf(upload), 1);
             }
 
 

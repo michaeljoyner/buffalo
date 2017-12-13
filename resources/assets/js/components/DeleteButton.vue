@@ -3,7 +3,7 @@
 <template>
     <span class="delete-button-component">
         <button class="btn dd-btn btn-solid-danger" @click="showDeleteModal = true">Delete</button>
-        <modal :show.sync="showDeleteModal" :wider="false">
+        <modal :show="showDeleteModal" :wider="false">
             <div slot="header">
                 <h3>Are You Sure?</h3>
             </div>
@@ -44,7 +44,7 @@
         methods: {
 
             doDelete() {
-                this.$http.delete(this.deleteUrl)
+                axios.delete(this.deleteUrl)
                         .then(() => this.onSuccess())
                         .catch((err) => this.onFail(err));
             },
@@ -52,17 +52,12 @@
             onSuccess() {
                 this.deleting = false;
                 this.showDeleteModal = false;
-                this.$dispatch('item-deleted');
+                this.$emit('item-deleted');
             },
 
             onFail(err) {
-                console.log(err);
                 this.showDeleteModal = false;
-                this.$dispatch('user-alert', {
-                    type: 'error',
-                    title: 'Sorry, there was a problem',
-                    text: 'Unable to delete the resource at the moment. Please refresh and try again'
-                });
+                eventHub.$emit('error-alert', 'Unable to delete the resource at the moment. Please refresh and try again');
                 this.deleting = false;
             }
         }

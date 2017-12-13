@@ -5,17 +5,17 @@
         <section class="dd-page-header clearfix">
             <h1 class="pull-left">#{{ quote_number }}</h1>
             <div class="header-actions pull-right">
-                <a :href="'/admin/quotes/' + quoteId" class="btn dd-btn btn-light">Back</a>
+                <a :href="`/admin/quotes/${quoteId}`" class="btn dd-btn btn-light">Back</a>
                 <button class="dd-btn btn btn-dark" @click="openAddModal">Add Item</button>
             </div>
         </section>
         <section class="quote-app-items">
-            <quote-item v-for="item in items"
+            <quote-item v-for="item in items" :key="item.id"
                         :initial-props="item"
-                        v-on:remove-quoteitem="removeItem"
+                        @remove-quoteitem="removeItem"
             ></quote-item>
         </section>
-        <quote-item-add :quote-id="quoteId" v-on:add-to-quote="addNewItem"></quote-item-add>
+        <quote-item-add :quote-id="quoteId" @add-to-quote="fetchItems"></quote-item-add>
     </div>
 
 </template>
@@ -30,27 +30,25 @@
             };
         },
 
-        ready() {
+        mounted() {
           this.fetchItems();
         },
 
         methods: {
             openAddModal() {
-                this.$broadcast('add-item');
-            },
-
-            addNewItem() {
-                this.fetchItems();
+                eventHub.$emit('add-quote-item');
             },
 
             fetchItems() {
-                this.$http.get(`/admin/quotes/${this.quoteId}/items`)
+                axios.get(`/admin/quotes/${this.quoteId}/items`)
                         .then(({data}) => this.items = data)
                         .catch(err => console.log(err));
             },
 
             removeItem({id}) {
-                this.items.$remove(this.items.find(item => item.id === id));
+                const item = this.items.find(item => item.id === id);
+
+                this.items.splice(this.items.indexOf(item), 1);
             }
         }
     }

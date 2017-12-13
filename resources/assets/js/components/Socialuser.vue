@@ -1,7 +1,7 @@
 <style></style>
 
 <template>
-    <div class="social-user-card {{ platform }}">
+    <div :class="platform" class="social-user-card">
         <div v-show="authorised" class="user-details">
             <img :src="user.cover_src" alt="">
             <h3 class="user-name">{{ user.name }}</h3>
@@ -14,20 +14,20 @@
             <toggle-switch :identifier="unique"
                            true-label="yes"
                            false-label="no"
-                           :current-status.sync="user.share"
-                           :toggle-url="'/admin/social/' + this.platform + '/user/' + this.user.id + '/share'"
+                           :initial-state="!!user.share"
+                           :toggle-url="`/admin/social/${this.platform}/user/${this.user.id}/share`"
                            toggle-attribute="share"
             ></toggle-switch>
-            <a href="/admin/{{ platform }}/login" class="btn dd-btn btn-light">{{ buttonText }}</a>
+            <a :href="`/admin/${platform}/login`" class="btn dd-btn btn-light">{{ buttonText }}</a>
         </div>
-        <div v-show="!ready" class="loading-card" transition="fade">
+        <div v-show="!ready" class="loading-card">
             <img :src="iconSrc" alt="">
         </div>
     </div>
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         props: ['fetch-url', 'platform', 'icon-src', 'unique'],
 
@@ -44,26 +44,27 @@
             }
         },
 
+
+
         computed: {
             buttonText() {
                 return this.authorised ? 'Change Profile' : 'Get Permission';
             }
         },
 
-        ready() {
+        mounted() {
             this.getData();
         },
 
         methods: {
 
             getData() {
-                this.$http.get(this.fetchUrl)
-                        .then((res) => this.onSuccess(res))
+                axios.get(this.fetchUrl)
+                        .then(({data}) => this.onSuccess(data))
                         .catch((err) => this.onFail(err));
             },
 
-            onSuccess(res) {
-                const data = res.body;
+            onSuccess(data) {
                 this.user.name = data.user.name;
                 this.user.cover_src = data.user.cover_src;
                 this.user.id = data.user.id;

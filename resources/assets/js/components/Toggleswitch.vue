@@ -22,6 +22,12 @@
             }
         },
 
+        watch: {
+            initialState(new_state) {
+                this.currentStatus = new_state;
+            }
+        },
+
         computed: {
             currentLabel() {
                 return this.currentStatus ? this.trueLabel : this.falseLabel;

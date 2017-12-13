@@ -60,6 +60,9 @@
 </template>
 
 <script type="text/babel">
+
+    import {debounce} from "lodash";
+
     export default {
 
         props: ['search-url', 'page-size'],
@@ -87,7 +90,7 @@
 
         methods: {
 
-            getSuggestions(ev) {
+            getSuggestions: debounce(function(ev) {
                 if(ev.keyCode === 13) {
                     return;
                 }
@@ -98,7 +101,7 @@
                 axios.post(this.searchUrl, {searchterm: this.searchterm})
                      .then(({data}) => this.suggestions = data)
                      .catch(() => this.showSearchError());
-            },
+            }, 200),
 
             doSearch() {
                 if (this.searchterm.length < 1) {

@@ -3,7 +3,7 @@
 <template>
     <span class="quote-search-form-component">
         <button class="btn dd-btn btn-light" @click="modalOpen = true">Search</button>
-        <modal :show.sync="modalOpen" :wider="true" :fixed="true">
+        <modal :show="modalOpen" :wider="true" :fixed="true">
             <div slot="header">
                 <h3>Search by Customer and/or Product</h3>
             </div>
@@ -11,7 +11,7 @@
                 <p class="text-center lead">Select a customer and/or a product to search for.</p>
                 <div class="customer-search search-component">
                     <p class="field-label">Customer:</p>
-                    <type-ahead :suggestions="customerList" v-on:typeahead-selected="setCustomer"></type-ahead>
+                    <type-ahead :suggestions="customerList" @typeahead-selected="setCustomer"></type-ahead>
                     <div class="selected-customer" v-show="selected_customer.name">
                         <h4 class="text-center">Selected Customer</h4>
                         <p class="lead">{{ selected_customer.name }}</p>
@@ -20,7 +20,7 @@
                 <div class="product-search search-component">
                     <p class="field-label">Product:</p>
                     <type-ahead live-search-url="/admin/api/products/search"
-                                v-on:typeahead-selected="setProduct"
+                                @typeahead-selected="setProduct"
                                 sub-field="product_code"
                                 :clear-on-hit="true"
                                 :search-fields='["factory_number", "product_code"]'
@@ -85,15 +85,15 @@
             }
         },
 
-        ready() {
+        mounted() {
             this.fetchCustomers();
         },
 
         methods: {
 
             fetchCustomers() {
-                this.$http.get('/admin/api/customers')
-                        .then(res => this.customers = res.data)
+                axios.get('/admin/api/customers')
+                        .then(({data}) => this.customers = data)
                         .catch(err => console.log(err));
             },
 

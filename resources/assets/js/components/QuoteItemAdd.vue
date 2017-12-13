@@ -2,14 +2,14 @@
 
 <template>
     <span class="quote-item-add-component">
-        <modal :show.sync="open" :wider="true" :fixed="true">
+        <modal :show="open" :wider="true" :fixed="true">
             <div slot="header">
                 <h3>Add Products To Quote</h3>
             </div>
             <div slot="body">
                 <div class="product-search">
                     <type-ahead live-search-url="/admin/api/products/search"
-                                v-on:typeahead-selected="setProduct"
+                                @typeahead-selected="setProduct"
                                 sub-field="product_code"
                                 :clear-on-hit="true"
                                 :search-fields='["factory_number", "product_code"]'
@@ -55,10 +55,8 @@
             }
         },
 
-        events: {
-            'add-item': function () {
-                this.open = true;
-            }
+        mounted() {
+            eventHub.$on('add-quote-item', () => this.open = true);
         },
 
         methods: {
@@ -69,14 +67,14 @@
 
             addItemsToQuote() {
                 const ids = this.selected_products.map(product => product.id);
-                this.$http.post('/admin/quotes/' + this.quoteId + '/items', { product_ids: ids })
+                axios.post(`/admin/quotes/${this.quoteId}/items`, { product_ids: ids })
                         .then(() => this.onSuccess())
                         .catch(err => console.log(err));
             },
 
             onSuccess() {
                 this.resetSelections();
-                this.$dispatch('add-to-quote', {});
+                this.$emit('add-to-quote', {});
                 this.open = false;
             },
 

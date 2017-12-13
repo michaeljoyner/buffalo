@@ -3,7 +3,7 @@
 <template>
     <div class="category-mover-outer">
         <button class="dd-btn btn-dark btn" @click="open = true">Change category</button>
-        <modal :show.sync="open" :wider="true">
+        <modal :show="open" :wider="true">
             <div slot="header">
                 <h3>Change Category</h3>
                 <p><small class="indicator">Current Category: {{ currentCategory }}</small></p>
@@ -14,9 +14,9 @@
                     <div class="category_choice-list">
                         <h6 class="list-header">Categories</h6>
                         <div class="choice"
-                             v-for="category in categories"
-                             @click="setCategory($index)"
-                             :class="{'selected': selected_category_index === $index}"
+                             v-for="(category, index) in categories" :key="category.id"
+                             @click="setCategory(index)"
+                             :class="{'selected': selected_category_index === index}"
                         >
                             <span>{{ category.name }}</span>
                         </div>
@@ -24,7 +24,7 @@
                     <div class="subcategory-choice-list">
                         <h6 class="list-header">Subcategories</h6>
                         <div class="choice"
-                             v-for="subcategory in subcategories"
+                             v-for="subcategory in subcategories" :key="subcategory.id"
                              @click="setSubcategory(subcategory.id)"
                              :class="{'selected': selected_subcategory_id === subcategory.id}"
                         >
@@ -35,7 +35,7 @@
                     <div class="poductgroup-choice-list">
                         <h6 class="list-header">Product Groups</h6>
                         <div class="choice"
-                             v-for="productGroup in productGroups"
+                             v-for="productGroup in productGroups" :key="productGroup.id"
                              @click="setProductGroup(productGroup.id)"
                              :class="{'selected': selected_productgroup_id === productGroup.id}"
                         >
@@ -50,8 +50,8 @@
                         @click="open = false">
                     Cancel
                 </button>
-                <form action="{{ url }}" method="post" @submit="setFormAction">
-                    <input type="hidden" value="{{ csrf_token }}" name="_token">
+                <form :action="form_action" method="post">
+                    <input type="hidden" :value="csrf_token" name="_token">
                     <button class="btn dd-btn btn-dark"
                             type="submit"
                             :disabled="selected_category_index === null"
@@ -65,14 +65,14 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         props: ['csrf_token', 'product-id', 'product-name', 'current-category'],
 
         data() {
             return {
                 open: false,
-                url: '',
+                url: '/blah',
                 categories: [],
                 selected_category_index: null,
                 selected_subcategory_id: null,
@@ -81,6 +81,13 @@
         },
 
         computed: {
+            form_action() {
+                if (this.selected_category_index === null) {
+                    return '';
+                }
+                return this.createFormUrl();
+            },
+
             subcategories() {
                 if (this.selected_category_index === null) {
                     return [];
@@ -95,11 +102,6 @@
                 }
 
                 return this.getSubcategory().product_groups;
-//
-//                let subcats = this.categories[this.selected_category_index]
-//                        .subcategories.filter((sub) => sub.id === this.selected_subcategory_id);
-//
-//                return subcats.length ? subcats[0].product_groups : [];
             },
 
             destination() {
@@ -118,14 +120,14 @@
             }
         },
 
-        ready() {
+        mounted() {
             this.fetchCategories();
         },
 
         methods: {
             fetchCategories() {
-                this.$http.get('/admin/productcategories/categories')
-                        .then((res) => this.$set('categories', res.body))
+                axios.get('/admin/productcategories/categories')
+                        .then(({data}) => this.categories = data)
                         .catch((err) => console.log(err));
             },
 
@@ -150,25 +152,16 @@
                 this.selected_productgroup_id = id;
             },
 
-            setFormAction(ev) {
-                if (this.selected_category_index === null) {
-                    ev.preventDefault();
-                    return;
-                }
-
-                this.url = this.createFormUrl();
-            },
-
             createFormUrl() {
                 if (this.selected_productgroup_id) {
-                    return '/admin/products/' + this.productId + '/productgroup/' + this.selected_productgroup_id;
+                    return `/admin/products/${this.productId}/productgroup/${this.selected_productgroup_id}`;
                 }
 
                 if (this.selected_subcategory_id) {
-                    return '/admin/products/' + this.productId + '/subcategory/' + this.selected_subcategory_id;
+                    return `/admin/products/${this.productId}/subcategory/${this.selected_subcategory_id}`;
                 }
 
-                return '/admin/products/' + this.productId + '/category/' + this.categories[this.selected_category_index].id;
+                return `/admin/products/${this.productId}/category/${this.categories[this.selected_category_index].id}`;
             },
 
             getCategory() {

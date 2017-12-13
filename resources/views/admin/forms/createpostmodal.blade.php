@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 @include('errors')
-                {!! Form::open(['url' => '/admin/blog/posts', 'class' => 'form-horizontal dd-form modal-form']) !!}
+                {!! Form::open(['url' => '/admin/blog/posts', 'class' => 'form-horizontal dd-form modal-form', 'id' => 'new-post-form']) !!}
                 <div class="form-group">
                     <label for="title">Title: </label>
                     {!! Form::text('title', null, ['class' => "form-control", 'placeholder' => 'a good title for your post', 'required']) !!}
@@ -20,7 +20,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dd-btn btn-light dd-modal-cancel-btn" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn dd-btn dd-modal-confirm-btn">Create</button>
+                <button type="submit" form="new-post-form" class="btn dd-btn dd-modal-confirm-btn">Create</button>
             </div>
             {!! Form::close() !!}
         </div><!-- /.modal-content -->

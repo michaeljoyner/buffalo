@@ -33,6 +33,7 @@
                 <th>Profit</th>
                 <th>Selling Price</th>
             </tr>
+            </thead>
             <tbody>
             <tr>
                 <td>{{ itemData.currency }}</td>
@@ -46,7 +47,6 @@
                 <td>{{ sellingPrice }}</td>
             </tr>
             </tbody>
-            </thead>
         </table>
         <table class="table table-responsive quote-item-table package-table table-bordered">
             <thead>
@@ -64,6 +64,7 @@
                 <th>MOQ</th>
                 <th>Remark</th>
             </tr>
+            </thead>
             <tbody>
             <tr>
                 <td>{{ itemData.package_type }}</td>
@@ -77,7 +78,6 @@
                 <td>{{ itemData.remark }}</td>
             </tr>
             </tbody>
-            </thead>
         </table>
         <div class="component-footer clearfix">
             <div class="component-actions pull-right">
@@ -85,15 +85,15 @@
                                     :initial-content="itemData.description"
                 ></description-editor>
                 <delete-button :message="`Are you sure you want to remove ${itemData.name} from this quote?`"
-                               :delete-url="'/admin/quoteitems/' + itemData.itemId"
-                               v-on:item-deleted="deletedItem"
+                               :delete-url="`/admin/quoteitems/${itemData.itemId}`"
+                               @item-deleted="deletedItem"
                 >
                 </delete-button>
                 <button class="btn dd-btn btn-light" @click="editMode = true">
                     Edit
                 </button>
                 <supply-selector :product-id="initialProps.product_id"
-                                 v-on:supply-selected="resetSupplyInfo"
+                                 @supply-selected="resetSupplyInfo"
                 ></supply-selector>
             </div>
         </div>
@@ -135,7 +135,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description: </label>
-                                <div id="description">{{{ itemData.description }}}</div>
+                                <div id="description" v-html="itemData.description"></div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -299,7 +299,7 @@
             }
         },
 
-        ready() {
+        mounted() {
             this.inflateProps();
         },
 
@@ -317,7 +317,7 @@
             updateItem() {
                 this.saving = true;
                 this.validationError = '';
-                this.$http.patch('/admin/quoteitems/' + this.itemData.itemId, this.validFields())
+                axios.patch(`/admin/quoteitems/${this.itemData.itemId}`, this.validFields())
                         .then(({data}) => this.onUpdate(data))
                         .catch(err => this.onError(err));
             },
@@ -333,12 +333,7 @@
                     return this.showValidationErrors(err.body);
                 }
 
-                this.$dispatch('user-alert', {
-                    title: 'An error occurred!',
-                    type: 'error',
-                    text: 'Unable to save your changes. Please refresh and try again',
-                    confirm: true
-                });
+                eventHub.$emit('error-alert', 'Unable to save your changes. Please refresh and try again');
                 this.saving = false;
                 this.editMode = false;
             },
@@ -359,7 +354,7 @@
             },
 
             deletedItem() {
-                this.$dispatch('remove-quoteitem', {id: this.itemData.itemId});
+                this.$emit('remove-quoteitem', {id: this.itemData.itemId});
             },
 
             resetSupplyInfo(supply) {

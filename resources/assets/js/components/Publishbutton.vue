@@ -2,7 +2,7 @@
 
 <template>
     <div class="publish-button-box">
-        <button class="btn dd-btn btn-dark" v-on:click="handleClick">
+        <button class="btn dd-btn btn-dark" @click="handleClick">
             <span v-show="!syncing">{{ buttonText }}</span>
             <div class="spinner" v-show="syncing">
                 <div class="bounce1"></div>
@@ -10,7 +10,7 @@
                 <div class="bounce3"></div>
             </div>
         </button>
-        <modal :show.sync="showModal">
+        <modal :show="showModal">
             <div slot="header">
                 <h3>Ready to publish</h3>
             </div>
@@ -31,30 +31,32 @@
 </template>
 
 <script type="text/babel">
-    module.exports = {
+    export default {
 
         props: ['url', 'published', 'virgin'],
 
         data() {
             return {
+                is_published: this.published,
                 showModal: false,
-                syncing: false
+                syncing: false,
+                is_virgin: this.virgin
             }
         },
 
         computed: {
             buttonText() {
                 if(this.virgin) {
-                    return this.published ? 'Retract' : 'Publish';
+                    return this.is_published ? 'Retract' : 'Publish';
                 }
 
-                return this.published ? 'Retract' : 'Re-publish';
+                return this.is_published ? 'Retract' : 'Re-publish';
             }
         },
 
         methods: {
             handleClick() {
-                if(this.virgin) {
+                if(this.is_virgin) {
                    return this.showModal = true;
                 }
 
@@ -64,23 +66,19 @@
             pushState() {
                 this.showModal = false;
                 this.syncing = true;
-                this.$http.post(this.url, {publish: !this.published})
-                        .then((res) => this.onSuccess(res))
+                axios.post(this.url, {publish: !this.is_published})
+                        .then(({data}) => this.onSuccess(data))
                         .catch((res) => this.onFail());
-                this.virgin = false;
+                this.is_virgin = false;
             },
 
-            onSuccess(res) {
-              this.published = res.body.new_state;
+            onSuccess(data) {
+              this.is_published = data.new_state;
                 this.syncing = false;
             },
 
             onFail(res) {
-                this.$dispatch('user-alert', {
-                    type: 'error',
-                    title: 'Sorry, there was a problem',
-                    text: 'Unable to save new published state. Please refresh and try again. Thanks.'
-                });
+                eventHub.$emit('error-alert', 'Unable to save new published state. Please refresh and try again. Thanks.');
                 this.syncing = false;
             }
         }
