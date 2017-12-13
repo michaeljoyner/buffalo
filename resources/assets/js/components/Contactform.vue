@@ -1,4 +1,8 @@
-<style></style>
+<style scoped lang="scss" type="text/css">
+    .contact-form-outer {
+        overflow-x: hidden;
+    }
+</style>
 
 <template>
     <div class="contact-form-outer">
