@@ -26,7 +26,7 @@
     @include('front.partials.navbar')
     @yield('content')
 </div>
-<script src="{{ mix('js/front.js') }}"></script>
+<script async src="{{ mix('js/front.js') }}"></script>
 @yield('bodyscripts')
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>
