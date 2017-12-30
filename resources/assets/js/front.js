@@ -59,22 +59,13 @@ new Vue({
             });
         }
     }
-
-    // events: {
-    //     'user-alert': function(message) {
-    //         swal({
-    //             type: message.type,
-    //             title: message.title,
-    //             text: message.text,
-    //             showConfirmButton: message.confirm
-    //         });
-    //     },
-    //
-    //     'item-added': function() {
-    //         this.$broadcast('cart-item-added');
-    //     }
-    // }
 });
+
+import {productGallery} from "./components/ProductGallery";
+
+if(document.querySelector('.product-gallery')) {
+    productGallery.init();
+}
 
 if (document.querySelector('#search-trigger')) {
     const trigger = document.querySelector('#search-trigger');
