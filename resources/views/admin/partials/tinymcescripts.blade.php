@@ -138,7 +138,7 @@
 
             formData = new FormData();
             formData.append('file', blobInfo.blob(), blobInfo.filename());
-            formData.append('_token', document.getElementById('x-token').getAttribute('content'));
+            formData.append('_token', document.getElementById('csrf-token-meta').getAttribute('content'));
 
 
             xhr.send(formData);
