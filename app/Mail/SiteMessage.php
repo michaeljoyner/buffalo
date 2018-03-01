@@ -44,7 +44,7 @@ class SiteMessage extends Mailable
      */
     public function build()
     {
-        return $this->subject('New webite message from ' + $this->name)
+        return $this->subject('New webite message from ' . $this->name)
             ->view('email.sitemessage');
     }
 }
