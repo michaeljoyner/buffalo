@@ -156,7 +156,7 @@ return [
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
-        Spatie\Sitemap\SitemapServiceProvider::class,
+//        Spatie\Sitemap\SitemapServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Hemp\Presenter\PresenterServiceProvider::class,
 

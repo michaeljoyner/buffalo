@@ -9,30 +9,28 @@
   "type": "project",
   "require": {
     "php": ">=5.5.9",
-    "laravel/framework": "5.5.*",
-    "laravelcollective/html": "5.5.*",
-    "spatie/laravel-medialibrary": "^6.0",
     "cviebrock/eloquent-sluggable": "^4.3",
-    "gloudemans/shoppingcart": "dev-master",
-    "sammyk/laravel-facebook-sdk": "^3.0",
-    "thujohn/twitter": "^2.2",
-    "google/apiclient": "^2.0",
-    "spatie/laravel-backup": "^5.0",
-    "league/flysystem-aws-s3-v3": "~1.0",
-    "spatie/laravel-sitemap": "^3.0",
     "doctrine/dbal": "^2.5",
-    "maatwebsite/excel": "~2.1",
+    "filp/whoops": "^2.1",
+    "gloudemans/shoppingcart": "dev-master",
+    "google/apiclient": "^2.0",
     "hemp/presenter": "^1.0",
+    "laravel/browser-kit-testing": "^4.0",
+    "laravel/framework": "5.6.*",
     "laravel/tinker": "^1.0",
-    "laravel/browser-kit-testing": "^2.0",
-    "filp/whoops": "^2.1"
+    "laravelcollective/html": "5.5.*",
+    "league/flysystem-aws-s3-v3": "~1.0",
+    "maatwebsite/excel": "~2.1",
+    "sammyk/laravel-facebook-sdk": "^3.0",
+    "spatie/laravel-backup": "^5.0",
+    "spatie/laravel-medialibrary": "^6.0",
+    "spatie/laravel-sitemap": "^4.0",
+    "thujohn/twitter": "^2.2"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~6.0",
-    "symfony/css-selector": "2.8.*|3.1.*",
-    "symfony/dom-crawler": "2.8.*|3.1.*"
+    "phpunit/phpunit": "~7.0"
   },
   "autoload": {
     "classmap": [
@@ -54,21 +52,19 @@
   },
   "scripts": {
     "post-root-package-install": [
-      "php -r \"copy('.env.example', '.env');\""
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ],
     "post-create-project-cmd": [
-      "php artisan key:generate"
+      "@php artisan key:generate"
     ],
-    "post-install-cmd": [
-      "Illuminate\\Foundation\\ComposerScripts::postInstall",
-      "php artisan optimize"
-    ],
-    "post-update-cmd": [
-      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-      "php artisan optimize"
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover"
     ]
   },
   "config": {
-    "preferred-install": "dist"
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
   }
 }

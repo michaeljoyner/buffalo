@@ -37,6 +37,7 @@ class CheckoutController extends Controller
             $this->cart->emptyOut();
         }
 
+
         event(new EnquiryWasMade($order));
 
         return redirect('/thanks');

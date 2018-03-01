@@ -38,7 +38,7 @@ class EnquiryMade extends Mailable
      */
     public function build()
     {
-        return $this->subject('New Site Enquiry from ' + $this->order->company)
+        return $this->subject('New Site Enquiry from ' . $this->order->company)
             ->view('email.enquiry');
     }
 }
