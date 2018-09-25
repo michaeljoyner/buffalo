@@ -21,7 +21,7 @@ class OrderService
         $order = Order::create($customerDetails);
 
         $cartContents->each(function($item) use ($order) {
-            $order->addItem(Product::findOrFail($item->id), $item->qty);
+            $order->addItem(Product::findOrFail($item['id']), $item['quantity']);
         });
 
         return $order;

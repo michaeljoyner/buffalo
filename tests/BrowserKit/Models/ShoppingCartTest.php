@@ -66,9 +66,11 @@ class ShoppingCartTest extends BrowserKitTestCase
         $cart = $this->app->make(ShoppingCart::class);
         $product = factory(Product::class)->create();
         $cart->addItem($product, 1);
+
         $this->assertCount(1, $cart->allItems());
 
         $cart->remove($product);
+
         $this->assertCount(0, $cart->allItems());
     }
 

@@ -23,11 +23,9 @@ class ShoppingCartController extends Controller
 
     public function index()
     {
-        $items = $this->cart->allItems()->map(function ($item) {
-            return $this->convertItemToArray($item);
-        })->values()->toArray();
-
-        return response()->json($items);
+        return $this->cart->allItems()->map(function($item) {
+            return $this->itemResponseArray($item);
+        })->values();
     }
 
     public function summary()
@@ -46,16 +44,14 @@ class ShoppingCartController extends Controller
         ]);
 
         $item = $this->cart->addItem(Product::findOrFail($request->product_id), $request->quantity);
-
-        return $this->returnCartItem($item);
+        return $this->itemResponseArray($item);
     }
 
     public function update(Request $request, Product $product)
     {
         $this->validate($request, ['quantity' => 'required|integer|min:1']);
         $item = $this->cart->update($product, $request->quantity);
-
-        return $this->returnCartItem($item);
+        return $this->itemResponseArray($item);
     }
 
     public function remove(Product $product)
@@ -65,15 +61,14 @@ class ShoppingCartController extends Controller
         return response()->json('ok');
     }
 
-    protected function convertItemToArray($item)
+    protected function itemResponseArray($item)
     {
-        $product = Product::findOrFail($item->id);
+        $product = Product::findOrFail($item['id']);
 
         return [
-            'rowId'        => $item->rowId,
-            'quantity'     => $item->qty,
-            'id'           => $item->id,
-            'name'         => $item->name,
+            'quantity'     => $item['quantity'],
+            'id'           => $item['id'],
+            'name'         => $item['name'],
             'thumb'        => $product->imageSrc('thumb'),
             'product_code' => $product->product_code,
             'minimum_order_quantity' => $product->minimum_order_quantity

@@ -10,62 +10,106 @@ namespace App\Shopping;
 
 
 use App\Products\Product;
-use Gloudemans\Shoppingcart\Cart;
 
 class ShoppingCart
 {
-    /**
-     * @var Cart
-     */
-    private $cart;
-
-    public function __construct(Cart $cart)
-    {
-        $this->cart = $cart;
-    }
+    const SESSION_KEY = 'shopping-cart-bag';
 
     public function addItem(Product $product, $quantity)
     {
-        return $this->cart->add($product->id, $product->name, $quantity, 0);
+        $cart = collect(session(static::SESSION_KEY, []));
+
+        $hasItem = $cart->first(function($item) use ($product) {
+            return $item['id'] === $product->id;
+        });
+
+        if(! $hasItem) {
+            $cart->push([
+                'id' => $product->id,
+                'name' => $product->name,
+                'quantity' => $quantity
+            ]);
+        }
+
+        session([static::SESSION_KEY => $cart->all()]);
+
+        return [
+            'id' => $product->id,
+            'name' => $product->name,
+            'quantity' => $quantity
+        ];
+
+
+//        return $this->cart->add($product->id, $product->name, $quantity, 0);
     }
 
     public function remove(Product $product)
     {
-        return $this->cart->remove($this->getCartItemOfProduct($product)->rowId);
+        $cart = collect(session(static::SESSION_KEY, []));
+        $cart = $cart->reject(function($item) use ($product) {
+            return $item['id'] === $product->id;
+        });
+        return session([static::SESSION_KEY => $cart->all()]);
+//        return $this->cart->remove($this->getCartItemOfProduct($product)->rowId);
     }
 
     public function update(Product $product, $quantity)
     {
-        $this->cart->update($this->getCartItemOfProduct($product)->rowId, $quantity);
+        $cart = collect(session(static::SESSION_KEY, []));
+        $cart = $cart->map(function($item) use ($product, $quantity) {
+           if($item['id'] === $product->id) {
+               return [
+                   'id' => $item['id'],
+                   'name' => $item['name'],
+                   'quantity' => $quantity
+               ];
+           }
+           return $item;
+        });
+        session([static::SESSION_KEY => $cart->all()]);
+        return [
+            'id' => $product->id,
+            'name' => $product->name,
+            'quantity' => $quantity
+        ];
+//        $this->cart->update($this->getCartItemOfProduct($product)->rowId, $quantity);
 
-        return $this->getCartItemOfProduct($product);
+//        return $this->getCartItemOfProduct($product);
     }
 
     public function allItems()
     {
-        return $this->cart->content();
+        return collect(session(static::SESSION_KEY, []));
+//        return $this->cart->content();
     }
 
     public function totalProducts()
     {
-        return $this->cart->content()->count();
+        $cart = collect(session(static::SESSION_KEY, []));
+        return $cart->count();
     }
 
     public function totalItems()
     {
-        return $this->cart->count();
+        $cart = collect(session(static::SESSION_KEY, []));
+        return $cart->reduce(function($total, $item) {
+            return $total + $item['quantity'];
+        }, 0);
     }
 
     public function emptyOut()
     {
-        return $this->cart->destroy();
+        session([static::SESSION_KEY => []]);
     }
 
     public function quantityOf(Product $product)
     {
-        $item = $this->getCartItemOfProduct($product);
+        $cart = collect(session(static::SESSION_KEY, []));
+        $item = $cart->first(function($i) use ($product) {
+            return $i['id'] === $product->id;
+        });
 
-        return $item ? $item->qty : 0;
+        return $item ? $item['quantity'] : 0;
     }
 
     protected function getCartItemOfProduct(Product $product)

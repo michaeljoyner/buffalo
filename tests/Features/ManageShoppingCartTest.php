@@ -16,6 +16,7 @@ class ManageShoppingCartTest extends TestCase
      */
     public function a_product_can_be_added_to_the_cart_by_posting_to_an_endpoint()
     {
+        $this->withoutExceptionHandling();
         $product = factory(Product::class)->create();
         $cart = $this->app->make(ShoppingCart::class);
 
@@ -32,6 +33,7 @@ class ManageShoppingCartTest extends TestCase
      */
     public function the_quantity_of_an_item_can_be_updated_by_posting_to_endpoint()
     {
+        $this->withoutExceptionHandling();
         $product = factory(Product::class)->create();
         $cart = $this->app->make(ShoppingCart::class);
         $cart->addItem($product, 1);

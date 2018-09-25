@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Exceptions\LastUserDeletionException;
+use App\Shopping\ShoppingCart;
 use App\Social\GooglePlusUser;
 use App\User;
 use Google_Service_Plus;
@@ -53,6 +54,10 @@ class AppServiceProvider extends ServiceProvider
             $client->setApprovalPrompt('force');
             $client->setRedirectUri('http://buffalo.app:8000/admin/googleplus/callback');
             return $client;
+        });
+
+        $this->app->singleton(ShoppingCart::class, function() {
+            return new ShoppingCart();
         });
     }
 }

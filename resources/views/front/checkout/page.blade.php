@@ -23,8 +23,8 @@
                     @foreach($checkoutItems as $index => $item)
                     <tr>
                         <td class="number-col">{{ $index + 1 }}</td>
-                        <td class="name-col">{{ $item->name }}</td>
-                        <td>{{ $item->qty }}</td>
+                        <td class="name-col">{{ $item['name'] }}</td>
+                        <td>{{ $item['quantity'] }}</td>
                     </tr>
                     @endforeach
                 </tbody>
