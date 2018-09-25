@@ -4,11 +4,11 @@ namespace App\Products;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
-use Spatie\MediaLibrary\Media;
+use Spatie\MediaLibrary\Models\Media;
 
-class ProductGallery extends Model implements HasMediaConversions
+class ProductGallery extends Model implements HasMedia
 {
     use HasMediaTrait;
 
@@ -34,4 +34,5 @@ class ProductGallery extends Model implements HasMediaConversions
              ->performOnCollections('default');
 
     }
+
 }

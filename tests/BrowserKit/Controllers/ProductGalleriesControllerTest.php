@@ -25,19 +25,5 @@ class ProductGalleriesControllerTest extends BrowserKitTestCase
         $this->assertCount(1, $product->galleryImages());
     }
 
-    /**
-     *@test
-     */
-    public function an_image_can_be_deleted_from_a_product_gallery_via_http_request()
-    {
-        $this->asLoggedInUser();
-        $product = factory(Product::class)->create();
-        $image = $product->addGalleryImage($this->prepareFileUpload('tests/testpic1.png'));
-        $this->assertCount(1, $product->galleryImages());
 
-        $response = $this->call('DELETE', '/admin/products/' . $product->id . '/gallery/images/' . $image->id);
-        $this->assertOkResponse($response);
-
-        $this->assertCount(0, $product->galleryImages());
-    }
 }

@@ -7,11 +7,11 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
-use Spatie\MediaLibrary\Media;
+use Spatie\MediaLibrary\Models\Media;
 
-class Category extends Model implements HasMediaConversions
+class Category extends Model implements HasMedia
 {
     use SoftDeletes, Sluggable, HasMediaTrait, UrgesForDescription, HasModelImage;
 
@@ -145,4 +145,5 @@ class Category extends Model implements HasMediaConversions
     {
         return static::orderBy('position')->get()->values();
     }
+
 }

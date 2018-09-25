@@ -19,7 +19,7 @@ trait HasModelImage
     public function setImage($image)
     {
 
-        $newImage = $this->addMedia($image)->preservingOriginal()->toMediaCollection();
+        $newImage = $this->addMedia($image)->preservingOriginal()->toMediaCollection('default');
 
         $this->removeOlderImages();
 
@@ -28,13 +28,13 @@ trait HasModelImage
 
     protected function removeOlderImages()
     {
-        $this->getMedia()->reverse()->slice(1)->each(function($media) {
+        $this->getMedia('default')->reverse()->slice(1)->each(function($media) {
             $media->delete();
         });
     }
 
     public function hasModelImageSet()
     {
-        return !! $this->getFirstMediaUrl();
+        return !! $this->getFirstMediaUrl('default');
     }
 }

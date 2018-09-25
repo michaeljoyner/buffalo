@@ -9,11 +9,11 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
-use Spatie\MediaLibrary\Media;
+use Spatie\MediaLibrary\Models\Media;
 
-class Product extends Model implements HasMediaConversions
+class Product extends Model implements HasMedia
 {
     use SoftDeletes, Sluggable, UrgesForDescription, HasMediaTrait, HasModelImage;
 
@@ -125,7 +125,7 @@ class Product extends Model implements HasMediaConversions
 
     public function galleryImages()
     {
-        return $this->getGallery()->getMedia();
+        return $this->getGallery()->getMedia('default');
     }
 
     public function addGalleryImage($image)
@@ -307,4 +307,6 @@ class Product extends Model implements HasMediaConversions
 
         return $package ?? new Packaging();
     }
+
+
 }

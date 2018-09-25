@@ -4,11 +4,11 @@ namespace App\Products;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
-use Spatie\MediaLibrary\Media;
+use Spatie\MediaLibrary\Models\Media;
 
-class CategoryBanner extends Model implements HasMediaConversions
+class CategoryBanner extends Model implements HasMedia
 {
     use HasMediaTrait, HasModelImage;
 
@@ -36,4 +36,6 @@ class CategoryBanner extends Model implements HasMediaConversions
     {
         return $this->belongsTo(Category::class);
     }
+
+
 }
