@@ -6,9 +6,11 @@ use App\Exceptions\Handler;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
+
     /**
      * The base URL to use while testing the application.
      *
@@ -26,6 +28,8 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
         $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
+
+        Hash::setRounds(4);
 
         return $app;
     }
