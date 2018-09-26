@@ -17,9 +17,9 @@
                 <div class="progress-inner" :style="{ width: progress + '%'}"></div>
             </div>
             <p :class="{'dark': text_colour === colours.black, 'brand': text_colour === colours.brand}"
-               class="banner-slide-text">{{ slideText }}</p>
+               class="banner-slide-text">{{ slide_text }}</p>
             <a :class="text_colour" class="banner-cta"
-               v-show="actionText" :href="actionLink">{{ actionText }}</a>
+               v-show="action_text" :href="actionLink">{{ action_text }}</a>
         </div>
         <div class="dd-form form-horizontal">
             <div class="form-group">
