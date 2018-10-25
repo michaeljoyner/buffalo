@@ -26,7 +26,7 @@
                 ></factory-input>
                 <div class="form-group">
                     <label for="product_code">Factory Item number: </label>
-                    {!! Form::text('item_number', null, ['class' => "form-control", 'placeholder' => 'The factory item number', 'required']) !!}
+                    {!! Form::text('item_number', null, ['class' => "form-control", 'placeholder' => 'The factory item number']) !!}
                 </div>
                 <div class="form-group">
                     <label for="currency">Currency</label>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group">
                     <label for="remarks">Remarks: </label>
-                    {!! Form::textarea('remarks', null, ['class' => "form-control", 'required']) !!}
+                    {!! Form::textarea('remarks', null, ['class' => "form-control"]) !!}
                 </div>
             </div>
             <div class="modal-footer">
