@@ -1,13 +1,17 @@
 <?php
 
 
+namespace Tests\Unit;
+
+
 use App\Products\Product;
 use App\Sourcing\Supply;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-class ProductSuppliesTest extends BrowserKitTestCase
+class ProductSupplyTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /**
      *@test
@@ -23,6 +27,28 @@ class ProductSuppliesTest extends BrowserKitTestCase
             'price' => 1000,
             'package_price' => 20,
             'remarks' => 'Valid for 90 days'
+        ];
+
+        $supply = $product->addSupply($supplyData);
+
+        $this->assertInstanceOf(Supply::class, $supply);
+        $this->assertEquals($supply->product_id, $product->id);
+        $this->assertCount(1, $product->supplies);
+    }
+
+    /**
+     *@test
+     */
+    public function a_supply_can_be_created_without_a_item_number_or_remarks()
+    {
+        $supplier = factory(\App\Sourcing\Supplier::class)->create();
+        $product = factory(Product::class)->create();
+        $supplyData = [
+            'quoted_date' => '2017-01-11',
+            'supplier_id' => $supplier->id,
+            'item_number' => '',
+            'price' => 1000,
+            'package_price' => 20,
         ];
 
         $supply = $product->addSupply($supplyData);

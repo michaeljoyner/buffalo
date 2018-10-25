@@ -27,7 +27,7 @@ class ProductSupplyForm extends FormRequest
             'quoted_date' => 'required|date',
             'valid_until' => 'date|after:today',
             'supplier_id' => 'required|integer|exists:suppliers,id',
-            'item_number' => 'required',
+            'item_number' => '',
             'currency' => 'required|currency',
             'price' => 'required|numeric',
             'package_price' => 'required|numeric',
