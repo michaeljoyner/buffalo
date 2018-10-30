@@ -14,8 +14,9 @@ class ProductsSearchController extends Controller
 
     public function show()
     {
+        $query = request("q", "");
         $stats = ProductStatsFactory::make();
-        return view('admin.products.search.index')->with(compact('stats'));
+        return view('admin.products.search.index')->with(compact('stats', 'query'));
     }
 
     public function search(Request $request, ProductsRepository $repository)

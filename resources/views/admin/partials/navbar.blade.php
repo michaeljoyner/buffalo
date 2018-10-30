@@ -27,12 +27,26 @@
                     <ul class="dropdown-menu">
                         <li><a href="/admin/products/search">Search</a></li>
                         <li><a href="/admin/categories">Categories</a></li>
+                        <li><a href="/admin/suppliers">Factories</a></li>
                     </ul>
                 </li>
-                <li><a href="/admin/orders">Customer Inquiry</a></li>
-                <li><a href="/admin/suppliers">Factories</a></li>
-                <li><a href="/admin/customers">Customers</a></li>
-                <li><a href="/admin/quotes">Quotes</a></li>
+
+                <li class="dropdown">
+                    <a href="#"
+                       class="dropdown-toggle"
+                       data-toggle="dropdown"
+                       role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                    >Customers <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/orders">Inquiries</a></li>
+                        <li><a href="/admin/customers">Customers</a></li>
+                        <li><a href="/admin/quotes">Quotes</a></li>
+                    </ul>
+                </li>
+
+
                 @if(Auth::user()->isA('super_admin'))
                 <li class="dropdown">
                     <a href="#"
@@ -49,6 +63,11 @@
                     </ul>
                 </li>
                 @endif
+                <form class="navbar-form navbar-left" role="search" method="GET" action="/admin/products/search" autocomplete="off">
+                    <div class="form-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search">
+                    </div>
+                </form>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -3,6 +3,7 @@
 @section('content')
     <search-view search-url="/admin/api/products/search"
                  page-size="20"
+                 initial-query="{{ $query }}"
     >
         <stat-counter :upper-val="{{ $stats->products }}"
                       :step="20"

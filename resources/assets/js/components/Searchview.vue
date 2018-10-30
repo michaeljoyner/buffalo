@@ -52,7 +52,7 @@
                 </div>
             </div>
         </section>
-        <section v-show="is_virgin"
+        <section v-show="is_virgin && !initialQuery"
                  class="product-stats">
             <slot></slot>
         </section>
@@ -65,7 +65,7 @@
 
     export default {
 
-        props: ['search-url', 'page-size'],
+        props: ['search-url', 'page-size', 'initial-query'],
 
         data() {
             return {
@@ -84,7 +84,14 @@
             },
 
             current_page_results() {
-              return this.results.slice(this.offset, Math.max(this.offset + this.pageSize, this.results.length -1));
+              return this.results.slice(this.offset, (this.offset + parseInt(this.pageSize)));
+            }
+        },
+
+        mounted() {
+            if(this.initialQuery) {
+                this.searchterm = this.initialQuery;
+                this.doSearch();
             }
         },
 
