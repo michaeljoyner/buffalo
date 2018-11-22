@@ -10,14 +10,14 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-class AddProductImageUsesTimestampNameTest extends TestCase
+class AddProductImageUsesRandomNameTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
      *@test
      */
-    public function an_uploaded_images_name_gets_replaced_with_timestamp()
+    public function an_uploaded_images_name_gets_replaced_with_random_name()
     {
         Storage::fake('test_media');
 
