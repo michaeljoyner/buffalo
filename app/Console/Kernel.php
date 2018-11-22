@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\FindMissingConversions;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Log;
@@ -22,7 +23,8 @@ class Kernel extends ConsoleKernel
         Commands\ShiftAutomotiveProducts::class,
         Commands\ShiftHandToolProducts::class,
         Commands\ShiftElectricalTools::class,
-        Commands\GenerateSitemap::class
+        Commands\GenerateSitemap::class,
+        FindMissingConversions::class
     ];
 
     /**
