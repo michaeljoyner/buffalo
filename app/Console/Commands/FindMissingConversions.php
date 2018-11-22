@@ -47,10 +47,13 @@ class FindMissingConversions extends Command
             $response_code = 500;
             try {
                 $client = new Client(['verify' => false]);
-                $response = $client->get(config('app.url') . $image->getUrl('web'));
+                $url = config('app.url') . $image->getUrl('web');
+                $response = $client->get($url);
                 $response_code = $response->getStatusCode();
+                $s = sprintf("Found (%s): %s", $response->getStatusCode(), $url);
+                $this->info($s);
             } catch(\Exception $e) {
-                
+                $this->warn(class_basename($e));
             }
             return $response_code !== 200;
         });
