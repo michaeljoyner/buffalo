@@ -19,7 +19,11 @@ trait HasModelImage
     public function setImage($image)
     {
 
-        $newImage = $this->addMedia($image)->preservingOriginal()->toMediaCollection('default');
+        $newImage = $this
+            ->addMedia($image)
+            ->usingFileName(str_random(10))
+            ->preservingOriginal()
+            ->toMediaCollection('default');
 
         $this->removeOlderImages();
 
