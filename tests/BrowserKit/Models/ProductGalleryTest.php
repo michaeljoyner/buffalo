@@ -32,20 +32,5 @@ class ProductGalleryTest extends BrowserKitTestCase
         $this->assertCount(1, $product->galleryImages());
     }
 
-    /**
-     *@test
-     */
-    public function a_products_images_including_primary_image_can_be_fetched_from_the_product_with_the_primary_image_first()
-    {
-        $product = factory(Product::class)->create();
-        $product->addGalleryImage($this->prepareFileUpload('tests/testpic1.png'));
-        $product->addGalleryImage($this->prepareFileUpload('tests/testpic2.png'));
 
-        $urls = $product->allImageUrls('web');
-
-        $this->assertCount(3, $urls);
-        $this->assertContains(Product::DEFAULT_PRIMARY_IMAGE, $urls[0]);
-        $this->assertContains('web.png', $urls[1]);
-        $this->assertContains('web.png', $urls[2]);
-    }
 }
