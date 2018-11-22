@@ -55,7 +55,7 @@ class Product extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')
              ->fit(Manipulations::FIT_FILL, 200, 200)
-            ->background('ffffff')
+             ->background('ffffff')
              ->keepOriginalImageFormat()
              ->optimize()
              ->performOnCollections('default');
@@ -130,15 +130,19 @@ class Product extends Model implements HasMedia
 
     public function addGalleryImage($image)
     {
-        return $this->getGallery()->addMedia($image)->preservingOriginal()->toMediaCollection();
+        return $this->getGallery()
+                    ->addMedia($image)
+                    ->usingFileName(str_random(10))
+                    ->preservingOriginal()
+                    ->toMediaCollection();
     }
 
     public function allImageUrls($conversion = '')
     {
         return collect([])->push($this->imageSrc($conversion))
-            ->merge($this->galleryImages()->map(function ($image) use ($conversion) {
-                return $image->getUrl($conversion);
-            })->toArray());
+                          ->merge($this->galleryImages()->map(function ($image) use ($conversion) {
+                              return $image->getUrl($conversion);
+                          })->toArray());
     }
 
     public function isPromoted()
@@ -210,7 +214,7 @@ class Product extends Model implements HasMedia
 
     public function markAsNew($is_new, $days_to_be_new = null)
     {
-        if(is_null($days_to_be_new)) {
+        if (is_null($days_to_be_new)) {
             $days_to_be_new = static::DAYS_TO_BE_NEW;
         }
 
@@ -233,7 +237,7 @@ class Product extends Model implements HasMedia
 
     public function daysStillNew()
     {
-        if($this->new_until) {
+        if ($this->new_until) {
             return $this->new_until->diffInDays(Carbon::now());
         }
 
@@ -257,9 +261,9 @@ class Product extends Model implements HasMedia
         }
 
         return $this->note ?? $this->note()->create([
-            'user_id' => $user->id,
-            'content' => $content
-        ]);
+                'user_id' => $user->id,
+                'content' => $content
+            ]);
     }
 
     public function clearNote()
