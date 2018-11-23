@@ -81,7 +81,7 @@ if (document.querySelector('.menu-select')) {
 }
 
 document.body.addEventListener('keyup', (ev) => {
-    if (ev.keyCode !== 121 || ['INPUT', 'TEXTAREA'].indexOf(ev.target.tagName) !== -1) {
+    if ([121, 191].indexOf(ev.keyCode) !== 1 || ['INPUT', 'TEXTAREA'].indexOf(ev.target.tagName) !== -1) {
         return;
     }
     const trigger = document.querySelector('#search-trigger');
