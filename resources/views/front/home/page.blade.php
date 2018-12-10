@@ -1,7 +1,7 @@
 @extends('front.base')
 
 @section('title')
-    Buffalo Tools - The home of Buffalo Tools
+    Buffalo Tools | Professional Hand Tools, Garden Tools, Auto Tools, Hardware Tools & OEM Supplies
 @endsection
 
 @section('head')
