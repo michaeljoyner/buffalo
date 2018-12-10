@@ -50,7 +50,6 @@
     justify-content: flex-end;
     align-items: center;
 
-    list-style-type: none;
     padding: 0;
     margin: 0;
 
@@ -149,8 +148,8 @@
     line-height: 70px;
     border-left: 1px solid $brand_grey;
 
-    @include respond-to(phone) {height: auto; line-height: 2; text-align: center; font-size: 2em;}
-    @include respond-to(largetablet) {height: auto; line-height: 2; text-align: center; font-size: 2em;}
+    @include respond-to(phone) {height: auto; line-height: 2; text-align: center; font-size: 2em; display: block;}
+    @include respond-to(largetablet) {height: auto; line-height: 2; text-align: center; font-size: 2em; display: block;}
 
     svg {
       vertical-align: middle;

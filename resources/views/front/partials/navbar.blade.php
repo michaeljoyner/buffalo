@@ -1,4 +1,4 @@
-<nav class="main-navbar">
+<div class="main-navbar">
     <div class="branding">
         <a href="/">
             <img src="/images/logo_horizontal.svg" alt="Buffalo Tools logo">
@@ -12,42 +12,42 @@
         </label>
     </div>
     <input type="checkbox" id="nav-radio-trigger">
-    <ul class="nav-list">
-        <li class="nav-item">
+    <nav class="nav-list">
+        <span class="nav-item">
             <a href="/about">About</a>
-        </li>
-        <li class="nav-item">
+        </span>
+        <span class="nav-item">
             <a href="/services">Services</a>
-        </li>
-        <li class="nav-item">
+        </span>
+        <span class="nav-item">
             <a href="/news">Insights</a>
-        </li>
-        <li class="nav-item product-trigger">
+        </span>
+        <span class="nav-item product-trigger">
             <a href="/categories">Products</a>
             <ul class="product-nav">
                 @foreach($menuCategories as $menuCategory)
                     <li><a href="/categories/{{ $menuCategory->slug }}">{{ $menuCategory->name }}</a></li>
                 @endforeach
             </ul>
-        </li>
-        <li class="nav-item">
+        </span>
+        <span class="nav-item">
             <a href="/contact">Contact</a>
-        </li>
-        <li class="nav-item cart-nav-item">
+        </span>
+        <span class="nav-item cart-nav-item">
             <a href="/inquiry">
                 @include('svgicons.cart')
             </a>
             <cart-alert></cart-alert>
-        </li>
-        <li class="nav-item">
+        </span>
+        <span class="nav-item">
             <a href="">
                 <label for="search-trigger">
                     @include('svgicons.search')
                 </label>
             </a>
-        </li>
-    </ul>
-</nav>
+        </span>
+    </nav>
+</div>
 <input type="checkbox" id="search-trigger">
 <div class="search-box">
     <form action="/search">
