@@ -26,5 +26,10 @@
     <section class="page-section contact-section full-contact-page-section">
         @include('front.home.partials.contact', ['withFooter' => false])
     </section>
+    <section class="contact-page-distributors">
+        <h3 class="h1 section-title text-centered">Become a distributor</h3>
+        <p class="text-centered">Join the Buffalo team and increase your market share and guarantee the growth of your company!</p>
+        <a class="btn page-section-cta" href="https://global.buffalo-tools.com/distributors">Find out more</a>
+    </section>
     @include('front.partials.footer')
 @endsection

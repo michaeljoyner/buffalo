@@ -168,6 +168,19 @@
   }
 }
 
+.contact-section .distributor-link-header {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.contact-section .distributor-link {
+  display: block;
+  text-transform: uppercase;
+  &:hover {
+    color: $brand_green;
+  }
+}
+
 
 
 

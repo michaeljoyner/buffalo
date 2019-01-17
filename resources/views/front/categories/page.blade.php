@@ -21,13 +21,18 @@ Product Categories - Buffalo Tools
         <h1 class="h1 section-title">Categories</h1>
         <div class="category-index-card-container">
             @foreach($categories as $category)
-            <div class="category-index-card">
-                <a href="/categories/{{ $category->slug }}">
-                    <img class="category-image" src="{{ $category->imageSrc('thumb') }}" alt="{{ $category->name }}">
-                    <h3 class="h3 category-name @if(str_contains(strtolower($category->name), 'istone')) dark-text @endif">{{ $category->name }}</h3>
-                </a>
-            </div>
+                @include('front.categories.category-card', [
+                    'link' => $category->slug,
+                    'image' => $category->imageSrc('thumb'),
+                    'name' => $category->name
+                ])
+
             @endforeach
+            @include('front.categories.category-card', [
+                'link' => 'https://global.buffalo-tools.com/categories',
+                'image' => '/images/global/buffalo_logo_square.jpg',
+                'name' => 'Buffalo Brand Tools'
+            ])
         </div>
     </section>
     @include('front.partials.footer')

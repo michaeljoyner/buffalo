@@ -13,6 +13,8 @@
         <div>
             <p class="h3 footer-heading text-centered">Discover More</p>
             @include('front.partials.sociallinks')
+            <p class="distributor-link-header h3 footer-heading text-centered" href="https://global/buffalo-tools.com/distributors">Become an agent</p>
+            <a class="distributor-link text-uppercase footer-heading text-centered" href="https://global.buffalo-tools.com/distributors">Apply now</a>
         </div>
 
 

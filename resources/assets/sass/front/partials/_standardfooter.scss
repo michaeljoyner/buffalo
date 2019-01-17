@@ -34,6 +34,19 @@
     @include respond-to(largetablet) {width: 100%; order: 1;}
   }
 
+  div.social-footer .distributor-link-header {
+    margin-top: 50px;
+  }
+
+  div.social-footer .distributor-link {
+    margin-top: 15px;
+    display: block;
+    text-transform: uppercase;
+    &:hover {
+      color: $brand_green;
+    }
+  }
+
   .quick-links-footer {
     .footer-heading {
       padding-bottom: 10px;
