@@ -22,7 +22,7 @@ Product Categories - Buffalo Tools
         <div class="category-index-card-container">
             @foreach($categories as $category)
                 @include('front.categories.category-card', [
-                    'link' => $category->slug,
+                    'link' => '/categories/' . $category->slug,
                     'image' => $category->imageSrc('thumb'),
                     'name' => $category->name
                 ])
