@@ -60,7 +60,7 @@ class ProductsRepository
     public function featuredProducts($quantity = 8)
     {
         $today = Carbon::now()->format('Y-m-d');
-        return Cache::remember('products.featured', 60, function () use ($quantity, $today) {
+        return Cache::remember('products.featured', 3600, function () use ($quantity, $today) {
             $promoted = Product::whereNotNull('promoted_until')->where('promoted_until', '>=', $today)->where('available', 1)->get();
             if ($promoted->count() < $quantity) {
                 $filler = Product::where('is_promoted', 0)->where('available', 1)
