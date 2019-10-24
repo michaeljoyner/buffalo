@@ -47,7 +47,10 @@ class QuoteItemPresenter extends Presenter
 
     public function getSellingPriceAttribute()
     {
-        return '$' . number_format($this->model->selling_price, 2) . '/' . $this->model->package_unit;
+        if(!$this->model->selling_price) {
+            return '';
+        }
+        return '$' . number_format(floatval($this->model->selling_price), 2) . '/' . $this->model->package_unit;
     }
 
     public function getDescriptionAttribute()
@@ -67,13 +70,13 @@ class QuoteItemPresenter extends Presenter
 
     public function getCompleteDescriptionAttribute()
     {
-        $desc = $this->name . "\n\n";
-        $desc .= $this->description . "\n\n";
-        $desc .= 'Packaging: ' . $this->packaging_summary . "\n";
-        $desc .= 'Inner: ' . $this->inner_package . "\n";
-        $desc .= 'Outer: ' . $this->outer_package . "\n";
-        $desc .= 'N.W/G.W: ' . $this->weights . "\n";
-        $desc .= 'MOQ: ' . $this->moq . "\n";
+        $desc = $this->name . "<br><br>";
+        $desc .= $this->description . "<br><br>";
+        $desc .= 'Packaging: ' . $this->packaging_summary . "<br>";
+        $desc .= 'Inner: ' . $this->inner_package . "<br>";
+        $desc .= 'Outer: ' . $this->outer_package . "<br>";
+        $desc .= 'N.W/G.W: ' . $this->weights . "<br>";
+        $desc .= 'MOQ: ' . $this->moq . "<br>";
 
         return $desc;
     }

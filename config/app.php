@@ -152,8 +152,6 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
-        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
-        Thujohn\Twitter\TwitterServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
 //        Spatie\Sitemap\SitemapServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
