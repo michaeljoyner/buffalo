@@ -5,150 +5,52 @@ namespace App\Social;
 
 
 use App\Blog\Post;
-use Facebook\Authentication\AccessToken;
-use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
+use Illuminate\Support\Facades\Log;
+use Vinkla\Facebook\Facades\Facebook as SDK;
 
 class Facebook
 {
-    /**
-     * @var LaravelFacebookSdk
-     */
-    private $facebookSdk;
+    private $token;
 
-    public function __construct(LaravelFacebookSdk $facebookSdk)
+    public function __construct($token)
     {
-        $this->facebookSdk = $facebookSdk;
+        $this->token = $token;
     }
 
-    public function login()
+    private function getPageAccessToken()
     {
-        return redirect($this->facebookSdk->getLoginUrl(['email', 'manage_pages', 'publish_pages']));
+        $response = SDK::get("/124868104624442?fields=access_token", $this->token);
+        return $response->getAccessToken();
     }
 
-    public function createAuthentictedUser()
+    public function postArticle(Post $post)
     {
-        try {
-            $token = $this->facebookSdk->getAccessTokenFromRedirect();
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            return false;
-        }
-
-        if (!$token) {
-            $helper = $this->facebookSdk->getRedirectLoginHelper();
-
-            if (!$helper->getError()) {
-                abort(403, 'Unauthorized action.');
-            }
-
-            return false;
-        }
-
-        if (!$token->isLongLived()) {
-            $oauth_client = $this->facebookSdk->getOAuth2Client();
-            try {
-                $token = $oauth_client->getLongLivedAccessToken($token);
-            } catch (Facebook\Exceptions\FacebookSDKException $e) {
-                return false;
-            }
-        }
-        $this->facebookSdk->setDefaultAccessToken($token);
-
-        return $this->createUser($token);
-
-    }
-
-    protected function createUser($token)
-    {
-        $facebook_user = $this->getUserDetails();
-
-        if (!$facebook_user) {
-            return false;
-        }
-
-        FacebookUser::all()->each(function ($outdated) {
-            $outdated->delete();
-        });
-
-        return FacebookUser::create([
-            'token_serialized' => serialize($token),
-            'name'             => $facebook_user['name'],
-            'cover_src'        => isset($facebook_user['cover']['source']) ? isset($facebook_user['cover']['source']) : ''
-        ]);
-    }
-
-    protected function getUserDetails()
-    {
-        try {
-            $response = $this->facebookSdk->get('/me?fields=id,name,cover');
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            return false;
-        }
-
-        return $response->getGraphUser();
-    }
-
-    public function getCurrentUserDetails()
-    {
-        $user = $this->getLastSavedUser();
-
-        if (!$user) {
-            return new FacebookUser(['name' => '', 'cover_src' => '', 'authorized' => 'false']);
-        }
-
-        $this->facebookSdk->setDefaultAccessToken($this->tokenFromUser($user));
-
-        $facebook_user = $this->getUserDetails();
-
-        if (!$facebook_user) {
-            $user->authorized = false;
-
-            return $user;
-        }
-
-        $user->update([
-            'name'      => $facebook_user['name'],
-            'cover_src' => $facebook_user['cover']['source']
-        ]);
-        $user->authorised = true;
-
-        return $user;
-    }
-
-    public function sharePost(Post $post)
-    {
-        $user = $this->getLastSavedUser();
-
-        if (!$user || !$user->share) {
+        if(!$this->token) {
             return;
         }
 
-
-        $this->facebookSdk->setDefaultAccessToken($this->tokenFromUser($user));
-
+        $token = $this->getPageAccessToken();
         try {
-            $page_id = env('FACEBOOK_PAGE_ID');
-            $page_info = $this->facebookSdk->get("/$page_id?fields=access_token");
-            $page_token = json_decode($page_info->getBody(), true)['access_token'];
-            $this->facebookSdk->setDefaultAccessToken($page_token);
-            $args = [
-                'message' => $post->description,
-                'link'    => url('/news/' . $post->slug)
-            ];
-            $this->facebookSdk->post('/' . $page_id . '/feed', $args);
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-
+            SDK::post(
+                "/124868104624442/feed",
+                ['message' => $post->description, 'link' => url("news/{$post->slug}")],
+                $token
+            );
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
         }
     }
 
-    protected function getLastSavedUser()
+    public function checkToken()
     {
-        return FacebookUser::latest()->first();
-    }
+        $result = false;
+        try {
+            $response = SDK::get("/debug_token?input_token={$this->token}", $this->token);
+            $result = $response->getDecodedBody()['data']['is_valid'];
+        } catch(\Exception $e) {
+            Log::error($e->getMessage());
+        }
 
-    protected function tokenFromUser($user)
-    {
-        $token = unserialize($user->token_serialized);
-
-        return $token->getValue();
+        return $result;
     }
 }

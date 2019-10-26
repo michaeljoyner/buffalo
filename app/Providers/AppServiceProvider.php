@@ -43,19 +43,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\Google_Client::class, function($app) {
-            $client = new \Google_Client();
-            $client->setAuthConfig(config('googleplus'));
-            $client->addScope([
-                Google_Service_Plus::PLUS_ME,
-                'https://www.googleapis.com/auth/plus.stream.write'
-            ]);
-            $client->setAccessType('offline');
-            $client->setApprovalPrompt('force');
-            $client->setRedirectUri('http://buffalo.app:8000/admin/googleplus/callback');
-            return $client;
-        });
-
         $this->app->singleton(ShoppingCart::class, function() {
             return new ShoppingCart();
         });

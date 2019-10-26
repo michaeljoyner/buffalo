@@ -81,10 +81,4 @@ class QuoteItemPresenter extends Presenter
         return $desc;
     }
 
-    public function getDescriptionHeightAttribute()
-    {
-        $lineCount = substr_count($this->complete_description, "\n");
-
-        return ($lineCount * 20) + 20;
-    }
 }

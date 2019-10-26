@@ -2,11 +2,13 @@
 
 namespace App\Listeners;
 
+use App\AccessToken;
 use App\Events\PostFirstPublished;
 use App\Social\Facebook;
 use App\Social\FacebookUser;
 use App\Social\GooglePlus;
 use App\Social\Twitter;
+use App\SocialSharingSetting;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -33,11 +35,8 @@ class SharePost
      * @param GooglePlus $googlePlus
      * @internal param LaravelFacebookSdk $facebookSdk
      */
-    public function __construct(Facebook $facebook, Twitter $twitter, GooglePlus $googlePlus)
+    public function __construct()
     {
-        $this->facebook = $facebook;
-        $this->twitter = $twitter;
-        $this->googlePlus = $googlePlus;
     }
 
     /**
@@ -48,8 +47,15 @@ class SharePost
      */
     public function handle(PostFirstPublished $event)
     {
-        $this->facebook->sharePost($event->post);
-        $this->twitter->sharePost($event->post);
-        $this->googlePlus->sharePost($event->post);
+        if(SocialSharingSetting::shareToFacebook()) {
+            $fb = new Facebook(AccessToken::forFacebook());
+            $fb->postArticle($event->post);
+        }
+
+        if(SocialSharingSetting::shareToTwitter()) {
+            $tw = new Twitter(AccessToken::forTwitter());
+            $tw->postTweet($event->post);
+        }
+
     }
 }

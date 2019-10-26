@@ -39,4 +39,16 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id' => env("FACEBOOK_APP_ID"),
+        'client_secret' => env("FACEBOOK_APP_SECRET"),
+        'redirect' => '/oauth/facebook/callback',
+    ],
+
+    'twitter' => [
+        'client_id' => env("TWITTER_CONSUMER_KEY"),
+        'client_secret' => env("TWITTER_CONSUMER_SECRET"),
+        'redirect' => '/oauth/twitter/callback',
+    ]
+
 ];

@@ -57,7 +57,8 @@ Vue.component('description-editor', require('./components/QuoteItemDescriptionEd
 Vue.component('finalise-quote-button', require('./components/FinaliseQuoteButton.vue'));
 Vue.component('search-quote-form', require('./components/QuoteSearchForm.vue'));
 Vue.component('clone-quote-form', require('./components/CloneQuoteForm.vue'));
-
+Vue.component('social-page', require('./components/SocialPage.vue'));
+Vue.component('simple-toggle', require('./components/SimpleToggle.vue'));
 
 window.eventHub = new Vue();
 

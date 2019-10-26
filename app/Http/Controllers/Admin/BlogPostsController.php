@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AccessToken;
 use App\Blog\Post;
 use App\Http\FlashMessaging\Flasher;
 use App\Http\Requests\BlogPostRequest;
+use App\Social\Facebook;
+use App\Social\Twitter;
+use App\SocialSharingSetting;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -27,7 +31,14 @@ class BlogPostsController extends Controller
     {
         $posts = Post::latest()->paginate(10);
 
-        return view('admin.blog.index')->with(compact('posts'));
+        $fb = new Facebook(AccessToken::forFacebook());
+        $tw = new Twitter(AccessToken::forTwitter());
+
+        return view('admin.blog.index', [
+            'posts' => $posts,
+            'fb_share' => $fb->checkToken() && SocialSharingSetting::shareToFacebook(),
+            'tw_share' => $tw->checkToken() && SocialSharingSetting::shareToTwitter(),
+        ]);
     }
 
     public function create()

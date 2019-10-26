@@ -96,9 +96,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::delete('blog/posts/{post}', 'BlogPostsController@delete');
 
         Route::get('blog/posts/{post}/images', 'PostsFeaturedImageController@index')->middleware('superauth');
-        Route::get('blog/posts/{post}/images/featured/edit', 'PostsFeaturedImageController@edit')->middleware('superauth');
+        Route::get('blog/posts/{post}/images/featured/edit',
+            'PostsFeaturedImageController@edit')->middleware('superauth');
         Route::post('blog/posts/{post}/images/featured', 'PostsFeaturedImageController@store')->middleware('superauth');
-        Route::post('blog/posts/{post}/images/featured/upload', 'PostFeaturedImageDirectUploadController@store')->middleware('superauth');
+        Route::post('blog/posts/{post}/images/featured/upload',
+            'PostFeaturedImageDirectUploadController@store')->middleware('superauth');
 
         Route::post('blog/posts/{post}/images', 'BlogPostImagesController@store')->middleware('superauth');
         Route::post('blog/posts/{post}/publish', 'BlogPostsController@publish')->middleware('superauth');
@@ -204,20 +206,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('social', 'SocialController@index')->middleware('superauth');
 
-        Route::get('facebook/login', 'FacebookAuthController@login')->middleware('superauth');
-        Route::get('facebook/callback', 'FacebookAuthController@callback')->middleware('superauth');
-        Route::get('social/facebook/user', 'FacebookUserController@fetchCurrent')->middleware('superauth');
-        Route::post('social/facebook/user/{facebookUser}/share', 'FacebookUserController@setSharingStatus')->middleware('superauth');
-
-        Route::get('twitter/login', 'TwitterAuthController@login')->middleware('superauth');
-        Route::get('twitter/callback', 'TwitterAuthController@callback')->middleware('superauth');
-        Route::get('social/twitter/user', 'TwitterUserController@fetchUser')->middleware('superauth');
-        Route::post('social/twitter/user/{twitterUser}/share', 'TwitterUserController@setSharingStatus')->middleware('superauth');
-
-        Route::get('googleplus/login', 'GooglePlusAuthController@login')->middleware('superauth');
-        Route::get('googleplus/callback', 'GooglePlusAuthController@callback')->middleware('superauth');
-        Route::get('social/googleplus/user', 'GooglePlusUserController@fetchUser')->middleware('superauth');
-        Route::post('social/googleplus/user/{googlePlusUser}/share', 'GooglePlusUserController@setSharingStatus')->middleware('superauth');
 
         Route::get('customers', 'CustomersController@index');
         Route::get('customers/{customer}', 'CustomersController@show');
@@ -234,7 +222,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('quotes-search/customers/{customer}', 'QuotesSearchController@byCustomer');
         Route::get('quotes-search/products/{product}', 'QuotesSearchController@byProduct');
-        Route::get('quotes-search/customers/{customer}/products/{product}', 'QuotesSearchController@byCustomerWithProduct');
+        Route::get('quotes-search/customers/{customer}/products/{product}',
+            'QuotesSearchController@byCustomerWithProduct');
 
         Route::post('customers/{customer}/quotes', 'CustomerQuotesController@store');
 
@@ -264,3 +253,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
 });
 
+
+Route::group(['middleware' => 'auth', 'namespace' => 'Admin'], function () {
+
+    Route::get('admin/social-sharing', 'SocialSharingSettingsController@show');
+
+    Route::get('admin/facebook/login', 'FacebookAuthController@login')->middleware('superauth');
+    Route::get('oauth/facebook/callback', 'FacebookAuthController@callback')->middleware('superauth');
+    Route::post('admin/social-sharing/facebook', 'FacebookSharingSettingsController@store')->middleware('superauth');
+    Route::delete('admin/social-sharing/facebook', 'FacebookSharingSettingsController@destroy')->middleware('superauth');
+
+    Route::get('admin/twitter/login', 'TwitterAuthController@login')->middleware('superauth');
+    Route::get('oauth/twitter/callback', 'TwitterAuthController@callback')->middleware('superauth');
+    Route::post('admin/social-sharing/twitter',
+        'TwitterSharingSettingsController@store')->middleware('superauth');
+    Route::delete('admin/social-sharing/twitter',
+        'TwitterSharingSettingsController@destroy')->middleware('superauth');
+
+});

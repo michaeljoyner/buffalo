@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AccessToken;
 use App\Http\FlashMessaging\Flasher;
-use App\Social\Twitter;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
+use Laravel\Socialite\Facades\Socialite;
 
 class TwitterAuthController extends Controller
 {
@@ -22,19 +21,31 @@ class TwitterAuthController extends Controller
         $this->flasher = $flasher;
     }
 
-    public function login(Twitter $twitter)
+    public function login()
     {
-        return $twitter->login();
+        return Socialite::driver('twitter')->redirect();
     }
 
-    public function callback(Request $request, Twitter $twitter)
+    public function callback()
     {
-        $user = $twitter->createAuthenticatedUser($request->get('oauth_verifier', false));
+        $user = false;
 
-        if(! $user) {
-            $this->flasher->error('Oops, sorry.', 'Something went wrong getting authorisation from twitter');
+        try {
+            $user = Socialite::driver('twitter')->user();
+        } catch (\Exception $e) {
+            Log::error($e);
         }
 
-        return redirect('admin/social');
+        if ($user) {
+            AccessToken::create([
+                'platform' => 'twitter',
+                'token' => $user->token,
+                'token_secret' => $user->tokenSecret,
+            ]);
+        } else {
+            $this->flasher->error('Error', 'Unable to get authentication from Twitter.');
+        }
+
+        return redirect('/admin/social');
     }
 }

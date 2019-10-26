@@ -142,19 +142,5 @@ class QuoteItemPresenterTest extends BrowserKitTestCase
         return $presenter;
     }
 
-    /**
-     *@test
-     */
-    public function it_presents_the_height_of_the_complete_description_as_20_px_per_line_plus_20_extra()
-    {
-        $html = '<div>Line one</div><div>Line two</div><div>Line three</div><div>Line four</div>';
-        $item = $this->makePresenterForQuoteItem(['description' => $html]);
-        //title + blank line + 4 lines of item description plus blank line plus 5 lines of packaging = 13 lines
-        $this->assertEquals(260, $item->description_height);
 
-        $fiveLines = "Line one\nLine two\nLine three\nLine four\nLine five";
-        $item2 = $this->makePresenterForQuoteItem(['description' => $fiveLines]);
-        //title + blank line  + 5 lines of item description plus blank line plus 5 lines of packaging = 14 lines
-        $this->assertEquals(280, $item2->description_height);
-    }
 }

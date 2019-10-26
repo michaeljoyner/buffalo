@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AccessToken;
 use App\Http\FlashMessaging\Flasher;
-use App\Social\Facebook;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Laravel\Socialite\Facades\Socialite;
 
 class FacebookAuthController extends Controller
 {
@@ -19,25 +20,37 @@ class FacebookAuthController extends Controller
      */
     private $facebook;
 
-    public function __construct(Flasher $flasher, Facebook $facebook)
+    public function __construct(Flasher $flasher)
     {
         $this->flasher = $flasher;
-        $this->facebook = $facebook;
     }
-    
+
     public function login()
     {
-        return $this->facebook->login();
+        return Socialite::driver('facebook')
+                        ->scopes(['manage_pages', 'publish_pages'])
+                        ->redirect();
     }
 
     public function callback()
     {
-        $user = $this->facebook->createAuthentictedUser();
+        $user = false;
 
-        if(! $user) {
+        try {
+            $user = Socialite::driver('facebook')->user();
+        } catch (\Exception $e) {
+
+        }
+
+        if ($user) {
+            AccessToken::create([
+                'platform' => 'facebook',
+                'token' => $user->token,
+            ]);
+        } else {
             $this->flasher->error('Error', 'Unable to get authentication from Facebook.');
         }
 
-        return redirect('admin/social');
+        return redirect('/admin/social');
     }
 }
