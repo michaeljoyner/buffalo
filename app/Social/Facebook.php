@@ -11,15 +11,17 @@ use Vinkla\Facebook\Facades\Facebook as SDK;
 class Facebook
 {
     private $token;
+    private $page_id;
 
     public function __construct($token)
     {
         $this->token = $token;
+        $this->page_id = config('services.facebook.page_id');
     }
 
     private function getPageAccessToken()
     {
-        $response = SDK::get("/124868104624442?fields=access_token", $this->token);
+        $response = SDK::get("/{$this->page_id}?fields=access_token", $this->token);
         return $response->getAccessToken();
     }
 
@@ -32,7 +34,7 @@ class Facebook
         $token = $this->getPageAccessToken();
         try {
             SDK::post(
-                "/124868104624442/feed",
+                "/{$this->page_id}/feed",
                 ['message' => $post->description, 'link' => url("news/{$post->slug}")],
                 $token
             );

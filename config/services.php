@@ -43,6 +43,7 @@ return [
         'client_id' => env("FACEBOOK_APP_ID"),
         'client_secret' => env("FACEBOOK_APP_SECRET"),
         'redirect' => '/oauth/facebook/callback',
+        'page_id' => env('FACEBOOK_PAGE_ID'),
     ],
 
     'twitter' => [
