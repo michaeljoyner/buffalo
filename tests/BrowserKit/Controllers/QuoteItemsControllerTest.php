@@ -46,7 +46,7 @@ class QuoteItemsControllerTest extends BrowserKitTestCase
         $this->get('/admin/quotes/' . $quote->id . '/items')
             ->assertResponseOk()
             ->seeJsonForQuoteItem($product, 10, $supply)
-            ->seeJsonForQuoteItem($productB);
+            ->seeJsonForQuoteItem($productB, $productB->minimum_order_quantity);
     }
 
     /**

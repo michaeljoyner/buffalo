@@ -13,7 +13,7 @@ class PlumbingToolsShiftTest extends BrowserKitTestCase
 
     protected $job;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->job = new PlumbingToolsShift();

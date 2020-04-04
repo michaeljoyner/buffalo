@@ -56,17 +56,22 @@ class BrowserKitTestCase extends \Laravel\BrowserKitTesting\TestCase
         $this->assertNotNull($model->deleted_at, 'deleted_at should not be null');
     }
 
+    public function decodeResponseJson()
+    {
+        return json_decode($this->response->getContent(), true);
+    }
+
     protected function disableExceptionHandling()
     {
         $this->app->instance(ExceptionHandler::class, new class extends Handler {
             public function __construct() {}
 
-            public function report(Exception $e)
+            public function report(\Throwable $e)
             {
                 // no-op
             }
 
-            public function render($request, Exception $e) {
+            public function render($request, \Throwable $e) {
                 throw $e;
             }
         });

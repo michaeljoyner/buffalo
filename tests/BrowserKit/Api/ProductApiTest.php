@@ -20,7 +20,7 @@ class ProductApiTest extends BrowserKitTestCase
 
         $this->asLoggedInUser();
 
-        $this->get('/admin/api/products/' . $product->id)
+        $res = $this->get('/admin/api/products/' . $product->id)
             ->assertResponseOk()
             ->seeJsonContains(['id' => $product->id, 'name' => $product->name])
             ->seeJsonStructure([
@@ -29,12 +29,14 @@ class ProductApiTest extends BrowserKitTestCase
                 ]
             ]);
 
+
+//        dd($this->res)
         $resultAsArray = $this->decodeResponseJson();
         $resultSupplyNumbers = collect($resultAsArray['supplies'])->reduce(function($acc, $supply) {
             return $acc . ' ' . $supply['item_number'];
         }, '');
-        $this->assertContains((string) $supplyA->item_number, $resultSupplyNumbers);
-        $this->assertContains((string) $supplyB->item_number, $resultSupplyNumbers);
+        $this->assertStringContainsString((string) $supplyA->item_number, $resultSupplyNumbers);
+        $this->assertStringContainsString((string) $supplyB->item_number, $resultSupplyNumbers);
 
     }
 }

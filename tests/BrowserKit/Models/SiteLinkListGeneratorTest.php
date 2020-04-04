@@ -16,10 +16,10 @@ class SiteLinkListGeneratorTest extends BrowserKitTestCase
     {
         $list = SiteLinkGenerator::generate();
 
-        $this->assertArraySubset(['About page' => '/about'], $list);
-        $this->assertArraySubset(['Services page' => '/services'], $list);
-        $this->assertArraySubset(['Products page' => '/categories'], $list);
-        $this->assertArraySubset(['Contact page' => '/contact'], $list);
+        $this->assertEquals('/about', $list['About page']);
+        $this->assertEquals('/services', $list['Services page']);
+        $this->assertEquals('/categories', $list['Products page']);
+        $this->assertEquals('/contact', $list['Contact page']);
 
     }
 
@@ -33,7 +33,7 @@ class SiteLinkListGeneratorTest extends BrowserKitTestCase
         $list = SiteLinkGenerator::generate();
 
         $categories->each(function($category) use ($list) {
-            $this->assertArraySubset([$category->name => '/categories/' . $category->slug], $list);
+            $this->assertEquals("/categories/{$category->slug}", $list[$category->name]);
         });
     }
 }

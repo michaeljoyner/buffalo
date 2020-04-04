@@ -13,7 +13,7 @@ class QuoteRepositoryTest extends BrowserKitTestCase
 
     private $repo;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

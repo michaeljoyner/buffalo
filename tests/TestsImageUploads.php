@@ -10,12 +10,7 @@ trait TestsImageUploads
 {
     protected function prepareFileUpload($path, $name = null)
     {
-        $copyPath = $this->getCopyPath($path);
-        $this->assertFileExists($path);
-        copy($path, $copyPath);
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $mime = finfo_file($finfo, $copyPath);
-        return new \Illuminate\Http\UploadedFile($copyPath, $name ? $name : 'test-upload.png', $mime, 15004, null, true);
+        return \Illuminate\Http\UploadedFile::fake()->image($name ?? 'testpic.png');
     }
 
     protected function getCopyPath($path)

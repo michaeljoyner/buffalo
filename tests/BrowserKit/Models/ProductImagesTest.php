@@ -39,7 +39,7 @@ class ProductImagesTest extends BrowserKitTestCase
 
         $src = $product->imageSrc();
         $this->assertFileExists(public_path($src));
-        $this->assertContains('.jpg', $src);
+        $this->assertStringContainsString('.jpg', $src);
     }
 
     /**

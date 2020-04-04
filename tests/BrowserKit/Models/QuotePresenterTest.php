@@ -131,7 +131,7 @@ class QuotePresenterTest extends BrowserKitTestCase
     {
         $quote = $this->makePresenterForQuote();
 
-        $this->assertContains('Ref: ', $quote->quote_number);
+        $this->assertStringContainsString('Ref: ', $quote->quote_number);
     }
 
     /**

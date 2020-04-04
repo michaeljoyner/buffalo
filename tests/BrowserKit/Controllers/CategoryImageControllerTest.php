@@ -21,7 +21,7 @@ class CategoryImageControllerTest extends BrowserKitTestCase
         $this->asLoggedInUser();
 
         $response = $this->call('POST', '/admin/categories/' . $category->id . '/image', [], [], [
-            'file' => $this->prepareFileUpload('tests/testpic1.png')
+            'file' => \Illuminate\Http\UploadedFile::fake()->image('testpic.png')
         ]);
         $this->assertOkResponse($response);
 

@@ -27,8 +27,8 @@ class ProductGalleryTest extends TestCase
         $urls = $product->allImageUrls('web');
 
         $this->assertCount(3, $urls);
-        $this->assertContains(Product::DEFAULT_PRIMARY_IMAGE, $urls[0]);
-        $this->assertContains('web.jpg', $urls[1]);
-        $this->assertContains('web.jpg', $urls[2]);
+        $this->assertStringContainsString(Product::DEFAULT_PRIMARY_IMAGE, $urls[0]);
+        $this->assertStringContainsString('web.jpg', $urls[1]);
+        $this->assertStringContainsString('web.jpg', $urls[2]);
     }
 }

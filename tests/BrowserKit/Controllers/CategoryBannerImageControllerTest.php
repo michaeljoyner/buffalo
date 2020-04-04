@@ -18,7 +18,7 @@ class CategoryBannerImageControllerTest extends BrowserKitTestCase
         $category = factory(Category::class)->create();
 
         $response = $this->call('POST', '/admin/categories/' . $category->id . '/banner/image', [], [], [
-            'file' => $this->prepareFileUpload('tests/testpic1.png')
+            'file' => \Illuminate\Http\UploadedFile::fake()->image('testpic.png')
         ]);
         $this->assertEquals(200, $response->status());
         $category = $category->fresh();

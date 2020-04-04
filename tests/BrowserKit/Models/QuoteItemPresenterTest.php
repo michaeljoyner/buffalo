@@ -32,7 +32,7 @@ class QuoteItemPresenterTest extends BrowserKitTestCase
 
         $presenter = $item->present(QuoteItemPresenter::class);
         $filePath = $presenter->imageSrc;
-        $this->assertContains($product->imageSrc('thumb'), $filePath);
+        $this->assertStringContainsString($product->imageSrc('thumb'), $filePath);
         $this->assertTrue(file_exists($filePath));
 
         unlink($filePath);

@@ -15,7 +15,7 @@ class ProductsRepositoryTest extends BrowserKitTestCase
 
     protected $repo;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->repo = new ProductsRepository;

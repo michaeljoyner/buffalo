@@ -26,7 +26,7 @@ class AddProductImageUsesRandomNameTest extends TestCase
 
         $conversions = collect($image->fresh()->getMediaConversionNames());
         $conversions->each(function($con) use ($image) {
-            $this->assertNotContains("test_pic", $image->getUrl($con));
+            $this->assertStringNotContainsString("test_pic", $image->getUrl($con));
         });
         $this->assertNotEquals("test_pic.png", $image->fresh()->file_name);
 
