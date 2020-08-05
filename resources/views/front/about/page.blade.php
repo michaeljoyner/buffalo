@@ -62,7 +62,7 @@
         <div class="map-container">
             @include('svg.buffalo_map_1')
         </div>
-        <p class="strong-lead">It's our honour to serve these customers:</p>
+        <p class="strong-lead">We are honored to serve these customers</p>
         <div class="customer-logos">
             <div><img src="/images/customers/client_ustape.png" alt="US Tape logo"></div>
             <div><img src="/images/customers/occidental_leather.jpeg" alt="Occidental Leather logo"></div>
