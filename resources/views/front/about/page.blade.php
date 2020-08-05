@@ -20,14 +20,14 @@
     <section class="page-section">
         <h1 class="h1 section-title">About</h1>
         <p class="strong-lead padded-bottom">
-            Huang Buffalo sources, creates and delivers products to brands and retailers worldwide for over 26 years.
+            Huang Buffalo sources, creates and delivers products to brands and retailers worldwide for over 30 years.
         </p>
         <p class="body-text is-contained">Founded in 1990, Huang Buffalo Co., Ltd is a service-oriented
             manufacturing associate company specialized in providing professional hardware, auto tools, garden tools and
             OEM products to customers. The company has been built on creating a variety of quality and professional
             tools. This makes us become more competitive by satisfying customers.
         </p>
-        <p class="body-text is-contained">With over 26 years’ experience, Huang Buffalo serves customers with an
+        <p class="body-text is-contained">With over 30 years’ experience, Huang Buffalo serves customers with an
             extensive range of products as well as timely and efficient services. Huang Buffalo builds a strong and
             stable long-term relationship with customers around the world. The company will always be dedicated to
             providing its
@@ -47,7 +47,7 @@
         {{--<img class="socket-piece" src="/images/assets/socket_piece_web.png" alt="Buffalo tools socket piece">--}}
         <h2 class="h1 text-centered section-title">Why Choose Huang Buffalo</h2>
         <p class="strong-text is-contained no-margin-bottom">Our Experience</p>
-        <p class="body-text is-contained no-margin-top">With over 26 years experience in the hand tool industry, Huang Buffalo has a talented
+        <p class="body-text is-contained no-margin-top">With over 30 years experience in the hand tool industry, Huang Buffalo has a talented
             team of skilled professionals for all kinds of hardware. We consistently deliver a wide range of products
             to our customers, as well as work with them to best meet their needs.</p>
         <p class="strong-text is-contained no-margin-bottom">Excellent Quality Control</p>
@@ -62,18 +62,15 @@
         <div class="map-container">
             @include('svg.buffalo_map_1')
         </div>
-        <p class="strong-lead">Some of our customers include:</p>
+        <p class="strong-lead">It's our honour to serve these customers:</p>
         <div class="customer-logos">
-            <div>
-                <img src="/images/customers/client_eaton.png" alt="Eaton logo">
-                <img src="/images/customers/client_wurth.png" alt="Wurth logo">
-                <img src="/images/customers/client_berner.png" alt="Berner logo">
-            </div>
-            <div>
-                <img src="/images/customers/client_d2.png" alt="D2 logo">
-                <img src="/images/customers/client_apex.png" alt="Apex logo">
-                <img src="/images/customers/client_ustape.png" alt="US Tape logo">
-            </div>
+            <div><img src="/images/customers/client_ustape.png" alt="US Tape logo"></div>
+            <div><img src="/images/customers/occidental_leather.jpeg" alt="Occidental Leather logo"></div>
+            <div><img src="/images/customers/client_eaton.png" alt="Eaton logo"></div>
+            <div><img src="/images/customers/client_apex.png" alt="Apex logo"></div>
+            <div><img src="/images/customers/client_berner.png" alt="Berner logo"></div>
+            <div><img src="/images/customers/client_wurth.png" alt="Wurth logo"></div>
+            <div><img src="/images/customers/client_d2.png" alt="D2 logo"></div>
         </div>
     </section>
     @include('front.partials.footer')

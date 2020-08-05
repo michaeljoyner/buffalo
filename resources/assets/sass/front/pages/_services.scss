@@ -163,12 +163,26 @@
 }
 
 .customer-logos {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  max-width: 60rem;
+  margin: 0 auto;
+  @include respond-to(phone) {flex-direction: column}
+
+  & > div {
+    width: 33.3%;
+    height: 100px;
+    @include respond-to(phone) {width: 100%;}
+  }
 
   img {
-    display: inline-block;
-    width: 175px;
-    margin: 20px 50px;
+    width: 100%;
+    max-width: 175px;
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    object-fit: contain;
   }
 }
 
