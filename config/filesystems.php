@@ -62,6 +62,7 @@ return [
         'media' => [
             'driver' => 'local',
             'root'   => public_path().'/media',
+            'url' => '/media',
         ],
 
         's3' => [

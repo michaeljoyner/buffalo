@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Products\Product;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class FindMissingConversions extends Command
 {

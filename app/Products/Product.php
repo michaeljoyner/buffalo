@@ -9,13 +9,13 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
 {
-    use SoftDeletes, Sluggable, UrgesForDescription, HasMediaTrait, HasModelImage;
+    use SoftDeletes, Sluggable, UrgesForDescription, InteractsWithMedia, HasModelImage;
 
     const DEFAULT_PRIMARY_IMAGE = '/images/buffalo_logo_small.png';
     const DAYS_TO_BE_NEW = 90;
@@ -51,7 +51,7 @@ class Product extends Model implements HasMedia
         return $moq ?? 500;
     }
 
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
              ->fit(Manipulations::FIT_FILL, 200, 200)
