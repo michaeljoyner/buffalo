@@ -58,7 +58,7 @@ class QuotesTest extends BrowserKitTestCase
     {
         $quote = factory(Quote::class)->create();
         $timestring = \Carbon\Carbon::now()->format('Ymd');
-        $this->assertRegExp('/[A-Z0-9]{3}_' . $timestring . '/', $quote->quote_number);
+        $this->assertMatchesRegularExpression('/[A-Z0-9]{3}_' . $timestring . '/', $quote->quote_number);
     }
 
     /**

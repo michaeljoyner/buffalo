@@ -42,7 +42,7 @@ class ProductsSearchControllerTest extends BrowserKitTestCase
         $this->post('/admin/api/products/search', ['searchterm' => 'ABC123'])
             ->assertResponseOk();
 
-        $responseData = $this->decodeResponseJson();
+        $responseData = $this->json();
         $this->assertCount(1, $responseData);
         $this->seeJson([
             'id'             => $supply->product->id,

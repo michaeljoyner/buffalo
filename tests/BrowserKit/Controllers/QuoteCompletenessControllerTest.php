@@ -23,7 +23,7 @@ class QuoteCompletenessControllerTest extends BrowserKitTestCase
                 'missingFields' => [],
             ]);
 
-        $result = $this->decodeResponseJson();
+        $result = $this->json();
 
         $this->assertCount(3, $result['items']);
         collect($result['items'])->each(function($item) {
@@ -66,7 +66,7 @@ class QuoteCompletenessControllerTest extends BrowserKitTestCase
                 'missingFields' => ['Customer address', 'Shipment', 'Terms'],
             ]);
 
-        $result = $this->decodeResponseJson();
+        $result = $this->json();
 
         $this->assertCount(2, $result['items']);
 

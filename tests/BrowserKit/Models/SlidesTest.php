@@ -68,7 +68,7 @@ class SlidesTest extends BrowserKitTestCase
         $slide->setVideo($this->prepareFileUpload('tests/video2.mp4'));
         $this->assertFileExists(public_path('videos/'.$slide->video));
 
-        $this->assertFileNotExists(public_path('videos/' . $original_path));
+        $this->assertFileDoesNotExist(public_path('videos/' . $original_path));
     }
 
     /**
@@ -121,7 +121,7 @@ class SlidesTest extends BrowserKitTestCase
 
         $slide->delete();
 
-        $this->assertFileNotExists(public_path('videos/' . $path));
+        $this->assertFileDoesNotExist(public_path('videos/' . $path));
     }
 
     /**

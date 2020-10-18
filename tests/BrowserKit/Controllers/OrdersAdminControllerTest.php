@@ -25,7 +25,7 @@ class OrdersAdminControllerTest extends BrowserKitTestCase
         ]);
         $this->assertOkResponse($response);
 
-        $response_data = $this->decodeResponseJson();
+        $response_data = $this->json();
         $this->assertFalse($response_data['new_state']);
 
         $order = Order::withTrashed()->find($order->id);
