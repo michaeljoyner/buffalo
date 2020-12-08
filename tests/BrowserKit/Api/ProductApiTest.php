@@ -31,7 +31,7 @@ class ProductApiTest extends BrowserKitTestCase
 
 
 //        dd($this->res)
-        $resultAsArray = $this->json();
+        $resultAsArray = $this->readJson();
         $resultSupplyNumbers = collect($resultAsArray['supplies'])->reduce(function($acc, $supply) {
             return $acc . ' ' . $supply['item_number'];
         }, '');

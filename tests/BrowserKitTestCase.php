@@ -56,7 +56,7 @@ class BrowserKitTestCase extends \Laravel\BrowserKitTesting\TestCase
         $this->assertNotNull($model->deleted_at, 'deleted_at should not be null');
     }
 
-    public function json()
+    public function readJson()
     {
         return json_decode($this->response->getContent(), true);
     }

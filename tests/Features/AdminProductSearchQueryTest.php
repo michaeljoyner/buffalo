@@ -16,6 +16,7 @@ class AdminProductSearchQueryTest extends TestCase
      */
     public function a_search_query_can_be_passed_as_a_url_parameter_gets_sent_to_search_page()
     {
+        $this->withoutExceptionHandling();
         $this->asLoggedInUser();
         $response = $this->get("/admin/products/search?q=test-search");
         $response->assertStatus(200);
