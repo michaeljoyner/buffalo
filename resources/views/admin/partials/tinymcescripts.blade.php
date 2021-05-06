@@ -87,19 +87,18 @@
 //            content_css: '/css/editor.css',
         content_style: "body {font-size: 16px; max-width: 800px; margin: 0 auto;} * {font-size: 16px;} img {opacity: .6; max-width: 100%; height: auto;} img[data-mce-src] {opacity: 1;}",
         setup: function (ed) {
-            ed.addButton('mybutton', {
+            ed.ui.registry.addButton('mybutton', {
                 text: '',
-                icon: true,
-                image: '/images/assets/insert_photo_black.png',
-                onclick: function () {
+                icon: 'image',
+                onAction: function () {
                     document.querySelector('#post-file-input').click();
                 }
             });
-            ed.addButton('save_button', {
+            ed.ui.registry.addButton('save_button', {
                 text: '',
-                icon: true,
+                icon: 'save',
                 image: '/images/assets/save_button_icon.png',
-                onclick: function () {
+                onAction: function () {
                     document.querySelector('#blog-editor-form-submit').click();
                 }
             });

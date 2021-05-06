@@ -1,7 +1,7 @@
 @extends('admin.base')
 
 @section('head')
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/{{ config('tiny-mce.key') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 @stop
 
 @section('content')
