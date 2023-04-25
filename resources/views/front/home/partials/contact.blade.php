@@ -15,8 +15,7 @@
         <p class="body-text contact-info text-white">sales@buffalo-tools.com</p>
         <h3 class="h3 contact-heading text-white">Address</h3>
         <p class="body-text contact-info text-white">22F-2, No. 698, Sec 4, Wenxin Road,<br> Taichung, Taiwan, 406</p>
-        <p class="distributor-link-header h3 footer-heading text-centered" href="https://global/buffalo-tools.com/distributors">Become an agent</p>
-        <a class="distributor-link text-uppercase footer-heading text-centered" href="https://global.buffalo-tools.com/distributors">Apply now</a>
+
     </div>
     @endif
 </div>
